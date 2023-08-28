@@ -1,0 +1,5 @@
+role_id,operation_id
+ROLE_ADMIN,Rapor_Alıcısı
+ROLE_BACK_OFFICE,Rapor_Alıcısı
+ROLE_ADMIN,Dosya_Export
+ROLE_ADMIN,Müşteri_Listesi_Görüntüleyebilme

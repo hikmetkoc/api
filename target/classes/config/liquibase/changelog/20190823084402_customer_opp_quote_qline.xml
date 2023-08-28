@@ -1,0 +1,210 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <changeSet author="Melisa (generated)" id="1566549866461-4">
+        <createTable tableName="customer">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" primaryKeyName="customerPK"/>
+            </column>
+            <column name="created_by_id" type="int8"/>
+            <column name="created_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="last_modified_by_id" type="int8"/>
+            <column name="last_modified_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="description" type="varchar(2048)"/>
+            <column name="email" type="VARCHAR(255)"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="phone" type="VARCHAR(255)"/>
+            <column name="segment_id" type="VARCHAR(255)"/>
+            <column name="status_id" type="VARCHAR(255)"/>
+            <column name="tax_number" type="varchar(255)"/>
+            <column name="owner_id" type="int8"/>
+            <column name="sector_id" type="varchar(255)"/>
+            <column name="website" type="varchar(255)"/>
+            <column name="fuel_tl" type="numeric(19, 2)"/>
+            <column name="fuel_lt" type="int4"/>
+            <column name="vehicle_count" type="int4"/>
+            <column name="parent_id" type="uuid"/>
+            <column name="fleet_code" type="int4"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Melisa (generated)" id="1566549866461-5">
+        <createTable tableName="quote">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" primaryKeyName="quotePK"/>
+            </column>
+            <column name="created_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="last_modified_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="description" type="varchar(2048)"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="created_by_id" type="BIGINT"/>
+            <column name="last_modified_by_id" type="BIGINT"/>
+            <column name="customer_id" type="UUID"/>
+            <column name="stage_id" type="VARCHAR(255)"/>
+            <column name="discount_diesel" type="float8"/>
+            <column name="discount_gasoline" type="float8"/>
+            <column name="fuel_lt" type="int4"/>
+            <column name="fuel_tl" type="numeric(19, 2)"/>
+            <column name="payment_day" type="int4"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Melisa (generated)" id="1566549866461-6">
+        <createTable tableName="quote_version">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" primaryKeyName="quote_versionPK"/>
+            </column>
+            <column name="created_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="last_modified_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="created_by_id" type="BIGINT"/>
+            <column name="last_modified_by_id" type="BIGINT"/>
+            <column name="customer_id" type="UUID"/>
+            <column name="quote_id" type="UUID"/>
+            <column name="status_id" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Melisa (generated)" id="1566549866461-7">
+        <createTable tableName="quote_version_line_item">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" primaryKeyName="quote_version_line_itemPK"/>
+            </column>
+            <column name="quote_version" type="BYTEA"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Melisa (generated)" id="1566549866461-8">
+        <createIndex indexName="IX_null" tableName="user_group" unique="true">
+            <column name="member_id"/>
+            <column name="group_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1572850419205-5">
+        <addColumn tableName="quote">
+            <column name="payment_method_id" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet author="mehmet.sen (generated)" id="1572850419205-7">
+        <addColumn tableName="quote">
+            <column name="payment_period_id" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1572850419205-8">
+        <addColumn tableName="quote">
+            <column name="probability_id" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Melisa (generated)" id="1566549866461-9">
+        <addForeignKeyConstraint baseColumnNames="segment_id" baseTableName="customer"
+                                 constraintName="FK3cjawcb264doeibdd7jjfbg0y" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id"
+                                 referencedTableName="attribute_value" validate="true"/>
+    </changeSet>
+    <changeSet author="Melisa (generated)" id="1566549866461-10">
+        <addForeignKeyConstraint baseColumnNames="stage_id" baseTableName="quote"
+                                 constraintName="FKb0svph2vi3yohb28kwghmqi7i" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id"
+                                 referencedTableName="attribute_value" validate="true"/>
+    </changeSet>
+    <changeSet author="Melisa (generated)" id="1566549866461-13">
+        <addForeignKeyConstraint baseColumnNames="status_id" baseTableName="quote_version"
+                                 constraintName="FKpmj66ctbpr7w0ku9oh4uwtkgk" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id"
+                                 referencedTableName="attribute_value" validate="true"/>
+    </changeSet>
+    <changeSet author="Melisa (generated)" id="1566549866461-14">
+        <addForeignKeyConstraint baseColumnNames="customer_id" baseTableName="quote_version"
+                                 constraintName="FKnd7cf60xspfvyueeeiw8xqr61" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="customer"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="Melisa (generated)" id="1566549866461-15">
+        <addForeignKeyConstraint baseColumnNames="quote_id" baseTableName="quote_version"
+                                 constraintName="FKrwgwx53kokhjusvfm548hnnon" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="quote"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="Melisa (generated)" id="1566549866461-16">
+        <addForeignKeyConstraint baseColumnNames="customer_id" baseTableName="quote"
+                                 constraintName="FKn1qsja9muj23doop1o72so357" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="customer"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="Melisa (generated)" id="1566549866461-17">
+        <addForeignKeyConstraint baseColumnNames="status_id" baseTableName="customer"
+                                 constraintName="FKq3buy0if4exf0976t5xwgatqw" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id"
+                                 referencedTableName="attribute_value" validate="true"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1566563486212-18">
+        <addForeignKeyConstraint baseColumnNames="created_by_id" baseTableName="customer"
+                                 constraintName="FK5621enpilsigglj4q1qqg1eou" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="Melisa (generated)" id="1566549866461-19">
+        <addForeignKeyConstraint baseColumnNames="last_modified_by_id" baseTableName="customer"
+                                 constraintName="FKdcqhta5mvxmfb2ar0w88tdjo9" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="Melisa (generated)" id="1566549866461-20">
+        <addForeignKeyConstraint baseColumnNames="created_by_id" baseTableName="quote"
+                                 constraintName="FKxamweqmifvk43nv4p8cwqg1m" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="Melisa (generated)" id="1566549866461-21">
+        <addForeignKeyConstraint baseColumnNames="last_modified_by_id" baseTableName="quote"
+                                 constraintName="FKlom3bac0s5b2hjhj793mdy38g" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="Melisa (generated)" id="1566549866461-22">
+        <addForeignKeyConstraint baseColumnNames="last_modified_by_id" baseTableName="quote_version"
+                                 constraintName="FKqgmvic675bd4fp0ajpvtgotsl" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="Melisa (generated)" id="1566549866461-23">
+        <addForeignKeyConstraint baseColumnNames="created_by_id" baseTableName="quote_version"
+                                 constraintName="FKr3kc3u0n1gwqcuh467e6nifnu" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="Melisa (generated)" id="1567080259615-19">
+        <addForeignKeyConstraint baseColumnNames="owner_id" baseTableName="customer"
+                                 constraintName="FKgn9m49s9l9d2o0v89iqtgq3bg" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="Melisa (generated)" id="1567080259615-20">
+        <addForeignKeyConstraint baseColumnNames="sector_id" baseTableName="customer"
+                                 constraintName="FKjldy3h145h0a8d5inq0lrtn5c" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id"
+                                 referencedTableName="attribute_value" validate="true"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1572850419205-9">
+        <addForeignKeyConstraint baseColumnNames="payment_method_id" baseTableName="quote"
+                                 constraintName="FK20xy096okscoxix1ulxoodh4h" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id"
+                                 referencedTableName="attribute_value" validate="true"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1572850419205-10">
+        <addForeignKeyConstraint baseColumnNames="payment_period_id" baseTableName="quote"
+                                 constraintName="FKdqtwk0lt6cwpln7hrb32t3s60" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id"
+                                 referencedTableName="attribute_value" validate="true"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1572850419205-12">
+        <addForeignKeyConstraint baseColumnNames="probability_id" baseTableName="quote"
+                                 constraintName="FKmb7620ny1h03p97ccjyv6j13d" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id"
+                                 referencedTableName="attribute_value" validate="true"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1572850419205-13">
+        <addForeignKeyConstraint baseColumnNames="parent_id" baseTableName="customer"
+                                 constraintName="FKodah3mylfg62k0lu7g5dlx461" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="customer"
+                                 validate="true"/>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,40 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "tr.com.meteor.crm"
+    },
+    "jhipsterVersion": "6.2.0",
+    "applicationType": "monolith",
+    "baseName": "crm",
+    "packageName": "tr.com.meteor.crm",
+    "packageFolder": "tr/com/meteor/crm",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "ehcache",
+    "enableHibernateCache": true,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "postgresql",
+    "prodDatabaseType": "postgresql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": false,
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "MTNkNDE5OWQyOWU5OWUxOWQ1N2ExYzgwNWY0ZTljMzAxZjA2Y2EwMmU3OTE1NjcxOGVlMjM2NzY5Mzg4NDBkMzUwZWY3MjUyOGU0ODI3ZWY0OTJhODQ5OTAyYjhlOTY0M2JjMDAyMzBlZGY3ODM1NTBiNTc3NTc4ZDVmYmM5MDk=",
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [
+      {
+        "name": "generator-jhipster-audit-helper",
+        "version": "1.0.3"
+      }
+    ],
+    "enableTranslation": false,
+    "clientPackageManager": "npm",
+    "blueprints": [],
+    "skipClient": true
+  }
+}

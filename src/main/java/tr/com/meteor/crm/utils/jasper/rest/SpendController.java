@@ -1,0 +1,85 @@
+package tr.com.meteor.crm.utils.jasper.rest;
+
+
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import tr.com.meteor.crm.domain.CustomActivity;
+import tr.com.meteor.crm.domain.Spend;
+import tr.com.meteor.crm.repository.CustomActivityRepository;
+import tr.com.meteor.crm.repository.SpendRepository;
+import tr.com.meteor.crm.service.CustomActivityService;
+import tr.com.meteor.crm.service.SpendService;
+import tr.com.meteor.crm.service.dto.CheckInOutDTO;
+import tr.com.meteor.crm.utils.attributevalues.PaymentStatus;
+import tr.com.meteor.crm.utils.attributevalues.SpendStatus;
+
+import java.time.Instant;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
+
+@RestController
+@RequestMapping("/api/spends")
+public class SpendController extends GenericIdNameAuditingEntityController<Spend, UUID, SpendRepository, SpendService> {
+
+    public SpendController(SpendService service) {
+        super(service);
+    }
+
+    @PostMapping("/report")
+    public ResponseEntity report(@RequestParam Instant startDate, @RequestParam Instant endDate) throws Exception {
+        return ResponseEntity.ok()
+            .header("Content-Disposition", "attachment; filename=" + service.getEntityMetaData().getName() + ".xlsx")
+            .contentType(MediaType.parseMediaType("application/vnd.ms-excel;charset=UTF-8"))
+            .body(new ByteArrayResource(service.generateExcelSpendReportForUser(getCurrentUser(), startDate, endDate)));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<String> updateSpendStatus(@PathVariable UUID id, @RequestParam String status, @RequestParam String description) throws Exception {
+        try {
+            List<SpendStatus> spendList = Arrays.asList(SpendStatus.values());
+            for (SpendStatus spendStatus: spendList) {
+                if (spendStatus.getId().equals(status)) {
+                    service.updateSpendStatus(id, spendStatus.getAttributeValue(), description);
+                }
+            }
+            return ResponseEntity.ok().build();
+        } catch (Exception e) {
+            // Hata durumunda uygun bir hata yanıtı döndürebilirsiniz
+            return ResponseEntity.badRequest().build();
+        }
+    }
+    @PutMapping("/updatepaymentstatus/{id}")
+    public ResponseEntity<String> updateSpendPaymentStatus(@PathVariable UUID id, @RequestParam String status) throws Exception {
+        try {
+            service.updateSpendPaymentStatus(id, status);
+            return ResponseEntity.ok().build();
+        } catch (Exception e) {
+            // Hata durumunda uygun bir hata yanıtı döndürebilirsiniz
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
+    @PostMapping("selectedExcelSpendReport")
+    public ResponseEntity<ByteArrayResource> reportExcel(@RequestBody Map<String, List<UUID>> requestMap, @RequestParam String type, @RequestParam String qualification, @RequestParam String description) throws Exception {
+        List<UUID> ids = requestMap.get("ids");
+        return ResponseEntity.ok()
+            .header("Content-Disposition", "attachment; filename=" + service.getEntityMetaData().getName() + ".xlsx")
+            .contentType(MediaType.parseMediaType("application/vnd.ms-excel;charset=UTF-8"))
+            .body(new ByteArrayResource(service.generateSelectedExcelSpendReport(ids, getCurrentUser(), type, qualification, description)));
+    }
+
+    @PutMapping("/paytotl/{id}")
+    public ResponseEntity<String> updateSpendPay(@PathVariable UUID id, @RequestParam String money) throws Exception {
+        try {
+            service.updateSpendPay(id, money);
+            return ResponseEntity.ok().build();
+        } catch (Exception e) {
+            // Hata durumunda uygun bir hata yanıtı döndürebilirsiniz
+            return ResponseEntity.badRequest().build();
+        }
+    }
+}

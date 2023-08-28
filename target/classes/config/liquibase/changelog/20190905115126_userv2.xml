@@ -1,0 +1,32 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <changeSet author="Metix-10 (generated)" id="1567684316994-6">
+        <createTable tableName="user_segment">
+            <column name="user_id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="segment_id" type="VARCHAR(255)">
+                <constraints primaryKey="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Metix-10 (generated)" id="1567684316994-7">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="user_segment"
+                                 constraintName="FK4xak1oxfopouwfm8n63amnexk" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="Metix-10 (generated)" id="1567684316994-8">
+        <addForeignKeyConstraint baseColumnNames="segment_id" baseTableName="user_segment"
+                                 constraintName="FKsi0l6nadjj5e37oxy178fpxsq" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id"
+                                 referencedTableName="attribute_value" validate="true"/>
+    </changeSet>
+    <changeSet author="Metix-10 (generated)" id="1567684316994-1">
+        <dropPrimaryKey tableName="user_group"/>
+        <addPrimaryKey columnNames="member_id, group_id" tableName="user_group"/>
+    </changeSet>
+</databaseChangeLog>

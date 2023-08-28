@@ -1,0 +1,37 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <changeSet author="mehmet.sen (generated)" id="1569327705516-5">
+        <createTable tableName="configuration">
+            <column name="id" type="VARCHAR(255)">
+                <constraints primaryKey="true" primaryKeyName="configurationPK"/>
+            </column>
+            <column name="created_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="last_modified_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="stored_value" type="VARCHAR(255)"/>
+            <column name="value_type_id" type="varchar(255)"/>
+            <column name="created_by_id" type="BIGINT"/>
+            <column name="last_modified_by_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1569327705516-6">
+        <addForeignKeyConstraint baseColumnNames="value_type_id" baseTableName="configuration"
+                                 constraintName="FKdral16kwx3ok9nvf9s3yxsnsr" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id"
+                                 referencedTableName="attribute_value" validate="true"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1569327705516-7">
+        <addForeignKeyConstraint baseColumnNames="last_modified_by_id" baseTableName="configuration"
+                                 constraintName="FKihdvq9eeg3eves23u1y16qggt" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1569327705516-8">
+        <addForeignKeyConstraint baseColumnNames="created_by_id" baseTableName="configuration"
+                                 constraintName="FKrheiccescc5ag4pnibe21s1on" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+    <property name="now" value="now()" dbms="h2"/>
+    <property name="now" value="current_timestamp" dbms="postgresql"/>
+
+    <property name="floatType" value="float4" dbms="postgresql, h2"/>
+    <property name="floatType" value="float" dbms="mysql, oracle, mssql, mariadb"/>
+    <property name="clobType" value="longvarchar" dbms="h2"/>
+    <property name="clobType" value="clob" dbms="mysql, oracle, mssql, mariadb, postgresql"/>
+    <property name="uuidType" value="uuid" dbms="h2, postgresql"/>
+
+    <include file="config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190819053649_att_and_att_value.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190821060509_user_group.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190821081624_permission.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190823084402_customer_opp_quote_qline.xml"
+             relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190823104914_product.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190824093515_announcements.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190828114352_layout.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190828115257_operation.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190828132921_campaign.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190828134039_contact.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190829080509_activity.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190829120337_address.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190902052252_metadata.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190906061536_survey.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190905115126_userv2.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190920092847_file_descriptor.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190924122121_configuration.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191003063146_soft_delete.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191009071409_report.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191018103410_quote_activity.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191018125052_contract.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191024052202_task.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191106065720_target.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191113180554_opet.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191121085506_summary_user_customer.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191122065804_customer_status.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191125120358_summary_opet_sale.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191127115846_opet_sale_fleet_code.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191128050412_summary_os_fleet_code.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191204053704_quote_approval_status.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191204105256_summary_user_customer_2.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191206083037_task_activity.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191211132412_contract_type.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191213053717_commercial_title.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191213064716_customer_fields.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191219102938_indexes.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191224054259_search.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200129083940_customer_search_fleet_code.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200218075926_opet_sale_link.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200221133500_customer_bank.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200302115049_lead.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200305114421_remove_old_survey.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200305125707_new_survey.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200309065650_new_survey_2.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200424195401_user_fcm_tokens.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200504154910_customer_color_dbs_limit.xml" relativeToChangelogFile="false"/>
+
+    <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
+    <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
+    <include file="config/liquibase/changelog/99999999999999_initial_data_import.xml" relativeToChangelogFile="false"/>
+
+    <!-- After Prod -->
+    <include file="config/liquibase/changelog/20200110130633_customer_activation_time.xml" relativeToChangelogFile="false"/>
+
+</databaseChangeLog>

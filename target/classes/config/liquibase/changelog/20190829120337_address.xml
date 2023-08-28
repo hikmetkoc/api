@@ -1,0 +1,147 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <changeSet author="Melisa (generated)" id="1567080259615-4">
+        <createTable tableName="address">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" primaryKeyName="addressPK"/>
+            </column>
+            <column name="created_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="last_modified_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="detail" type="VARCHAR(512)"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="created_by_id" type="BIGINT"/>
+            <column name="last_modified_by_id" type="BIGINT"/>
+            <column name="city_id" type="UUID"/>
+            <column name="country_id" type="UUID"/>
+            <column name="district_id" type="UUID"/>
+            <column name="latitude" type="float8"/>
+            <column name="longitude" type="float8"/>
+            <column name="customer_id" type="uuid"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Melisa (generated)" id="1567080259615-5">
+        <createTable tableName="city">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" primaryKeyName="cityPK"/>
+            </column>
+            <column name="created_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="last_modified_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="created_by_id" type="BIGINT"/>
+            <column name="last_modified_by_id" type="BIGINT"/>
+            <column name="country_id" type="UUID"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Melisa (generated)" id="1567080259615-6">
+        <createTable tableName="country">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" primaryKeyName="countryPK"/>
+            </column>
+            <column name="created_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="last_modified_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="created_by_id" type="BIGINT"/>
+            <column name="last_modified_by_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Melisa (generated)" id="1567080259615-8">
+        <createTable tableName="district">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" primaryKeyName="districtPK"/>
+            </column>
+            <column name="created_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="last_modified_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="created_by_id" type="BIGINT"/>
+            <column name="last_modified_by_id" type="BIGINT"/>
+            <column name="city_id" type="UUID"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Melisa (generated)" id="1567080259615-14">
+        <addForeignKeyConstraint baseColumnNames="created_by_id" baseTableName="city"
+                                 constraintName="FK2ql9jdsxqeuvj5lls78p6c8g0" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="Melisa (generated)" id="1567080259615-16">
+        <addForeignKeyConstraint baseColumnNames="last_modified_by_id" baseTableName="address"
+                                 constraintName="FKarw0ec5tre9be4u3iat4ugev9" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="Melisa (generated)" id="1567080259615-17">
+        <addForeignKeyConstraint baseColumnNames="last_modified_by_id" baseTableName="city"
+                                 constraintName="FKdxyipt8p3343p53bvqet0gc5d" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="Melisa (generated)" id="1567080259615-18">
+        <addForeignKeyConstraint baseColumnNames="country_id" baseTableName="address"
+                                 constraintName="FKe54x81nmccsk5569hsjg1a6ka" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="country"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="Melisa (generated)" id="1567080259615-21">
+        <addForeignKeyConstraint baseColumnNames="last_modified_by_id" baseTableName="district"
+                                 constraintName="FKlinyqg0w9e1eilt4ixcc4t53r" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="Melisa (generated)" id="1567080259615-22">
+        <addForeignKeyConstraint baseColumnNames="last_modified_by_id" baseTableName="country"
+                                 constraintName="FKoexodul0lrju6r4i5vur57tai" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="Melisa (generated)" id="1567080259615-23">
+        <addForeignKeyConstraint baseColumnNames="city_id" baseTableName="address"
+                                 constraintName="FKpo044ng5x4gynb291cv24vtea" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="city"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="Melisa (generated)" id="1567080259615-24">
+        <addForeignKeyConstraint baseColumnNames="created_by_id" baseTableName="address"
+                                 constraintName="FKppblwejo2tpge7j9jrrb2uxka" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="Melisa (generated)" id="1567080259615-25">
+        <addForeignKeyConstraint baseColumnNames="district_id" baseTableName="address"
+                                 constraintName="FKqbjwfi50pdenou8j14knnffrh" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="district"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="Melisa (generated)" id="1567080259615-26">
+        <addForeignKeyConstraint baseColumnNames="created_by_id" baseTableName="district"
+                                 constraintName="FKr5dryhymafpa08uwbmauh2a4w" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="Melisa (generated)" id="1567080259615-27">
+        <addForeignKeyConstraint baseColumnNames="country_id" baseTableName="city"
+                                 constraintName="FKrpd7j1p7yxr784adkx4pyepba" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="country"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="Melisa (generated)" id="1567080259615-28">
+        <addForeignKeyConstraint baseColumnNames="city_id" baseTableName="district"
+                                 constraintName="FKsgx09prp6sk2f0we38bf2dtal" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="city"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="Melisa (generated)" id="1567080259615-30">
+        <addForeignKeyConstraint baseColumnNames="created_by_id" baseTableName="country"
+                                 constraintName="FKtcx8vifiv5b7kvegs2uxvlkv7" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1571124238834-5">
+        <addForeignKeyConstraint baseColumnNames="customer_id" baseTableName="address"
+                                 constraintName="FK93c3js0e22ll1xlu21nvrhqgg" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="customer"
+                                 validate="true"/>
+    </changeSet>
+</databaseChangeLog>

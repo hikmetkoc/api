@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.10.0.final using JasperReports Library version 6.10.0-unknown  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="yakitkart-sozlesme-p1" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e597c48e-4987-41ff-8af3-64a05ba69213">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+    <parameter name="customerName" class="java.lang.String">
+        <defaultValueExpression><![CDATA[". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ." +
+		". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ."]]></defaultValueExpression>
+    </parameter>
+    <parameter name="customerAddress" class="java.lang.String">
+        <defaultValueExpression><![CDATA[". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ." +
+		". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ." +
+		". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . "]]></defaultValueExpression>
+    </parameter>
+    <parameter name="contractDate" class="java.lang.String">
+        <defaultValueExpression><![CDATA[".../.../....."]]></defaultValueExpression>
+    </parameter>
+    <queryString>
+		<![CDATA[]]>
+	</queryString>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="802" splitType="Stretch">
+			<textField>
+				<reportElement mode="Opaque" x="50" y="30" width="460" height="740" uuid="be99202c-4aca-4760-8474-26ed54aaf8c1">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Justified" markup="html">
+					<font size="9.3" pdfEncoding="Cp1254"/>
+					<paragraph lineSpacing="1_1_2"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<p><b>3- METEOR PETROL’ÜN YÜKÜMLÜLÜKLERİ:</b></p>" +
+"<p>" +
+"    3.1. Meteor Petrol, OPET YAKIT KART sistemine dahil olmak isteyen iş bu Sözleşme kapsamındaki Müşteriler’in" +
+"    OPETYAKITKART Sistemi'ne dahil edilmesi için gereken teknik işlemleri tam ve eksiksiz olarak sağlayacaktır. OPET" +
+"    YAKIT KART Sistemi için Meteor Petrol tarafından verilecek hizmetler şunlardır;" +
+"</p>" +
+"<p>" +
+"    &nbsp;&nbsp;&nbsp;&nbsp;• Opet Ürünleri, OPET YAKIT KART Sistemi ile ilgili teknik bilgi ve destek sağlanması,<br/>" +
+"    &nbsp;&nbsp;&nbsp;&nbsp;• Ürün bilgisi, Sistem çalışma şekli hakkında bilgi verilmesi,<br/>" +
+"    &nbsp;&nbsp;&nbsp;&nbsp;• Opet OPET YAKIT KART' ın kullanılabileceği Opet akaryakıt istasyonlarını gösteren harita verilmesi,<br/>" +
+"    &nbsp;&nbsp;&nbsp;&nbsp;• Pazarlama, satış destek ve tanıtım faaliyetleri." +
+"</p>" +
+"<p>" +
+"    3.2. Meteor, Danışman'ın organize edeceği Müşteriler’in gerçekleştirecekleri akaryakıt satın alımları için" +
+"    Danışman'a aşağıdaki koşullarda prim ödemesi yapacaktır. Meteor, Danışman'ın organize edeceği Müşteriler’i," +
+"    Danışman'ın hesabına kaydedecektir. Meteor, OPET YAKIT KART Sistemi ile akaryakıt alımı yapacak olan, sözkonusu" +
+"    Müşteriler’in aylık KDV Hariç akaryakıt satın alımlarına istinaden hesaplanacak ciro üzerinden Danışman'a kurşunsuz" +
+"    benzin 95 ve 97 oktanda %.....; motorinde %..... prim ödemesi yapacaktır. Prim ödemesi satın alımların hesaplandığı" +
+"    ilgili ayı takip eden ayın 20. takvim gününde yapılacaktır. Söz konusu primlerin hesaplanmasında Meteor Petrol ‘ün" +
+"    defter, kayıt ve belgeleri esas alınacaktır. Meteor Petrol, iskonto oranını işbu sözleşmenin imza tarihi esas" +
+"    alınarak EPDK websayfasında yayınlanan akaryakıt dağıtım şirketleri tarafından uygulanan akaryakıt pompa satış" +
+"    fiyatlarının ortalamasının %10 artması halinde ya da Amerikan Doları (USD) kurunun Türk Lirasına göre değişiminin" +
+"    %15 oranının üzerinde ya da altında olması söz konusu kur durumunun bir aydan uzun sürmesi halinde indirim oranını" +
+"    tek taraflı olarak değiştirme hakkına sahiptir." +
+"</p>" +
+"<p>" +
+"    3.3. Ayrıca Meteor Petrol, Danışman'ın organize edeceği Müşteriler’in satın alacakları akaryakıt bedellerinin" +
+"    tahsilinin Danışman tarafından temin edilmesi amacıyla on beş günde bir olmak üzere 15 tarihli ve 30/31" +
+"    tarihli her ay 2 kere borç dekontu veya sair şekilde yazılı olarak Danışman’a bildirecektir." +
+"</p>" +
+"<p>" +
+"    3.4. Meteor, ayrıca Danışman'ın organize edeceği Müşteriler ile Sözleşme yapılmasını müteakiben Danışman’a, Danışman" +
+"    kanalıyla sisteme alınan firma/firmaların yakıt alımlarını internet üzerinden takip edebilmesi için kullanıcı ismi" +
+"    ve şifre tahsis edecektir." +
+"</p>" +
+"<p></p>" +
+"<p><b>4- DANIŞMAN'IN YÜKÜMLÜLÜKLERİ:</b></p>" +
+"<p>" +
+"    4.1. Danışman, Meteor Petrol tarafından kabul edilerek, Meteor ile OPET YAKIT KART Sözleşmesini imzalamış bulunan" +
+"    Müşteriler’e Danışman’a tutanak ile teslim edilen OPET YAKIT KART’ ları Meteor adına teslim edecek ve Meteor dilerse" +
+"    söz konusu OPET YAKIT KART’ ları ile satın alınan akaryakıt bedellerinin Müşteriler’den Meteor adına tahsil" +
+"    edecektir. Satışı yapılan akaryakıtın bedelini Meteor’un belirleyeceği şartlar dahilinde ve yukarıda 3.3. maddesine" +
+"    uygun şekilde Müşteriler’den tahsil edecek olan Danışman, yakıt bedeli konusunda teslimat yapılan Müşteri ile" +
+"    birlikte Meteor’a karşı müşterek borçlu ve garantör sıfatı ile borçlu olacaktır. Bu hususta Danışman Meteor’a bir" +
+"    kefaletname verecektir. Danışman Meteor nam ve hesabına hareket edecek olduğundan Danışman ile Müşteriler arasında" +
+"    herhangi bir akaryakıt alım-satımı ve/veya faturalaşma ilişkisi gündeme gelmeyecektir." +
+"</p>" +
+"<p>" +
+"    4.2. Danışman, İşbu Sözleşme'yi ve Sözleşme'den doğan hak, alacak ve yükümlülüklerini tamamen veya kısmen herhangi" +
+"    bir kişiye Meteor' un yazılı onayı olmadan temlik ve tahsis etmemeyi kabul ve taahhüt etmiştir." +
+"</p>" +
+"<p>" +
+"    4.3. Danışman Müşteriler’e teslim edilmek üzere kendisine teslim edilen OPET YAKIT KART’ ların çalınması veya" +
+"    kaybolması durumunda, durumu derhal Meteor ’a bildirmek zorundadır. Danışman, Meteor ’a yazılı bildirim yapmaz ise" +
+"    doğacak tüm sorumluluğun kendisinde olduğunu kabul ve taahhüt eder." +
+"</p>" +
+"<p>" +
+"    4.4. Danışman, iş bu Sözleşme konusu olan, Meteor adına gerçekleştirdiği faaliyetlerinde, yürürlükte bulunan tüm" +
+"    mevzuata uygunluğa Meteor’un uyarısı ve/veya önerisine gerek duymaksızın titizlikle riayet edecektir." +
+"</p>"]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

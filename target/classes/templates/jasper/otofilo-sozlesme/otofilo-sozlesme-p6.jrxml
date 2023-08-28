@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.10.0.final using JasperReports Library version 6.10.0-unknown  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_A42" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c423d4df-2209-41a0-a863-1a89c7b732f7">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<parameter name="customerName" class="java.lang.String">
+		<defaultValueExpression><![CDATA[". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ." +
+		". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ."]]></defaultValueExpression>
+	</parameter>
+	<parameter name="customerAddress" class="java.lang.String">
+		<defaultValueExpression><![CDATA[". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ." +
+		". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ." +
+		". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . "]]></defaultValueExpression>
+	</parameter>
+	<parameter name="contractDate" class="java.lang.String">
+		<defaultValueExpression><![CDATA[".../.../....."]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="782" splitType="Stretch">
+			<textField>
+				<reportElement mode="Opaque" x="50" y="30" width="460" height="570" uuid="56bcf7b3-9c17-441e-8923-4a24898be706">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Justified" markup="html">
+					<font size="9.3" pdfEncoding="Cp1254"/>
+					<paragraph lineSpacing="1_1_2"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<p>" +
+"    Bir faturanın eksiksiz olarak 9.2. madde belirtilen süreçte ödenmemesi halinde Danışman’ın, ödenmemiş fatura" +
+"    tutarlarının yanı sıra, bu nedenle muaccel olacak olan işbu Sözleşme süresinin sonuna kadar tahakkuk edecek Hizmet" +
+"    Bedellerini talep hakkını da haiz olarak, Sözleşme’yi Müşteri’ye herhangi bir tazminat ödemekle yükümlü" +
+"    tutulmaksızın derhal fesih hakkı saklıdır." +
+"</p>" +
+"<p>" +
+"    15.3. Müşteri, Sözleşme’nin herhangi bir şekilde sona ermesi durumunda 5 (beş) gün içerisinde Danışman’dan o güne" +
+"    kadar teslim aldığı tüm SIM kartları ve cihazları eksiksiz olarak teslim etmeyi, edemediği beher sim kart ve cihaz" +
+"    başına 100 (yüz) TL + KDV bedel ödemeyi kabul ve taahhüt eder." +
+"</p>" +
+"<p>" +
+"    15.4.Taraflardan birinin, Sözleşme kapsamındaki yükümlülüklerini hiç ya da gereği gibi yerine getirmemesi ya da" +
+"    yükümlülüklerini ihlal etmesi halinde, ihlal eden tarafın ihlalin giderilmesini talep eden yazılı ihbarı almasından" +
+"    itibaren 15 gün içinde ihlali gidermemesi halinde, diğer Taraf, Sözleşme’yi derhal ve tek taraflı olarak başkaca" +
+"    hiçbir ihtar ya da ihbara ve hükme gerek feshetmek hakkına sahiptir. Ancak Danışman’ın aşağıda 15.7. maddede" +
+"    düzenlenmiş bulunan hakları saklıdır." +
+"</p>" +
+"<p>" +
+"    15.5. Müşteri, Sözleşme’nin herhangi bir şekilde sona ermesi durumunda Sözleşme yürürlük süresince, aktif olan paket" +
+"    hizmet bedelleri için taahhüt edilen süre üzerinden hesaplanacak kalan süreye ilişkin taksit tutarlarının ödemesini" +
+"    Danışman tarafından düzenlenecek fatura tarihinden itibaren en geç 5 gün içinde yapacaktır. Ödemenin tam ya da" +
+"    zamanında yapılmaması halinde, Müşteri, fatura tutarı üzerinden günlük %0,2 oranında gecikme bedeli ödeyecektir." +
+"</p>" +
+"<p>" +
+"    15.6. Müşteri, Sözleşme fesih tarihi itibari ile 5 (beş) gün içinde hizmet süresince kullanımına verilen Otofilo" +
+"    cihazın sökümünü yetkili servis noktalarında yaptırmakla yükümlüdür." +
+"</p>" +
+"<p>" +
+"    15.7. Müşteri’nin <u>DBS veya BTM’sinin süresinin dolmasının ya da iptalinin veya</u> her ne sebeple olursa olsun" +
+"    Otobil Sözleşmesi’nin feshinin gündeme gelmesi halinde Danışman, vadesi gelmemiş faturalar dahil taahhüt edilen" +
+"    paket ücretleri ile iade edilmemiş cihaz bedellerini hiçbir merasime gerek kalmaksızın derhal tahsil edebilecektir." +
+"</p>" +
+"<p></p>" +
+"<p>" +
+"    <b>16- İHTİLAFLARIN ÇÖZÜMÜ</b>" +
+"</p>" +
+"<p></p>" +
+"<p>" +
+"    İhtilaf halinde İstanbul Merkez Çağlayan Mahkemeleri ve İcra Müdürlükleri yetkilidir. Sözleşme’nin herhangi bir" +
+"    hükmünün ileride yasa ile geçersiz kılınması veya uygulanmasının imkansız hale gelmesi, diğer hükümlerinin" +
+"    geçerliliğini, yasallığını ve ifasını etkilemeyecektir." +
+"</p>" +
+"<p></p>" +
+"<p>" +
+"    <b>17- VERGİ VE HARÇLAR</b>" +
+"</p>" +
+"<p></p>" +
+"<p>" +
+"    17 maddeden oluşan iş bu Sözleşme " + $P{contractDate} + " tarihinde tarafların yetkili temsilcileri tarafından imzalanıp, 2 (iki)" +
+"    nüsha halinde düzenlenecek ve Sözleşme’nin bir aslı Danışman’da diğer aslı Müşteri’de kalacaktır. İşbu Sözleşme’nin" +
+"    imzalanmasından doğan damga vergisi ve sair yükümlülükler Müşteri tarafından karşılanacaktır." +
+"</p>"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="60" y="620" width="220" height="20" uuid="09b8fe1d-0f5d-4dc4-8dc5-c45a20a2a184">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" markup="html">
+					<font size="9.5" isBold="true" pdfEncoding="Cp1254"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Danışman"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="280" y="620" width="100" height="20" uuid="3447b512-2a10-4685-8554-bfd38b687221">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Right" markup="html">
+					<font size="9.5" isBold="true" pdfEncoding="Cp1254"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Müşteri"]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="2" y="0" width="550" height="20" uuid="4d9b1616-0a80-47a3-9da7-aeb3a71ae879"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[6]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

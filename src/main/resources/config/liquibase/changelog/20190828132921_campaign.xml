@@ -1,0 +1,41 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <changeSet author="Metix-10 (generated)" id="1566998994519-4">
+        <createTable tableName="campaign">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" primaryKeyName="campaignPK"/>
+            </column>
+            <column name="name" type="varchar(255)"/>
+            <column name="created_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="last_modified_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="budget" type="numeric(19, 2)"/>
+            <column name="description" type="varchar(2048)"/>
+            <column name="end_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="expected_revenue" type="numeric(19, 2)"/>
+            <column name="start_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="created_by_id" type="BIGINT"/>
+            <column name="last_modified_by_id" type="BIGINT"/>
+            <column name="status_id" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Metix-10 (generated)" id="1566998994519-5">
+        <addForeignKeyConstraint baseColumnNames="last_modified_by_id" baseTableName="campaign"
+                                 constraintName="FK895omyvedtc2moxrs2wsif4fu" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="Metix-10 (generated)" id="1566998994519-6">
+        <addForeignKeyConstraint baseColumnNames="status_id" baseTableName="campaign"
+                                 constraintName="FKbyyivl8gx6y0xhtgv6kj1kvo4" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id"
+                                 referencedTableName="attribute_value" validate="true"/>
+    </changeSet>
+    <changeSet author="Metix-10 (generated)" id="1566998994519-7">
+        <addForeignKeyConstraint baseColumnNames="created_by_id" baseTableName="campaign"
+                                 constraintName="FKlc5itt5ije5u4cp63ms1b9kiv" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+</databaseChangeLog>

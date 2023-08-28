@@ -1,0 +1,156 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <changeSet author="mehmet.sen (generated)" id="9999999999999-1">
+        <loadData
+            file="config/liquibase/data/user.csv"
+            tableName="jhi_user">
+            <column name="id" type="numeric"/>
+            <column name="activated" type="boolean"/>
+            <column name="created_date" type="timestamp"/>
+            <column name="created_by_id" type="numeric"/>
+            <column name="last_modified_by_id" type="numeric"/>
+        </loadData>
+    </changeSet>
+
+    <changeSet author="mehmet.sen (generated)" id="9999999999999-2">
+        <loadData
+            file="config/liquibase/data/role.csv"
+            tableName="jhi_role"/>
+    </changeSet>
+
+    <changeSet author="mehmet.sen (generated)" id="9999999999999-3">
+        <loadData
+            file="config/liquibase/data/user_role.csv"
+            tableName="jhi_user_role"/>
+    </changeSet>
+
+    <changeSet author="mehmet.sen (generated)" id="9999999999999-4">
+        <loadData
+            file="config/liquibase/data/attribute.csv"
+            tableName="attribute">
+            <column name="id" type="STRING"/>
+            <column name="object_name" type="STRING"/>
+            <column name="field_name" type="STRING"/>
+        </loadData>
+    </changeSet>
+
+    <changeSet author="mehmet.sen (generated)" id="9999999999999-5">
+        <loadData
+            file="config/liquibase/data/attribute_value.csv"
+            tableName="attribute_value">
+            <column name="id" type="STRING"/>
+            <column name="attribute_id" type="STRING"/>
+            <column name="label" type="STRING"/>
+            <column name="is_static" type="BOOLEAN"/>
+            <column name="weight" type="numeric"/>
+        </loadData>
+    </changeSet>
+
+    <changeSet author="mehmet.sen (generated)" id="9999999999999-6">
+        <loadData
+            file="config/liquibase/data/user_group.csv"
+            tableName="user_group">
+            <column name="group_id" type="numeric"/>
+            <column name="member_id" type="numeric"/>
+        </loadData>
+    </changeSet>
+
+    <changeSet author="mehmet.sen (generated)" id="9999999999999-7">
+        <loadData
+            file="config/liquibase/data/permission.csv"
+            tableName="permission">
+            <column name="id" type="uuid"/>
+            <column name="role_id" type="string"/>
+            <column name="object_name" type="string"/>
+            <column name="read" type="boolean"/>
+            <column name="update" type="boolean"/>
+            <column name="delete" type="boolean"/>
+            <column name="is_hierarchical" type="boolean"/>
+            <column name="created_by_id" type="numeric"/>
+            <column name="last_modified_by_id" type="numeric"/>
+        </loadData>
+    </changeSet>
+
+    <changeSet author="mehmet.sen (generated)" id="9999999999999-8">
+        <loadData
+            file="config/liquibase/data/entity_metadata.csv"
+            tableName="entity_metadata">
+            <column name="id" type="string"/>
+            <column name="name" type="string"/>
+            <column name="display_field" type="string"/>
+        </loadData>
+    </changeSet>
+
+    <changeSet author="mehmet.sen (generated)" id="9999999999999-9">
+        <loadData
+            file="config/liquibase/data/field_metadata.csv"
+            tableName="field_metadata">
+            <column name="id" type="string"/>
+            <column name="entity_metadata_id" type="string"/>
+            <column name="name" type="string"/>
+            <column name="title" type="string"/>
+            <column name="display" type="boolean"/>
+            <column name="read_only" type="boolean"/>
+            <column name="required" type="boolean"/>
+            <column name="default_value" type="string"/>
+            <column name="priority" type="numeric"/>
+        </loadData>
+    </changeSet>
+
+    <changeSet author="mehmet.sen (generated)" id="9999999999999-10">
+        <loadData
+            file="config/liquibase/data/configuration.csv"
+            tableName="configuration">
+            <column name="id" type="string"/>
+            <column name="name" type="string"/>
+            <column name="created_by_id" type="numeric"/>
+            <column name="value_type_id" type="string"/>
+            <column name="stored_value" type="string"/>
+        </loadData>
+    </changeSet>
+
+    <changeSet author="mehmet.sen (generated)" id="9999999999999-11">
+        <loadData
+            file="config/liquibase/data/operation.csv"
+            tableName="operation">
+            <column name="id" type="string"/>
+            <column name="name" type="string"/>
+            <column name="created_by_id" type="numeric"/>
+            <column name="parent_id" type="string"/>
+        </loadData>
+    </changeSet>
+
+    <changeSet author="mehmet.sen (generated)" id="9999999999999-12">
+        <loadData
+            file="config/liquibase/data/role_operation.csv"
+            tableName="role_operation">
+            <column name="role_id" type="string"/>
+            <column name="operation_id" type="string"/>
+        </loadData>
+    </changeSet>
+
+    <changeSet author="mehmet.sen (generated)" id="9999999999999-13">
+        <loadData
+            file="config/liquibase/data/city.csv"
+            tableName="city">
+            <column name="id" type="uuid"/>
+            <column name="name" type="string"/>
+            <column name="created_by_id" type="numeric"/>
+            <column name="last_modified_by_id" type="numeric"/>
+        </loadData>
+    </changeSet>
+
+    <changeSet author="mehmet.sen (generated)" id="9999999999999-14">
+        <loadData
+            file="config/liquibase/data/district.csv"
+            tableName="district">
+            <column name="id" type="uuid"/>
+            <column name="name" type="string"/>
+            <column name="city_id" type="uuid"/>
+            <column name="created_by_id" type="numeric"/>
+            <column name="last_modified_by_id" type="numeric"/>
+        </loadData>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,9 @@
+id,name,created_by_id,value_type_id,stored_value
+Dosya Yükleme Sınırı,Dosya Yükleme Sınırı(MB),3,Kon_Tip_Integer,20
+Benzin Maksimum İndirim,Benzin Maksimum İndirim(%),3,Kon_Tip_Double,3
+Motorin Maksimum İndirim,Motorin Maksimum İndirim(%),3,Kon_Tip_Double,5
+Check-in Check-Out Maksimum Mesafe,Check-in Check-Out Maksimum Mesafe(Metre),3,Kon_Tip_Integer,300
+Opet Sıradaki Gün,Opet Sıradaki Gün(yyyy-MM-dd),3,Kon_Tip_Local_Date,2099-11-10
+Sözleşme CC,Sözleşme CC(Mail),3,Kon_Tip_String,null
+Backend Version,Backend Version,3,Kon_Tip_Integer,0
+Kullanma Kılavuzu Yolu,Kullanma Kılavuzu Yolu,3,Kon_Tip_String,/UserGuides

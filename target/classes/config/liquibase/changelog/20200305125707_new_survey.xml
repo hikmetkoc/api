@@ -1,0 +1,148 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <changeSet author="mehmet.sen (generated)" id="1583477580686-46">
+        <createTable tableName="customer_survey_answer">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" primaryKeyName="customer_survey_answerPK"/>
+            </column>
+            <column name="deleted_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="search" type="VARCHAR(2048)"/>
+            <column name="created_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="last_modified_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="time" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="deleted_by_id" type="BIGINT"/>
+            <column name="created_by_id" type="BIGINT"/>
+            <column name="last_modified_by_id" type="BIGINT"/>
+            <column name="answer_id" type="UUID"/>
+            <column name="customer_id" type="UUID"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1583477580686-47">
+        <createTable tableName="survey_answer">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" primaryKeyName="survey_answerPK"/>
+            </column>
+            <column name="deleted_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="search" type="VARCHAR(2048)"/>
+            <column name="created_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="last_modified_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="deleted_by_id" type="BIGINT"/>
+            <column name="created_by_id" type="BIGINT"/>
+            <column name="last_modified_by_id" type="BIGINT"/>
+            <column name="question_id" type="UUID"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1583477580686-48">
+        <createTable tableName="survey_question">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" primaryKeyName="survey_questionPK"/>
+            </column>
+            <column name="deleted_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="search" type="VARCHAR(2048)"/>
+            <column name="created_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="last_modified_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="active" type="BOOLEAN"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="deleted_by_id" type="BIGINT"/>
+            <column name="created_by_id" type="BIGINT"/>
+            <column name="last_modified_by_id" type="BIGINT"/>
+            <column name="type_id" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1583477580686-49">
+        <createIndex indexName="IDXjn6bnswweg5yfkauvj0gvdj4o" tableName="customer_survey_answer">
+            <column name="search"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1583477580686-50">
+        <createIndex indexName="IDXkvumwomii8anv86am49kvvyxs" tableName="survey_answer">
+            <column name="search"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1583477580686-51">
+        <createIndex indexName="IDXtdobptv7hjygqrlykt1y70d63" tableName="survey_question">
+            <column name="search"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1583477580686-52">
+        <addForeignKeyConstraint baseColumnNames="answer_id" baseTableName="customer_survey_answer"
+                                 constraintName="FK13hl8b2bc7vr7g4v9rahcp9e3" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id"
+                                 referencedTableName="survey_answer" validate="true"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1583477580686-53">
+        <addForeignKeyConstraint baseColumnNames="created_by_id" baseTableName="customer_survey_answer"
+                                 constraintName="FK3n9ed0vhhr0dosp8lunlyk43k" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1583477580686-54">
+        <addForeignKeyConstraint baseColumnNames="deleted_by_id" baseTableName="survey_answer"
+                                 constraintName="FK5u86ag4ulkugtoo6tdgbhx3o4" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1583477580686-55">
+        <addForeignKeyConstraint baseColumnNames="deleted_by_id" baseTableName="survey_question"
+                                 constraintName="FK8ghkdqm67sb4e6xl919weed7u" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1583477580686-56">
+        <addForeignKeyConstraint baseColumnNames="last_modified_by_id" baseTableName="survey_question"
+                                 constraintName="FK9u934r2avt4s8sp03spcr2vlc" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1583477580686-57">
+        <addForeignKeyConstraint baseColumnNames="type_id" baseTableName="survey_question"
+                                 constraintName="FKc4n3crbhp9ps7d0cus68v39hr" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id"
+                                 referencedTableName="attribute_value" validate="true"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1583477580686-58">
+        <addForeignKeyConstraint baseColumnNames="created_by_id" baseTableName="survey_answer"
+                                 constraintName="FKfdrcrjpvrwsmysny1uk3o3shy" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1583477580686-59">
+        <addForeignKeyConstraint baseColumnNames="customer_id" baseTableName="customer_survey_answer"
+                                 constraintName="FKh69yp8tqw2l6kam1w4w29vf69" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="customer"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1583477580686-60">
+        <addForeignKeyConstraint baseColumnNames="last_modified_by_id" baseTableName="survey_answer"
+                                 constraintName="FKhsai4a16aghjpihr3fwy6q38j" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1583477580686-61">
+        <addForeignKeyConstraint baseColumnNames="created_by_id" baseTableName="survey_question"
+                                 constraintName="FKiq6ck8q7flh9w34s5scseiu51" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1583477580686-62">
+        <addForeignKeyConstraint baseColumnNames="last_modified_by_id" baseTableName="customer_survey_answer"
+                                 constraintName="FKk4tnx183wh1my2w1cdwq4yv0d" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1583477580686-63">
+        <addForeignKeyConstraint baseColumnNames="question_id" baseTableName="survey_answer"
+                                 constraintName="FKsmngcm3g1yf412nsre7h8j32e" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id"
+                                 referencedTableName="survey_question" validate="true"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1583477580686-64">
+        <addForeignKeyConstraint baseColumnNames="deleted_by_id" baseTableName="customer_survey_answer"
+                                 constraintName="FKt32qm1nw9gwqhmrs77cjmpp6a" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+</databaseChangeLog>

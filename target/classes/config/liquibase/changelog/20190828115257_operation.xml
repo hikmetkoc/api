@@ -1,0 +1,58 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <changeSet author="Melisa (generated)" id="1566993208360-4">
+        <createTable tableName="operation">
+            <column name="id" type="VARCHAR(255)">
+                <constraints primaryKey="true" primaryKeyName="operationPK"/>
+            </column>
+            <column name="created_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="last_modified_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="created_by_id" type="BIGINT"/>
+            <column name="last_modified_by_id" type="BIGINT"/>
+            <column name="parent_id" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1571992171986-4">
+        <createTable tableName="role_operation">
+            <column name="role_id" type="VARCHAR(255)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="operation_id" type="VARCHAR(255)">
+                <constraints primaryKey="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Melisa (generated)" id="1566993208360-5">
+        <addForeignKeyConstraint baseColumnNames="last_modified_by_id" baseTableName="operation"
+                                 constraintName="FK4a25nctymq9rnweeywqqfinbn" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="Melisa (generated)" id="1566993208360-6">
+        <addForeignKeyConstraint baseColumnNames="created_by_id" baseTableName="operation"
+                                 constraintName="FK6bip3neawfvfukua9sk4j37gw" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="Melisa (generated)" id="1566993208360-7">
+        <addForeignKeyConstraint baseColumnNames="parent_id" baseTableName="operation"
+                                 constraintName="FKefs9j1m1l02nfefil7qupgb6i" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="operation"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1571992171986-5">
+        <addForeignKeyConstraint baseColumnNames="role_id" baseTableName="role_operation"
+                                 constraintName="FK8hwrw3kqaaj3tx33xuhvj8qdk" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_role"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1571992171986-6">
+        <addForeignKeyConstraint baseColumnNames="operation_id" baseTableName="role_operation"
+                                 constraintName="FKn3lc5p8c5iw3om29quebkj41v" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="operation"
+                                 validate="true"/>
+    </changeSet>
+</databaseChangeLog>

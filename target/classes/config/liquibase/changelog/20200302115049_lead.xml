@@ -1,0 +1,67 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <changeSet author="mehmet.sen (generated)" id="1583149879997-52">
+        <createTable tableName="lead">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" primaryKeyName="leadPK"/>
+            </column>
+            <column name="deleted_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="search" type="VARCHAR(2048)"/>
+            <column name="created_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="last_modified_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="description" type="VARCHAR(2048)"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="phone" type="VARCHAR(255)"/>
+            <column name="deleted_by_id" type="BIGINT"/>
+            <column name="created_by_id" type="BIGINT"/>
+            <column name="last_modified_by_id" type="BIGINT"/>
+            <column name="customer_id" type="UUID"/>
+            <column name="owner_id" type="BIGINT"/>
+            <column name="status_id" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1583149879997-53">
+        <createIndex indexName="IDXc70vaiqh858hw01w9594qttyu" tableName="lead">
+            <column name="search"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1583149879997-54">
+        <addForeignKeyConstraint baseColumnNames="owner_id" baseTableName="lead"
+                                 constraintName="FK4bun07tlu4f1nuyx90bryyfag" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1583149879997-55">
+        <addForeignKeyConstraint baseColumnNames="created_by_id" baseTableName="lead"
+                                 constraintName="FK4wfegin1yxv03gqj8d30wb7l0" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1583149879997-56">
+        <addForeignKeyConstraint baseColumnNames="deleted_by_id" baseTableName="lead"
+                                 constraintName="FKcoevl3dhfpysroglto8qosv0g" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1583149879997-57">
+        <addForeignKeyConstraint baseColumnNames="last_modified_by_id" baseTableName="lead"
+                                 constraintName="FKdbtp9decq0r5vxemnrhr0v46j" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1583149879997-58">
+        <addForeignKeyConstraint baseColumnNames="status_id" baseTableName="lead"
+                                 constraintName="FKdwm41avm1g84xh1kkkwblocbn" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id"
+                                 referencedTableName="attribute_value" validate="true"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1583149879997-59">
+        <addForeignKeyConstraint baseColumnNames="customer_id" baseTableName="lead"
+                                 constraintName="FKfhrojsva9j3ajvk9swftydxr2" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="customer"
+                                 validate="true"/>
+    </changeSet>
+</databaseChangeLog>

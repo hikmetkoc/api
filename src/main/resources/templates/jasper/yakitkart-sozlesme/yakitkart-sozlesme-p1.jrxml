@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.10.0.final using JasperReports Library version 6.10.0-unknown  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="yakitkart-sozlesme-p1" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e597c48e-4987-41ff-8af3-64a05ba69213">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<parameter name="customerName" class="java.lang.String">
+		<defaultValueExpression><![CDATA[". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ." +
+		". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ."]]></defaultValueExpression>
+	</parameter>
+	<parameter name="customerAddress" class="java.lang.String">
+		<defaultValueExpression><![CDATA[". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ." +
+		". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ." +
+		". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . "]]></defaultValueExpression>
+	</parameter>
+	<parameter name="contractDate" class="java.lang.String">
+		<defaultValueExpression><![CDATA[".../.../....."]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="802" splitType="Stretch">
+			<textField>
+				<reportElement mode="Opaque" x="50" y="30" width="460" height="740" uuid="be99202c-4aca-4760-8474-26ed54aaf8c1">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Justified" markup="html">
+					<font size="9.3" pdfEncoding="Cp1254"/>
+					<paragraph lineSpacing="1_1_2"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<p><b>OPET YAKIT KART DANIŞMANLIK SÖZLEŞMESİ</b></p>" +
+"<p></p>" +
+"<p><b>1- TARAFLAR VE TANIMLAR:</b></p>" +
+"<p>" +
+"    Bir taraftan İsmetpaşa Mh.Atatürk Blv. No:156 YALOVA adresinde mukim METEOR PETROL ÜRÜNLERİ SAN VE TİC A.Ş. (bundan" +
+"    böyle 'Meteor' olarak anılacak) ile diğer taraftan " + $P{customerAddress} + " mukim " +
+$P{customerName} + " (bundan böyle 'Danışman' olarak anılacak) arasında Opet’in Türkiye’de" +
+"    uygulamaya koyacağı ve sözleşmede tanımlar bölümünde açıklanan OPET YAKIT KART Sistemi’nin faaliyetine yönelik" +
+"    olarak aşağıda belirtilen şartlara havi işbu sözleşmeyi imzalamışlardır." +
+"</p>" +
+"<p></p>" +
+"<p><b>OPET</b></p>" +
+"<p>" +
+"    Kendi adı altında bayilik sistemi ile işletilen akaryakıt istasyonlarına ve müşterilerine akaryakıt, madeni yağ" +
+"    ve benzeri ürünleri temin eden ve OPET YAKIT KART Sistemi’nin Türkiye genelinde tek yetkili satıcısıdır." +
+"</p>" +
+"<p></p>" +
+"<p><b>METEOR</b></p>" +
+"<p>" +
+"    Opet tarafından, Opet ürünlerinin tüketicilere satılması için münhasır Bayilik Sözleşmesi ile yetkilendirilmiş" +
+"    Opet veya Sunpet markası altında faaliyet gösteren gerçek ve tüzel kişilerdir." +
+"</p>" +
+"<p></p>" +
+"<p><b>DANIŞMAN</b></p>" +
+"<p>" +
+"    Opet adına, iş bu Sözleşme ile belirlenen prim karşılığında, Müşteriler’e Meteor tarafından kendisine tutanak ile" +
+"    teslim edilen OPET YAKIT KART’ ları teslim eden, söz konusu OPET YAKIT KART’ ları ile satın alınan akaryakıt" +
+"    bedellerini Müşteriler’den Opet adına teslim alan, söz konusu Müşterileri organize eden ve aşağıda tanımlanacak" +
+"    Müşteriler’in temerrüdü halinde Müşteriler’in Meteor’a yapması gereken ödemeleri garanti ve tekeffül eden özel ve" +
+"    tüzel kişidir." +
+"</p>" +
+"<p></p>" +
+"<p><b>MÜŞTERİ</b></p>" +
+"<p>" +
+"    OPET YAKIT KART ile sisteme dahil olan akaryakıt istasyonlarından, Meteor ve/veya Danışman tarafından kendisine" +
+"    tutanak ile teslim edilen OPET YAKIT KART’ ları ile Opet akaryakıt istasyonlarından akaryakıt ikmali yapan birimdir." +
+"    Akaryakıt alımı sırasında, Müşteri’nin nezdindeki kartın limiti dahilinde yapacağı akaryakıt alım tutarı kadar" +
+"    fatura, Müşteri’nin adına, akaryakıt alımı yaptığı Opet akaryakıt istasyonu tarafından düzenlenerek alışveriş" +
+"    sırasında verilecektir." +
+"</p>" +
+"<p></p>" +
+"<p><b>OPET YAKIT KART SİSTEMİ</b></p>" +
+"<p>" +
+"    Kullanım hakkı tamamen Opet’e ait olan ve OPET YAKIT KART sistemine dahil olan akaryakıt istasyonlarından nakit ve" +
+"    ya kredi kartı gibi herhangi bir vasıta ile ödeme yapmaksızın, OPETYAKITKART’ı ile yakıt ikmalinin yapılmasını" +
+"    sağlayan sistemin genel adıdır." +
+"</p>" +
+"<p></p>" +
+"<p><b>2- KAPSAM:</b></p>" +
+"<p>" +
+"    İş bu Sözleşme, Danışman tarafından, Danışman'ın organize edeceği Müşteriler’e Meteor tarafından Danışman’a tutanak" +
+"    ile teslim edilen OPET YAKIT KART’ ların teslim edilmesi, söz konusu OPET YAKIT KART’ ları ile satın alınan" +
+"    akaryakıt bedellerinin Müşteriler’den Meteor adına tahsil edilmesi, Danışman’ın Meteor’un anılan şekilde satış" +
+"    yaptığı Müşteriler’in ödemelerini garanti ve tekeffül etmesi ve buna mukabil Meteor’un da Danışman’a iş bu Sözleşme" +
+"    ile belirlenen prim bedellerini ödemesini kapsamak üzere imzalanmıştır." +
+"</p>"]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

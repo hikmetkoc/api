@@ -1,0 +1,27 @@
+id,object_name,field_name
+Müş_Dur,Müşteri,Durum
+Akt_Dur,Aktivite,Durum
+Akt_Tip,Aktivite,Tip
+Kam_Dur,Kampanya,Durum
+Kiş_Tip,Kişi,Tip
+Müş_Sek,Müşteri,Sektör
+Müş_Seg,Müşteri,Segment
+Akt_Ned,Aktivite,Neden
+Dos_Tip,Dosya,Tip
+Kon_Tip,Konfigürasyon,Tip
+Tek_Aşa,Teklif,Aşama
+Tek_Ola,Teklif,Olasılık
+Gör_Tip,Görev,Tip
+Gör_Dur,Görev,Durum
+Söz_Dur,Sözleşme,Durum
+Söz_ÖdP,Sözleşme,Ödeme Periyodu
+Söz_ÖdY,Sözleşme,Ödeme Yöntemi
+Duy_Tip,Duyuru,Tip
+Hed_Tip,Hedef,Tip
+Tek_Ona,Teklif,Onay Durumu
+Söz_Tip,Sözleşme,Tip
+Müş_Kay,Müşteri,Kaynak
+Müş_Bnk,Müşteri,Banka
+MüA_Dur,Müşteri Adayı,Durum
+AnS_Tip,Anket Soru,Tip
+Müş_Rnk,Müşteri,Renk

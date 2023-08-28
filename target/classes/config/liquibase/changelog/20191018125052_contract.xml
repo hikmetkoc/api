@@ -1,0 +1,100 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <changeSet author="mehmet.sen (generated)" id="1571403071725-4">
+        <createTable tableName="contract">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" primaryKeyName="contractPK"/>
+            </column>
+            <column name="deleted_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="created_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="last_modified_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="description" type="varchar(2048)"/>
+            <column name="discount_diesel" type="FLOAT8"/>
+            <column name="discount_gasoline" type="FLOAT8"/>
+            <column name="fuel_lt" type="INTEGER"/>
+            <column name="fuel_tl" type="numeric(19, 2)"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="payment_day" type="INTEGER"/>
+            <column name="deleted_by_id" type="BIGINT"/>
+            <column name="created_by_id" type="BIGINT"/>
+            <column name="last_modified_by_id" type="BIGINT"/>
+            <column name="customer_id" type="UUID"/>
+            <column name="quote_id" type="UUID"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1571403071725-5">
+        <addForeignKeyConstraint baseColumnNames="created_by_id" baseTableName="contract"
+                                 constraintName="FK2e9ndivow1cl1b42jugb8jcat" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1571403071725-6">
+        <addForeignKeyConstraint baseColumnNames="last_modified_by_id" baseTableName="contract"
+                                 constraintName="FK6g51iarjmgyxnrwo2ufce2qo4" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1571403071725-7">
+        <addForeignKeyConstraint baseColumnNames="quote_id" baseTableName="contract"
+                                 constraintName="FKleq9maf71uwlwbv18ov2a0gf7" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="quote"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1571403071725-8">
+        <addForeignKeyConstraint baseColumnNames="deleted_by_id" baseTableName="contract"
+                                 constraintName="FKnfgtpn9tx5hvlbwru9tw1efcg" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1571403071725-9">
+        <addForeignKeyConstraint baseColumnNames="customer_id" baseTableName="contract"
+                                 constraintName="FKq28qogy68douoc4gkgcy3ow9p" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="customer"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="alaad (generated)" id="1571897101702-4">
+        <addColumn tableName="contract">
+            <column name="end_date" type="timestamp"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="alaad (generated)" id="1571897101702-7">
+        <addColumn tableName="contract">
+            <column name="start_date" type="timestamp"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="alaad (generated)" id="1571897101702-8">
+        <addColumn tableName="contract">
+            <column name="status_id" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1572850419205-4">
+        <addColumn tableName="contract">
+            <column name="payment_method_id" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1572850419205-6">
+        <addColumn tableName="contract">
+            <column name="payment_period_id" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="alaad (generated)" id="1571897101702-11">
+        <addForeignKeyConstraint baseColumnNames="status_id" baseTableName="contract"
+                                 constraintName="FKr4c8xetm4h19qx1u3954kpy4b" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id"
+                                 referencedTableName="attribute_value" validate="true"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1572850419205-11">
+        <addForeignKeyConstraint baseColumnNames="payment_period_id" baseTableName="contract"
+                                 constraintName="FKdt832i5hwofcplfc0slo29713" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id"
+                                 referencedTableName="attribute_value" validate="true"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1572850419205-13">
+        <addForeignKeyConstraint baseColumnNames="payment_method_id" baseTableName="contract"
+                                 constraintName="FKpbrtrfrs3ed7l5yllhmasdfir" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id"
+                                 referencedTableName="attribute_value" validate="true"/>
+    </changeSet>
+</databaseChangeLog>

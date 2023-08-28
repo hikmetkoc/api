@@ -1,0 +1,485 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <changeSet author="mehmet.sen (generated)" id="1570085430087-5">
+        <addColumn tableName="activity">
+            <column name="deleted_by_id" type="int8"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1570085430087-6">
+        <addColumn tableName="address">
+            <column name="deleted_by_id" type="int8"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1570085430087-7">
+        <addColumn tableName="announcement">
+            <column name="deleted_by_id" type="int8"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1570085430087-8">
+        <addColumn tableName="attribute">
+            <column name="deleted_by_id" type="int8"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1570085430087-9">
+        <addColumn tableName="attribute_value">
+            <column name="deleted_by_id" type="int8"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1570085430087-10">
+        <addColumn tableName="campaign">
+            <column name="deleted_by_id" type="int8"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1570085430087-11">
+        <addColumn tableName="city">
+            <column name="deleted_by_id" type="int8"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1570085430087-12">
+        <addColumn tableName="configuration">
+            <column name="deleted_by_id" type="int8"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1570085430087-13">
+        <addColumn tableName="contact">
+            <column name="deleted_by_id" type="int8"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1570085430087-14">
+        <addColumn tableName="country">
+            <column name="deleted_by_id" type="int8"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1570085430087-15">
+        <addColumn tableName="customer">
+            <column name="deleted_by_id" type="int8"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1570085430087-16">
+        <addColumn tableName="customer_survey">
+            <column name="deleted_by_id" type="int8"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1570085430087-17">
+        <addColumn tableName="customer_survey_answer">
+            <column name="deleted_by_id" type="int8"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1570085430087-18">
+        <addColumn tableName="district">
+            <column name="deleted_by_id" type="int8"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1570085430087-19">
+        <addColumn tableName="entity_metadata">
+            <column name="deleted_by_id" type="int8"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1570085430087-20">
+        <addColumn tableName="field_metadata">
+            <column name="deleted_by_id" type="int8"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1570085430087-21">
+        <addColumn tableName="file_descriptor">
+            <column name="deleted_by_id" type="int8"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1570085430087-22">
+        <addColumn tableName="jhi_user">
+            <column name="deleted_by_id" type="int8"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1570085430087-23">
+        <addColumn tableName="layout">
+            <column name="deleted_by_id" type="int8"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1570085430087-24">
+        <addColumn tableName="operation">
+            <column name="deleted_by_id" type="int8"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1570085430087-25">
+        <addColumn tableName="permission">
+            <column name="deleted_by_id" type="int8"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1570085430087-26">
+        <addColumn tableName="product">
+            <column name="deleted_by_id" type="int8"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1570085430087-27">
+        <addColumn tableName="quote">
+            <column name="deleted_by_id" type="int8"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1570085430087-28">
+        <addColumn tableName="quote_version">
+            <column name="deleted_by_id" type="int8"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1570085430087-29">
+        <addColumn tableName="quote_version_line_item">
+            <column name="deleted_by_id" type="int8"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1570085430087-30">
+        <addColumn tableName="survey">
+            <column name="deleted_by_id" type="int8"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1570085430087-31">
+        <addColumn tableName="survey_scoring">
+            <column name="deleted_by_id" type="int8"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1570085430087-32">
+        <addColumn tableName="survey_version">
+            <column name="deleted_by_id" type="int8"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1570085430087-33">
+        <addColumn tableName="survey_version_question">
+            <column name="deleted_by_id" type="int8"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1570085430087-34">
+        <addColumn tableName="survey_version_question_answer">
+            <column name="deleted_by_id" type="int8"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1570085430087-35">
+        <addColumn tableName="activity">
+            <column name="deleted_date" type="timestamp"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1570085430087-36">
+        <addColumn tableName="address">
+            <column name="deleted_date" type="timestamp"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1570085430087-37">
+        <addColumn tableName="announcement">
+            <column name="deleted_date" type="timestamp"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1570085430087-38">
+        <addColumn tableName="attribute">
+            <column name="deleted_date" type="timestamp"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1570085430087-39">
+        <addColumn tableName="attribute_value">
+            <column name="deleted_date" type="timestamp"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1570085430087-40">
+        <addColumn tableName="campaign">
+            <column name="deleted_date" type="timestamp"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1570085430087-41">
+        <addColumn tableName="city">
+            <column name="deleted_date" type="timestamp"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1570085430087-42">
+        <addColumn tableName="configuration">
+            <column name="deleted_date" type="timestamp"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1570085430087-43">
+        <addColumn tableName="contact">
+            <column name="deleted_date" type="timestamp"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1570085430087-44">
+        <addColumn tableName="country">
+            <column name="deleted_date" type="timestamp"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1570085430087-45">
+        <addColumn tableName="customer">
+            <column name="deleted_date" type="timestamp"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1570085430087-46">
+        <addColumn tableName="customer_survey">
+            <column name="deleted_date" type="timestamp"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1570085430087-47">
+        <addColumn tableName="customer_survey_answer">
+            <column name="deleted_date" type="timestamp"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1570085430087-48">
+        <addColumn tableName="district">
+            <column name="deleted_date" type="timestamp"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1570085430087-49">
+        <addColumn tableName="entity_metadata">
+            <column name="deleted_date" type="timestamp"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1570085430087-50">
+        <addColumn tableName="field_metadata">
+            <column name="deleted_date" type="timestamp"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1570085430087-51">
+        <addColumn tableName="file_descriptor">
+            <column name="deleted_date" type="timestamp"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1570085430087-52">
+        <addColumn tableName="jhi_user">
+            <column name="deleted_date" type="timestamp"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1570085430087-53">
+        <addColumn tableName="layout">
+            <column name="deleted_date" type="timestamp"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1570085430087-54">
+        <addColumn tableName="operation">
+            <column name="deleted_date" type="timestamp"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1570085430087-55">
+        <addColumn tableName="permission">
+            <column name="deleted_date" type="timestamp"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1570085430087-56">
+        <addColumn tableName="product">
+            <column name="deleted_date" type="timestamp"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1570085430087-57">
+        <addColumn tableName="quote">
+            <column name="deleted_date" type="timestamp"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1570085430087-58">
+        <addColumn tableName="quote_version">
+            <column name="deleted_date" type="timestamp"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1570085430087-59">
+        <addColumn tableName="quote_version_line_item">
+            <column name="deleted_date" type="timestamp"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1570085430087-60">
+        <addColumn tableName="survey">
+            <column name="deleted_date" type="timestamp"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1570085430087-61">
+        <addColumn tableName="survey_scoring">
+            <column name="deleted_date" type="timestamp"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1570085430087-62">
+        <addColumn tableName="survey_version">
+            <column name="deleted_date" type="timestamp"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1570085430087-63">
+        <addColumn tableName="survey_version_question">
+            <column name="deleted_date" type="timestamp"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1570085430087-64">
+        <addColumn tableName="survey_version_question_answer">
+            <column name="deleted_date" type="timestamp"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1570085430087-65">
+        <addForeignKeyConstraint baseColumnNames="deleted_by_id" baseTableName="attribute"
+                                 constraintName="FK4dufymx6rhbdt4um8oip5xhrx" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1570085430087-66">
+        <addForeignKeyConstraint baseColumnNames="deleted_by_id" baseTableName="product"
+                                 constraintName="FK68ry4jc1atc5dsbcspfs44lwr" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1570085430087-67">
+        <addForeignKeyConstraint baseColumnNames="deleted_by_id" baseTableName="quote_version_line_item"
+                                 constraintName="FK6e1ykafnx5uemahn4oia71yr5" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1570085430087-68">
+        <addForeignKeyConstraint baseColumnNames="deleted_by_id" baseTableName="city"
+                                 constraintName="FK85p4v3ji3kc8j3qc5ealtquws" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1570085430087-69">
+        <addForeignKeyConstraint baseColumnNames="deleted_by_id" baseTableName="customer"
+                                 constraintName="FK8dxbshsn3nn44vqwnt8bg8gud" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1570085430087-70">
+        <addForeignKeyConstraint baseColumnNames="deleted_by_id" baseTableName="jhi_user"
+                                 constraintName="FK8vxnqp678gq2cmp1olqm83b57" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1570085430087-71">
+        <addForeignKeyConstraint baseColumnNames="deleted_by_id" baseTableName="district"
+                                 constraintName="FKbkqha7h0gqo7d2m71ro900aes" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1570085430087-72">
+        <addForeignKeyConstraint baseColumnNames="deleted_by_id" baseTableName="layout"
+                                 constraintName="FKbwrbw8a8ylegyfiittj1ui3ok" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1570085430087-73">
+        <addForeignKeyConstraint baseColumnNames="deleted_by_id" baseTableName="operation"
+                                 constraintName="FKc28jkxdec4n0w6kkb89owu9uj" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1570085430087-74">
+        <addForeignKeyConstraint baseColumnNames="deleted_by_id" baseTableName="survey_version_question"
+                                 constraintName="FKcx50w2l8lq4e5lvthm29jvhdy" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1570085430087-75">
+        <addForeignKeyConstraint baseColumnNames="deleted_by_id" baseTableName="customer_survey"
+                                 constraintName="FKdosbleo021hnnkltr5iq53b6c" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1570085430087-76">
+        <addForeignKeyConstraint baseColumnNames="deleted_by_id" baseTableName="quote"
+                                 constraintName="FKechwvjwxgx01gkd9iwe7jlb7h" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1570085430087-77">
+        <addForeignKeyConstraint baseColumnNames="deleted_by_id" baseTableName="campaign"
+                                 constraintName="FKfjddkrr1egfgm1vd4ef1wuen9" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1570085430087-78">
+        <addForeignKeyConstraint baseColumnNames="deleted_by_id" baseTableName="file_descriptor"
+                                 constraintName="FKg5jj1fw23evr0igvn1hkih741" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1570085430087-79">
+        <addForeignKeyConstraint baseColumnNames="deleted_by_id" baseTableName="survey_scoring"
+                                 constraintName="FKjhpbji9gaaegcirn4xqk2yqb1" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1570085430087-80">
+        <addForeignKeyConstraint baseColumnNames="deleted_by_id" baseTableName="configuration"
+                                 constraintName="FKk2002pq3igol3ymuw9yf29b6a" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1570085430087-81">
+        <addForeignKeyConstraint baseColumnNames="deleted_by_id" baseTableName="attribute_value"
+                                 constraintName="FKlk1w2b1v8i16kgl8ehokj74ty" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1570085430087-82">
+        <addForeignKeyConstraint baseColumnNames="deleted_by_id" baseTableName="activity"
+                                 constraintName="FKm04d435oj8mnmope2s6or1gwo" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1570085430087-83">
+        <addForeignKeyConstraint baseColumnNames="deleted_by_id" baseTableName="announcement"
+                                 constraintName="FKmklej973i3kramjd1sx3s39b8" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1570085430087-84">
+        <addForeignKeyConstraint baseColumnNames="deleted_by_id" baseTableName="quote_version"
+                                 constraintName="FKmrod2i03474wbfjsx3m4o6p3s" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1570085430087-85">
+        <addForeignKeyConstraint baseColumnNames="deleted_by_id" baseTableName="country"
+                                 constraintName="FKndg68eex8bg5wvkdlqmkx4m2p" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1570085430087-86">
+        <addForeignKeyConstraint baseColumnNames="deleted_by_id" baseTableName="permission"
+                                 constraintName="FKntp6ghopwhv6s7a9ldsvpcytl" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1570085430087-87">
+        <addForeignKeyConstraint baseColumnNames="deleted_by_id" baseTableName="field_metadata"
+                                 constraintName="FKqar1c5fiphswohk6gq38p8ww" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1570085430087-88">
+        <addForeignKeyConstraint baseColumnNames="deleted_by_id" baseTableName="address"
+                                 constraintName="FKqmouxb3f8k87doett8s59f3p8" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1570085430087-89">
+        <addForeignKeyConstraint baseColumnNames="deleted_by_id" baseTableName="survey_version_question_answer"
+                                 constraintName="FKrlye41aj2df0tuyucr3u9y4vg" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1570085430087-90">
+        <addForeignKeyConstraint baseColumnNames="deleted_by_id" baseTableName="survey"
+                                 constraintName="FKrmd1gfrk4iovmtxc986eiin6e" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1570085430087-91">
+        <addForeignKeyConstraint baseColumnNames="deleted_by_id" baseTableName="entity_metadata"
+                                 constraintName="FKrxf1p65tctpcnf9klxacn0jr2" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1570085430087-92">
+        <addForeignKeyConstraint baseColumnNames="deleted_by_id" baseTableName="contact"
+                                 constraintName="FKsqd0h0vha8swjfs67jtrsokax" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1570085430087-93">
+        <addForeignKeyConstraint baseColumnNames="deleted_by_id" baseTableName="survey_version"
+                                 constraintName="FKsr1w9pium4v0rl2fhkgvevwnx" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1570085430087-94">
+        <addForeignKeyConstraint baseColumnNames="deleted_by_id" baseTableName="customer_survey_answer"
+                                 constraintName="FKt32qm1nw9gwqhmrs77cjmpp6a" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+</databaseChangeLog>

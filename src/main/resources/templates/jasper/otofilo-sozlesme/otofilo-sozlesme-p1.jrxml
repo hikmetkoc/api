@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.10.0.final using JasperReports Library version 6.10.0-unknown  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_A42" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c423d4df-2209-41a0-a863-1a89c7b732f7">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<parameter name="customerName" class="java.lang.String">
+		<defaultValueExpression><![CDATA[". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ." +
+		". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ."]]></defaultValueExpression>
+	</parameter>
+	<parameter name="customerAddress" class="java.lang.String">
+		<defaultValueExpression><![CDATA[". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ." +
+		". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ." +
+		". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . "]]></defaultValueExpression>
+	</parameter>
+	<parameter name="contractDate" class="java.lang.String">
+		<defaultValueExpression><![CDATA[".../.../....."]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="782" splitType="Stretch">
+			<textField>
+				<reportElement mode="Opaque" x="50" y="30" width="460" height="230" uuid="8120885a-74ca-47f2-bc6e-070b3fe72633">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" markup="html">
+					<font size="9.3" pdfEncoding="Cp1254"/>
+					<paragraph lineSpacing="1_1_2"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<p><b>OTOFİLO MÜŞTERİ HİZMET SÖZLEŞMESİ</b></p>" +
+"<p></p>" +
+"<p><b>1- TARAFLAR</b></p>" +
+"<p></p>" +
+"<p>" +
+"    <b>Danışman Ünvanı</b> METEOR PETROL &Uuml;R&Uuml;N SAN. TİC. A.Ş., " +
+"    <b>Danışman Adresi</b> İsmetpaşa Mah. Atat&uuml;rk Bulvarı No156 Yalova " +
+"    <b>Vergi Dairesi</b> Yalova Vergi Dairesi:619 058 5051 00001 " +
+"  (Sözleşme’de <b>'Danışman'</b> olarak geçecektir)" +
+"</p>" +
+"<p></p>" +
+"<p>" +
+"    <b>Müşteri Ünvanı</b> " + $P{customerName} + ", <b>Müşteri Adresi</b> " + $P{customerAddress} + ". (Sözleşme’de <b>'Müşteri'</b> olarak geçecektir)" +
+"</p>" +
+"<p></p>" +
+"<p>Yukarıda unvan ve adresleri yazılı olan Taraflar, aşağıdaki şekil ve şartlarla bir anlaşmaya varmışlardır.</p>"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="50" y="270" width="460" height="500" uuid="56bcf7b3-9c17-441e-8923-4a24898be706">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Justified" markup="html">
+					<font size="9.3" pdfEncoding="Cp1254"/>
+					<paragraph lineSpacing="1_1_2"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<p><b>2- TANIMLAR</b></p>" +
+"<p></p>" +
+"<p>" +
+"    <b>OPET</b> Kendi adı altında bayilik sistemi ile işletilen akaryakıt istasyonlarına ve müşterilerine akaryakıt," +
+"    madeni yağ ve benzeri ürünleri temin eden ve Otobil olarak adlandırılan faaliyetin Türkiye genelinde tek yetkili" +
+"    satıcısıdır." +
+"</p>" +
+"<p>" +
+"    <b>DANIŞMAN</b> Opet tarafından, Otofilo ürünlerinin tüketicilere pazarlanması için münhasır Danışmanlık Sözleşmesi" +
+"    ile yetkilendirilmiş gerçek ve tüzel kişilerdir." +
+"</p>" +
+"<p>" +
+"    <b>BAYİ</b> Opet tarafından, Opet ürünlerinin tüketicilere satılması için münhasır Bayilik Sözleşmesi ile" +
+"    yetkilendirilmiş gerçek ve tüzel kişilerdir." +
+"</p>" +
+"<p>" +
+"    <b>OTOBİL SİSTEMİ</b> Kullanım hakkı tamamen Opet’e ait olan ve Otobil Sistemi’ne dahil olup içine elektronik kimlik" +
+"    ünitesi takılan taşıta, yine Otobil Sistemi’ne dahil olan bir istasyondan alışveriş anında ödeme yapmaksızın," +
+"    akaryakıt verilmesini sağlayan ve ikmal sırasında, akaryakıt dolumuna ait bilgileri elektronik ortamda Opet Genel" +
+"    Merkezi’ne gönderecek ve daha sonrasında Müşteri’ye raporlayacak olan bir sistem ağıdır." +
+"</p>" +
+"<p>" +
+"    <b>OTOFİLO</b> SİSTEMİ Otobil Sistemi kullanıcılarına talepleri çerçevesinde Danışman tarafından verilecek bir" +
+"    hizmet paketi olup, Opet tarafından sağlanan internet ortamında Müşteri’nin araçlarını dijital haritalardan takip" +
+"    etmesini ve araçlarıyla ilgili çeşitli raporlar almasını sağlayan sistemi ifade etmektedir." +
+"</p>" +
+"<p>" +
+"    <b>CİHAZ</b> Takip Sistemi hizmetinin Opet tarafından verilmesini sağlamak için Araç’a monte edilecek olan ve" +
+"    Danışman tarafından işbu Sözleşmedeki hükümlere göre hizmeti sunulacak elektronik cihazı ifade etmektedir." +
+"</p>" +
+"<p>" +
+"    <b>HİZMET</b> Danışman tarafından sunulan Araç Takip Sistemi’nin içerdiği hizmetlerden Müşteri’nin aldığı hizmet" +
+"    paketinin içeriğini ifade etmektedir." +
+"</p>" +
+"<p>" +
+"    <b>ÜCRET/HİZMET BEDELİ</b> İşbu Sözleşmenin 9. maddesinde ödeme koşulları hüküm altına alınan Hizmet’in tedarik" +
+"    edilmesi karşılığında Danışman’a ödenen meblağı ifade eder." +
+"</p>" +
+"<p></p>" +
+"<p><b>3- SÖZLEŞMENİN KONUSU</b></p>" +
+"<p></p>" +
+"<p>" +
+"    İşbu Sözleşme, Danışman tarafından Otobil Sistemi müşterilerine sağlanan ve Müşteri tarafından talep edilmesi" +
+"    halinde ilave olarak sunulan araç takip hizmeti kapsamında, tedarik edilen Cihaz ve söz konusu cihazla birlikte" +
+"    sunulacak olan Hizmet ve karşılığında Müşteri tarafından Danışman’a ödenecek Ücret’e ilişkin usul ve esaslar ile" +
+"    Tarafların diğer hak ve yükümlülüklerinin belirlenmesi amacı ile akdedilmiştir. Buna göre Danışman, Otobil" +
+"    Müşterilerine, iştigal alanı içinde kalmak üzere araç takip sistemine yarayan Cihazı tedarik etmek ve söz konusu" +
+"</p>"]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="2" y="0" width="550" height="20" uuid="4d9b1616-0a80-47a3-9da7-aeb3a71ae879"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[1]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -1,0 +1,48 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <changeSet author="mehmet.sen (generated)" id="1568971751232-5">
+        <createTable tableName="file_descriptor">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" primaryKeyName="file_descriptorPK"/>
+            </column>
+            <column name="created_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="last_modified_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="content_type" type="VARCHAR(255)"/>
+            <column name="entity_id" type="VARCHAR(255)"/>
+            <column name="entity_name" type="VARCHAR(255)"/>
+            <column name="file_name" type="VARCHAR(255)"/>
+            <column name="description" type="varchar(2048)"/>
+            <column name="file_size" type="BIGINT"/>
+            <column name="created_by_id" type="BIGINT"/>
+            <column name="last_modified_by_id" type="BIGINT"/>
+            <column name="file_descriptor_id" type="UUID"/>
+            <column name="type_id" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1568971751232-6">
+        <addForeignKeyConstraint baseColumnNames="file_descriptor_id" baseTableName="file_descriptor"
+                                 constraintName="FK58724op6i20vo2u8pnkb2y181" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id"
+                                 referencedTableName="file_descriptor" validate="true"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1568971751232-7">
+        <addForeignKeyConstraint baseColumnNames="created_by_id" baseTableName="file_descriptor"
+                                 constraintName="FK8fu3j7ys322bal56k6qpblelk" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1568971751232-8">
+        <addForeignKeyConstraint baseColumnNames="type_id" baseTableName="file_descriptor"
+                                 constraintName="FKkv36lst55uyowvanjv8d7wrcp" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id"
+                                 referencedTableName="attribute_value" validate="true"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1568971751232-9">
+        <addForeignKeyConstraint baseColumnNames="last_modified_by_id" baseTableName="file_descriptor"
+                                 constraintName="FKtq2nqpnc9fakahqocb6xx4dx" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+</databaseChangeLog>

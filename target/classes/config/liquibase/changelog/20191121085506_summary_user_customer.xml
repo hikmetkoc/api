@@ -1,0 +1,32 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <changeSet author="mehmet.sen (generated)" id="1574335682782-4">
+        <createTable tableName="summary_user_customer">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" primaryKeyName="summary_user_customerPK"/>
+            </column>
+            <column name="deleted_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="count_existing" type="INTEGER"/>
+            <column name="count_existing_active" type="INTEGER"/>
+            <column name="count_existing_passive" type="INTEGER"/>
+            <column name="count_new" type="INTEGER"/>
+            <column name="date" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="deleted_by_id" type="BIGINT"/>
+            <column name="user_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1574335682782-5">
+        <addForeignKeyConstraint baseColumnNames="deleted_by_id" baseTableName="summary_user_customer"
+                                 constraintName="FK18st90bnd4btmu2n1yev3jymx" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1574335682782-6">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="summary_user_customer"
+                                 constraintName="FKod0mc2tfc1ciiosrdcc3k3fl3" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,26 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <changeSet author="mehmet.sen (generated)" id="1576219665539-4">
+        <addColumn tableName="customer">
+            <column name="old_fleet_code" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1576219665539-5">
+        <addColumn tableName="customer">
+            <column name="source_id" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1576219665539-6">
+        <addColumn tableName="customer">
+            <column name="tax_office" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1576219665539-7">
+        <addForeignKeyConstraint baseColumnNames="source_id" baseTableName="customer"
+                                 constraintName="FK3l1gc2tbhno49sncibpkegddj" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id"
+                                 referencedTableName="attribute_value" validate="true"/>
+    </changeSet>
+</databaseChangeLog>

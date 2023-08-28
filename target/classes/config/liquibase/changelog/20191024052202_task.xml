@@ -1,0 +1,82 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <changeSet author="alaad (generated)" id="1571894585370-4">
+        <createTable tableName="task">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" primaryKeyName="taskPK"/>
+            </column>
+            <column name="deleted_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="created_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="last_modified_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="description" type="varchar(2048)"/>
+            <column name="due_time" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="fail_reason" type="VARCHAR(255)"/>
+            <column name="subject" type="VARCHAR(255)"/>
+            <column name="deleted_by_id" type="BIGINT"/>
+            <column name="created_by_id" type="BIGINT"/>
+            <column name="last_modified_by_id" type="BIGINT"/>
+            <column name="activity_id" type="UUID"/>
+            <column name="assigner_id" type="BIGINT"/>
+            <column name="customer_id" type="UUID"/>
+            <column name="owner_id" type="BIGINT"/>
+            <column name="status_id" type="VARCHAR(255)"/>
+            <column name="type_id" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="alaad (generated)" id="1571894585370-5">
+        <addForeignKeyConstraint baseColumnNames="status_id" baseTableName="task"
+                                 constraintName="FK5172enxuro0398ke3q9jet2ug" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id"
+                                 referencedTableName="attribute_value" validate="true"/>
+    </changeSet>
+    <changeSet author="alaad (generated)" id="1571894585370-6">
+        <addForeignKeyConstraint baseColumnNames="type_id" baseTableName="task"
+                                 constraintName="FKf2rr5loiseanospbnw1j5ui9r" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id"
+                                 referencedTableName="attribute_value" validate="true"/>
+    </changeSet>
+    <changeSet author="alaad (generated)" id="1571894585370-7">
+        <addForeignKeyConstraint baseColumnNames="customer_id" baseTableName="task"
+                                 constraintName="FKh83n83donpxshles0piu3afbl" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="customer"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="alaad (generated)" id="1571894585370-8">
+        <addForeignKeyConstraint baseColumnNames="created_by_id" baseTableName="task"
+                                 constraintName="FKmdhp7iug179k2u8e4qx7u88rg" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="alaad (generated)" id="1571894585370-9">
+        <addForeignKeyConstraint baseColumnNames="assigner_id" baseTableName="task"
+                                 constraintName="FKslbnrshk1wtal8t5n6bxp06cr" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="alaad (generated)" id="1571894585370-10">
+        <addForeignKeyConstraint baseColumnNames="deleted_by_id" baseTableName="task"
+                                 constraintName="FKq3w2f2v9lvtmj4xk2bn5o3yb0" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="alaad (generated)" id="1571894585370-11">
+        <addForeignKeyConstraint baseColumnNames="owner_id" baseTableName="task"
+                                 constraintName="FKqvrsp4w4euyg9yjuilq3ymbuw" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="alaad (generated)" id="1571894585370-12">
+        <addForeignKeyConstraint baseColumnNames="last_modified_by_id" baseTableName="task"
+                                 constraintName="FKshdcdpavm1emmb1s3fhbou6j3" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="alaad (generated)" id="1571894585370-13">
+        <addForeignKeyConstraint baseColumnNames="activity_id" baseTableName="task"
+                                 constraintName="FKsu6jmc12at4mdrgalv496s7pc" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="activity"
+                                 validate="true"/>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,309 @@
+<!-- HTML for static distribution bundle build -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Swagger UI</title>
+  <link rel="stylesheet" type="text/css" href="./swagger-ui.css">
+  <link rel="icon" type="image/png" href="./favicon-32x32.png" sizes="32x32"/>
+  <link rel="icon" type="image/png" href="./favicon-16x16.png" sizes="16x16"/>
+  <style>
+    html {
+      box-sizing: border-box;
+      overflow: -moz-scrollbars-vertical;
+      overflow-y: scroll;
+    }
+
+    *,
+    *:before,
+    *:after {
+      box-sizing: inherit;
+    }
+
+    body {
+      margin: 0;
+      background: #fafafa;
+    }
+  </style>
+</head>
+
+<body>
+<div id="swagger-ui"></div>
+
+<script src="./swagger-ui-bundle.js"></script>
+<script src="./swagger-ui-standalone-preset.js"></script>
+<script>
+  const TOKEN_KEY = 'mhmt-bearer-token';
+
+  window.onload = function () {
+    // Begin Swagger UI call region
+    const ui = SwaggerUIBundle({
+      urls: [{
+        url: '/v2/api-docs',
+        name: '/v2/api-docs'
+      }, {
+        url: '/v2/api-docs?group=management',
+        name: '/v2/api-docs?group=management'
+      }],
+      dom_id: '#swagger-ui',
+      deepLinking: true,
+      presets: [
+        SwaggerUIBundle.presets.apis,
+        SwaggerUIStandalonePreset,
+      ],
+      plugins: [
+        SwaggerUIBundle.plugins.DownloadUrl,
+      ],
+      layout: 'StandaloneLayout',
+      requestInterceptor: function (request) {
+        var token = localStorage.getItem(TOKEN_KEY) || sessionStorage.getItem(TOKEN_KEY);
+
+        if (token)
+          request.headers.Authorization = token;
+
+        return request
+      },
+      responseInterceptor: function (resp) {
+        if(resp.status == 401) {
+          localStorage.removeItem(TOKEN_KEY);
+          refreshView()
+        }
+
+        return resp;
+      },
+    });
+    // End Swagger UI call region
+
+    window.ui = ui;
+
+    setInterval(function () {
+      var schemaContainer = document.querySelector('#swagger-ui > section > div.swagger-ui > div:nth-child(2) > div.information-container.wrapper');
+      var authSection = document.querySelector('#authSection');
+
+      if (schemaContainer && !authSection) {
+        var authToken = localStorage.getItem(TOKEN_KEY) || sessionStorage.getItem(TOKEN_KEY);
+
+        if (authToken) {
+          schemaContainer.appendChild(createLogoutButton())
+        } else {
+          schemaContainer.appendChild(createAuthorizeButton())
+        }
+      }
+    }, 400)
+  };
+
+  function createSvg (width, height, href) {
+    var svgElement = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svgElement.setAttribute('width', width);
+    svgElement.setAttribute('height', height);
+
+    var useElement = document.createElementNS('http://www.w3.org/2000/svg', 'use');
+    useElement.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', href);
+    useElement.setAttributeNS('http://www.w3.org/1999/xlink', 'href', href);
+
+    svgElement.appendChild(useElement);
+
+    return svgElement
+  }
+
+  function createAuthorizeButton () {
+    var section = document.createElement('section');
+    section.id = 'authSection';
+    section.classList.add('block', 'col-12');
+
+    var authButton = document.createElement('button');
+    authButton.classList.add('btn', 'authorize', 'unlocked');
+
+    var buttonSpan = document.createElement('span');
+    buttonSpan.innerText = 'Authorize';
+
+    authButton.appendChild(buttonSpan);
+    authButton.appendChild(createSvg(20, 20, '#unlocked'));
+
+    authButton.addEventListener('click', function () {
+      openDialog()
+    });
+
+    section.appendChild(authButton);
+
+    return section
+  }
+
+  function createLogoutButton () {
+    var section = document.createElement('section');
+    section.id = 'authSection';
+    section.classList.add('block', 'col-12');
+
+    var authButton = document.createElement('button');
+    authButton.classList.add('btn', 'cancel', 'locked');
+
+    var buttonSpan = document.createElement('span');
+    buttonSpan.innerText = 'Logout';
+
+    authButton.appendChild(buttonSpan);
+    authButton.appendChild(createSvg(20, 20, '#locked'));
+
+    authButton.addEventListener('click', function () {
+      localStorage.removeItem(TOKEN_KEY);
+      refreshView()
+    });
+
+    section.appendChild(authButton);
+
+    return section
+  }
+
+  function refreshView () {
+    var authSection = document.querySelector('#authSection');
+    if (authSection) authSection.parentNode.removeChild(authSection)
+  }
+
+  function openDialog () {
+    closeDialog();
+
+    var abpAuthDialog = document.createElement('div');
+    abpAuthDialog.className = 'dialog-ux';
+    abpAuthDialog.id = 'abp-auth-dialog';
+
+    document.getElementsByClassName('swagger-ui')[1].appendChild(abpAuthDialog);
+
+    // -- backdrop-ux
+    var backdropUx = document.createElement('div');
+    backdropUx.className = 'backdrop-ux';
+    abpAuthDialog.appendChild(backdropUx);
+
+    // -- modal-ux
+    var modalUx = document.createElement('div');
+    modalUx.className = 'modal-ux';
+    abpAuthDialog.appendChild(modalUx);
+
+    // -- -- modal-dialog-ux
+    var modalDialogUx = document.createElement('div');
+    modalDialogUx.className = 'modal-dialog-ux';
+    modalUx.appendChild(modalDialogUx);
+
+    // -- -- -- modal-ux-inner
+    var modalUxInner = document.createElement('div');
+    modalUxInner.className = 'modal-ux-inner';
+    modalDialogUx.appendChild(modalUxInner);
+
+    // -- -- -- -- modal-ux-header
+    var modalUxHeader = document.createElement('div');
+    modalUxHeader.className = 'modal-ux-header';
+    modalUxInner.appendChild(modalUxHeader);
+
+    var modalHeader = document.createElement('h3');
+    modalHeader.innerText = 'Authorize';
+    modalUxHeader.appendChild(modalHeader);
+
+    // -- -- -- -- modal-ux-content
+    var modalUxContent = document.createElement('div');
+    modalUxContent.className = 'modal-ux-content';
+    modalUxInner.appendChild(modalUxContent);
+
+    modalUxContent.onkeydown = function (e) {
+      if (e.keyCode === 13) {
+        login()
+      }
+    };
+
+    //Inputs
+    createInput(modalUxContent, 'userName', 'Username or email address');
+    createInput(modalUxContent, 'password', 'Password', 'password');
+
+    //Buttons
+    var authBtnWrapper = document.createElement('div');
+    authBtnWrapper.className = 'auth-btn-wrapper';
+    modalUxContent.appendChild(authBtnWrapper);
+
+    //Close button
+    var closeButton = document.createElement('button');
+    closeButton.className = 'btn modal-btn auth btn-done button';
+    closeButton.innerText = 'Close';
+    closeButton.style.marginRight = '5px';
+    closeButton.onclick = function () {
+      closeDialog()
+    };
+    authBtnWrapper.appendChild(closeButton);
+
+    //Authorize button
+    var authorizeButton = document.createElement('button');
+    authorizeButton.className = 'btn modal-btn auth authorize button';
+    authorizeButton.innerText = 'Login';
+    authorizeButton.onclick = function () {
+      login()
+    };
+    authBtnWrapper.appendChild(authorizeButton)
+  }
+
+  function closeDialog () {
+    if (document.getElementById('abp-auth-dialog')) {
+      document.getElementsByClassName('swagger-ui')[1].removeChild(document.getElementById('abp-auth-dialog'))
+    }
+  }
+
+  function createInput (container, id, title, type) {
+    var wrapper = document.createElement('div');
+    wrapper.className = 'wrapper';
+    container.appendChild(wrapper);
+
+    var label = document.createElement('label');
+    label.innerText = title;
+    wrapper.appendChild(label);
+
+    var section = document.createElement('section');
+    section.className = 'block-tablet col-10-tablet block-desktop col-10-desktop';
+    wrapper.appendChild(section);
+
+    var input = document.createElement('input');
+    input.id = id;
+    input.type = type ? type : 'text';
+    input.style.width = '100%';
+
+    section.appendChild(input)
+  }
+
+  function login () {
+    var usernameOrEmailAddress = document.getElementById('userName').value;
+    if (!usernameOrEmailAddress) {
+      alert('Username or Email Address is required, please try with a valid value !');
+      return false
+    }
+
+    var password = document.getElementById('password').value;
+    if (!password) {
+      alert('Password is required, please try with a valid value !');
+      return false
+    }
+
+    var xhr = new XMLHttpRequest();
+
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === XMLHttpRequest.DONE) {
+        if (xhr.status === 200) {
+          var responseJSON = JSON.parse(xhr.responseText);
+
+          if (responseJSON) {
+            localStorage.setItem(TOKEN_KEY, 'Bearer ' + responseJSON.id_token);
+            closeDialog();
+            refreshView()
+          }
+        } else {
+          alert('Login failed !')
+        }
+      }
+    };
+
+    xhr.open('POST', '/api/authenticate', true);
+    xhr.setRequestHeader('Content-type', 'application/json');
+
+    var requestBody = {
+      'password': password,
+      'username': usernameOrEmailAddress,
+    };
+
+    xhr.send(JSON.stringify(requestBody))
+  }
+</script>
+</body>
+</html>

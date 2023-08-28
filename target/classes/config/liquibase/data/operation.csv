@@ -1,0 +1,7 @@
+id,name,created_by_id,parent_id
+Default,Default,3,null
+Rapor_Alıcısı,Rapor Alıcısı,3,Default
+Dosya_Export,Dosya Export,3,Default
+Müşteri_Listesi_Görüntüleyebilme,Müşteri Listesi Görüntüleyebilme,3,Default
+Teklif_Onaylayabilme,Teklif Onaylayabilme,3,Default
+Back_Office,Back Office,3,Default

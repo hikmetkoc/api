@@ -1,0 +1,38 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <changeSet author="Melisa (generated)" id="1566639342841-4">
+        <createTable tableName="announcement">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" primaryKeyName="announcementPK"/>
+            </column>
+            <column name="created_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="last_modified_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="description" type="varchar(2048)"/>
+            <column name="active" type="BOOLEAN"/>
+            <column name="title" type="VARCHAR(255)"/>
+            <column name="created_by_id" type="BIGINT"/>
+            <column name="last_modified_by_id" type="BIGINT"/>
+            <column name="type_id" type="varchar(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Melisa (generated)" id="1566639342841-5">
+        <addForeignKeyConstraint baseColumnNames="created_by_id" baseTableName="announcement"
+                                 constraintName="FK3312743jkwdm35b9a7m22yqsj" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="Melisa (generated)" id="1566639342841-6">
+        <addForeignKeyConstraint baseColumnNames="last_modified_by_id" baseTableName="announcement"
+                                 constraintName="FKli0uyn1dyvwvroahtjaf8p343" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="alaad (generated)" id="1572507345887-6">
+        <addForeignKeyConstraint baseColumnNames="type_id" baseTableName="announcement"
+                                 constraintName="FK7bbcasbb2miq6ipyr1owxsern" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id"
+                                 referencedTableName="attribute_value" validate="true"/>
+    </changeSet>
+</databaseChangeLog>

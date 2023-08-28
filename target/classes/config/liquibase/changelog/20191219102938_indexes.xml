@@ -1,0 +1,51 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <changeSet author="mehmet.sen (generated)" id="1576751409950-4">
+        <createIndex indexName="IDX3v6kt7837p8qe28kti0ydhwnb" tableName="summary_opet_sale">
+            <column name="fleet_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1576751409950-5">
+        <createIndex indexName="IDXb2b3sax4rog5p76ev008q77uq" tableName="summary_opet_sale">
+            <column name="sale_end"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1576751409950-6">
+        <createIndex indexName="IDXejpp562yr4m91iodbnrm8rvj5" tableName="target">
+            <column name="term_start"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1576751409950-7">
+        <createIndex indexName="IDXfp8u3jrhyivnje3gld9eocphi" tableName="summary_user_customer">
+            <column name="date"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1576751409950-8">
+        <createIndex indexName="IDXhkx2me5c2ilkr9yxuupc5dnpg" tableName="summary_opet_sale">
+            <column name="fleet_code"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1576751409950-9">
+        <createIndex indexName="IDXnfc3i6ovr5xpeaygvjbiuoxmg" tableName="customer">
+            <column name="fleet_code"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1577079326645-10">
+        <createIndex indexName="IDX8x7d9ql1vcg924249qlxa6cve" tableName="opet_sale">
+            <column name="fleet_code"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1577079326645-11">
+        <createIndex indexName="IDXgdybk9r1f6rjlyf04el9xrd8k" tableName="opet_sale">
+            <column name="sale_end"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1577079326645-12">
+        <createIndex indexName="IDXp6er584e7hespplc5h90apv1n" tableName="opet_sale">
+            <column name="fleet_id"/>
+        </createIndex>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,22 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <changeSet author="mehmet.sen (generated)" id="1575621067452-4">
+        <addColumn tableName="activity">
+            <column name="task_id" type="uuid"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1575621067452-5">
+        <addForeignKeyConstraint baseColumnNames="task_id" baseTableName="activity"
+                                 constraintName="FK9e9rpcsl93xurbnkmshgega2c" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="task"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1575621067452-6">
+        <dropForeignKeyConstraint baseTableName="task" constraintName="FKsu6jmc12at4mdrgalv496s7pc"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1575621067452-7">
+        <dropColumn columnName="activity_id" tableName="task"/>
+    </changeSet>
+</databaseChangeLog>

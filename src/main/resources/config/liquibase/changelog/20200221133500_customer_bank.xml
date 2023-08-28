@@ -1,0 +1,21 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <changeSet author="ssume (generated)" id="1582292140509-52">
+        <addColumn tableName="customer">
+            <column name="bank_branch" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="ssume (generated)" id="1582292140509-53">
+        <addColumn tableName="customer">
+            <column name="bank_id" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="ssume (generated)" id="1582292140509-54">
+        <addForeignKeyConstraint baseColumnNames="bank_id" baseTableName="customer"
+                                 constraintName="FKr59stkoil9l7ptf4es4btt115" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id"
+                                 referencedTableName="attribute_value" validate="true"/>
+    </changeSet>
+</databaseChangeLog>

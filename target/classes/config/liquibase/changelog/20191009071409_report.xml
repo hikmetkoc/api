@@ -1,0 +1,42 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <changeSet author="mehmet.sen (generated)" id="1570605293984-5">
+        <createTable tableName="report">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" primaryKeyName="reportPK"/>
+            </column>
+            <column name="deleted_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="created_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="last_modified_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="cron_string" type="VARCHAR(255)"/>
+            <column name="description" type="varchar(2048)"/>
+            <column name="mails" type="TEXT"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="object_name" type="varchar(255)"/>
+            <column name="query_json" type="TEXT"/>
+            <column name="deleted_by_id" type="BIGINT"/>
+            <column name="created_by_id" type="BIGINT"/>
+            <column name="last_modified_by_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1570605293984-6">
+        <addForeignKeyConstraint baseColumnNames="deleted_by_id" baseTableName="report"
+                                 constraintName="FK5vfooaqm725l06c2loed07e2j" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1570605293984-7">
+        <addForeignKeyConstraint baseColumnNames="created_by_id" baseTableName="report"
+                                 constraintName="FKbf8rydo7l3avmvpif1io5g3p8" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1570605293984-8">
+        <addForeignKeyConstraint baseColumnNames="last_modified_by_id" baseTableName="report"
+                                 constraintName="FKcuuio4tg01m9m7eoftpkyr9jg" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+</databaseChangeLog>

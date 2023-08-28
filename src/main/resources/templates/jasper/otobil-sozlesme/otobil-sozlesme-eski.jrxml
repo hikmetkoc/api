@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.10.0.final using JasperReports Library version 6.10.0-unknown  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="otobil-sozlesme" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="58366357-bbdc-49aa-bd77-5cdc8fc19313">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<parameter name="customerName" class="java.lang.String">
+		<defaultValueExpression><![CDATA["METEOR PETROL ÜRÜN SAN. TİC. A.Ş."]]></defaultValueExpression>
+	</parameter>
+	<parameter name="dieselDiscount" class="java.lang.String">
+		<defaultValueExpression><![CDATA["%0"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="gasolineDiscount" class="java.lang.String">
+		<defaultValueExpression><![CDATA["%0"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="contractDate" class="java.lang.String">
+		<defaultValueExpression><![CDATA["01/01/0001"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<variable name="Variable_1" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="802" splitType="Stretch">
+			<textField>
+				<reportElement mode="Opaque" x="10" y="20" width="250" height="770" uuid="644328b4-6f5f-4991-8240-29e91eb391a1"/>
+				<textElement textAlignment="Justified" markup="html">
+					<font size="6.7" pdfEncoding="Cp1254"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<p><b>METEOR PETROL &Uuml;R&Uuml;N SAN.TİC.AŞ M&Uuml;ŞTERİ OTOMASYONLU AKARYAKIT ALIMI S&Ouml;ZLEŞMESİ</b></p>" + 
+"<p>&nbsp;</p>" + 
+"<p><b>1. TARAFLAR</b></p>" + 
+"<p>HİZMETİ ALAN: " + $P{customerName} + " (bundan sonra m&uuml;şteri olarak anılacak)</p>" + 
+"<p>&nbsp;</p>" + 
+"<p>HİZMETİ VEREN: METEOR PETROL &Uuml;R&Uuml;N SAN. TİC. A.Ş. (bundan sonra meteor olarak anılacak)</p>" + 
+"<p>İsmetpaşa Mah. Atat&uuml;rk Bulvarı No156 Yalova</p>" + 
+"<p>Yalova Vergi Dairesi:619 058 5051 00001</p>" + 
+"<p>&nbsp;</p>" + 
+"<p>Bu s&ouml;zleşme ile M&uuml;şteri taşıtlarının dağıtım istasyonlarından otomatik olarak, para &ouml;demeden ve fatura almadan yakıt almalarını sağlayan ve dolum bilgilerini taşıtın el değmeden elektronik ortamlarda m&uuml;şteriye ulaştıran bu sistemin kullanılması konusunda m&uuml;şteriye ulaştıran otobil sisteminin uygulanması ile ilgili esasların belirlenmesi amacıyla d&uuml;zenlenmiştir.</p>" + 
+"<p>&nbsp;</p>" + 
+"<p><b>1- OTOBİL SİSTEMİNİN A&Ccedil;IKLANMASI VE İŞLEYİŞİ SİSTEMİN &Ouml;ZELLİKLERİ</b></p>" + 
+"<p>T&uuml;m&uuml;yle elektronik olarak kontrol edilen bir self servis akaryakıt dolum sistemi olan OTOBİL &rsquo;in aşağıda belirtilen &ouml;zellikleri vardır.</p>" + 
+"<p>Cihaz tipine g&ouml;re, akaryakıt ikmal tarihini, saatini, yakıt miktarını ve taşıtın akaryakıt ikmal esnasındaki km. bilgisini okuyabilme ve rapor edebilme.</p>" + 
+"<p>Taşıt i&ccedil;in belirlenen yakıt haricinde araca başka bir yakıtın ikmal edilmesini &ouml;nleme, sistemde kaydı bulunmayan araca yakıt verilmesini &ouml;nleme.</p>" + 
+"<p><b>2- FATURALAMA</b></p>" + 
+"<p>Meteor, M&uuml;şteri&rsquo;ye ayda 2 adet olmak &uuml;zere akaryakıt bedelini faturalandırır. Fatura tarihleri her ayın 15. ve 30/31. g&uuml;n&uuml;d&uuml;r.</p>" + 
+"<p><b>3- TK&Uuml; PROGRAMLAMA VE MONTAJI</b></p>" + 
+"<p>TK&Uuml; (Taşıt Kimlik &Uuml;nitesi) Programlaması dağıtıcı firma tarafından tesis edilmiş bir programlama merkezinde m&uuml;şterinin g&ouml;ndermiş olduğu bilgiler doğrultusunda yapılır. Programlanan TK&Uuml;&rsquo;ler M&uuml;şteri&rsquo;ye teslim edilir ve M&uuml;şteri montajı başlatmak i&ccedil;in montaj firması ile montaj programını oluşturur.</p>" + 
+"<p><b>4- TARAFLARIN HAK VE Y&Uuml;K&Uuml;ML&Uuml;L&Uuml;KLERİ</b></p>" + 
+"<p><b>4-1 METEOR&rsquo;un Hak ve Y&uuml;k&uuml;ml&uuml;l&uuml;kleri:</b></p>" + 
+"<p><b>4-1-1.</b>M&uuml;şteri&rsquo;ye dağıtıcı firma bayilerinden yaptığı alışverişlerde fatura verilmez. TK&Uuml; vasıtası ile m&uuml;şterinin &ccedil;eşitli istasyonlardan yaptığı alımlar Meteor tarafından fatura edilir. M&uuml;şteri bu faturaların bedellerini fatura tarihini takip eden ayın 10.g&uuml;n&uuml; anlaşmalı bankalardan a&ccedil;tırmış olduğu DBS/DTS vasıtası ile &ouml;der.</p>" + 
+"<p><b>4-1-2.</b>M&uuml;şteri&rsquo;nin bildirdiği Km. farklılıkları i&ccedil;in taşıtların kalibrasyonunun yapılmasını organize eder.</p>" + 
+"<p><b>4-1-3.</b>TK&Uuml; montajlarını, m&uuml;şterinin verdiği bilgiler doğrultusunda programlamayı tamamladıktan sonra montaj firmasına &uuml;cretsiz olarak yaptırır. M&uuml;şterilerin g&ouml;ndermiş olduğu bilgiler doğru kabul edilerek programlanan TK&Uuml;&#39;lerin bilgi eksikliği ya da yanlışlığı sonucunda oluşabilecek zararlardan Meteor sorumlu değildir.</p>" + 
+"<p><b>4-1-4.</b>Dağıtıcı firma istasyonlarından akaryakıt ikmali yapmak isteyen M&uuml;şteri adayının kredibilitesine ait bilgilerin gelmesini bekler. M&uuml;şteri adayını sisteme dahil etmek &uuml;zere gerekli &ccedil;alışmaları başlatır ve tamamlar.</p>" + 
+"<p><b>4-1-5.</b>Meteor&rsquo;un t&uuml;zel kişiliğinin değişmesi veya Meteor&rsquo;un işbu s&ouml;zleşmeyi b&uuml;t&uuml;n hak ve y&uuml;k&uuml;ml&uuml;l&uuml;kleriyle birlikte &uuml;&ccedil;&uuml;nc&uuml; bir kişiye devretmesi halinde M&uuml;şteri işbu s&ouml;zleşmenin gerek değişen t&uuml;zel kişilik ile gerek kurulan ortaklık ile gerekse işbu s&ouml;zleşmeyi devralan &uuml;&ccedil;&uuml;nc&uuml; kişi ile devam edeceğini kabul eder.</p>" + 
+"<p>Ayrıca Meteor ileri bir tarihte başka bir dağıtıcı firma ile anlaşma sağlaması durumunda da M&uuml;şteri aynı şartlarda Meteorun anlaştığı dağıtıcı firmadan akaryakıtını almayı ve s&ouml;zleşmeyi yine aynı şartlarda devam ettirmeyi kabul ve taahh&uuml;t eder.</p>" + 
+"<p><b>4-1-6.</b>M&uuml;şteri, Meteor tarafından iş bu s&ouml;zleşme ile belirlenmiş olan b&uuml;t&uuml;n bedellerin &ouml;demelerini, bankada a&ccedil;acağı kredili hesap ile yapabilir. Bu durumda M&uuml;şteri yetki belgesini iptal etmek istemesi durumunda yetki belgesi iptalinden en az 30 işg&uuml;n&uuml; &ouml;nce Meteor&rsquo;a bildirmekle y&uuml;k&uuml;ml&uuml;d&uuml;r. Tahsilat tarihinde kredili hesabında yeterli miktarı bulundurmaz ise tahsilat kredinin kullanılması suretiyle yapılır. Tahsilat akabinde, M&uuml;şteri&rsquo;nin kullanılabilir kredisi sisteme dahil olması i&ccedil;in talep edilmiş olan kredi limitinin altında olması durumunda Meteor aktif kredinin olması gereken kredi limitine g&ouml;re y&uuml;zdesel durumunu g&ouml;z &ouml;n&uuml;ne alarak;</p>" + 
+"<p>%30&lt;AktifKredi&lt;%50 &ndash; olması durumunda 5 g&uuml;n sonunda</p>" + 
+"<p>%10&lt;AktifKredi&lt;%30 &ndash; olması durumunda 3 g&uuml;n sonunda</p>" + 
+"<p>AktifKredi&lt;%10 &ndash; olması durumunda derhal M&uuml;şteri&rsquo;nin yakıt alımı durdurulacaktır.</p>" + 
+"<p>M&uuml;şteri bahsi ge&ccedil;en s&uuml;rede kredisini tamamlayarak Meteor yetkilileriyle temasa ge&ccedil;melidir. Meteor tarafından M&uuml;şteriye kesilen fatura bedellerinin yukarıdaki şekilde &ouml;denmemesi halinde M&uuml;şteri, Meteor tarafından kesilen fatura bedellerini vadesinde direk olarak Meteor&rsquo;a &ouml;demekle y&uuml;k&uuml;ml&uuml;d&uuml;r.</p>" + 
+"<p><b>4-1-7.</b> Meteor, M&uuml;şteri&rsquo;ye fatura edilecek akaryakıt bedelinin KDV hari&ccedil; toplamının, Motorinde " + $P{dieselDiscount} + " Benzinlerde " + $P{gasolineDiscount} + " tutarında fatura &uuml;zerinden iskonto yapacaktır.</p>" + 
+"<p><b>4-1-8.</b> Meteor Petrol iş bu s&ouml;zleşmeyi tek taraflı olarak hi&ccedil;bir sebep g&ouml;stermeden ve fesih bildirimine gerek olmadan dilediği zaman fesh etme yetkisine sahiptir.</p>" + 
+"<p><b>4-1-9.</b> Madde 4-1-7. İskonto oranını Meteor , Epdk uygulamaları, yasal mevzuat, akaryakıt dağıtım firmasının uygulamaları veya taraflarca anlaşma sağlanmış edimlere uyulmaması sebebi ile, s&ouml;zleşme s&uuml;resi boyunca tek taraflı olarak belirleme ve değiştirme hakkına sahiptir.</p>" + 
+"<p><b>4-2.</b>M&Uuml;ŞTERİ&rsquo;NİN HAK VE Y&Uuml;K&Uuml;ML&Uuml;L&Uuml;KLERİ</p>" + 
+"<p><b>4-2-1.</b>M&uuml;şteri ara&ccedil; bilgilerini ara&ccedil; kayıt formu ile Meteor&rsquo;a iletecektir</p>" + 
+"<p><b>4-2-2.</b>Otomasyonlu Akaryakıt Alımı Sistemine dahil olan taşıtın satılması, &ccedil;alınması, kaybolması veya kaza sonucu TK&Uuml;&rsquo;ye zarar gelmesi gibi durumlarda Meteor&rsquo;a bu bilgiyi hemen bildirmek zorundadır. Bu bildirimin mesai g&uuml;nleri dahilinde saat 17:00&rsquo;a kadar yapılması gerekmektedir. bildirimin yetkili kişiye derhal iletilmemesi durumunda doğacak zararlardan meteor sorumlu tutulamayacağı gibi, meteor&#39;un uğradığı veya uğrayabileceği zararları karşılamayı m&uuml;şteri kabul, beyan ve taahh&uuml;t eder.</p>"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="300" y="20" width="250" height="660" uuid="28d24543-9ee6-4b18-b25a-abe6fe155e3d"/>
+				<textElement textAlignment="Justified" markup="html">
+					<font size="6.7" pdfEncoding="Cp1254"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<p><b>4-2-3.</b>M&uuml;şteri. Meteor&rsquo;un taşıtlarına tahsis ettiği TK&Uuml;&rsquo;lerini ariyetten kabul eder.</p>" + 
+"<p><b>4-2-4.</b>M&uuml;şteri KİT iadesi yaptığında yazılı belge almak ve saklamak, gerektiğinde beyan edebilmek ile sorumludur.</p>" + 
+"<p><b>4-2-5.</b>Kullanıcı hatasından doğan problemler i&ccedil;in servis bedeli TK&Uuml; başına 100 TL+KDV&rsquo;dir.</p>" + 
+"<p><b>4-2-6.</b>Ariyetten M&uuml;şteri kullanımına verilen TK&Uuml;&rsquo;ler Meteor tarafından sigortalı değildir. M&uuml;şteri sigortalayıp sigortalamamakta serbesttir. Ancak TK&Uuml; takılı aracın &ccedil;alınması, kaybolması,hasara uğraması vb. sebeplerle, her ne şekilde olursa olsun iade edilmeyen TK&Uuml; bedellerini Meteor&rsquo;a &ouml;demekle y&uuml;k&uuml;ml&uuml;d&uuml;r.</p>" + 
+"<p><b>4-2-7.</b>M&uuml;şteri, m&uuml;lkiyeti altındaki veya herhangi başka bir hukuki sebebe dayanarak uhdesinde bulunan ara&ccedil;lara akaryakıt ikmallerini otomasyon sistemi ile yapacaktır. 4-2-8.Otomasyon sistemine dahil edilen ara&ccedil;ların sistemden 2 yıldan &ouml;nce &ccedil;ıkartılması durumunda (filo ara&ccedil; sayısının %20&rsquo;si hari&ccedil;), m&uuml;şteriye Meteor tarafından , sistemden &ccedil;ıkartılan ara&ccedil; başına 500,00 TL +KDV fatura edilir.Ara&ccedil;ların sistemde olup 3 ay yakıt almaması durumunda aracın sistemden &ccedil;ıkartılmış olduğu d&uuml;ş&uuml;n&uuml;lecek ve TK&Uuml;&rsquo;n&uuml;n teslimi i&ccedil;in M&uuml;şteri&rsquo;ye yazılı bildirimde bulunulacak ve iş bu madde h&uuml;km&uuml; uygulanacaktır.</p>" + 
+"<p>Meteor tarafından otomasyon sistemine &uuml;ye olan ara&ccedil;lara yeni bir TK&Uuml; takılması veya sistemin işleyişi ile ilgili yenileme ve geliştirme &ccedil;alışmaları yapılmasına karar verilmesi halinde M&uuml;şteri ara&ccedil;larını bu işlem i&ccedil;in mutabık kalınacak bir tarihte hazır bulundurmayı kabul ve taahh&uuml;t eder.</p>" + 
+"<p><b>4-2-9.</b>Taşıtın satılması, değiştirilmesi durumunda M&uuml;şteri taşıtına yerleştirilmiş TK&Uuml;&rsquo;lerin s&ouml;k&uuml;m&uuml; i&ccedil;in Meteor&rsquo;a bildirmede bulunmakla m&uuml;kelleftir. Bu bildirimden sonra M&uuml;şteri Meteor tarafından bildirilen montaj servisine s&ouml;k&uuml;m işlemlerini yaptırmak ve TK&Uuml;&rsquo;leri Meteor&rsquo;a teslim etmekle m&uuml;kelleftir. Satılan taşıtlar &uuml;zerinden s&ouml;k&uuml;lmeyen ve Meteor&rsquo;a iletilmeyen TK&Uuml;&rsquo;n&uuml;n maliyeti her TK&Uuml; başına 500,00 TL + KDV olarak M&uuml;şteriye fatura edilir.Diğer taraftan s&ouml;k&uuml;lmeyen,iade edilmeyen TK&Uuml;&rsquo;l&uuml; taşıtların M&uuml;şteri adına yapılan akaryakıt alımlarından M&uuml;şteri sorumludur.</p>" + 
+"<p><b>5- GİZLİLİK</b></p>" + 
+"<p>Tarafların bu s&ouml;zleşme dolayısıyla elde edebilecekleri, birbirlerine veya sisteme dahil olan &uuml;&ccedil;&uuml;nc&uuml; şahıslara ait her t&uuml;rl&uuml; bilgi tam bir gizlilik i&ccedil;inde saklanacak ve diğer tarafın yazılı izni olmaksızın kamu kurumları dışında hi&ccedil;bir şekilde hi&ccedil;bir merciiye ifşa edilmeyecektir.</p>" + 
+"<p><b>6- M&Uuml;CBİR SEBEPLER</b></p>" + 
+"<p>M&uuml;cbir sebeplerin 15 g&uuml;nden fazla devam etmesi halinde işbu s&ouml;zleşmeyi herhangi bir tazminat &ouml;demeden feshetme yetkisini İşbu anlaşma h&uuml;k&uuml;mlerinin yerine getirilmesini &ouml;nleyecek T&uuml;rkiye&rsquo;de meydana gelecek harp, isyan veya yangın, infilak zelzele gibi tabii afetler ile grev lokavt veya şirketimizin akreditif a&ccedil;ılmaması, d&ouml;viz tahsisi yapılmaması gibi h&uuml;k&uuml;met&ccedil;e konacak bilc&uuml;mle tahdidat ve kendi ihtiyarında olmayan sair sebeplerden dolayı stok, istihsal, imal, sevk, nakil, ithal ve tevziden kısmen veya Tamamen m&uuml;cbir sebep sayılan diğer bilc&uuml;mle hallerin hadis olması gibi nedenlerle &ouml;nceden tahmin edilemeyen veya &ouml;nceden &ouml;nlenmesi m&uuml;mk&uuml;n olmayan m&uuml;cbir sebeplerin vuku bulması halinde ve EPDK tarafından uygulamaya alınan fiyat politikası değişikliklerinde, taraflar işbu anlaşmanın yerine getirilmemesinden dolayı sorumlu tutulmayacaktır. Taraflar haizdir</p>" + 
+"<p><b>7- S&Ouml;ZLEŞMENİN S&Uuml;RESİ</b></p>" + 
+"<p>İşbu S&ouml;zleşme Otobil cihaz programlama / teslim tarihinden itibaren 3 yıl ge&ccedil;erlidir. Tarafların s&ouml;zleşmenin sona erme tarihinden en ge&ccedil; 1 ay evvel birbirlerine noter kanalıyla herhangi bir fesih bildiriminde bulunmamaları halinde işbu s&ouml;zleşme 2 &#39;şer yıl s&uuml;re ile uzar. Taraflar dilerse karşılıklı yapılan ek s&ouml;zleşme ile mutabık kalınan s&uuml;re kadar s&ouml;zleşmeyi uzatabilirler.</p>" + 
+"<p>&nbsp;</p>" + 
+"<p>&nbsp;</p>" + 
+"<p><b>8- FESİH</b></p>" + 
+"<p>Taraflardan herhangi birinin bu s&ouml;zleşme ile y&uuml;klenmiş olduğu edimlere uymaması durumunda diğer taraf s&ouml;zleşmeyi 1 ay &ouml;nceden yazılı olarak bildirmek şartı ile tek taraflı olarak feshetme hakkına sahiptir. M&uuml;şteri&rsquo;nin bu s&ouml;zleşmedeki edimlere uymaması veya M&uuml;şteri taraf s&ouml;zleşmenin zamanından &ouml;nce feshi durumunda; M&uuml;şteri Meteor firmasına cihaz başına 500,00 TL + KDV ve ayrıca ek olarak cihaz başına &ouml;dediği toplam tutar kadar da cezai şart &ouml;demeyi kabul ve taahh&uuml;t eder. Anlaşmanın s&uuml;resi i&ccedil;inde dolması ve feshini takiben M&uuml;şteri Meteor&rsquo;un ariyetten vermiş olduğu ekipmanları Meteor&rsquo;a 1 ay i&ccedil;erisinde iade edecektir. iade edilmeyen cihaz başına M&uuml;şteri Meteor&rsquo;a cihaz başına 500,00 TL+ KDV &ouml;demeyi kabul eder. Bu ekipmanların s&ouml;k&uuml;lme işlemi Meteor&rsquo;a aittir.</p>" + 
+"<p><b>9- İHTARLAR VE İHBARLAR</b></p>" + 
+"<p>Taraflarca yapılacak olan değişiklikler, eklemeler, &ccedil;ıkartmalar tarafların mutabakatı sonucu hazırlanacak olan yazılı ve tarafların yetkili temsilcileri tarafından imzalı ek anlaşmalar ile ger&ccedil;ekleştirilecektir. S&ouml;zleşmenin 4-1-9. maddesi hari&ccedil; olmak &uuml;zere Taraflardan birinin tek taraflı olarak S&ouml;zleşmede herhangi bir değişiklik yapması veya S&ouml;zleşmenin uygulamasını değiştirmesi m&uuml;mk&uuml;n değildir.</p>" + 
+"<p><b>10- UYUŞMAZLIK</b></p>" + 
+"<p>Uyuşmazlık halinde Bursa mahkemeleri ve icra daireleri yetkilidir. Uyuşmazlıkların &ccedil;&ouml;z&uuml;m&uuml;nde Meteor defter ve kayıtları kesin ve m&uuml;nhasır delil teşkil eder. 10 ana maddeden oluşan iş bu s&ouml;zleşme tarafların aşağıda belirtilen imza tarihinde, yetkili temsilciler tarafından 1 n&uuml;sha olarak akdedilmiş olup " + $P{contractDate} + " tarihinde y&uuml;r&uuml;rl&uuml;ğe girmiştir.</p>"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="300" y="690" width="250" height="15" uuid="046f1341-4a10-43c2-83a6-af4837838ae2">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="8" isBold="true" pdfEncoding="Cp1254"/>
+				</textElement>
+				<textFieldExpression><![CDATA["MÜŞTERİ ÜNVANI"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="300" y="705" width="250" height="30" uuid="c39b1d66-51f3-45d7-812b-cdd48ca26ad4"/>
+				<textElement textAlignment="Center">
+					<font size="8" pdfEncoding="Cp1254"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{customerName}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

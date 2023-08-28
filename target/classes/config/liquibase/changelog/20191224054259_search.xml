@@ -1,0 +1,395 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <changeSet author="mehmet.sen (generated)" id="1577166200390-13">
+        <addColumn tableName="activity">
+            <column name="search" type="varchar(2048)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1577166200390-14">
+        <addColumn tableName="address">
+            <column name="search" type="varchar(2048)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1577166200390-15">
+        <addColumn tableName="announcement">
+            <column name="search" type="varchar(2048)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1577166200390-16">
+        <addColumn tableName="attribute">
+            <column name="search" type="varchar(2048)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1577166200390-17">
+        <addColumn tableName="attribute_value">
+            <column name="search" type="varchar(2048)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1577166200390-18">
+        <addColumn tableName="campaign">
+            <column name="search" type="varchar(2048)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1577166200390-19">
+        <addColumn tableName="city">
+            <column name="search" type="varchar(2048)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1577166200390-20">
+        <addColumn tableName="configuration">
+            <column name="search" type="varchar(2048)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1577166200390-21">
+        <addColumn tableName="contact">
+            <column name="search" type="varchar(2048)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1577166200390-22">
+        <addColumn tableName="contract">
+            <column name="search" type="varchar(2048)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1577166200390-23">
+        <addColumn tableName="country">
+            <column name="search" type="varchar(2048)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1577166200390-24">
+        <addColumn tableName="customer">
+            <column name="search" type="varchar(2048)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1577166200390-25">
+        <addColumn tableName="customer_survey">
+            <column name="search" type="varchar(2048)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1577166200390-26">
+        <addColumn tableName="customer_survey_answer">
+            <column name="search" type="varchar(2048)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1577166200390-27">
+        <addColumn tableName="district">
+            <column name="search" type="varchar(2048)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1577166200390-28">
+        <addColumn tableName="entity_metadata">
+            <column name="search" type="varchar(2048)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1577166200390-29">
+        <addColumn tableName="field_metadata">
+            <column name="search" type="varchar(2048)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1577166200390-30">
+        <addColumn tableName="file_descriptor">
+            <column name="search" type="varchar(2048)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1577166200390-31">
+        <addColumn tableName="jhi_role">
+            <column name="search" type="varchar(2048)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1577166200390-32">
+        <addColumn tableName="jhi_user">
+            <column name="search" type="varchar(2048)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1577166200390-33">
+        <addColumn tableName="layout">
+            <column name="search" type="varchar(2048)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1577166200390-34">
+        <addColumn tableName="operation">
+            <column name="search" type="varchar(2048)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1577166200390-35">
+        <addColumn tableName="opet_fleet">
+            <column name="search" type="varchar(2048)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1577166200390-36">
+        <addColumn tableName="opet_sale">
+            <column name="search" type="varchar(2048)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1577166200390-37">
+        <addColumn tableName="permission">
+            <column name="search" type="varchar(2048)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1577166200390-38">
+        <addColumn tableName="product">
+            <column name="search" type="varchar(2048)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1577166200390-39">
+        <addColumn tableName="quote">
+            <column name="search" type="varchar(2048)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1577166200390-40">
+        <addColumn tableName="quote_version">
+            <column name="search" type="varchar(2048)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1577166200390-41">
+        <addColumn tableName="quote_version_line_item">
+            <column name="search" type="varchar(2048)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1577166200390-42">
+        <addColumn tableName="report">
+            <column name="search" type="varchar(2048)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1577166200390-43">
+        <addColumn tableName="summary_opet_sale">
+            <column name="search" type="varchar(2048)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1577166200390-44">
+        <addColumn tableName="summary_user_customer">
+            <column name="search" type="varchar(2048)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1577166200390-45">
+        <addColumn tableName="survey">
+            <column name="search" type="varchar(2048)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1577166200390-46">
+        <addColumn tableName="survey_scoring">
+            <column name="search" type="varchar(2048)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1577166200390-47">
+        <addColumn tableName="survey_version">
+            <column name="search" type="varchar(2048)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1577166200390-48">
+        <addColumn tableName="survey_version_question">
+            <column name="search" type="varchar(2048)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1577166200390-49">
+        <addColumn tableName="survey_version_question_answer">
+            <column name="search" type="varchar(2048)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1577166200390-50">
+        <addColumn tableName="target">
+            <column name="search" type="varchar(2048)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1577166200390-51">
+        <addColumn tableName="task">
+            <column name="search" type="varchar(2048)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1577166200390-52">
+        <createIndex indexName="IDX14auh5mnniochhhcwnsyrvrbi" tableName="layout">
+            <column name="search"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1577166200390-53">
+        <createIndex indexName="IDX173j7gbdlqgp40x31mlud7gyy" tableName="opet_fleet">
+            <column name="search"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1577166200390-54">
+        <createIndex indexName="IDX1bqwitercl9pjyupca5n3fsdh" tableName="city">
+            <column name="search"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1577166200390-55">
+        <createIndex indexName="IDX2pjfmq1eragvmddrn81qwqi9a" tableName="product">
+            <column name="search"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1577166200390-56">
+        <createIndex indexName="IDX3o0w41bviu73ftbpn0ta4q839" tableName="entity_metadata">
+            <column name="search"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1577166200390-57">
+        <createIndex indexName="IDX4qrlhf0ciyqljqywgkljx1kc6" tableName="quote_version">
+            <column name="search"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1577166200390-58">
+        <createIndex indexName="IDX5ov8rv624ut1u2rq0w7senbo2" tableName="jhi_role">
+            <column name="search"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1577166200390-59">
+        <createIndex indexName="IDX782vakuwtma8q9q8g4ugv2s1o" tableName="survey_version">
+            <column name="search"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1577166200390-60">
+        <createIndex indexName="IDX90imtl0tk7l7ghh45aofrj8fu" tableName="quote">
+            <column name="search"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1577166200390-61">
+        <createIndex indexName="IDXadahenf3y9rht32d5kihyjbkr" tableName="survey">
+            <column name="search"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1577166200390-62">
+        <createIndex indexName="IDXb7f5rmdyrs7q544y2041su0sr" tableName="target">
+            <column name="search"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1577166200390-63">
+        <createIndex indexName="IDXcr9wsvuccsrb676wbxagro3o7" tableName="file_descriptor">
+            <column name="search"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1577166200390-64">
+        <createIndex indexName="IDXdir314c4r3kha1bb8e89b5e5f" tableName="operation">
+            <column name="search"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1577166200390-65">
+        <createIndex indexName="IDXf7175g35r5ncdm6wtvwl3wfqa" tableName="customer_survey">
+            <column name="search"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1577166200390-66">
+        <createIndex indexName="IDXfujn5l01xqq3ho0bfi9hoacdl" tableName="address">
+            <column name="search"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1577166200390-67">
+        <createIndex indexName="IDXg0xch2j466jx1g9punm9ymugj" tableName="contact">
+            <column name="search"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1577166200390-68">
+        <createIndex indexName="IDXg2sifrilofxoc5nvb45bb8k8p" tableName="opet_sale">
+            <column name="search"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1577166200390-69">
+        <createIndex indexName="IDXgh5ivbwo0ifns4k8pyik6rvoe" tableName="district">
+            <column name="search"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1577166200390-70">
+        <createIndex indexName="IDXgi67v014rxi868t1qbqdwly0b" tableName="field_metadata">
+            <column name="search"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1577166200390-71">
+        <createIndex indexName="IDXgyeq6oudhfpkcc4tkfaed6l2t" tableName="announcement">
+            <column name="search"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1577166200390-72">
+        <createIndex indexName="IDXi2phxattgijkdt3y9cnl5r7x3" tableName="contract">
+            <column name="search"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1577166200390-73">
+        <createIndex indexName="IDXiuh7gplmvi0r1cb6pvkny3b92" tableName="customer">
+            <column name="search"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1577166200390-74">
+        <createIndex indexName="IDXivwd6uh9bktwr9gnwab02cpxx" tableName="quote_version_line_item">
+            <column name="search"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1577166200390-75">
+        <createIndex indexName="IDXjn6bnswweg5yfkauvj0gvdj4o" tableName="customer_survey_answer">
+            <column name="search"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1577166200390-76">
+        <createIndex indexName="IDXk7cnujn8grweeb4ytr3ai79so" tableName="permission">
+            <column name="search"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1577166200390-77">
+        <createIndex indexName="IDXkgr9d77032nhwuv50x1b1parf" tableName="task">
+            <column name="search"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1577166200390-78">
+        <createIndex indexName="IDXl2h46pq752ldobbdec2pdfj88" tableName="configuration">
+            <column name="search"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1577166200390-79">
+        <createIndex indexName="IDXlvnyk5gtagyr3eogsof36ft4n" tableName="summary_opet_sale">
+            <column name="search"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1577166200390-80">
+        <createIndex indexName="IDXlx2yo5he8swjxunyf56oxe1b4" tableName="jhi_user">
+            <column name="search"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1577166200390-81">
+        <createIndex indexName="IDXm2nqr3xfu8idpo04sj4q84q1q" tableName="survey_version_question">
+            <column name="search"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1577166200390-82">
+        <createIndex indexName="IDXmd8yam4oaa8rp2odttjqyx0jv" tableName="survey_scoring">
+            <column name="search"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1577166200390-83">
+        <createIndex indexName="IDXn7mmi1tttsq9de9f3f1kv652e" tableName="attribute">
+            <column name="search"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1577166200390-84">
+        <createIndex indexName="IDXntqram0h4419m35lyui5rg3wt" tableName="report">
+            <column name="search"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1577166200390-85">
+        <createIndex indexName="IDXp44y5f70oup9uixljvfrvk10d" tableName="campaign">
+            <column name="search"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1577166200390-86">
+        <createIndex indexName="IDXpcnsdcc3nin9v2s4h8j3yog75" tableName="activity">
+            <column name="search"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1577166200390-87">
+        <createIndex indexName="IDXpr7xmneoaxh61h2071eyvflqk" tableName="country">
+            <column name="search"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1577166200390-88">
+        <createIndex indexName="IDXqtdcwuelqu4htyb0x9wt703i8" tableName="survey_version_question_answer">
+            <column name="search"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1577166200390-89">
+        <createIndex indexName="IDXs9ogm6dc7sg1r8bkjsndttttu" tableName="summary_user_customer">
+            <column name="search"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1577166200390-90">
+        <createIndex indexName="IDXt1ub3uth9th8vwb5io83umhjo" tableName="attribute_value">
+            <column name="search"/>
+        </createIndex>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,421 @@
+id,entity_metadata_id,name,title,display,read_only,required,default_value,priority
+Activity_campaign,Activity,campaign,Kampanya,false,false,false,null,160
+Activity_checkInLatitude,Activity,checkInLatitude,Giriş Enlem,false,true,false,null,110
+Activity_checkInLongitude,Activity,checkInLongitude,Giriş Boylam,false,true,false,null,120
+Activity_checkInTime,Activity,checkInTime,Giriş Zamanı,true,true,false,null,90
+Activity_checkOutLatitude,Activity,checkOutLatitude,Çıkış Enlem,false,true,false,null,130
+Activity_checkOutLongitude,Activity,checkOutLongitude,Çıkış Boylam,false,true,false,null,140
+Activity_checkOutTime,Activity,checkOutTime,Çıkış Zamanı,true,true,false,null,100
+Activity_contact,Activity,contact,Görüşülen Kişi,true,false,false,null,35
+Activity_createdBy,Activity,createdBy,Oluşturan,false,true,false,null,9990
+Activity_createdDate,Activity,createdDate,Oluşturulma Tarihi,false,true,false,null,9991
+Activity_customer,Activity,customer,Müşteri,true,false,true,null,30
+Activity_customerStatus,Activity,customerStatus,Müşteri Durum,true,true,false,null,160
+Activity_description,Activity,description,Açıklama,false,false,false,null,2147483647
+Activity_id,Activity,id,Id,false,true,false,null,-2147483648
+Activity_instanceName,Activity,instanceName,Başlık,false,true,false,null,2147483647
+Activity_lastModifiedBy,Activity,lastModifiedBy,Son Düzenleyen,false,true,false,null,9992
+Activity_lastModifiedDate,Activity,lastModifiedDate,Son Düzenlenme Tarihi,false,true,false,null,9993
+Activity_owner,Activity,owner,Aktivite Sahibi,true,false,false,null,20
+Activity_participants,Activity,participants,Katılımcılar,false,false,false,null,150
+Activity_plannedEndTime,Activity,plannedEndTime,Planlanan Bitiş Zamanı,false,true,false,null,80
+Activity_plannedStartTime,Activity,plannedStartTime,Planlanan Başlangıç Zamanı,false,true,false,null,70
+Activity_reason,Activity,reason,Neden,false,true,true,Akt_Ned_Satış,50
+Activity_status,Activity,status,Durum,true,false,true,Akt_Dur_Yeni,60
+Activity_subject,Activity,subject,Konu,false,true,false,null,10
+Activity_task,Activity,task,Görev,false,false,false,null,80
+Activity_type,Activity,type,Konu,true,false,true,Akt_Tip_Firma_Ziyareti,10
+Address_city,Address,city,İl,true,false,true,null,40
+Address_country,Address,country,Ülke,false,false,false,null,30
+Address_createdBy,Address,createdBy,Oluşturan,false,true,false,null,9990
+Address_createdDate,Address,createdDate,Oluşturulma Tarihi,false,true,false,null,9991
+Address_customer,Address,customer,Müşteri,true,false,true,null,90
+Address_detail,Address,detail,Adres Satırı,false,false,true,null,80
+Address_district,Address,district,İlçe,true,false,true,null,50
+Address_id,Address,id,Id,false,true,false,null,-2147483648
+Address_instanceName,Address,instanceName,Başlık,false,true,false,null,2147483647
+Address_lastModifiedBy,Address,lastModifiedBy,Son Düzenleyen,false,true,false,null,9992
+Address_lastModifiedDate,Address,lastModifiedDate,Son Düzenlenme Tarihi,false,true,false,null,9993
+Address_latitude,Address,latitude,Enlem,false,false,false,null,60
+Address_longitude,Address,longitude,Boylam,false,false,false,null,70
+Address_name,Address,name,Adres Başlığı,true,false,true,null,10
+Announcement_active,Announcement,active,Aktif,true,false,false,null,20
+Announcement_createdBy,Announcement,createdBy,Oluşturan,false,true,false,null,9990
+Announcement_createdDate,Announcement,createdDate,Oluşturulma Tarihi,false,true,false,null,9991
+Announcement_description,Announcement,description,Açıklama,false,false,false,null,40
+Announcement_id,Announcement,id,Id,false,true,false,null,-2147483648
+Announcement_instanceName,Announcement,instanceName,Başlık,false,true,false,null,2147483647
+Announcement_lastModifiedBy,Announcement,lastModifiedBy,Son Düzenleyen,false,true,false,null,9992
+Announcement_lastModifiedDate,Announcement,lastModifiedDate,Son Düzenlenme Tarihi,false,true,false,null,9993
+Announcement_title,Announcement,title,Başlık,true,false,true,null,10
+Announcement_type,Announcement,type,Tip,true,false,true,null,30
+AttributeValue_attribute,AttributeValue,attribute,Değişken Adı,true,false,true,null,20
+AttributeValue_id,AttributeValue,id,Id,false,true,false,null,-2147483648
+AttributeValue_instanceName,AttributeValue,instanceName,Başlık,false,true,false,null,2147483647
+AttributeValue_isStatic,AttributeValue,isStatic,Statik,true,false,true,null,30
+AttributeValue_label,AttributeValue,label,Etiket,true,false,true,null,10
+AttributeValue_weight,AttributeValue,weight,Ağırlık,true,false,true,null,40
+Attribute_fieldName,Attribute,fieldName,Alan Adı,true,true,true,null,20
+Attribute_id,Attribute,id,Id,false,true,false,null,-2147483648
+Attribute_instanceName,Attribute,instanceName,Başlık,false,true,false,null,2147483647
+Attribute_objectName,Attribute,objectName,Nesne Adı,true,true,true,null,10
+Campaign_budget,Campaign,budget,Bütçe,false,false,false,null,52
+Campaign_createdBy,Campaign,createdBy,Oluşturan,false,true,false,null,9990
+Campaign_createdDate,Campaign,createdDate,Oluşturulma Tarihi,false,true,false,null,9991
+Campaign_description,Campaign,description,Açıklama,false,false,false,null,53
+Campaign_endDate,Campaign,endDate,Bitiş Tarihi,true,false,false,null,30
+Campaign_expectedRevenue,Campaign,expectedRevenue,Beklenen Gelir,false,false,false,null,51
+Campaign_id,Campaign,id,Id,false,true,false,null,-2147483648
+Campaign_instanceName,Campaign,instanceName,Başlık,false,true,false,null,2147483647
+Campaign_lastModifiedBy,Campaign,lastModifiedBy,Son Düzenleyen,false,true,false,null,9992
+Campaign_lastModifiedDate,Campaign,lastModifiedDate,Son Düzenlenme Tarihi,false,true,false,null,9993
+Campaign_name,Campaign,name,Kampanya İsmi,true,false,true,null,10
+Campaign_startDate,Campaign,startDate,Başlangıç Tarihi,true,false,false,null,20
+Campaign_status,Campaign,status,Durum,true,false,true,Kam_Dur_Aktif,40
+City_country,City,country,Ülke,true,false,true,null,20
+City_createdBy,City,createdBy,Oluşturan,false,true,false,null,9990
+City_createdDate,City,createdDate,Oluşturulma Tarihi,false,true,false,null,9991
+City_id,City,id,Id,false,true,false,null,-2147483648
+City_instanceName,City,instanceName,Başlık,false,true,false,null,1
+City_lastModifiedBy,City,lastModifiedBy,Son Düzenleyen,false,true,false,null,9992
+City_lastModifiedDate,City,lastModifiedDate,Son Düzenlenme Tarihi,false,true,false,null,9993
+City_name,City,name,Şehir İsmi,true,false,true,null,10
+Configuration_createdBy,Configuration,createdBy,Oluşturan,false,true,false,null,9990
+Configuration_createdDate,Configuration,createdDate,Oluşturulma Tarihi,false,true,false,null,9991
+Configuration_id,Configuration,id,Id,false,true,false,null,-2147483648
+Configuration_instanceName,Configuration,instanceName,Başlık,false,true,false,null,2147483647
+Configuration_lastModifiedBy,Configuration,lastModifiedBy,Son Düzenleyen,false,true,false,null,9992
+Configuration_lastModifiedDate,Configuration,lastModifiedDate,Son Düzenlenme Tarihi,false,true,false,null,9993
+Configuration_name,Configuration,name,İsim,true,true,true,null,10
+Configuration_storedValue,Configuration,storedValue,Değer,true,true,false,null,30
+Configuration_value,Configuration,value,Değer,false,false,true,null,2147483647
+Configuration_valueType,Configuration,valueType,Tip,true,true,true,null,20
+Contact_active,Contact,active,Aktif,false,false,false,null,50
+Contact_createdBy,Contact,createdBy,Oluşturan,false,true,false,null,9990
+Contact_createdDate,Contact,createdDate,Oluşturulma Tarihi,false,true,false,null,9991
+Contact_customer,Contact,customer,Müşteri,true,false,false,null,30
+Contact_description,Contact,description,Açıklama,false,false,false,null,60
+Contact_email,Contact,email,Mail,true,false,false,null,40
+Contact_firstName,Contact,firstName,Ad,true,false,true,null,10
+Contact_id,Contact,id,Id,false,true,false,null,-2147483648
+Contact_instanceName,Contact,instanceName,Başlık,false,true,false,null,2147483647
+Contact_lastModifiedBy,Contact,lastModifiedBy,Son Düzenleyen,false,true,false,null,9992
+Contact_lastModifiedDate,Contact,lastModifiedDate,Son Düzenlenme Tarihi,false,true,false,null,9993
+Contact_lastName,Contact,lastName,Soyad,true,false,false,null,20
+Contact_phone,Contact,phone,Telefon,true,false,false,null,50
+Contact_type,Contact,type,Tip,false,false,false,null,25
+Contract_createdBy,Contract,createdBy,Oluşturan,false,true,false,null,9990
+Contract_createdDate,Contract,createdDate,Oluşturulma Tarihi,false,true,false,null,9991
+Contract_customer,Contract,customer,Müşteri,true,false,false,null,20
+Contract_customerStatus,Contract,customerStatus,Müşteri Durum,true,true,false,null,150
+Contract_description,Contract,description,Açıklama,false,false,false,null,120
+Contract_discountDiesel,Contract,discountDiesel,Motorin İndirim,true,false,false,null,40
+Contract_discountGasoline,Contract,discountGasoline,Benzin İndirim,true,false,false,null,30
+Contract_endDate,Contract,endDate,Bitiş Tarihi,true,false,false,null,70
+Contract_fuelLt,Contract,fuelLt,Aylık Tüketim(LT),false,false,false,null,90
+Contract_fuelTl,Contract,fuelTl,Aylık Tüketim(TL),false,false,false,null,100
+Contract_id,Contract,id,Id,false,true,false,null,-2147483648
+Contract_instanceName,Contract,instanceName,Başlık,false,true,false,null,2147483647
+Contract_lastModifiedBy,Contract,lastModifiedBy,Son Düzenleyen,false,true,false,null,9992
+Contract_lastModifiedDate,Contract,lastModifiedDate,Son Düzenlenme Tarihi,false,true,false,null,9993
+Contract_name,Contract,name,Sözleşme İsmi,false,true,false,null,10
+Contract_paymentDay,Contract,paymentDay,Ödeme Günü,false,false,false,null,110
+Contract_paymentMethod,Contract,paymentMethod,Ödeme Yöntemi,false,false,false,null,113
+Contract_paymentPeriod,Contract,paymentPeriod,Ödeme Periyodu,false,false,false,null,110
+Contract_quote,Contract,quote,Teklif,false,false,false,null,80
+Contract_startDate,Contract,startDate,Başlangıç Tarihi,true,false,false,null,60
+Contract_status,Contract,status,Durum,true,false,false,null,140
+Contract_type,Contract,type,Tip,false,true,false,null,160
+Country_createdBy,Country,createdBy,Oluşturan,false,true,false,null,9990
+Country_createdDate,Country,createdDate,Oluşturulma Tarihi,false,true,false,null,9991
+Country_id,Country,id,Id,false,true,false,null,-2147483648
+Country_instanceName,Country,instanceName,Başlık,false,true,false,null,2147483647
+Country_lastModifiedBy,Country,lastModifiedBy,Son Düzenleyen,false,true,false,null,9992
+Country_lastModifiedDate,Country,lastModifiedDate,Son Düzenlenme Tarihi,false,true,false,null,9993
+Country_name,Country,name,Ülke İsmi,true,false,true,null,10
+CustomerSurveyAnswer_createdBy,CustomerSurveyAnswer,createdBy,Oluşturan,false,true,false,null,9990
+CustomerSurveyAnswer_createdDate,CustomerSurveyAnswer,createdDate,Oluşturulma Tarihi,false,true,false,null,9991
+CustomerSurveyAnswer_customer,CustomerSurveyAnswer,customer,Müşteri,true,false,true,null,20
+CustomerSurveyAnswer_id,CustomerSurveyAnswer,id,Id,false,true,false,null,-2147483648
+CustomerSurveyAnswer_instanceName,CustomerSurveyAnswer,instanceName,Başlık,false,true,false,null,1
+CustomerSurveyAnswer_lastModifiedBy,CustomerSurveyAnswer,lastModifiedBy,Son Düzenleyen,false,true,false,null,9992
+CustomerSurveyAnswer_lastModifiedDate,CustomerSurveyAnswer,lastModifiedDate,Son Düzenlenme Tarihi,false,true,false,null,9993
+CustomerSurveyAnswer_surveyAnswer,CustomerSurveyAnswer,surveyAnswer,Cevap,true,false,true,null,20
+CustomerSurveyAnswer_time,CustomerSurveyAnswer,time,Zaman,true,false,true,null,30
+Customer_activationTime,Customer,activationTime,Aktif Olma Zamanı,false,true,false,null,2147483647
+Customer_addresses,Customer,addresses,Adresler,false,false,false,null,2147483647
+Customer_bank,Customer,bank,Banka,false,false,false,null,60
+Customer_bankBranch,Customer,bankBranch,Banka Şubesi,false,false,false,null,70
+Customer_color,Customer,color,Renk,false,false,false,null,2147483647
+Customer_commercialTitle,Customer,commercialTitle,Ticari Unvan,false,false,false,null,2147483647
+Customer_createdBy,Customer,createdBy,Oluşturan,false,true,false,null,9990
+Customer_createdDate,Customer,createdDate,Oluşturulma Tarihi,false,true,false,null,9991
+Customer_dbsLimit,Customer,dbsLimit,DBS Limiti,false,false,false,null,2147483647
+Customer_description,Customer,description,Açıklama,false,false,false,null,2147483647
+Customer_email,Customer,email,Mail,false,false,true,null,2147483647
+Customer_fleetCode,Customer,fleetCode,Filo Kodu,false,false,false,null,2147483647
+Customer_fuelLt,Customer,fuelLt,Ortalama Tüketim(LT),false,false,false,null,2147483647
+Customer_fuelTl,Customer,fuelTl,Ortalama Tüketim(TL),false,false,false,null,2147483647
+Customer_id,Customer,id,Id,false,true,false,null,-2147483648
+Customer_instanceName,Customer,instanceName,Başlık,false,true,false,null,2147483647
+Customer_lastModifiedBy,Customer,lastModifiedBy,Son Düzenleyen,false,true,false,null,9992
+Customer_lastModifiedDate,Customer,lastModifiedDate,Son Düzenlenme Tarihi,false,true,false,null,9993
+Customer_name,Customer,name,Müşteri İsmi,true,false,true,null,10
+Customer_oldFleetCode,Customer,oldFleetCode,Eski Filo Kodu,false,false,false,null,2147483647
+Customer_owner,Customer,owner,Müşteri Sahibi,true,false,false,null,20
+Customer_parent,Customer,parent,Üst Müşteri,false,false,false,null,2147483647
+Customer_phone,Customer,phone,Telefon,true,false,true,null,30
+Customer_sector,Customer,sector,Sektör,false,false,false,null,2147483647
+Customer_segment,Customer,segment,Bölüm,false,false,false,null,2147483647
+Customer_source,Customer,source,Kaynak,false,false,false,null,2147483647
+Customer_status,Customer,status,Durum,true,false,false,null,50
+Customer_taxNumber,Customer,taxNumber,Vergi Numarası,true,false,false,null,40
+Customer_taxOffice,Customer,taxOffice,Vergi Dairesi,false,false,false,null,45
+Customer_vehicleCount,Customer,vehicleCount,Araç Sayısı,false,false,false,null,2147483647
+Customer_website,Customer,website,Web Sitesi,false,false,false,null,2147483647
+District_city,District,city,Şehir,true,false,true,null,20
+District_createdBy,District,createdBy,Oluşturan,false,true,false,null,9990
+District_createdDate,District,createdDate,Oluşturulma Tarihi,false,true,false,null,9991
+District_id,District,id,Id,false,true,false,null,-2147483648
+District_instanceName,District,instanceName,Başlık,false,true,false,null,1
+District_lastModifiedBy,District,lastModifiedBy,Son Düzenleyen,false,true,false,null,9992
+District_lastModifiedDate,District,lastModifiedDate,Son Düzenlenme Tarihi,false,true,false,null,9993
+District_name,District,name,İlçe İsmi,true,false,true,null,10
+EntityMetadata_createdBy,EntityMetadata,createdBy,Oluşturan,false,true,false,null,9990
+EntityMetadata_createdDate,EntityMetadata,createdDate,Oluşturulma Tarihi,false,true,false,null,9991
+EntityMetadata_defaultSort,EntityMetadata,defaultSort,Varsayılan Sıralama,false,false,true,null,40
+EntityMetadata_displayField,EntityMetadata,displayField,Görüntü Alanı,false,false,true,null,30
+EntityMetadata_id,EntityMetadata,id,Id,false,true,false,null,-2147483648
+EntityMetadata_instanceName,EntityMetadata,instanceName,Başlık,false,true,false,null,2147483647
+EntityMetadata_lastModifiedBy,EntityMetadata,lastModifiedBy,Son Düzenleyen,false,true,false,null,9992
+EntityMetadata_lastModifiedDate,EntityMetadata,lastModifiedDate,Son Düzenlenme Tarihi,false,true,false,null,9993
+EntityMetadata_name,EntityMetadata,name,Nesne Tanım Adı,true,false,true,null,20
+EntityMetadata_pluralTitle,EntityMetadata,pluralTitle,Başlıklar,false,false,false,null,11
+EntityMetadata_title,EntityMetadata,title,Başlık,true,false,false,null,10
+FieldMetadata_createdBy,FieldMetadata,createdBy,Oluşturan,false,true,false,null,9990
+FieldMetadata_createdDate,FieldMetadata,createdDate,Oluşturulma Tarihi,false,true,false,null,9991
+FieldMetadata_defaultValue,FieldMetadata,defaultValue,Varsayılan Değer,false,false,false,null,70
+FieldMetadata_display,FieldMetadata,display,Görüntü,false,false,false,null,40
+FieldMetadata_entityMetadata,FieldMetadata,entityMetadata,Nesne Tanımı,true,false,false,null,20
+FieldMetadata_id,FieldMetadata,id,Id,false,true,false,null,-2147483648
+FieldMetadata_instanceName,FieldMetadata,instanceName,Başlık,false,true,false,null,2147483647
+FieldMetadata_lastModifiedBy,FieldMetadata,lastModifiedBy,Son Düzenleyen,false,true,false,null,9992
+FieldMetadata_lastModifiedDate,FieldMetadata,lastModifiedDate,Son Düzenlenme Tarihi,false,true,false,null,9993
+FieldMetadata_name,FieldMetadata,name,Nesne Alan Tanım Adı,true,false,false,null,30
+FieldMetadata_priority,FieldMetadata,priority,Öncelik,false,false,false,null,80
+FieldMetadata_readOnly,FieldMetadata,readOnly,Salt Okunurluk,false,false,false,null,50
+FieldMetadata_required,FieldMetadata,required,Zorunluluk,false,false,false,null,60
+FieldMetadata_title,FieldMetadata,title,Başlık,true,false,false,null,10
+FileDescriptor_contentType,FileDescriptor,contentType,İçerik Tipi,false,true,false,null,40
+FileDescriptor_createdBy,FileDescriptor,createdBy,Oluşturan,false,true,false,null,9990
+FileDescriptor_createdDate,FileDescriptor,createdDate,Oluşturulma Tarihi,false,true,false,null,9991
+FileDescriptor_description,FileDescriptor,description,Açıklama,false,false,false,null,15
+FileDescriptor_entityId,FileDescriptor,entityId,Obje Id,false,true,false,null,30
+FileDescriptor_entityName,FileDescriptor,entityName,Obje Adı,true,true,false,null,20
+FileDescriptor_fileDescriptor,FileDescriptor,fileDescriptor,Klasör,false,true,false,null,50
+FileDescriptor_fileName,FileDescriptor,fileName,Dosya Adı,true,true,false,null,10
+FileDescriptor_fileSize,FileDescriptor,fileSize,Dosya Boyutu,true,true,false,null,30
+FileDescriptor_id,FileDescriptor,id,Id,false,true,false,null,-2147483648
+FileDescriptor_instanceName,FileDescriptor,instanceName,Başlık,false,true,false,null,2147483647
+FileDescriptor_lastModifiedBy,FileDescriptor,lastModifiedBy,Son Düzenleyen,false,true,false,null,9992
+FileDescriptor_lastModifiedDate,FileDescriptor,lastModifiedDate,Son Düzenlenme Tarihi,false,true,false,null,9993
+FileDescriptor_type,FileDescriptor,type,Tip,false,true,false,null,45
+Layout_createdBy,Layout,createdBy,Oluşturan,false,true,false,null,9990
+Layout_createdDate,Layout,createdDate,Oluşturulma Tarihi,false,true,false,null,9991
+Layout_id,Layout,id,Id,false,true,false,null,-2147483648
+Layout_instanceName,Layout,instanceName,Instance Name,false,true,false,null,2147483647
+Layout_json,Layout,json,Json,false,false,true,null,2147483647
+Layout_lastModifiedBy,Layout,lastModifiedBy,Son Düzenleyen,false,true,false,null,9992
+Layout_lastModifiedDate,Layout,lastModifiedDate,Son Düzenlenme Tarihi,false,true,false,null,9993
+Layout_name,Layout,name,Tasarım Plan İsmi,false,false,true,null,2147483647
+Layout_objectName,Layout,objectName,Nesne Adı,false,false,true,null,2147483647
+Lead_createdBy,Lead,createdBy,Oluşturan,false,true,false,null,9990
+Lead_createdDate,Lead,createdDate,Oluşturulma Tarihi,false,true,false,null,9991
+Lead_customer,Lead,customer,Müşteri,true,false,false,null,40
+Lead_description,Lead,description,Açıklama,false,false,false,null,2147483647
+Lead_id,Lead,id,Id,false,true,false,null,-2147483648
+Lead_instanceName,Lead,instanceName,Başlık,false,true,false,null,2147483647
+Lead_lastModifiedBy,Lead,lastModifiedBy,Son Düzenleyen,false,true,false,null,9992
+Lead_lastModifiedDate,Lead,lastModifiedDate,Son Düzenlenme Tarihi,false,true,false,null,9993
+Lead_name,Lead,name,Ad,true,false,true,null,10
+Lead_owner,Lead,owner,Müşteri Adayı Sahibi,true,true,false,null,30
+Lead_phone,Lead,phone,Telefon,true,false,false,null,20
+Lead_status,Lead,status,Durum,true,false,false,null,50
+Operation_createdBy,Operation,createdBy,Oluşturan,false,true,false,null,9990
+Operation_createdDate,Operation,createdDate,Oluşturulma Tarihi,false,true,false,null,9991
+Operation_id,Operation,id,Id,false,true,false,null,-2147483648
+Operation_instanceName,Operation,instanceName,Başlık,false,true,false,null,2147483647
+Operation_lastModifiedBy,Operation,lastModifiedBy,Son Düzenleyen,false,true,false,null,9992
+Operation_lastModifiedDate,Operation,lastModifiedDate,Son Düzenlenme Tarihi,false,true,false,null,9993
+Operation_name,Operation,name,Operasyon Adı,true,true,false,null,10
+Operation_parent,Operation,parent,Üst Operasyon,false,true,false,null,20
+OpetFleet_fleetCode,OpetFleet,fleetCode,Filo Kodu,true,false,false,null,20
+OpetFleet_fleetName,OpetFleet,fleetName,Filo Adı,true,false,false,null,10
+OpetFleet_id,OpetFleet,id,Id,false,true,false,null,-2147483648
+OpetSale_Odometer,OpetSale,Odometer,Odometer,false,false,false,null,2147483647
+OpetSale_apiUser,OpetSale,apiUser,Api Kullanıcısı,false,false,false,null,2147483647
+OpetSale_cityId,OpetSale,cityId,İl Id,false,false,false,null,2147483647
+OpetSale_cityName,OpetSale,cityName,İl,false,false,false,null,2147483647
+OpetSale_eCRReceiptNr,OpetSale,eCRReceiptNr,ECR Receipt Nr,false,false,false,null,2147483647
+OpetSale_fleetCode,OpetSale,fleetCode,Filo Kodu,false,false,false,null,2147483647
+OpetSale_fleetId,OpetSale,fleetId,Filo Id,false,false,false,null,2147483647
+OpetSale_fleetName,OpetSale,fleetName,Filo Adı,false,false,false,null,2147483647
+OpetSale_groupId,OpetSale,groupId,Grup Id,false,false,false,null,2147483647
+OpetSale_groupName,OpetSale,groupName,Grup Adı,false,false,false,null,2147483647
+OpetSale_id,OpetSale,id,Id,false,true,false,null,-2147483648
+OpetSale_invoicePeriodNr,OpetSale,invoicePeriodNr,Fatura Dönem Numarası,false,false,false,null,2147483647
+OpetSale_licensePlateNr,OpetSale,licensePlateNr,Plaka,false,false,false,null,2147483647
+OpetSale_processTime,OpetSale,processTime,İşlem Zamanı,false,false,false,null,2147483647
+OpetSale_productId,OpetSale,productId,Ürün Id,false,false,false,null,2147483647
+OpetSale_productName,OpetSale,productName,Ürün Adı,false,false,false,null,2147483647
+OpetSale_rId,OpetSale,rId,Opet Id,false,false,false,null,2147483647
+OpetSale_saleEnd,OpetSale,saleEnd,Satış Bitiş,false,false,false,null,2147483647
+OpetSale_stationId,OpetSale,stationId,İstasyon Id,false,false,false,null,2147483647
+OpetSale_stationName,OpetSale,stationName,İstasyon Adı,false,false,false,null,2147483647
+OpetSale_total,OpetSale,total,Toplam Fiyat,false,false,false,null,2147483647
+OpetSale_unitPrice,OpetSale,unitPrice,Birim Fiyat,false,false,false,null,2147483647
+OpetSale_volume,OpetSale,volume,Toplam Litre,false,false,false,null,2147483647
+Permission_createdBy,Permission,createdBy,Oluşturan,false,true,false,null,9990
+Permission_createdDate,Permission,createdDate,Oluşturulma Tarihi,false,true,false,null,9991
+Permission_delete,Permission,delete,Sil,false,false,false,null,50
+Permission_id,Permission,id,Id,false,true,false,null,-2147483648
+Permission_instanceName,Permission,instanceName,Başlık,false,true,false,null,2147483647
+Permission_isHierarchical,Permission,isHierarchical,Hiyerarşi,false,false,false,null,60
+Permission_lastModifiedBy,Permission,lastModifiedBy,Son Düzenleyen,false,true,false,null,9992
+Permission_lastModifiedDate,Permission,lastModifiedDate,Son Düzenlenme Tarihi,false,true,false,null,9993
+Permission_objectName,Permission,objectName,Nesne Adı,true,false,false,null,20
+Permission_read,Permission,read,Oku,false,false,false,null,30
+Permission_role,Permission,role,Rol,true,false,false,null,10
+Permission_update,Permission,update,Güncelle,false,false,false,null,40
+Product_createdBy,Product,createdBy,Oluşturan,false,true,false,null,9990
+Product_createdDate,Product,createdDate,Oluşturulma Tarihi,false,true,false,null,9991
+Product_description,Product,description,Açıklama,false,false,false,null,32
+Product_id,Product,id,Id,false,true,false,null,-2147483648
+Product_instanceName,Product,instanceName,Başlık,false,true,false,null,2147483647
+Product_lastModifiedBy,Product,lastModifiedBy,Son Düzenleyen,false,true,false,null,9992
+Product_lastModifiedDate,Product,lastModifiedDate,Son Düzenlenme Tarihi,false,true,false,null,9993
+Product_name,Product,name,Ürün İsmi,true,false,false,null,10
+Product_parent,Product,parent,Üst Ürün,true,false,false,null,20
+Product_unitOfMeasure,Product,unitOfMeasure,Ölçü Birimi,false,false,false,null,31
+QuoteVersionLineItem_id,QuoteVersionLineItem,id,Id,false,true,false,null,-2147483648
+QuoteVersionLineItem_quoteVersion,QuoteVersionLineItem,quoteVersion,Teklif Versiyon,false,false,false,null,2147483647
+QuoteVersion_createdBy,QuoteVersion,createdBy,Oluşturan,false,true,false,null,9990
+QuoteVersion_createdDate,QuoteVersion,createdDate,Oluşturulma Tarihi,false,true,false,null,9991
+QuoteVersion_customer,QuoteVersion,customer,Müşteri,false,false,false,null,2147483647
+QuoteVersion_id,QuoteVersion,id,Id,false,true,false,null,-2147483648
+QuoteVersion_instanceName,QuoteVersion,instanceName,Başlık,false,true,false,null,2147483647
+QuoteVersion_lastModifiedBy,QuoteVersion,lastModifiedBy,Son Düzenleyen,false,true,false,null,9992
+QuoteVersion_lastModifiedDate,QuoteVersion,lastModifiedDate,Son Düzenlenme Tarihi,false,true,false,null,9993
+QuoteVersion_name,QuoteVersion,name,Teklif Versiyon İsmi,false,false,false,null,2147483647
+QuoteVersion_quote,QuoteVersion,quote,Teklif,false,false,false,null,2147483647
+QuoteVersion_status,QuoteVersion,status,Durum,false,false,false,null,2147483647
+Quote_activity,Quote,activity,Aktivite,false,false,false,null,30
+Quote_approvalStatus,Quote,approvalStatus,Onay Durumu,true,true,false,null,150
+Quote_approvalUser,Quote,approvalUser,Onay Kişisi,false,true,false,null,160
+Quote_contractType,Quote,contractType,Sözleşme Tip,false,true,false,null,170
+Quote_createdBy,Quote,createdBy,Oluşturan,false,true,false,null,9990
+Quote_createdDate,Quote,createdDate,Oluşturulma Tarihi,true,true,false,null,9991
+Quote_customer,Quote,customer,Müşteri,true,false,true,null,20
+Quote_customerStatus,Quote,customerStatus,Müşteri Durum,true,true,false,null,130
+Quote_description,Quote,description,Açıklama,false,false,false,null,140
+Quote_discountDiesel,Quote,discountDiesel,Motorin İndirim,true,false,false,null,70
+Quote_discountGasoline,Quote,discountGasoline,Benzin İndirim,true,false,false,null,60
+Quote_fuelLt,Quote,fuelLt,Aylık Tüketim Litre,true,false,false,null,40
+Quote_fuelTl,Quote,fuelTl,Aylık Tüketim TL,true,false,false,null,50
+Quote_id,Quote,id,Id,false,true,false,null,-2147483648
+Quote_instanceName,Quote,instanceName,Başlık,false,true,false,null,2147483647
+Quote_lastModifiedBy,Quote,lastModifiedBy,Son Düzenleyen,false,true,false,null,9992
+Quote_lastModifiedDate,Quote,lastModifiedDate,Son Düzenlenme Tarihi,false,true,false,null,9993
+Quote_name,Quote,name,Teklif İsmi,false,true,false,null,10
+Quote_paymentDay,Quote,paymentDay,Ödeme Günü,false,false,false,null,80
+Quote_paymentMethod,Quote,paymentMethod,Ödeme Yöntemi,false,false,false,null,100
+Quote_paymentPeriod,Quote,paymentPeriod,Ödeme Periyodu,false,false,false,null,90
+Quote_probability,Quote,probability,Olasılık,false,false,false,Tek_Ola_Orta,110
+Quote_stage,Quote,stage,Aşama,true,false,true,Tek_Aşa_Yeni,120
+Report_createdBy,Report,createdBy,Oluşturan,false,true,false,null,9990
+Report_createdDate,Report,createdDate,Oluşturulma Tarihi,false,true,false,null,9991
+Report_cronString,Report,cronString,Zamanlayıcı,false,false,false,null,40
+Report_description,Report,description,Açıklama,false,false,false,null,60
+Report_id,Report,id,Id,false,true,false,null,-2147483648
+Report_instanceName,Report,instanceName,Başlık,false,true,false,null,2147483647
+Report_lastModifiedBy,Report,lastModifiedBy,Son Düzenleyen,false,true,false,null,9992
+Report_lastModifiedDate,Report,lastModifiedDate,Son Düzenlenme Tarihi,false,true,false,null,9993
+Report_mails,Report,mails,Mail Adresleri,false,false,false,null,50
+Report_name,Report,name,Rapor Adı,true,false,false,null,10
+Report_objectName,Report,objectName,Obje Adı,true,true,false,null,20
+Report_queryJson,Report,queryJson,Sorgu,false,false,false,null,30
+Role_id,Role,id,Id,true,false,true,null,10
+SummaryOpetSale_customer,SummaryOpetSale,customer,Müşteri,false,false,false,null,2147483647
+SummaryOpetSale_fleetCode,SummaryOpetSale,fleetCode,Filo Kodu,false,false,false,null,2147483647
+SummaryOpetSale_fleetId,SummaryOpetSale,fleetId,Filo Id,false,false,false,null,2147483647
+SummaryOpetSale_id,SummaryOpetSale,id,Id,false,true,false,null,-2147483648
+SummaryOpetSale_productName,SummaryOpetSale,productName,Ürün Adı,false,false,false,null,2147483647
+SummaryOpetSale_saleEnd,SummaryOpetSale,saleEnd,Satış Bitiş,false,false,false,null,2147483647
+SummaryOpetSale_total,SummaryOpetSale,total,Toplam Fiyat,false,false,false,null,2147483647
+SummaryOpetSale_user,SummaryOpetSale,user,Kullanıcı,false,false,false,null,2147483647
+SummaryOpetSale_volume,SummaryOpetSale,volume,Toplam Litre,false,false,false,null,2147483647
+SummaryUserCustomer_countActive,SummaryUserCustomer,countActive,Aktif Müşteri Sayısı,false,false,false,null,50
+SummaryUserCustomer_date,SummaryUserCustomer,date,Kullanıcı,false,false,false,null,20
+SummaryUserCustomer_id,SummaryUserCustomer,id,Id,false,true,false,null,-2147483648
+SummaryUserCustomer_user,SummaryUserCustomer,user,Kullanıcı,false,false,false,null,10
+SurveyAnswer_createdBy,SurveyAnswer,createdBy,Oluşturan,false,true,false,null,9990
+SurveyAnswer_createdDate,SurveyAnswer,createdDate,Oluşturulma Tarihi,false,true,false,null,9991
+SurveyAnswer_id,SurveyAnswer,id,Id,false,true,false,null,-2147483648
+SurveyAnswer_instanceName,SurveyAnswer,instanceName,Başlık,false,true,false,null,2147483647
+SurveyAnswer_lastModifiedBy,SurveyAnswer,lastModifiedBy,Son Düzenleyen,false,true,false,null,9992
+SurveyAnswer_lastModifiedDate,SurveyAnswer,lastModifiedDate,Son Düzenlenme Tarihi,false,true,false,null,9993
+SurveyAnswer_name,SurveyAnswer,name,Cevap,true,false,true,null,10
+SurveyAnswer_surveyQuestion,SurveyAnswer,surveyQuestion,Soru,true,false,true,null,20
+SurveyQuestion_active,SurveyQuestion,active,Aktif ?,true,false,true,true,30
+SurveyQuestion_createdBy,SurveyQuestion,createdBy,Oluşturan,false,true,false,null,9990
+SurveyQuestion_createdDate,SurveyQuestion,createdDate,Oluşturulma Tarihi,false,true,false,null,9991
+SurveyQuestion_id,SurveyQuestion,id,Id,false,true,false,null,-2147483648
+SurveyQuestion_instanceName,SurveyQuestion,instanceName,Başlık,false,true,false,null,2147483647
+SurveyQuestion_lastModifiedBy,SurveyQuestion,lastModifiedBy,Son Düzenleyen,false,true,false,null,9992
+SurveyQuestion_lastModifiedDate,SurveyQuestion,lastModifiedDate,Son Düzenlenme Tarihi,false,true,false,null,9993
+SurveyQuestion_name,SurveyQuestion,name,Soru,true,false,true,null,10
+SurveyQuestion_type,SurveyQuestion,type,Konu,true,false,true,Ank_Tip_Varsayılan,20
+Target_amount,Target,amount,Hedef,true,false,false,null,40
+Target_createdBy,Target,createdBy,Oluşturan,false,true,false,null,9990
+Target_createdDate,Target,createdDate,Oluşturulma Tarihi,false,true,false,null,9991
+Target_id,Target,id,Id,false,true,false,null,-2147483648
+Target_instanceName,Target,instanceName,Başlık,false,true,false,null,2147483647
+Target_lastModifiedBy,Target,lastModifiedBy,Son Düzenleyen,false,true,false,null,9992
+Target_lastModifiedDate,Target,lastModifiedDate,Son Düzenlenme Tarihi,false,true,false,null,9993
+Target_owner,Target,owner,Sahip,true,false,false,null,10
+Target_realizedAmount,Target,realizedAmount,Real,true,false,false,null,50
+Target_termStart,Target,termStart,Dönem,true,false,false,null,20
+Target_type,Target,type,Tip,true,false,false,null,30
+Task_assigner,Task,assigner,Atayan,true,true,false,null,5
+Task_createdBy,Task,createdBy,Oluşturan,false,true,false,null,9990
+Task_createdDate,Task,createdDate,Oluşturulma Tarihi,true,true,false,null,37
+Task_customer,Task,customer,Müşteri,true,false,false,null,30
+Task_description,Task,description,Açıklama,false,false,false,null,100
+Task_dueTime,Task,dueTime,Yapılacak Zaman,true,false,true,null,40
+Task_failReason,Task,failReason,Başarısızlık Nedeni,false,false,false,null,90
+Task_id,Task,id,Id,false,true,false,null,-2147483648
+Task_instanceName,Task,instanceName,Başlık,false,false,false,null,2147483647
+Task_lastModifiedBy,Task,lastModifiedBy,Son Düzenleyen,false,true,false,null,9992
+Task_lastModifiedDate,Task,lastModifiedDate,Son Düzenlenme Tarihi,false,true,false,null,9993
+Task_owner,Task,owner,Görev Sahibi,true,false,false,null,0
+Task_status,Task,status,Durum,true,false,false,Gör_Dur_Yeni,60
+Task_subject,Task,subject,Konu,false,true,false,null,2147483647
+Task_type,Task,type,Konu,true,false,true,null,10
+User_activated,User,activated,Aktiflik,true,false,false,null,6
+User_activationKey,User,activationKey,Aktivasyon Anahtarı,false,false,false,null,9
+User_createdBy,User,createdBy,Oluşturan,false,true,false,null,9990
+User_createdDate,User,createdDate,Oluşturulma Tarihi,false,true,false,null,9991
+User_email,User,email,Mail,true,false,false,null,5
+User_firstName,User,firstName,Ad,true,false,false,null,3
+User_id,User,id,Id,false,true,false,null,-2147483648
+User_imageUrl,User,imageUrl,Resim URL,false,false,false,null,8
+User_instanceName,User,instanceName,Başlık,false,true,false,null,1
+User_langKey,User,langKey,Dil,false,false,false,null,7
+User_lastModifiedBy,User,lastModifiedBy,Son Düzenleyen,false,true,false,null,9992
+User_lastModifiedDate,User,lastModifiedDate,Son Düzenlenme Tarihi,false,true,false,null,9993
+User_lastName,User,lastName,Soyad,true,false,false,null,4
+User_login,User,login,Oturum,false,false,false,null,1
+User_password,User,password,Parola,false,false,false,null,2
+User_phone,User,phone,Telefon,false,false,false,null,12
+User_resetDate,User,resetDate,Resetleme Tarihi,false,false,false,null,11
+User_resetKey,User,resetKey,Resetleme Anahtarı,false,false,false,null,10

@@ -1,0 +1,38 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <changeSet author="mehmet.sen (generated)" id="1574405912493-4">
+        <addColumn tableName="activity">
+            <column name="customer_status_id" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1574405912493-5">
+        <addColumn tableName="contract">
+            <column name="customer_status_id" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1574405912493-6">
+        <addColumn tableName="quote">
+            <column name="customer_status_id" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1574405912493-7">
+        <addForeignKeyConstraint baseColumnNames="customer_status_id" baseTableName="activity"
+                                 constraintName="FKdd2jfcmsc349mtvm8gwv9bve0" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id"
+                                 referencedTableName="attribute_value" validate="true"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1574405912493-8">
+        <addForeignKeyConstraint baseColumnNames="customer_status_id" baseTableName="quote"
+                                 constraintName="FKp6fvact5awl0g3y2j9xhsgmdp" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id"
+                                 referencedTableName="attribute_value" validate="true"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1574405912493-9">
+        <addForeignKeyConstraint baseColumnNames="customer_status_id" baseTableName="contract"
+                                 constraintName="FKrs2nc4m45306j1gcfc2p165i1" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id"
+                                 referencedTableName="attribute_value" validate="true"/>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,247 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <changeSet author="mehmet.sen (generated)" id="1567750575831-6">
+        <createTable tableName="customer_survey">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" primaryKeyName="customer_surveyPK"/>
+            </column>
+            <column name="created_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="last_modified_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="created_by_id" type="BIGINT"/>
+            <column name="last_modified_by_id" type="BIGINT"/>
+            <column name="customer_id" type="UUID"/>
+            <column name="survey_id" type="UUID"/>
+            <column name="survey_version_id" type="UUID"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1567750575831-7">
+        <createTable tableName="customer_survey_answer">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" primaryKeyName="customer_survey_answerPK"/>
+            </column>
+            <column name="created_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="last_modified_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="created_by_id" type="BIGINT"/>
+            <column name="last_modified_by_id" type="BIGINT"/>
+            <column name="customer_survey_id" type="uuid"/>
+            <column name="survey_version_question_answer_id" type="UUID"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1567750575831-8">
+        <createTable tableName="survey">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" primaryKeyName="surveyPK"/>
+            </column>
+            <column name="created_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="last_modified_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="created_by_id" type="BIGINT"/>
+            <column name="last_modified_by_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1567750575831-9">
+        <createTable tableName="survey_scoring">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" primaryKeyName="survey_scoringPK"/>
+            </column>
+            <column name="created_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="last_modified_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="survey_score_end" type="FLOAT8"/>
+            <column name="survey_score_start" type="FLOAT8"/>
+            <column name="value" type="VARCHAR(255)"/>
+            <column name="created_by_id" type="BIGINT"/>
+            <column name="last_modified_by_id" type="BIGINT"/>
+            <column name="survey_version_id" type="UUID"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1567750575831-10">
+        <createTable tableName="survey_version">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" primaryKeyName="survey_versionPK"/>
+            </column>
+            <column name="created_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="last_modified_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="created_by_id" type="BIGINT"/>
+            <column name="last_modified_by_id" type="BIGINT"/>
+            <column name="survey_id" type="UUID"/>
+            <column name="is_active" type="boolean">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1567750575831-11">
+        <createTable tableName="survey_version_question">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" primaryKeyName="survey_version_questionPK"/>
+            </column>
+            <column name="created_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="last_modified_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="priority" type="INTEGER"/>
+            <column name="created_by_id" type="BIGINT"/>
+            <column name="last_modified_by_id" type="BIGINT"/>
+            <column name="survey_version_id" type="UUID"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1567750575831-12">
+        <createTable tableName="survey_version_question_answer">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" primaryKeyName="survey_version_question_answerPK"/>
+            </column>
+            <column name="created_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="last_modified_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="point" type="INTEGER"/>
+            <column name="value" type="VARCHAR(255)"/>
+            <column name="created_by_id" type="BIGINT"/>
+            <column name="last_modified_by_id" type="BIGINT"/>
+            <column name="survey_version_question_id" type="UUID"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1567750575831-13">
+        <addForeignKeyConstraint baseColumnNames="created_by_id" baseTableName="survey_scoring"
+                                 constraintName="FK263p51ol9wy6kfjvb6mqd7nhi" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1567750575831-14">
+        <addForeignKeyConstraint baseColumnNames="survey_version_question_id"
+                                 baseTableName="survey_version_question_answer"
+                                 constraintName="FK272aynpm5fuj1ly2pjjrvons5" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id"
+                                 referencedTableName="survey_version_question" validate="true"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1567750575831-15">
+        <addForeignKeyConstraint baseColumnNames="created_by_id" baseTableName="survey"
+                                 constraintName="FK3gdsp3r2vhin40x02defs31xn" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1567750575831-16">
+        <addForeignKeyConstraint baseColumnNames="created_by_id" baseTableName="customer_survey_answer"
+                                 constraintName="FK3n9ed0vhhr0dosp8lunlyk43k" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1567750575831-17">
+        <addForeignKeyConstraint baseColumnNames="created_by_id" baseTableName="survey_version_question_answer"
+                                 constraintName="FK4qha3185adrh6k970abepmxw0" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1567750575831-18">
+        <addForeignKeyConstraint baseColumnNames="survey_version_id" baseTableName="customer_survey"
+                                 constraintName="FK6hxlllb2xdu64e1rpicfmvk40" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id"
+                                 referencedTableName="survey_version" validate="true"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1567750575831-19">
+        <addForeignKeyConstraint baseColumnNames="customer_id" baseTableName="customer_survey"
+                                 constraintName="FK6qhlo0gm2xqkfvtyw23y6pgm4" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="customer"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1567750575831-20">
+        <addForeignKeyConstraint baseColumnNames="survey_version_id" baseTableName="survey_version_question"
+                                 constraintName="FK77u7p6ovey8m6ibaudseern3b" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id"
+                                 referencedTableName="survey_version" validate="true"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1567750575831-21">
+        <addForeignKeyConstraint baseColumnNames="survey_id" baseTableName="survey_version"
+                                 constraintName="FK850shwrcvl4q64k3u31besm53" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="survey"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1567750575831-22">
+        <addForeignKeyConstraint baseColumnNames="created_by_id" baseTableName="survey_version"
+                                 constraintName="FKbp9fs7wdx9eau337296ap2j8k" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1567750575831-23">
+        <addForeignKeyConstraint baseColumnNames="created_by_id" baseTableName="customer_survey"
+                                 constraintName="FKc2nf91rat34wci3wiywq8tjn6" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1567750575831-24">
+        <addForeignKeyConstraint baseColumnNames="customer_survey_id" baseTableName="customer_survey_answer"
+                                 constraintName="FKs9xjvcoyg1e1xt0q89ts9v2qe" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id"
+                                 referencedTableName="customer_survey" validate="true"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1567750575831-25">
+        <addForeignKeyConstraint baseColumnNames="last_modified_by_id" baseTableName="survey_version_question_answer"
+                                 constraintName="FKdq9fustqqjex1qklcl8kvwkpl" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1567750575831-26">
+        <addForeignKeyConstraint baseColumnNames="last_modified_by_id" baseTableName="survey"
+                                 constraintName="FKex0f5fk9yvdeqd74hh2apjl7g" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1567750575831-27">
+        <addForeignKeyConstraint baseColumnNames="last_modified_by_id" baseTableName="customer_survey_answer"
+                                 constraintName="FKk4tnx183wh1my2w1cdwq4yv0d" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1567750575831-28">
+        <addForeignKeyConstraint baseColumnNames="survey_id" baseTableName="customer_survey"
+                                 constraintName="FKnvm3bs83optouftbg5hqq0y4r" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="survey"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1567750575831-29">
+        <addForeignKeyConstraint baseColumnNames="survey_version_id" baseTableName="survey_scoring"
+                                 constraintName="FKp4pleebpwwygot70vgh02aetu" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id"
+                                 referencedTableName="survey_version" validate="true"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1567750575831-30">
+        <addForeignKeyConstraint baseColumnNames="last_modified_by_id" baseTableName="survey_version"
+                                 constraintName="FKpl4rx49pg3h4th141s7ei0914" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1567750575831-31">
+        <addForeignKeyConstraint baseColumnNames="created_by_id" baseTableName="survey_version_question"
+                                 constraintName="FKqkog89wsi0d7l942552re2o9" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1567750575831-32">
+        <addForeignKeyConstraint baseColumnNames="last_modified_by_id" baseTableName="survey_scoring"
+                                 constraintName="FKqmogtxu12qh33hivihf4566hu" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1567750575831-33">
+        <addForeignKeyConstraint baseColumnNames="survey_version_question_answer_id"
+                                 baseTableName="customer_survey_answer" constraintName="FKs5x9khx62xjwwsmoa1bb3o640"
+                                 deferrable="false" initiallyDeferred="false" referencedColumnNames="id"
+                                 referencedTableName="survey_version_question_answer" validate="true"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1567750575831-34">
+        <addForeignKeyConstraint baseColumnNames="last_modified_by_id" baseTableName="survey_version_question"
+                                 constraintName="FKsiybthnvuj8n4dd5agouv78bb" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1567750575831-35">
+        <addForeignKeyConstraint baseColumnNames="last_modified_by_id" baseTableName="customer_survey"
+                                 constraintName="FKtnl4w30v3euf3cxdkg71d11ds" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="Melisa (generated)" id="1567750575831-36">
+        <addColumn tableName="customer_survey">
+            <column name="result" type="float8"/>
+        </addColumn>
+    </changeSet>
+</databaseChangeLog>

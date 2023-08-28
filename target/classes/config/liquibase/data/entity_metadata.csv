@@ -1,0 +1,37 @@
+id,name,display_field,title,plural_title
+Activity,Activity,instanceName,Aktivite,Aktiviteler
+Address,Address,instanceName,Adres,Adresler
+Announcement,Announcement,instanceName,Duyuru,Duyurular
+Attribute,Attribute,instanceName,Değişken,Değişkenler
+AttributeValue,AttributeValue,instanceName,Değişken Değeri,Değişken Değerleri
+Campaign,Campaign,instanceName,Kampanya,Kampanyalar
+City,City,instanceName,Şehir,Şehirler
+Configuration,Configuration,instanceName,Konfigürasyon,Konfigürasyonlar
+Contact,Contact,instanceName,Kişi,Kişiler
+Contract,Contract,instanceName,Sözleşme,Sözleşmeler
+Country,Country,instanceName,Ülke,Ülkeler
+Customer,Customer,instanceName,Müşteri,Müşteriler
+CustomerSurveyAnswer,CustomerSurveyAnswer,instanceName,Müşteri Anket Cevabı,Müşteri Anket Cevapları
+District,District,instanceName,İlçe,İlçeler
+EntityMetadata,EntityMetadata,instanceName,Nesne Tanımı,Nesne Tanımları
+FieldMetadata,FieldMetadata,instanceName,Nesne Alan Tanımı,Nesne Alan Tanımları
+FileDescriptor,FileDescriptor,instanceName,Dosya,Dosyalar
+Layout,Layout,instanceName,Tasarım Planı,Tasarım Planları
+Lead,Lead,instanceName,Müşteri Adayı,Müşteri Adayları
+Operation,Operation,instanceName,Operasyon,Operasyonlar
+OpetFleet,OpetFleet,fleetName,Opet Filo,Opet Filolar
+OpetSale,OpetSale,rId,Opet Satış,Opet Satışlar
+Permission,Permission,instanceName,İzin,İzinler
+Product,Product,instanceName,Ürün,Ürünler
+Quote,Quote,instanceName,Teklif,Teklifler
+QuoteVersion,QuoteVersion,instanceName,Teklif Versiyonu,Teklif Versiyonları
+QuoteVersionLineItem,QuoteVersionLineItem,instanceName,Teklif Versiyon Satırı,Teklif Versiyon Satırları
+Report,Report,instanceName,Rapor,Raporlar
+Role,Role,id,Rol,Roller
+SummaryOpetSale,SummaryOpetSale,id,Özet Opet Satış,Özet Opet Satışlar
+SummaryUserCustomer,SummaryUserCustomer,id,Kullanıcı Müşteri Özeti,Kullanıcı Müşteri Özetleri
+SurveyAnswer,SurveyAnswer,instanceName,Anket Cevabı,Anket Cevapları
+SurveyQuestion,SurveyQuestion,instanceName,Anket Sorusu,Anket Soruları
+Target,Target,instanceName,Hedef,Hedefler
+Task,Task,instanceName,Görev,Görevler
+User,User,instanceName,Kullanıcı,Kullanıcılar

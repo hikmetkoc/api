@@ -1,0 +1,58 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <changeSet author="mehmet.sen (generated)" id="1573668404731-4">
+        <createTable tableName="opet_fleet">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" primaryKeyName="opet_fleetPK"/>
+            </column>
+            <column name="deleted_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="fleet_code" type="INTEGER"/>
+            <column name="fleet_name" type="VARCHAR(255)"/>
+            <column name="deleted_by_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1573668404731-5">
+        <createTable tableName="opet_sale">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" primaryKeyName="opet_salePK"/>
+            </column>
+            <column name="deleted_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="odometer" type="INTEGER"/>
+            <column name="city_id" type="INTEGER"/>
+            <column name="city_name" type="VARCHAR(255)"/>
+            <column name="ecrreceipt_nr" type="INTEGER"/>
+            <column name="fleet_id" type="INTEGER"/>
+            <column name="fleet_name" type="VARCHAR(255)"/>
+            <column name="group_id" type="INTEGER"/>
+            <column name="group_name" type="VARCHAR(255)"/>
+            <column name="invoice_period_nr" type="VARCHAR(255)"/>
+            <column name="license_plate_nr" type="VARCHAR(255)"/>
+            <column name="process_time" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="product_id" type="INTEGER"/>
+            <column name="product_name" type="VARCHAR(255)"/>
+            <column name="r_id" type="INTEGER"/>
+            <column name="sale_end" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="station_id" type="INTEGER"/>
+            <column name="station_name" type="VARCHAR(255)"/>
+            <column name="total" type="numeric(19, 2)"/>
+            <column name="unit_price" type="numeric(19, 2)"/>
+            <column name="volume" type="numeric(19, 2)"/>
+            <column name="api_user" type="varchar(255)"/>
+            <column name="deleted_by_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1573668404731-6">
+        <addForeignKeyConstraint baseColumnNames="deleted_by_id" baseTableName="opet_fleet"
+                                 constraintName="FK5ms65thxva5h4bgylyukjsbbe" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1573668404731-7">
+        <addForeignKeyConstraint baseColumnNames="deleted_by_id" baseTableName="opet_sale"
+                                 constraintName="FKnsxo58eew5sthilg79eg9vom1" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+</databaseChangeLog>

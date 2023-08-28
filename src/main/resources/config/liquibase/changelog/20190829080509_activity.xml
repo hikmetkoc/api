@@ -1,0 +1,93 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <changeSet author="Metix-10 (generated)" id="1567065963006-4">
+        <createTable tableName="activity">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" primaryKeyName="activityPK"/>
+            </column>
+            <column name="created_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="last_modified_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="check_in_latitude" type="FLOAT8"/>
+            <column name="check_in_longitude" type="FLOAT8"/>
+            <column name="check_in_time" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="check_out_latitude" type="FLOAT8"/>
+            <column name="check_out_longitude" type="FLOAT8"/>
+            <column name="check_out_time" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="description" type="varchar(2048)"/>
+            <column name="participants" type="VARCHAR(1024)"/>
+            <column name="planned_end_time" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="planned_start_time" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="subject" type="VARCHAR(255)"/>
+            <column name="created_by_id" type="BIGINT"/>
+            <column name="last_modified_by_id" type="BIGINT"/>
+            <column name="campaign_id" type="UUID"/>
+            <column name="customer_id" type="UUID"/>
+            <column name="owner_id" type="BIGINT"/>
+            <column name="reason_id" type="VARCHAR(255)"/>
+            <column name="status_id" type="VARCHAR(255)"/>
+            <column name="type_id" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Metix-10 (generated)" id="1567065963006-5">
+        <addForeignKeyConstraint baseColumnNames="owner_id" baseTableName="activity"
+                                 constraintName="FK2l1ui7fksyq490qvuyfy6abt5" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="Metix-10 (generated)" id="1567065963006-6">
+        <addForeignKeyConstraint baseColumnNames="campaign_id" baseTableName="activity"
+                                 constraintName="FK52au7rfjdjlxuslkn98prju0m" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="campaign"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="Metix-10 (generated)" id="1567065963006-7">
+        <addForeignKeyConstraint baseColumnNames="last_modified_by_id" baseTableName="activity"
+                                 constraintName="FK7am53py5vdjl7bh3wwl188jxv" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="Metix-10 (generated)" id="1567065963006-8">
+        <addForeignKeyConstraint baseColumnNames="status_id" baseTableName="activity"
+                                 constraintName="FKblexsk53xu3pf6f9swdx10pjl" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id"
+                                 referencedTableName="attribute_value" validate="true"/>
+    </changeSet>
+    <changeSet author="Metix-10 (generated)" id="1567065963006-9">
+        <addForeignKeyConstraint baseColumnNames="reason_id" baseTableName="activity"
+                                 constraintName="FKideg5hbtutlwyiw2bl09lrk7b" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id"
+                                 referencedTableName="attribute_value" validate="true"/>
+    </changeSet>
+    <changeSet author="Metix-10 (generated)" id="1567065963006-10">
+        <addForeignKeyConstraint baseColumnNames="type_id" baseTableName="activity"
+                                 constraintName="FKjiyk3aj8ox0j5wm8n017sahro" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id"
+                                 referencedTableName="attribute_value" validate="true"/>
+    </changeSet>
+    <changeSet author="Metix-10 (generated)" id="1567065963006-11">
+        <addForeignKeyConstraint baseColumnNames="created_by_id" baseTableName="activity"
+                                 constraintName="FKlnnf5eo7d8a9ynbmpymk9kvh1" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="Metix-10 (generated)" id="1567065963006-12">
+        <addForeignKeyConstraint baseColumnNames="customer_id" baseTableName="activity"
+                                 constraintName="FKse269fvw3ft70lc8sf7mp5kpo" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="customer"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="alaad (generated)" id="1572508483362-4">
+        <addColumn tableName="activity">
+            <column name="contact_id" type="uuid"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="alaad (generated)" id="1572508483362-5">
+        <addForeignKeyConstraint baseColumnNames="contact_id" baseTableName="activity"
+                                 constraintName="FKlw2f8gk09dvsspifayqkfem2v" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="contact"
+                                 validate="true"/>
+    </changeSet>
+</databaseChangeLog>

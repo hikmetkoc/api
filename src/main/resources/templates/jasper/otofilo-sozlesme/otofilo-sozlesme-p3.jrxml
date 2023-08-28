@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.10.0.final using JasperReports Library version 6.10.0-unknown  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_A42" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c423d4df-2209-41a0-a863-1a89c7b732f7">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<parameter name="customerName" class="java.lang.String">
+		<defaultValueExpression><![CDATA[". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ." +
+		". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ."]]></defaultValueExpression>
+	</parameter>
+	<parameter name="customerAddress" class="java.lang.String">
+		<defaultValueExpression><![CDATA[". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ." +
+		". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ." +
+		". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . "]]></defaultValueExpression>
+	</parameter>
+	<parameter name="contractDate" class="java.lang.String">
+		<defaultValueExpression><![CDATA[".../.../....."]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="782" splitType="Stretch">
+			<textField>
+				<reportElement mode="Opaque" x="50" y="30" width="460" height="740" uuid="56bcf7b3-9c17-441e-8923-4a24898be706">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Justified" markup="html">
+					<font size="9.3" pdfEncoding="Cp1254"/>
+					<paragraph lineSpacing="1_1_2"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<p>" +
+"    değişiklik ve/veya yeniliklerin yapılmasına ve yapılacak değişikliğin/yeniliğin gereği olarak Cihaz’ ın “kısmen" +
+"    değiştirilmesine” ve/veya “tamamen başka bir cihazla değiştirilmesine” peşinen izin verdiğini beyan, kabul ve" +
+"    taahhüt eder." +
+"</p>" +
+"<p>" +
+"    4.2.3. Müşteri, işbu Sözleşme kapsamında Otobilli araçlara ilişkin bilgiler dahil olmak üzere Danışman’a verdiği her" +
+"    türlü bilginin doğru olduğunu beyan, kabul ve taahhüt eder. Müşteri Sözleşme kapsamında Danışman’a verdiği her türlü" +
+"    bilginin gerçeğe aykırı, eksik veya yetersiz olmasından ve/veya söz konusu bilgilerdeki değişikliklerin derhal" +
+"    Danışman’a bildirilmemesinden doğacak tüm sorumluluğun kendisine ait olduğunu ve değişikliklerin Danışman’a" +
+"    zamanında bildirilmemesi halinde Danışman’ın kendisine en son bildirilen bilgileri esas alarak hareket edeceğini ve" +
+"    bu hususta hiçbir itiraz hakkı bulunmadığını beyan, kabul ve taahhüt eder." +
+"</p>" +
+"<p>" +
+"    4.2.4. Müşteri, Cihaz/lar ve/veya Hizmet ile ilgili karşılaştığı sorunları, kullanım süresi boyunca Danışman’a Takip" +
+"    Sistemindeki “Destek” ara yüzünden ya da destek hattı üzerinden 444 67 38 Opet Müşteri Hizmetleri’ni arayarak" +
+"    “Otofilo” kısmını tuşlayarak derhal bildirmekle yükümlüdür. Burada kaydı açılmayan arıza ve sorunlara Opet’in teknik" +
+"    ekipleri müdahale etmekle yükümlü değildir." +
+"</p>" +
+"<p>" +
+"    4.2.5. Müşteri, işbu Sözleşme kapsamındaki ürün ve hizmetleri hiçbir şekilde yasadışı ve/veya kamu düzenini bozucu," +
+"    genel ahlaka aykırı, üçüncü kişileri rahatsız ve taciz edici bir amaç için kullanmamayı kabul ve taahhüt" +
+"    etmektedir." +
+"</p>" +
+"<p>" +
+"    4.2.6. Müşteri, Cihazın içinde bulunan SIM kartın mülkiyetinin Opet’ e ait olduğunu kabul ve beyan eder. Müşteri iş" +
+"    bu Sözleşme konusu hizmetin sağlanması amacıyla tarafına teslim edilmiş bulunan SIM kartı başka bir amaç için hiçbir" +
+"    sebeple kullanmayacak, SIM kartının Cihaz’ dan çıkarılarak kullanılması durumunda Opet’in ve Danışman’ın uğrayacağı" +
+"    her türlü zararı peşinen karşılamayı kabul ve taahhüt eder. Opet, SIM kartın bu maddede düzenlenen yasağa aykırı" +
+"    olarak kullanılması halinde, söz konusu SIM kart üzerinden verilen Hizmet’i derhal durdurmaya ve aşağıda 15.7." +
+"    maddesini uygulamaya yetkilidir." +
+"</p>" +
+"<p>" +
+"    4.2.7. Müşteri, Danışman’ın yazılı ön onayı olmaksızın mülkiyeti kendine ya da başkasına ait bir diğer araçta" +
+"    kullanamaz ve başkasına kullandıramaz ve Cihaz’ a ilave tesis ve/veya değişiklik dahil olmak üzere hiçbir müdahalede" +
+"    bulunamaz. Müşteri ayrıca Cihaz’ ın bakımının yapılması, arıza durumlarında çözüm sağlanması ve Cihaz’a ilave" +
+"    yapılmasında yetkili kuruluşun Danışman veya Danışman tarafından kendisine yazılı olarak bildirilen kişi/kurum" +
+"    olduğunu, belirtilen bu kişi/kurum dışında kendisinin başka herhangi bir kişi/kurumu görevlendiremeyeceğini, aksi" +
+"    takdirde Danışman’ın bu durumun sonuçlarından (Hizmet’ in gereği gibi ve/veya hiç yerine getirilememesi gibi) hiçbir" +
+"    şekilde sorumlu olmadığını beyan, kabul ve taahhüt eder." +
+"</p>" +
+"<p>" +
+"    4.2.8. Müşteri, Cihaz’ı Sözleşme süresi içerisinde herhangi bir zamanda, Hizmet’in verilebildiği başka herhangi bir" +
+"    araca nakil etmek istediği takdirde, durumu Danışman’a yazılı olarak bildirmek ve onay almak zorundadır. Müşterinin" +
+"    onay almadan ve başkalarının araçlarını izinsiz olarak izlenmesi durumunda oluşacak hukuki sorunlardan tamamen" +
+"    müşteri sorumludur." +
+"</p>" +
+"<p></p>" +
+"<p>" +
+"    <b>5- TAKİP SİSTEMİ</b>" +
+"</p>" +
+"<p></p>" +
+"<p>" +
+"    Danışman, Otofilo Sistemi konusu araç takip hizmetini, talep eden Otobil Müşterilerine aşağıda bahsi geçen paket" +
+"    çerçevesinde verecektir. Müşteri, talep edeceği cihaz ve adedini kurumsal web şifresi ile hesabına erişim yaparak" +
+"    gerekli bilgileri sistem üzerinden Danışman’a bildirecektir. Müşteri, Danışman’ın talep edeceği evrakları eksiksiz" +
+"    teslim etmesi sonrasında Danışman, sistem üzerinden gelen cihaz taleplerini işleme alacaktır. Müşteri’nin talep" +
+"    ettiği paketler Müşteri’nin belirttiği adrese sevk edilecektir. Söz konusu montaj işlemleri Opet’in yetkili servis" +
+"    noktalarında gerçekleştirilecektir." +
+"</p>" +
+"<p></p>" +
+"<p>" +
+"    5.1. Otofilo:" +
+"</p>" +
+"<p>" +
+"    5.1.1. Montaj ve demontajı Opet’in yetkilendirdiği servisler tarafında yapılabilecek şekilde tasarlanmış cihaz" +
+"</p>"]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="2" y="0" width="550" height="20" uuid="4d9b1616-0a80-47a3-9da7-aeb3a71ae879"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[3]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

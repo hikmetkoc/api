@@ -1,0 +1,40 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <changeSet author="mehmet.sen (generated)" id="1566375402700-1">
+        <createTable tableName="permission">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" primaryKeyName="permissionPK"/>
+            </column>
+            <column name="created_by_id" type="int8"/>
+            <column name="created_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="last_modified_by_id" type="int8"/>
+            <column name="last_modified_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="delete" type="BOOLEAN"/>
+            <column name="is_hierarchical" type="BOOLEAN"/>
+            <column name="object_name" type="VARCHAR(255)"/>
+            <column name="read" type="BOOLEAN"/>
+            <column name="update" type="BOOLEAN"/>
+            <column name="role_id" type="VARCHAR(50)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1566375402700-2">
+        <addForeignKeyConstraint baseColumnNames="role_id" baseTableName="permission"
+                                 constraintName="FKkkgnovaojqmq7mradfmtlp9gw" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id"
+                                 referencedTableName="jhi_role" validate="true"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1566375402700-3">
+        <addForeignKeyConstraint baseColumnNames="created_by_id" baseTableName="permission"
+                                 constraintName="FK6iubtr1nulq5d5or38ilcrbhk" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1566375402700-4">
+        <addForeignKeyConstraint baseColumnNames="last_modified_by_id" baseTableName="permission"
+                                 constraintName="FKs3jr8qi63mmk8mio4org94p7d" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,31 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <changeSet author="mehmet.sen (generated)" id="1566193024367-1">
+        <createTable tableName="attribute">
+            <column name="id" type="VARCHAR(255)">
+                <constraints primaryKey="true" primaryKeyName="attributePK"/>
+            </column>
+            <column name="field_name" type="VARCHAR(255)"/>
+            <column name="object_name" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1566193024367-2">
+        <createTable tableName="attribute_value">
+            <column name="id" type="VARCHAR(255)">
+                <constraints primaryKey="true" primaryKeyName="attribute_valuePK"/>
+            </column>
+            <column name="label" type="VARCHAR(255)"/>
+            <column name="attribute_id" type="VARCHAR(255)"/>
+            <column name="is_static" type="boolean"/>
+            <column name="weight" type="int4"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1566193024367-3">
+        <addForeignKeyConstraint baseColumnNames="attribute_id" baseTableName="attribute_value"
+                                 constraintName="FK59xqw12tl928rqcdu2h9o6mau" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="attribute"
+                                 validate="true"/>
+    </changeSet>
+</databaseChangeLog>

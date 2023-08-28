@@ -1,0 +1,16 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <changeSet author="mehmet.sen (generated)" id="1571394878485-4">
+        <addColumn tableName="quote">
+            <column name="activity_id" type="uuid"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1571394878485-5">
+        <addForeignKeyConstraint baseColumnNames="activity_id" baseTableName="quote"
+                                 constraintName="FKfm9j3vsife8d9ydlghbecb5xw" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="activity"
+                                 validate="true"/>
+    </changeSet>
+</databaseChangeLog>

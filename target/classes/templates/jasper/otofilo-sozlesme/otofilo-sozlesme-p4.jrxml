@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.10.0.final using JasperReports Library version 6.10.0-unknown  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_A42" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c423d4df-2209-41a0-a863-1a89c7b732f7">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<parameter name="customerName" class="java.lang.String">
+		<defaultValueExpression><![CDATA[". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ." +
+		". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ."]]></defaultValueExpression>
+	</parameter>
+	<parameter name="customerAddress" class="java.lang.String">
+		<defaultValueExpression><![CDATA[". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ." +
+		". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ." +
+		". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . "]]></defaultValueExpression>
+	</parameter>
+	<parameter name="contractDate" class="java.lang.String">
+		<defaultValueExpression><![CDATA[".../.../....."]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="782" splitType="Stretch">
+			<textField>
+				<reportElement mode="Opaque" x="50" y="30" width="460" height="740" uuid="56bcf7b3-9c17-441e-8923-4a24898be706">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Justified" markup="html">
+					<font size="9.3" pdfEncoding="Cp1254"/>
+					<paragraph lineSpacing="1_1_2"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<p>" +
+"    aracılığıyla hizmet verilecektir." +
+"</p>" +
+"<p>" +
+"    5.1.2. Cihaz SMS yedekli GPRS teknolojisi ile haberleşme sağlamaktadır." +
+"</p>" +
+"<p>" +
+"    5.1.3. Cihaz kontak açılma ve kontak kapamaları merkezi Takip Sitemine bildirir." +
+"</p>" +
+"<p></p>" +
+"<p>" +
+"    <b>6- GARANTİ</b>" +
+"</p>" +
+"<p></p>" +
+"<p>" +
+"    6.1. Cihazlar montaj yapıldıkları tarihten itibaren 3 yıl süresince garanti kapsamındadır." +
+"</p>" +
+"<p>" +
+"    6.2. Garanti süresince şoför müdahalesi ve Kullanıcı hatasından dolayı meydana gelebilecek hasar ve arızalar garanti" +
+"    kapsamı dışında olup Müşteri sorumluğundadır." +
+"</p>" +
+"<p>" +
+"    <b>7- MONTAJ VE SERVİS BAKIM HİZMETLERİ</b>" +
+"</p>" +
+"<p></p>" +
+"<p>" +
+"    Montaj gerektiren cihazların montaj ve bakım hizmetleri, Opet’in belirleyeceği yetkili servisleri tarafından" +
+"    yapılacaktır." +
+"</p>" +
+"<p></p>" +
+"<p>" +
+"    <b>8- FİYATLANDIRMA</b>" +
+"</p>" +
+"<p></p>" +
+"<p>" +
+"    8.1. Taraflar Otofilo Sistemi kapsamında Otofilo için aylık tüm vergiler ve açılış vergileri, data hizmet bedeli" +
+"    dahil aylık 36,26 TL (KDV Dahil) bedel ödenmesi konusunda anlaşmışlardır. Kampanya stoklarla sınırlıdır." +
+"</p>" +
+"<p>" +
+"    8.2. Yukarıda 8.1. maddesinde yer alan hizmet bedelleri, Sözleşme yürürlük tarihinden itibaren her altı ayda bir" +
+"    TCMB tarafından açıklanan dolar kurunun artışı ile yenilenecektir." +
+"</p>" +
+"<p>" +
+"    8.3. Her yıl Maliye Bakanlığı tarafından belirlenen oranda arttırılan TK Ruhsat ve TK Kullanım ücretlerindeki artış" +
+"    aynı oranda fiyatlara yansıtılacaktır." +
+"</p>" +
+"<p>" +
+"    8.4. Danışman’ın tedarik edeceği data hatları 50 MB ile sınırlıdır. Müşterinin 50 MB üzerindeki kullanımından" +
+"    kaynaklanacak MB başına 0,020 TL. ‘lik maliyet paket ücretine ek olarak yansıtılacaktır." +
+"</p>" +
+"<p>" +
+"    8.5. Otofilo Sistemi kapsamında Otofilo cihazın demontaj bedeli beher cihaz için 30,00 TL(otuztürklirası) + KDV’dir." +
+"    Araç değişimlerinde mevcut cihazların bir araçtan sökülüp farklı bir araca takılması durumunda aracın aynı yerde ve" +
+"    aynı gün içerisinde yapılan demontaj ve montaj bedeli beher cihaz için 40,00 TL(kırktürklirası) + KDV, araçlar" +
+"    farklı yerde ve yapılacak işlemler farklı günlerde ise demontaj ve montaj bedeli beher cihaz için 60,00" +
+"    TL(altmıştürklirası) + KDV olarak ayrıca yansıtılacaktır." +
+"</p>" +
+"<p></p>" +
+"<p>" +
+"    <b>9- ÖDEME KOŞULLARI</b>" +
+"</p>" +
+"<p></p>" +
+"<p>" +
+"    9.1. Müşteri’ ye Kurumsal web şifresi ile Opet’in web sitesinden ya da cihaz talep formları ile sipariş edilen cihaz" +
+"    türü ve adedine göre hesaplanacak tutarlar için taahhüt süresi boyunca faturalandırma işlemi yapılacaktır." +
+"</p>" +
+"<p>" +
+"    9.2. Aylık hizmet bedelleri, her ayın 15. takvim gününde Müşteri’ye faturalandırılır. İlgili fatura tutarı" +
+"    <u>" +
+"        Müşteri’nin bankada Danışman adına açtırmış olduğu DBS ve/veya halihazırdaki tanımlı olan mevcut DBS hesabından" +
+"    </u> aynı ayın 15. takvim gününde tahsil edilir." +
+"</p>" +
+"<p>" +
+"    9.3. Ödemesi herhangi bir sebeple gerçekleşmemiş faturalar için Danışman’ın sistem konusu hizmeti durdurma ve diğer" +
+"    tüm hakları için yasal yollara başvurma hakkının olduğunu Müşteri peşinen kabul eder." +
+"</p>" +
+"<p>" +
+"    9.4. Müşteri, takip sistemi ile ilgili ödemelerin tahsil edilebileceği <u>bir DBS hesabını açtırmakla</u> ve limit" +
+"    bilgilerini güncellemekle yükümlüdür." +
+"</p>" +
+"<p></p>" +
+"<p>" +
+"    <b>10- SÖZLEŞMENİN DEVREDİLMEZLİĞİ</b>" +
+"</p>" +
+"<p></p>" +
+"<p>" +
+"    Müşteri, Danışman’ın önceden yazılı iznini almaksızın gerek bu Sözleşme konusu cihaz ve GSM hattını gerekse" +
+"</p>"]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="2" y="0" width="550" height="20" uuid="4d9b1616-0a80-47a3-9da7-aeb3a71ae879"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[4]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

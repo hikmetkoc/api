@@ -1,0 +1,114 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <changeSet author="mehmet.sen (generated)" id="1583408689126-46">
+        <dropForeignKeyConstraint baseTableName="survey_scoring" constraintName="FK263p51ol9wy6kfjvb6mqd7nhi"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1583408689126-47">
+        <dropForeignKeyConstraint baseTableName="survey_version_question_answer" constraintName="FK272aynpm5fuj1ly2pjjrvons5"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1583408689126-48">
+        <dropForeignKeyConstraint baseTableName="survey" constraintName="FK3gdsp3r2vhin40x02defs31xn"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1583408689126-49">
+        <dropForeignKeyConstraint baseTableName="customer_survey_answer" constraintName="FK3n9ed0vhhr0dosp8lunlyk43k"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1583408689126-50">
+        <dropForeignKeyConstraint baseTableName="survey_version_question_answer" constraintName="FK4qha3185adrh6k970abepmxw0"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1583408689126-51">
+        <dropForeignKeyConstraint baseTableName="customer_survey" constraintName="FK6hxlllb2xdu64e1rpicfmvk40"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1583408689126-52">
+        <dropForeignKeyConstraint baseTableName="customer_survey" constraintName="FK6qhlo0gm2xqkfvtyw23y6pgm4"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1583408689126-53">
+        <dropForeignKeyConstraint baseTableName="survey_version_question" constraintName="FK77u7p6ovey8m6ibaudseern3b"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1583408689126-54">
+        <dropForeignKeyConstraint baseTableName="survey_version" constraintName="FK850shwrcvl4q64k3u31besm53"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1583408689126-55">
+        <dropForeignKeyConstraint baseTableName="survey_version" constraintName="FKbp9fs7wdx9eau337296ap2j8k"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1583408689126-56">
+        <dropForeignKeyConstraint baseTableName="customer_survey" constraintName="FKc2nf91rat34wci3wiywq8tjn6"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1583408689126-57">
+        <dropForeignKeyConstraint baseTableName="survey_version_question" constraintName="FKcx50w2l8lq4e5lvthm29jvhdy"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1583408689126-58">
+        <dropForeignKeyConstraint baseTableName="customer_survey" constraintName="FKdosbleo021hnnkltr5iq53b6c"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1583408689126-59">
+        <dropForeignKeyConstraint baseTableName="survey_version_question_answer" constraintName="FKdq9fustqqjex1qklcl8kvwkpl"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1583408689126-60">
+        <dropForeignKeyConstraint baseTableName="survey" constraintName="FKex0f5fk9yvdeqd74hh2apjl7g"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1583408689126-61">
+        <dropForeignKeyConstraint baseTableName="survey_scoring" constraintName="FKjhpbji9gaaegcirn4xqk2yqb1"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1583408689126-62">
+        <dropForeignKeyConstraint baseTableName="customer_survey_answer" constraintName="FKk4tnx183wh1my2w1cdwq4yv0d"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1583408689126-63">
+        <dropForeignKeyConstraint baseTableName="customer_survey" constraintName="FKnvm3bs83optouftbg5hqq0y4r"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1583408689126-64">
+        <dropForeignKeyConstraint baseTableName="survey_scoring" constraintName="FKp4pleebpwwygot70vgh02aetu"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1583408689126-65">
+        <dropForeignKeyConstraint baseTableName="survey_version" constraintName="FKpl4rx49pg3h4th141s7ei0914"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1583408689126-66">
+        <dropForeignKeyConstraint baseTableName="survey_version_question" constraintName="FKqkog89wsi0d7l942552re2o9"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1583408689126-67">
+        <dropForeignKeyConstraint baseTableName="survey_scoring" constraintName="FKqmogtxu12qh33hivihf4566hu"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1583408689126-68">
+        <dropForeignKeyConstraint baseTableName="survey_version_question_answer" constraintName="FKrlye41aj2df0tuyucr3u9y4vg"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1583408689126-69">
+        <dropForeignKeyConstraint baseTableName="survey" constraintName="FKrmd1gfrk4iovmtxc986eiin6e"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1583408689126-70">
+        <dropForeignKeyConstraint baseTableName="customer_survey_answer" constraintName="FKs5x9khx62xjwwsmoa1bb3o640"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1583408689126-71">
+        <dropForeignKeyConstraint baseTableName="customer_survey_answer" constraintName="FKs9xjvcoyg1e1xt0q89ts9v2qe"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1583408689126-72">
+        <dropForeignKeyConstraint baseTableName="survey_version_question" constraintName="FKsiybthnvuj8n4dd5agouv78bb"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1583408689126-73">
+        <dropForeignKeyConstraint baseTableName="survey_version" constraintName="FKsr1w9pium4v0rl2fhkgvevwnx"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1583408689126-74">
+        <dropForeignKeyConstraint baseTableName="customer_survey_answer" constraintName="FKt32qm1nw9gwqhmrs77cjmpp6a"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1583408689126-75">
+        <dropForeignKeyConstraint baseTableName="customer_survey" constraintName="FKtnl4w30v3euf3cxdkg71d11ds"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1583408689126-76">
+        <dropTable tableName="customer_survey"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1583408689126-77">
+        <dropTable tableName="customer_survey_answer"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1583408689126-78">
+        <dropTable tableName="survey"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1583408689126-79">
+        <dropTable tableName="survey_scoring"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1583408689126-80">
+        <dropTable tableName="survey_version"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1583408689126-81">
+        <dropTable tableName="survey_version_question"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1583408689126-82">
+        <dropTable tableName="survey_version_question_answer"/>
+    </changeSet>
+</databaseChangeLog>

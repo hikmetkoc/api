@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.10.0.final using JasperReports Library version 6.10.0-unknown  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_A42" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c423d4df-2209-41a0-a863-1a89c7b732f7">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<parameter name="customerName" class="java.lang.String">
+		<defaultValueExpression><![CDATA[". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ." +
+		". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ."]]></defaultValueExpression>
+	</parameter>
+	<parameter name="customerAddress" class="java.lang.String">
+		<defaultValueExpression><![CDATA[". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ." +
+		". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ." +
+		". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . "]]></defaultValueExpression>
+	</parameter>
+	<parameter name="contractDate" class="java.lang.String">
+		<defaultValueExpression><![CDATA[".../.../....."]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="782" splitType="Stretch">
+			<textField>
+				<reportElement mode="Opaque" x="50" y="30" width="460" height="740" uuid="56bcf7b3-9c17-441e-8923-4a24898be706">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Justified" markup="html">
+					<font size="9.3" pdfEncoding="Cp1254"/>
+					<paragraph lineSpacing="1_1_2"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<p>" +
+"    cihazın bir GSM operatörünün sağladığı GPRS iletişimi sayesinde Opet tarafından sağlanan internet sitesindeki," +
+"    dijital haritalardan takip edilmesi ve raporlanmasını sağlayan bir hizmeti sunmaktadır." +
+"</p>" +
+"<p></p>" +
+"<p>" +
+"    <b>4- TARAFLARIN HAK VE YÜKÜMLÜLÜKLERİ</b>" +
+"</p>" +
+"<p></p>" +
+"<p>" +
+"    4.1. DANIŞMAN’ın HAK ve YÜKÜMLÜLÜKLERİ" +
+"</p>" +
+"<p>" +
+"    4.1.1. Danışman, Hizmet’in internet üzerinden verilecek kısmını gereği gibi yerine getirebilmek için Müşteri’ye bir" +
+"    kullanıcı adı ve şifre verecektir. Danışman, işbu Sözleşme süresi boyunca cihaz, yazılım ve sair Takip Sistemi" +
+"    bileşenleri kullanılmak suretiyle, Müşteri’ye 4.2.3 ve 9.2 maddelerde belirtilen istisnalar ve bu Sözleşme’nin" +
+"    14.Maddesinde tanımlanan mücbir sebepler saklı kalmak kaydıyla tedarik etmeyi ve hizmet sunmayı kabul ve taahhüt" +
+"    etmektedir. Söz konusu tedarik ve hizmet, Müşteri’nin Cihazı teknik şartlara uygun olarak kullanması ve GSM" +
+"    hizmetinin tam olması ve GPRS sisteminin sağlıklı çalışması şartlarına bağlı olacaktır." +
+"</p>" +
+"<p>" +
+"    4.1.2. Danışman, işbu Sözleşme kapsamında, işbu Sözleşme’nin 14. maddesinde tanımlanan mücbir sebep halleri ile," +
+"    diğer kuruluşlar tarafından sağlanan GPS (Global Positioning System), GSM (Global System for Mobile Communication)," +
+"    GPRS (General Packet Radio Service), harita sağlayıcılar, hosting hizmeti veren kuruluşlar, internet altyapısı" +
+"    nedeni ile ortaya çıkan aksaklıklar gibi Danışman’ın kontrolü dışındaki sebeplerden dolayı aksamalar veya Hizmet’in" +
+"    yerine getirilememesi durumunda Müşteri herhangi bir şikayet, tazminat ya da başkaca bir hak talebinde" +
+"    bulunmayacağını peşinen kabul eder." +
+"</p>" +
+"<p>" +
+"    4.1.3. Cihaz ve donanım montajının Danışman’ ın belirlediği ve yetkinlik eğitimini almış olan servisleri tarafından" +
+"    yapılmaması, aracın elektrik sisteminden kaynaklanan her türlü arıza, sisteme yapılan her türlü müdahale, doğal" +
+"    afet, kaza, ihmal, yanlış kullanım, darbe, yangın, kötü niyetli sosyal hareketler veya ferdi hareketler nedeniyle" +
+"    oluşan arızalar garanti kapsamı dışındadır." +
+"</p>" +
+"<p>" +
+"    4.1.4. Danışman, ağır kusuru veya kastı olmadıkça, işbu Sözleşme kapsamında Müşteri’ye sunduğu Hizmet’in" +
+"    (Sözleşme’nin 14. maddesinde tanımlanan Mücbir Sebep halleri dahil olmak üzere) kendisine atfedilemeyecek" +
+"    sebeplerden dolayı (Cihaz’ın arızalanması, emniyet ve sağlık birimlerinin zamanında müdahale edememesi, ilgili" +
+"    mercilerin görevini gereği gibi yerine getirmemeleri, diğer kuruluşlar tarafından sağlanan GPS -Global Positioning" +
+"    System, GSM -Global System for Mobile Communication-, GPRS -General Packet Radio Service-’de yaşanabilecek sorunlar," +
+"    v.b.) aksaması ve/veya hiç yerine getirilmemesinden ve/veya söz konusu Hizmet’in üçüncü şahıslar tarafından" +
+"    sunulmasının sonucunda oluşabilecek, can ve mal kaybı dahil olmak üzere, Müşteri’nin doğrudan ve dolaylı herhangi" +
+"    bir zararından hiçbir şekilde sorumlu olmayacaktır." +
+"</p>" +
+"<p>" +
+"    4.1.5. Danışman, işbu Sözleşme’nin 8. ve 9. Maddelerinde sayılan ödemelerin yapılmaması veya iş bu Sözleşme’nin" +
+"    ve/veya taraflar arasında münakit Otobil Sistemi Sözleşmesi’nin herhangi bir maddesine aykırılık halinde verdiği" +
+"    hizmeti hiçbir bildirim yapmaksızın tek taraflı olarak kesme ve ödemenin yapılmasına kadar işbu hizmeti vermeme" +
+"    hakkına sahiptir. Böyle bir durumda, Müşteri, her hangi bir şikayet, tazminat ya da başkaca bir hak talebinde" +
+"    bulunmayacağını peşinen kabul eder." +
+"</p>" +
+"<p></p>" +
+"<p>4.2. MÜŞTERİ’nin HAK ve YÜKÜMLÜLÜKLERİ</p>" +
+"<p>" +
+"    4.2.1. Müşteri, Danışman tarafından kendisine Sözleşme’nin 4.1.1. maddesi uyarınca verilen şifreyi gizli tutmakla" +
+"    yükümlü olduğunu ve bu hususta gerekli tüm önlemleri alacağını, şifrenin Müşteri haricinde herhangi bir kişi" +
+"    tarafından kullanılması halinde Danışman’ın söz konusu kullanımdan ve ilgili kullanım sonucu yapılan işlemlerden" +
+"    doğan hiçbir sorumluluğu bulunmayacağını ve şifrenin kendisi tarafından kullanılmadığı ve işlemlerin kendisi" +
+"    tarafından yapılmadığı yolundaki itiraz ve def'i haklarından peşinen feragat ettiğini kabul ve beyan eder." +
+"</p>" +
+"<p>" +
+"    4.2.2. Danışman, Opet tarafından verilen teknik hizmetlerin ve teknolojinin getirdiği her türlü yenilik ve/veya" +
+"    değişikliği Cihaz’da ve/veya yazılımında yapma hakkına sahip olduğunu kabul eder. Müşteri söz konusu" +
+"</p>"]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="2" y="0" width="550" height="20" uuid="4d9b1616-0a80-47a3-9da7-aeb3a71ae879"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[2]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

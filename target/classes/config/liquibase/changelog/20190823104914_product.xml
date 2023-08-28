@@ -1,0 +1,45 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <changeSet author="Metix-10 (generated)" id="1566557395195-4">
+        <createTable tableName="product">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" primaryKeyName="productPK"/>
+            </column>
+            <column name="created_by_id" type="int8"/>
+            <column name="created_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="last_modified_by_id" type="int8"/>
+            <column name="last_modified_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="description" type="varchar(2048)"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="parent_id" type="UUID"/>
+            <column name="unit_of_measure_id" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Metix-10 (generated)" id="1566557395195-6">
+        <addForeignKeyConstraint baseColumnNames="parent_id" baseTableName="product"
+                                 constraintName="FKgmb19wbjvpu06559t7w33wqoc" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="product"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="Metix-10 (generated)" id="1566557395195-7">
+        <addForeignKeyConstraint baseColumnNames="unit_of_measure_id" baseTableName="product"
+                                 constraintName="FKj1tdhc87lbp8750kqna4il17p" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id"
+                                 referencedTableName="attribute_value" validate="true"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1566557395195-8">
+        <addForeignKeyConstraint baseColumnNames="created_by_id" baseTableName="product"
+                                 constraintName="FKg2wtcvntqrwsp2luxastb5n43" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1566557395195-9">
+        <addForeignKeyConstraint baseColumnNames="last_modified_by_id" baseTableName="product"
+                                 constraintName="FKqddfqoxtxobac756q32b25xw1" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+
+</databaseChangeLog>

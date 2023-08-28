@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.10.0.final using JasperReports Library version 6.10.0-unknown  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="yakitkart-sozlesme-p1" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e597c48e-4987-41ff-8af3-64a05ba69213">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<parameter name="customerName" class="java.lang.String">
+		<defaultValueExpression><![CDATA[". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ." +
+		". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ."]]></defaultValueExpression>
+	</parameter>
+	<parameter name="customerAddress" class="java.lang.String">
+		<defaultValueExpression><![CDATA[". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ." +
+		". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ." +
+		". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . "]]></defaultValueExpression>
+	</parameter>
+	<parameter name="contractDate" class="java.lang.String">
+		<defaultValueExpression><![CDATA[".../.../....."]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="802" splitType="Stretch">
+			<textField>
+				<reportElement mode="Opaque" x="50" y="30" width="460" height="180" uuid="be99202c-4aca-4760-8474-26ed54aaf8c1">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Justified" markup="html">
+					<font size="9.3" pdfEncoding="Cp1254"/>
+					<paragraph lineSpacing="1_1_2"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<p><b>12- TEBLİGAT</b></p>" +
+"<p>" +
+"    Taraflar, işbu Sözleşme'de yer alan adreslerinin tebligata açık adresleri olduğunu ve bu adreslere yapılacak" +
+"    hertürlü tebligatın geçerli ve yasal sayılacağını ve bu adreslerde meydana gelen değişikliklerin 30 (otuz) gün" +
+"    zarfında anlaşma taraflarına yazılı olarak duyurulacağını aksi halde Sözleşme'de yazılı adreslere yapılacak" +
+"    tebligatların tarafları bağlayacağı ve geçerli yasal tebligat olarak kabul edileceğini peşinen kabul ve taahhüt" +
+"    etmişlerdir." +
+"</p>" +
+"<p></p>" +
+"<p>" +
+"    İşbu Sözleşme 4 sayfa ve 12 maddeden ibaret olup, " + $P{contractDate} + " tarihinde tarafların yetkili temsilcileri" +
+"    tarafından 2 nüsha olarak imzalanmıştır." +
+"</p>"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="50" y="210" width="290" height="30" uuid="d0fc0736-2868-455a-a4e7-7ee991737689"/>
+				<textElement>
+					<font isBold="true" pdfEncoding="Cp1254"/>
+				</textElement>
+				<text><![CDATA[METEOR PETROL ÜRÜNLERİ SAN VE TİC A.Ş.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="380" y="210" width="130" height="30" uuid="e477280d-0c87-40d7-a6c3-a7efeb2c56a3"/>
+				<textElement>
+					<font isBold="true" pdfEncoding="Cp1254"/>
+				</textElement>
+				<text><![CDATA[DANIŞMAN]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

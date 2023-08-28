@@ -1,0 +1,22 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <changeSet author="mehmet.sen (generated)" id="1575456805649-4">
+        <addColumn tableName="summary_user_customer">
+            <column name="count_active" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1575456805649-5">
+        <dropColumn columnName="count_existing" tableName="summary_user_customer"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1575456805649-6">
+        <dropColumn columnName="count_existing_active" tableName="summary_user_customer"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1575456805649-7">
+        <dropColumn columnName="count_existing_passive" tableName="summary_user_customer"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1575456805649-8">
+        <dropColumn columnName="count_new" tableName="summary_user_customer"/>
+    </changeSet>
+</databaseChangeLog>

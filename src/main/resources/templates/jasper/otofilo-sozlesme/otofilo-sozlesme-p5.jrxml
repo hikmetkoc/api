@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.10.0.final using JasperReports Library version 6.10.0-unknown  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_A42" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c423d4df-2209-41a0-a863-1a89c7b732f7">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<parameter name="customerName" class="java.lang.String">
+		<defaultValueExpression><![CDATA[". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ." +
+		". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ."]]></defaultValueExpression>
+	</parameter>
+	<parameter name="customerAddress" class="java.lang.String">
+		<defaultValueExpression><![CDATA[". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ." +
+		". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ." +
+		". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . "]]></defaultValueExpression>
+	</parameter>
+	<parameter name="contractDate" class="java.lang.String">
+		<defaultValueExpression><![CDATA[".../.../....."]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="782" splitType="Stretch">
+			<textField>
+				<reportElement mode="Opaque" x="50" y="30" width="460" height="740" uuid="56bcf7b3-9c17-441e-8923-4a24898be706">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Justified" markup="html">
+					<font size="9.3" pdfEncoding="Cp1254"/>
+					<paragraph lineSpacing="1_1_2"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<p>" +
+"    bu Sözleşmedeki diğer tüm hak ve yükümlülüklerini gerçek ve tüzel üçüncü bir şahsa devredemeyecek, bir başka gerçek" +
+"    ve tüzel üçüncü bir şahsa herhangi bir sebeple bu Sözleşmede ve dolayısıyla ilgili yasal hükümlerde kayıtlı" +
+"    sorumluluklarına ortak edemeyecek ve Danışman’daki hak ve alacaklarını başkasına devir ve temlik edemeyecektir." +
+"    Danışman, Sözleşmeden kaynaklanan hak ve yükümlülüklerini ahara kısmen veya tamamen devretme hak ve yetkisine" +
+"    sahiptir." +
+"</p>" +
+"<p></p>" +
+"<p>" +
+"    <b>11- KESİN DELİL</b>" +
+"</p>" +
+"<p></p>" +
+"<p>" +
+"    Müşteri, işbu Sözleşme’nin ifasından doğacak her türlü uyuşmazlıklarda Opet ve Danışman nezdindeki kayıtların" +
+"    geçerli, bağlayıcı ve kesin delil teşkil edeceğini, Danışman’ın yemin teklifinden ber’i kıldığını ve bu maddenin" +
+"    HMK. nun 193. nci maddesinde yazılı delil Sözleşmesi olduğunu kabul ve taahhüt etmiştir." +
+"</p>" +
+"<p></p>" +
+"<p>" +
+"    <b>12- TEBLİGATLAR</b>" +
+"</p>" +
+"<p></p>" +
+"<p>" +
+"    Tarafların, bu Sözleşme başlangıcında yazılı adresleri bir diğerine yapacakları tebligat için geçerli adreslerdir." +
+"    Adres değişiklikleri diğer tarafa yazılı olarak bildirilmedikçe tarafların birbirine yapacakları her türlü tebligat" +
+"    bu Sözleşme’de yazılı adreslerine yapılacak ve usulüne uygun olarak yapılmış bir tebligatın yasal sonuçlarını" +
+"    doğuracaktır." +
+"</p>" +
+"<p></p>" +
+"<p>" +
+"    <b>13- GİZLİLİK</b>" +
+"</p>" +
+"<p></p>" +
+"<p>" +
+"    Taraflardan her biri diğer taraf hakkında bu Sözleşme’nin ifası dolayısıyla öğrendiği, üçüncü kişilerce yasal" +
+"    yollarla zaten bilinen ya da bilinebilecekler dışındaki tüm bilgileri sır olarak kabul etmeyi ve bu bilgileri diğer" +
+"    tarafın yazılı izni olmadan üçüncü kişi ya da kuruluşlara vermemeyi, açıklamamayı, kamuya duyurmamayı ya da bu" +
+"    şekilde sonuçlanacak davranışlardan kaçınmayı taahhüt ederler. Tarafların bu Sözleşme’nin ifası dolayısıyla" +
+"    birbirleri ve Sözleşme konusu hakkında öğrendikleri ve üçüncü kişilerce yasal yollarla zaten bilinen ya da" +
+"    bilinebilecekler dışındaki her türlü bilgi bu madde kapsamındadır." +
+"</p>" +
+"<p></p>" +
+"<p>" +
+"    <b>14- MÜCBİR SEBEP</b>" +
+"</p>" +
+"<p></p>" +
+"<p>" +
+"    Danışman, işbu Sözleşme kapsamındaki herhangi bir yükümlülüğünün ifasının tabii afetler, grev, ayaklanma, idari" +
+"    makamların herhangi bir davranışı veya ilgili tarafın objektif olarak kontrolü dışındaki benzer sebepler nedeniyle" +
+"    ve de Enerji Piyasası Düzenleme Kurumu (EPDK) ya da herhangi bir idari makamın aldığı karar neticesinde Sözleşme" +
+"    konusu hizmetin gerçekleştirilmesine resmi olarak imkan kalmaması durumunda, Danışman Müşteri’ye yazılı bildirimde" +
+"    bulunmak suretiyle Sözleşme’yi derhal feshedebilir. Bu durum muzdarip Tarafın mücbir sebebin doğumundan önce" +
+"    muacceliyet kesbetmiş olan borçları ile cihazların iadesi borçlarını etkilemeyecektir." +
+"</p>" +
+"<p></p>" +
+"<p>" +
+"    <b>15- GEÇERLİLİK ve FESİH ŞARTLARI</b>" +
+"</p>" +
+"<p></p>" +
+"<p>" +
+"    15.1. İşbu Sözleşme’nin süresi talep edilen Otofilo için 36 aydır. Sözleşme süresi sonunda tarafların mutabakatı" +
+"    halinde mevcut paketlerin hizmet süresi uzatılacaktır. 36 ay sonunda uzatılan sözleşmelerde cihaz kullanım bedeli" +
+"    alınmayacaktır." +
+"</p>" +
+"<p>" +
+"    15.2. Müşteri Sözleşme’nin geçerlilik süresi boyunca tahakkuk eden aylık Hizmet Bedelleri ile Sözleşme’de öngörülen" +
+"    ve/veya ödenmesi Taraflar arasında teamül olan sair bedelleri Danışman‘a ödemekle yükümlüdür." +
+"</p>"]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="2" y="0" width="550" height="20" uuid="4d9b1616-0a80-47a3-9da7-aeb3a71ae879"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[5]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

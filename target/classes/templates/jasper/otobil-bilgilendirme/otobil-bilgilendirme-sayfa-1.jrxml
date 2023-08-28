@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.10.0.final using JasperReports Library version 6.10.0-unknown  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="otobil-bilgilendirme" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d7534c1b-430d-46e1-8886-10c1fe50d255">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<parameter name="otobilLogo" class="Object"/>
+	<parameter name="meteorLogo" class="Object"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="103" splitType="Stretch">
+			<image onErrorType="Blank">
+				<reportElement x="60" y="7" width="80" height="80" uuid="fb2b2032-6b55-4d40-be16-5fcdaaab2229">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<imageExpression><![CDATA[$P{otobilLogo}]]></imageExpression>
+			</image>
+			<image onErrorType="Blank">
+				<reportElement x="340" y="37" width="170" height="50" uuid="66b94dca-6095-4eff-adc0-035debece929">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<imageExpression><![CDATA[$P{meteorLogo}]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="8" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="6" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="627" splitType="Stretch">
+			<textField>
+				<reportElement isPrintRepeatedValues="false" x="60" y="10" width="450" height="20" uuid="09e6e370-e358-4ccc-ad4c-0daa9bff1417"/>
+				<textElement markup="html">
+					<font fontName="SansSerif" size="12" isBold="true" isUnderline="true" pdfEncoding="Cp1254"/>
+				</textElement>
+				<textFieldExpression><![CDATA["OTOBİL Akaryakıt Bilgi Sistemi"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="60" y="40" width="450" height="100" uuid="c5305993-97fd-4f21-a8cf-216e155c4a0d"/>
+				<textElement markup="html">
+					<font fontName="SansSerif" size="12" pdfEncoding="Cp1254"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Akaryakıt Sektörünün teknolojiyi en iyi kullanan, en yenilikçi Türk dağıtım şirketi OPET Petrolcülük A.Ş. olarak, Siz Kurumsal Şirketlerin araçlarına, akaryakıt temin edip, 24 saat kontrol altında tutacakları yeni bir Taşıt Otomasyon sistemini (OTOBİL) sunmaktan gurur duyarız. OTOBİL Akaryakıt Bilgi Sistemi, taşıtların tüm Türkiyede OPET (1800’in üzerindeki) istasyonlarında otomatik olarak, nakit ödeme yapmadan ve ayrı ayrı fatura almadan, fiş doldurmadan yakıt almalarını sağlayan ve dolum bilgilerini el değmeden elektronik ortamda (Internet) son kullanıcıya günlük güncel bilgiler halinde ulaştıran bir sistemdir."]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="60" y="150" width="450" height="20" uuid="4f23cda4-521a-4a53-b02c-3fd346c4a09d"/>
+				<textElement>
+					<font fontName="SansSerif" size="12" pdfEncoding="Cp1254"/>
+				</textElement>
+				<textFieldExpression><![CDATA["OTOBİL AKARYAKIT BİLGİ SİSTEMİ NASIL ÇALIŞIYOR ?"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="60" y="180" width="450" height="40" uuid="1ae34eca-a515-4fec-98b0-4b467e7fb0db"/>
+				<textElement>
+					<font fontName="SansSerif" size="12" pdfEncoding="Cp1254"/>
+				</textElement>
+				<textFieldExpression><![CDATA["OTOBİL üyesi kuruluşa ait araçlar,OPET istasyonundaki OTOBİL amblemli pompaya gelerek OTOBİL’ den akaryakıt almak istediğini pompa görevlisine bildirir."]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="60" y="450" width="450" height="40" uuid="03015653-f38b-448a-b818-253e5acb0ede"/>
+				<textElement>
+					<font fontName="SansSerif" size="12" pdfEncoding="Cp1254"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Yapmış olduğumuz görüşmeler sonucunda bildirmiş oldugunuz tüketime bağlı olarak teklifimiz aşağıdaki şekilde hazırlanmıştır."]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="60" y="430" width="450" height="20" uuid="106d2ec7-a1e6-48cd-8cbb-4d883bdabc12"/>
+				<textElement>
+					<font fontName="SansSerif" size="12" pdfEncoding="Cp1254"/>
+				</textElement>
+				<textFieldExpression><![CDATA["TEKLİFİMİZ: "]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="60" y="320" width="450" height="100" uuid="42260a13-a282-4491-b584-d22b82eef6aa"/>
+				<textElement>
+					<font fontName="SansSerif" size="12" pdfEncoding="Cp1254"/>
+				</textElement>
+				<textFieldExpression><![CDATA["OTOBİL otomasyon sistemi ile şirketler akaryakıt harcamalarını %100 kontrol altına alırlar. Akaryakıt harcamaları ile ilgili olarak periyodik raporlar Opet tarafından son kullanıcıya iletilirken, diğer taraftan da son kullanıcılar da raporlama istedikleri tarih aralığında diledikleri tüm raporlara yerden ve zamandan bağımsız güncel olarak 'www.opet.com.tr'  adresinden ulaşabilirler. İsteyen müşterilerimize raporlar e-mail ortamında iletilir."]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="60" y="230" width="450" height="80" uuid="65635b9d-8f84-47de-98bd-563860ae9d39"/>
+				<textElement>
+					<font fontName="SansSerif" size="12" pdfEncoding="Cp1254"/>
+				</textElement>
+				<textFieldExpression><![CDATA["OTOBİL pompasındaki anten yalnız belli bir mesafeden taşıtı algılayabileceğinden, dolumun başlayabilmesi için akaryakıt tabancası depoya tam olarak sokulmalıdır. Aksi takdirde dolum başlamaz. Dolum başladıktan sonra tabanca depodan çıkarılırsa dolum işlemi duracaktır. Doğru yakıt cinsine yanaşılmaz ise dolum yine başlamayacaktır. Aracın bilgileri sistemde mevcut ise pompa yakıt vermeye başlar."]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="60" y="490" width="450" height="50" uuid="e02ed2b9-a0db-49f6-9eeb-25dd5f3bb9ca"/>
+				<textElement>
+					<font fontName="SansSerif" size="12" pdfEncoding="Cp1254"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Sözleşme karşılığında Aracınıza km takipsiz tip araç tanıma ünitesi monte edilecektir. Bu ünite için araç başına herhangi bir bedel alınmayacaktır. Eğer araca monte edilen cihaz istenilmez ise anahtarlık tipi bu noktada devreye girecektir."]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="60" y="550" width="450" height="70" uuid="c1964404-e3c2-43d8-bf12-1e0c2109da96"/>
+				<textElement>
+					<font fontName="SansSerif" size="12" pdfEncoding="Cp1254"/>
+				</textElement>
+				<textFieldExpression><![CDATA["OTOBİL Akaryakıt Bilgi Sistemine tanımlanmış olan araçlarınızın OPET akaryakıt istasyonlarından alacağı akaryakıt bedelleri pompa fiyatı üzerinden her ayın 15’inde ve ayın son günlerinde 30/31’ inde faturalandırılacaktır. (V.U.K gereği 15 günde bir faturalama yapılması gereklidir.)"]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="10" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="8" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="8" splitType="Stretch"/>
+	</summary>
+</jasperReport>

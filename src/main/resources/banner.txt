@@ -1,0 +1,2 @@
+${AnsiColor.RED}:: MeteorPanel :: Running Spring Boot ${spring-boot.version} ::
+:: https://www.meteorpanel.com ::${AnsiColor.DEFAULT}

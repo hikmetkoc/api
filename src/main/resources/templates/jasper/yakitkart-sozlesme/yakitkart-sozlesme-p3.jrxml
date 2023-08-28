@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.10.0.final using JasperReports Library version 6.10.0-unknown  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="yakitkart-sozlesme-p1" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e597c48e-4987-41ff-8af3-64a05ba69213">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<parameter name="customerName" class="java.lang.String">
+		<defaultValueExpression><![CDATA[". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ." +
+		". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ."]]></defaultValueExpression>
+	</parameter>
+	<parameter name="customerAddress" class="java.lang.String">
+		<defaultValueExpression><![CDATA[". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ." +
+		". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ." +
+		". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . "]]></defaultValueExpression>
+	</parameter>
+	<parameter name="contractDate" class="java.lang.String">
+		<defaultValueExpression><![CDATA[".../.../....."]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="802" splitType="Stretch">
+			<textField>
+				<reportElement mode="Opaque" x="50" y="30" width="460" height="740" uuid="be99202c-4aca-4760-8474-26ed54aaf8c1">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Justified" markup="html">
+					<font size="9.3" pdfEncoding="Cp1254"/>
+					<paragraph lineSpacing="1_1_2"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<p><b>5- GİZLİ TUTMA YÜKÜMLÜLÜĞÜ</b></p>" +
+"<p>" +
+"    Danışman, işbu Sözleşme çerçevesinde elde ettiği ve Meteor 'a rakip bir firmanın çıkarlarını kolaylaştırabilecek" +
+"    veya dolaylı da olsa ona zarar verebilecek her türlü ticari, teknik ya da mali bilgiyi ifşa etmekten imtina" +
+"    edecektir. Meteor , aralarındaki ticari ilişki çerçevesinde Danışman' a açıklanan her türlü ticari ve teknik" +
+"    bilgiler, formüller, şifreler, özellikler, know-how ve diğer her türlü bilginin (kısaca Ticari Sırlar) inhisarı" +
+"    sahibidir. Danışman, işbu Sözleşme nedeniyle edineceği Meteor 'un ticari Sırlarını kendi çalışanlarına, doğrudan" +
+"    veya dolaylı hissedarı bulunduğu şirketler de dahil hiçbir gerçek ya da tüzel üçüncü kişilere taraflar arasındaki" +
+"    ticari ilişki devam ettiği müddetçe ve ticari ilişkinin herhangi bir sebeple sona ermesinden sonra açıklamamayı ve" +
+"    ticari ilişkinin kendisine yüklediği yükümlülüklerin ifası amacı dışında kullanmamayı kabul ve taahhüt eder." +
+"    Danışman ayrıca, Ticari Sır'ları taraflar arasında mevcut ilişkinin kendisine yüklediği yükümlülüklerin ifası için" +
+"    gerekli olduğu oranda çalışanlarına açıklamayı ve çalışanlarının kendilerine verilen işlerin ifası dışında" +
+"    kullanmamalarını temin etmeyi kabul ve taahhüt eder." +
+"</p>" +
+"<p></p>" +
+"<p><b>6- SÖZLEŞME SÜRESİ</b></p>" +
+"<p>" +
+"    İşbu sözleşme imza tarihinden itibaren 3 (üç) yıl süre ile geçerlidir. Taraflardan herhangi biri, sözleşme süresinin" +
+"    hitamından en az üç ay önce süresi sonunda yenilenmeyeceğini yazılı olarak karşı tarafa bildirmediği takdirde" +
+"    sözleşme aynı hüküm ve şartlarla 2’şer (ikişer) yıllık süreler halinde kendiliğinden yenilecektir." +
+"</p>" +
+"<p></p>" +
+"<p><b>7- SÖZLEŞME HÜKÜMLERİNİN İHLALİ VE FESİH</b></p>" +
+"<p>" +
+"    Danışman ya da onun sorumlu olduğu kişiler tarafından; Sözleşme'nin hükümlerinden herhangi birinin kısmen veya" +
+"    tamamen ihlal edilmesi, durumunda Meteor; işbu Sözleşme'yi tek taraflı olarak feshetmek hakkına haizdir. Böyle bir" +
+"    fesih halinde Danışman, Meteor ' un uğradığı veya uğrayacağı her türlü zarar ve ziyanı, Meteor' a ödemeyi kabul ve" +
+"    taahhüt eder." +
+"</p>" +
+"<p></p>" +
+"<p><b>8- MÜCBİR SEBEPLER</b></p>" +
+"<p>" +
+"    Herhangi bir resmi makamın emir ve talebi dolayısıyla veya harp, muhasemat, dahili kargaşalık düşman harekatı," +
+"    sabotaj, grev, lokavt, işçi veya memur ihtilafları, yangın da dahil her türlü tabii ve semai afetlerden dolayı veya" +
+"    akreditif alamaması, döviz tahsisi yapılmaması gibi hükümetçe konacak bilcümle takyidat, tahdidat ile kendi" +
+"    ihtiyarında olmayan sair sebeplerden dolayı stok, istihsal, imal, sevk, nakil, ithal ve tevziden kısmen veya tamamen" +
+"    mahrum kalması sonucu taraflardan herhangi biri, işbu Sözleşme ahkamını tamamen veya kısmen yerine getiremediği" +
+"    takdirde sorumlu olmayacaktır. Ayrıca Opet’in beklenmeyen ekonomik kriz/ler veya kar marjlarında oluşan % 10’dan" +
+"    fazla değişiklikler nedeni ile değişen piyasa koşullarına bağlı olarak satış koşullarını revize etme hakkı saklıdır." +
+"</p>" +
+"<p></p>" +
+"<p><b>9- MÜSTAKİL SORUMLULUK</b></p>" +
+"<p>" +
+"    Danışman, " + $P{customerName} + "'e aittir." +
+"</p>" +
+"<p></p>" +
+"<p><b>10- MASRAFLAR</b></p>" +
+"<p>" +
+"    İşbu Sözleşme'den kaynaklanan damga vergisi dahil tüm masraflar Danışman ve Meteor tarafından eşit olarak" +
+"    ödenecektir." +
+"</p>" +
+"<p></p>" +
+"<p><b>11- IHTILAFLARIN HALLÎ</b></p>" +
+"<p>" +
+"    Taraflar, İşbu Sözleşme'nin yorumu ve uygulanmasından kaynaklanan her türlü ihtilafın çözümünde yetkili yargı" +
+"    mercisinin İstanbul Mahkemeleri ve İcra Müdürlükleri'nin olduğu kabul etmişlerdir." +
+"</p>"]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -1,0 +1,27 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <changeSet author="mehmet.sen (generated)" id="1582012798378-52">
+        <addColumn tableName="opet_sale">
+            <column name="customer_id" type="uuid"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1582012798378-53">
+        <addColumn tableName="opet_sale">
+            <column name="user_id" type="int8"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1582012798378-54">
+        <addForeignKeyConstraint baseColumnNames="customer_id" baseTableName="opet_sale"
+                                 constraintName="FK91f1u8gddye8ge65prcvjx8wb" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="customer"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1582012798378-55">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="opet_sale"
+                                 constraintName="FKg2gingi2qew8q7d26p03g9f3p" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+</databaseChangeLog>

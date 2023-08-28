@@ -1,0 +1,144 @@
+id,attribute_id,label,is_static,weight
+Hed_Tip_Yakıt_Satışı,Hed_Tip,Yakıt Satışı,true,0
+Tek_Aşa_Yeni,Tek_Aşa,Yeni,true,0
+Tek_Aşa_Kazanıldı,Tek_Aşa,Kazanıldı,true,0
+Tek_Aşa_Kaybedildi,Tek_Aşa,Kaybedildi,true,0
+Tek_Aşa_Ertelendi,Tek_Aşa,Ertelendi,true,0
+Tek_Ola_Düşük,Tek_Ola,Düşük,true,0
+Tek_Ola_Orta,Tek_Ola,Orta,true,0
+Tek_Ola_Yüksk,Tek_Ola,Yüksek,true,0
+Müş_Dur_Yeni,Müş_Dur,Yeni,true,0
+Müş_Dur_Mevcut,Müş_Dur,Mevcut,true,0
+Müş_Dur_MevcutAktif,Müş_Dur,Mevcut - Aktif,true,0
+Müş_Dur_MevcutPasif,Müş_Dur,Mevcut - Pasif,true,0
+Akt_Dur_Yeni,Akt_Dur,Yeni,true,0
+Akt_Dur_DevamEdiyor,Akt_Dur,Devam Ediyor,true,0
+Akt_Dur_Tamamlandı,Akt_Dur,Tamamlandı,true,0
+Akt_Dur_İptal,Akt_Dur,İptal,true,0
+Akt_Tip_Randevu,Akt_Tip,Randevu,true,5
+Akt_Tip_Çatkapı,Akt_Tip,Çatkapı,true,10
+Akt_Tip_Firma_Ziyareti,Akt_Tip,Firma Ziyareti,true,15
+Akt_Tip_Cihaz_Teslimatı,Akt_Tip,Cihaz Teslimatı,true,20
+Akt_Tip_Tahsilat,Akt_Tip,Tahsilat,true,25
+Akt_Tip_Telefon,Akt_Tip,Telefon,true,50
+Akt_Tip_Sözleşme,Akt_Tip,Sözleşme,true,30
+Akt_Tip_Sözleşme_Yenileme,Akt_Tip,Sözleşme Yenileme,true,35
+Akt_Tip_MeteorCard_Sözleşme,Akt_Tip,MeteorCard Sözleşme,true,40
+Akt_Tip_Otofilo_Sözleşme,Akt_Tip,Otofilo Sözleşme,true,45
+Kam_Dur_Aktif,Kam_Dur,Aktif,true,0
+Kam_Dur_Pasif,Kam_Dur,Pasif,true,0
+Kiş_Tip_Birincil,Kiş_Tip,Birincil,true,0
+Müş_Bnk_Akbank,Müş_Bnk,Akbank,true,0
+Müş_Bnk_Deniz_Bank,Müş_Bnk,DenizBank,true,0
+Müş_Bnk_Fiba_Banka,Müş_Bnk,FibaBanka,true,0
+Müş_Bnk_HSBC,Müş_Bnk,HSBC,true,0
+Müş_Bnk_ING_Bank,Müş_Bnk,ING Bank,true,0
+Müş_Bnk_Odea_Bank,Müş_Bnk,Odea Bank,true,0
+Müş_Bnk_QNB_FinansBank,Müş_Bnk,QNB FinansBank,true,0
+Müş_Bnk_Şeker_Bank,Müş_Bnk,ŞekerBank,true,0
+Müş_Bnk_Ziraat_Bankası,Müş_Bnk,ZiraatBankası,true,0
+Müş_Bnk_TEB,Müş_Bnk,TEB,true,0
+Müş_Bnk_Garanti_Bankası,Müş_Bnk,Garanti Bankası,true,0
+Müş_Bnk_Halk_Bankası,Müş_Bnk,Halk Bankası,true,0
+Müş_Bnk_İş_Bankası,Müş_Bnk,İş Bankası,true,0
+Müş_Bnk_Vakıf_Bank,Müş_Bnk,Vakıf Bank,true,0
+Müş_Bnk_Yapı_Kredi_Bankası,Müş_Bnk,Yapı Kredi Bankası,true,0
+Müş_Bnk_AlbarakaTürk,Müş_Bnk,AlbarakaTürk,true,0
+Müş_Bnk_KuveytTürk,Müş_Bnk,Kuveyt Türk,true,0
+Müş_Bnk_Türkiye_Finans,Müş_Bnk,Türkiye Finans,true,0
+Müş_Bnk_Vakıf_Katılım,Müş_Bnk,Vakıf Katılım,true,0
+Müş_Bnk_Ziraat_Katılım,Müş_Bnk,Ziraat Katılım,true,0
+Müş_Sek_Otomotiv,Müş_Sek,Otomotiv,true,0
+Müş_Sek_TüketiciÜrünleriVePerakende,Müş_Sek,Tüketici Ürünleri ve Perakende,true,0
+Müş_Sek_Kimya,Müş_Sek,Kimya,true,0
+Müş_Sek_Bankacılık,Müş_Sek,Bankacılık,true,0
+Müş_Sek_Enerji,Müş_Sek,Enerji,true,0
+Müş_Sek_FinansalHizmetler,Müş_Sek,Finansal Hizmetler,true,0
+Müş_Sek_Kamu,Müş_Sek,Kamu,true,0
+Müş_Sek_Sağlık,Müş_Sek,Sağlık,true,0
+Müş_Sek_EndüstriyelÜretim,Müş_Sek,Endüstriyel Üretim,true,0
+Müş_Sek_AltyapıVeİnşaat,Müş_Sek,Altyapı ve İnşaat,true,0
+Müş_Sek_Sigortacılık,Müş_Sek,Sigortacılık,true,0
+Müş_Sek_İlaç,Müş_Sek,İlaç,true,0
+Müş_Sek_Medya,Müş_Sek,Medya,true,0
+Müş_Sek_Madencilik,Müş_Sek,Madencilik,true,0
+Müş_Sek_Teknoloji,Müş_Sek,Teknoloji,true,0
+Müş_Sek_Telekom,Müş_Sek,Telekom,true,0
+Müş_Sek_Taşımacılık,Müş_Sek,Taşımacılık,true,0
+Müş_Sek_ÖzelGirişimSermayesi,Müş_Sek,Özel Girişim Sermayesi,true,0
+Müş_Sek_Gayrimenkul,Müş_Sek,Gayrimenkul,true,0
+Müş_Sek_Turizm,Müş_Sek,Turizm,true,0
+Müş_Seg_Küçük,Müş_Seg,Küçük,true,0
+Müş_Seg_Orta,Müş_Seg,Orta,true,0
+Müş_Seg_Büyük,Müş_Seg,Büyük,true,0
+Akt_Ned_Memnuniyet,Akt_Ned,Memnuniyet,true,0
+Akt_Ned_Şikayet,Akt_Ned,Şikayet,true,0
+Akt_Ned_Satış,Akt_Ned,Satış,true,0
+Akt_Ned_SözleşmeYenileme,Akt_Ned,SözleşmeYenileme,true,0
+Dos_Tip_Dosya,Dos_Tip,Dosya,true,0
+Dos_Tip_Klasör,Dos_Tip,Klasör,true,0
+Kon_Tip_String,Kon_Tip,String,true,0
+Kon_Tip_Integer,Kon_Tip,Integer,true,0
+Kon_Tip_Double,Kon_Tip,Double,true,0
+Kon_Tip_Long,Kon_Tip,Long,true,0
+Kon_Tip_Instant,Kon_Tip,Instant,true,0
+Kon_Tip_Local_Date,Kon_Tip,Instant,true,0
+Kon_Tip_Boolean,Kon_Tip,Boolean,true,0
+Gör_Tip_Randevu,Gör_Tip,Randevu,true,5
+Gör_Tip_Çatkapı,Gör_Tip,Çatkapı,true,10
+Gör_Tip_Firma_Ziyareti,Gör_Tip,Firma Ziyareti,true,15
+Gör_Tip_Cihaz_Teslimatı,Gör_Tip,Cihaz Teslimatı,true,20
+Gör_Tip_Tahsilat,Gör_Tip,Tahsilat,true,25
+Gör_Tip_Sözleşme,Gör_Tip,Sözleşme,true,30
+Gör_Tip_Sözleşme_Yenileme,Gör_Tip,Sözleşme Yenileme,true,35
+Gör_Tip_MeteorCard_Sözleşme,Gör_Tip,MeteorCard Sözleşme,true,40
+Gör_Tip_Otofilo_Sözleşme,Gör_Tip,Otofilo Sözleşme,true,45
+Gör_Tip_Giden_Arama,Gör_Tip,Giden Arama,true,50
+Gör_Tip_Kolay_Ajanda,Gör_Tip,Kolay Ajanda,true,55
+Gör_Tip_Müşteri_Kapama,Gör_Tip,Müşteri Kapama,true,60
+Gör_Tip_Yakıt_Takibi,Gör_Tip,Yakıt Takibi,true,65
+Gör_Tip_DBS_Takip,Gör_Tip,DBS Takip,true,70
+Gör_Tip_DBS_Iptal,Gör_Tip,DBS İptal,true,75
+Gör_Dur_Yeni,Gör_Dur,Yeni,true,0
+Gör_Dur_Devam_Ediyor,Gör_Dur,Devam Ediyor,true,0
+Gör_Dur_Yapılamadı,Gör_Dur,Yapılamadı,true,0
+Gör_Dur_Tamamlandı,Gör_Dur,Tamamlandı,true,0
+Söz_Dur_Aktif,Söz_Dur,Aktif,true,0
+Söz_Dur_Pasif,Söz_Dur,Pasif,true,0
+Söz_Dur_Teminat_Sürecinde,Söz_Dur,Teminat Sürecinde,true,0
+Söz_ÖdP_Aylık,Söz_ÖdP,Aylık,true,0
+Söz_ÖdP_On_Günde_Bir,Söz_ÖdP,On Günde Bir,true,0
+Söz_ÖdY_DBS,Söz_ÖdY,DBS,true,0
+Söz_ÖdY_Ön_Ödeme_MO,Söz_ÖdY,Ön Ödeme (Mail Order),true,0
+Söz_ÖdY_Ön_Ödeme_Havale,Söz_ÖdY,Ön Ödeme (Havale),true,0
+Söz_ÖdY_MeteorCard,Söz_ÖdY,MeteorCard,true,0
+Söz_ÖdY_Teminat_Mektubu,Söz_ÖdY,Teminat Mektubu (BTH),true,0
+Duy_Tip_Başarı,Duy_Tip,Başarı,true,0
+Duy_Tip_Uyarı,Duy_Tip,Uyarı,true,0
+Duy_Tip_Tehlike,Duy_Tip,Tehlike,true,0
+Tek_Ona_Onay_Gerektirmez,Tek_Ona,Onay Gerektirmez,true,0
+Tek_Ona_Onay_Bekliyor,Tek_Ona,Onay Bekliyor,true,0
+Tek_Ona_Onaylandı,Tek_Ona,Onaylandı,true,0
+Tek_Ona_Reddedildi,Tek_Ona,Reddedildi,true,0
+Söz_Tip_Sözleşme,Söz_Tip,Sözleşme,true,0
+Söz_Tip_Otofilo_Sözleşme,Söz_Tip,Otofilo Sözleşme,true,0
+Söz_Tip_Meteorcard_Sözleşme,Söz_Tip,Meteorcard Sözleşme,true,0
+Müş_Kay_PersonelReferansı,Müş_Kay,Personel Referansı,true,0
+Müş_Kay_Çatkapı,Müş_Kay,Çatkapı,true,0
+Müş_Kay_MevcutMüşteri,Müş_Kay,Mevcut Müşteri,true,0
+Müş_Kay_Referans,Müş_Kay,Referans,true,0
+Müş_Kay_İnternet,Müş_Kay,İnternet,true,0
+Müş_Kay_İşOrtağı/Tedarikçi,Müş_Kay,İş Ortağı/Tedarikçi,true,0
+Müş_Kay_BankaReferans,Müş_Kay,Banka Referans,true,0
+Müş_Kay_OrçelikMüşterisi,Müş_Kay,Orçelik Müşterisi,true,0
+Müş_Kay_Şekerbank,Müş_Kay,Şekerbank,true,0
+Müş_Kay_Bugiad,Müş_Kay,Bugiad,true,0
+MüA_Dur_Yeni,MüA_Dur,Yeni,true,0
+MüA_Dur_Başarısız,MüA_Dur,Başarısız,true,0
+MüA_Dur_İşlendi,MüA_Dur,İşlendi,true,0
+AnS_Tip_Varsayılan,AnS_Tip,Varsayılan,true,0
+Müş_Rnk_Mavi,Müş_Rnk,Mavi,true,0
+Müş_Rnk_Yeşil,Müş_Rnk,Yeşil,true,0
+Müş_Rnk_Sarı,Müş_Rnk,Sarı,true,0
+Müş_Rnk_Kırmızı,Müş_Rnk,Kırmızı,true,0
+Müş_Rnk_Mor,Müş_Rnk,Mor,true,0

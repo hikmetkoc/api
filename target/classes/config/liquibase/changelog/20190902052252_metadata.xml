@@ -1,0 +1,87 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <changeSet author="mehmet.sen (generated)" id="1567401810428-5">
+        <createTable tableName="field_metadata">
+            <column name="id" type="VARCHAR(255)">
+                <constraints primaryKey="true" primaryKeyName="field_metadataPK"/>
+            </column>
+            <column name="default_value" type="VARCHAR(255)"/>
+            <column name="display" type="BOOLEAN"/>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="priority" type="INTEGER"/>
+            <column name="read_only" type="BOOLEAN"/>
+            <column name="required" type="BOOLEAN"/>
+            <column name="title" type="VARCHAR(255)"/>
+            <column name="entity_metadata_id" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addColumn tableName="field_metadata">
+            <column name="created_by_id" type="int8"/>
+        </addColumn>
+        <addColumn tableName="field_metadata">
+            <column name="created_date" type="timestamp"/>
+        </addColumn>
+        <addColumn tableName="field_metadata">
+            <column name="last_modified_by_id" type="int8"/>
+        </addColumn>
+        <addColumn tableName="field_metadata">
+            <column name="last_modified_date" type="timestamp"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1567401810428-6">
+        <createTable tableName="entity_metadata">
+            <column name="id" type="VARCHAR(255)">
+                <constraints primaryKey="true" primaryKeyName="entity_metadataPK"/>
+            </column>
+            <column name="display_field" type="VARCHAR(255)"/>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="default_sort" type="varchar(255)"/>
+            <column name="plural_title" type="varchar(255)"/>
+            <column name="title" type="varchar(255)"/>
+        </createTable>
+        <addColumn tableName="entity_metadata">
+            <column name="created_by_id" type="int8"/>
+        </addColumn>
+        <addColumn tableName="entity_metadata">
+            <column name="created_date" type="timestamp"/>
+        </addColumn>
+        <addColumn tableName="entity_metadata">
+            <column name="last_modified_by_id" type="int8"/>
+        </addColumn>
+        <addColumn tableName="entity_metadata">
+            <column name="last_modified_date" type="timestamp"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1567401810428-7">
+        <addUniqueConstraint columnNames="name" constraintName="UC_ENTITY_METADATANAME_COL" tableName="entity_metadata"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1567401810428-8">
+        <addForeignKeyConstraint baseColumnNames="entity_metadata_id" baseTableName="field_metadata"
+                                 constraintName="FKen3x242ttiqmdoowyirfcqv6v" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="entity_metadata"
+                                 validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="created_by_id" baseTableName="field_metadata"
+                                 constraintName="FK1pcs7vn09kv8hjsxcr3h02jt9" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="last_modified_by_id" baseTableName="entity_metadata"
+                                 constraintName="FK6qpnjyfsywx40j8o9ppfwqqlr" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="last_modified_by_id" baseTableName="field_metadata"
+                                 constraintName="FK6svihaj7fihe4sd8scb8xk16a" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="created_by_id" baseTableName="entity_metadata"
+                                 constraintName="FKt8fy5hy7dch0jnugp85ccqekd" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"
+                                 validate="true"/>
+    </changeSet>
+</databaseChangeLog>

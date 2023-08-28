@@ -1,0 +1,21 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <changeSet author="mehmet.sen (generated)" id="1580287215829-52">
+        <sql dbms="postgresql" endDelimiter="\nGO" splitStatements="true" stripComments="true">
+            update customer a
+            set search = ' ' ||
+            coalesce(lower(cast(id as text)), '') || ' ' ||
+            coalesce(lower(cast(name as text)), '') || ' ' ||
+            coalesce(lower(cast(fleet_code as text)), '') || ' ' ||
+            coalesce(lower(cast(old_fleet_code as text)), '') || ' ' ||
+            coalesce(lower(cast(commercial_title as text)), '') || ' ' ||
+            coalesce(lower(cast(phone as text)), '') || ' ' ||
+            coalesce(lower(cast(email as text)), '') || ' ' ||
+            coalesce(lower(cast(website as text)), '') || ' ' ||
+            coalesce(lower(cast(tax_number as text)), '') || ' ' ||
+            ' ';
+        </sql>
+    </changeSet>
+</databaseChangeLog>

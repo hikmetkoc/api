@@ -1,0 +1,39 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <changeSet author="mehmet.sen (generated)" id="1583737039433-49">
+        <addColumn tableName="customer_survey_answer">
+            <column name="survey_answer_id" type="uuid"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1583737039433-50">
+        <addColumn tableName="survey_answer">
+            <column name="survey_question_id" type="uuid"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1583737039433-51">
+        <addForeignKeyConstraint baseColumnNames="survey_answer_id" baseTableName="customer_survey_answer"
+                                 constraintName="FKbmvqbftwywbtim8bv3fvrkev" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id"
+                                 referencedTableName="survey_answer" validate="true"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1583737039433-52">
+        <addForeignKeyConstraint baseColumnNames="survey_question_id" baseTableName="survey_answer"
+                                 constraintName="FKfq9qpi8lity3w2qk1l0maocm" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id"
+                                 referencedTableName="survey_question" validate="true"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1583737039433-53">
+        <dropForeignKeyConstraint baseTableName="customer_survey_answer" constraintName="FK13hl8b2bc7vr7g4v9rahcp9e3"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1583737039433-54">
+        <dropForeignKeyConstraint baseTableName="survey_answer" constraintName="FKsmngcm3g1yf412nsre7h8j32e"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1583737039433-55">
+        <dropColumn columnName="answer_id" tableName="customer_survey_answer"/>
+    </changeSet>
+    <changeSet author="mehmet.sen (generated)" id="1583737039433-56">
+        <dropColumn columnName="question_id" tableName="survey_answer"/>
+    </changeSet>
+</databaseChangeLog>

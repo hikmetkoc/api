@@ -99,6 +99,7 @@ tr\com\meteor\crm\domain\QuoteVersion_.class
 tr\com\meteor\crm\service\EntityMetadataService.class
 tr\com\meteor\crm\trigger\BuyLimitTrigger.class
 tr\com\meteor\crm\service\opetmodels\OpetSales.class
+tr\com\meteor\crm\utils\jasper\rest\UserPermissionController.class
 tr\com\meteor\crm\repository\SurveyQuestionRepository.class
 tr\com\meteor\crm\service\InvoiceListenService.class
 tr\com\meteor\crm\utils\attributevalues\QuoteStage.class
@@ -138,6 +139,7 @@ tr\com\meteor\crm\repository\GenericIdNameEntityRepository.class
 tr\com\meteor\crm\repository\SapSoapRepository.class
 tr\com\meteor\crm\utils\attributevalues\TaskType$TaskImportance.class
 tr\com\meteor\crm\domain\Holiday_.class
+tr\com\meteor\crm\domain\UserPermission_.class
 tr\com\meteor\crm\utils\jasper\rest\errors\ObjectAccessDeniedException.class
 tr\com\meteor\crm\utils\jasper\rest\TargetController.class
 tr\com\meteor\crm\service\RoleService.class
@@ -368,6 +370,7 @@ tr\com\meteor\crm\config\Constants.class
 tr\com\meteor\crm\domain\Holiday.class
 tr\com\meteor\crm\repository\FileDescriptorRepository.class
 tr\com\meteor\crm\repository\FuelLimitRepository.class
+tr\com\meteor\crm\repository\UserPermissionRepository.class
 tr\com\meteor\crm\utils\jasper\rest\ContProductController.class
 tr\com\meteor\crm\trigger\ResponsibleTrigger.class
 tr\com\meteor\crm\repository\CampaignRepository.class
@@ -423,7 +426,9 @@ tr\com\meteor\crm\utils\jasper\rest\EntityMetadataController.class
 tr\com\meteor\crm\utils\attributevalues\BuyQuoteStatus.class
 tr\com\meteor\crm\security\RolesConstants.class
 tr\com\meteor\crm\domain\Operation_.class
+tr\com\meteor\crm\domain\UserPermission.class
 tr\com\meteor\crm\domain\OpetSale.class
+tr\com\meteor\crm\service\UserPermissionService.class
 tr\com\meteor\crm\service\GenericIdNameEntityService.class
 tr\com\meteor\crm\domain\SummaryUserCustomer.class
 tr\com\meteor\crm\service\dto\CrmNotification.class
@@ -492,6 +497,7 @@ tr\com\meteor\crm\utils\validate\AttributeValueValidate.class
 tr\com\meteor\crm\repository\CustomTaskRepository.class
 tr\com\meteor\crm\utils\jasper\rest\errors\RecordAccessDeniedException$AccessType.class
 tr\com\meteor\crm\domain\Permission.class
+tr\com\meteor\crm\trigger\UserPermissionTrigger.class
 tr\com\meteor\crm\service\dto\DashboardSearchDTO.class
 tr\com\meteor\crm\config\postgresql\timestamp\PostgreSqlTimestampDiffFunction.class
 tr\com\meteor\crm\service\BaseRoleService.class

@@ -78,6 +78,9 @@ public class Spend extends IdNameAuditingEntity<UUID> {
 
     @FieldMetadataAnn(title = "Kilit", priority = 9999999)
     private Boolean lock = false;
+
+    @FieldMetadataAnn(title = "Dekont", priority = 120, active = false)
+    private String dekont;
     @Formula("description")
     @FieldMetadataAnn(readOnly = true, title = "Başlık", active = false)
     private String instanceName;
@@ -219,5 +222,13 @@ public class Spend extends IdNameAuditingEntity<UUID> {
 
     public void setExchangeMoney(BigDecimal exchangeMoney) {
         this.exchangeMoney = exchangeMoney;
+    }
+
+    public String getDekont() {
+        return dekont;
+    }
+
+    public void setDekont(String dekont) {
+        this.dekont = dekont;
     }
 }

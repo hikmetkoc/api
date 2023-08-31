@@ -6,7 +6,6 @@ import org.springframework.stereotype.Component;
 import org.slf4j.Logger;
 import tr.com.meteor.crm.domain.HolUser;
 import tr.com.meteor.crm.domain.Ikfile;
-import tr.com.meteor.crm.domain.Role;
 import tr.com.meteor.crm.domain.User;
 import tr.com.meteor.crm.repository.HolUserRepository;
 import tr.com.meteor.crm.repository.IkfileRepository;
@@ -14,6 +13,8 @@ import tr.com.meteor.crm.repository.RoleRepository;
 import tr.com.meteor.crm.repository.UserRepository;
 import tr.com.meteor.crm.service.BaseConfigurationService;
 import tr.com.meteor.crm.service.BaseUserService;
+import tr.com.meteor.crm.service.HolManagerService;
+import tr.com.meteor.crm.service.UserPermissionService;
 import tr.com.meteor.crm.utils.jasper.rest.UserController;
 
 import javax.validation.constraints.NotNull;
@@ -21,8 +22,6 @@ import java.time.Instant;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.Objects;
-import java.util.Optional;
-import java.util.Set;
 import java.util.UUID;
 
 @Component(UserTrigger.QUALIFIER)
@@ -34,13 +33,18 @@ public class UserTrigger extends Trigger<User, Long, UserRepository> {
     private final RoleRepository roleRepository;
     private final IkfileRepository ikfileRepository;
 
+    private final HolManagerService holManagerService;
+
+    private final UserPermissionService userPermissionService;
     private final HolUserRepository holUserRepository;
     public UserTrigger(CacheManager cacheManager, UserRepository userRepository, BaseUserService baseUserService,
-                       BaseConfigurationService baseConfigurationService, RoleRepository roleRepository, IkfileRepository ikfileRepository, HolUserRepository holUserRepository) {
+                       BaseConfigurationService baseConfigurationService, RoleRepository roleRepository, IkfileRepository ikfileRepository, HolManagerService holManagerService, UserPermissionService userPermissionService, HolUserRepository holUserRepository) {
         super(cacheManager, User.class, UserTrigger.class, userRepository, baseUserService, baseConfigurationService);
         this.roleRepository = roleRepository;
         this.ikfileRepository = ikfileRepository;
         this.userRepository = userRepository;
+        this.holManagerService = holManagerService;
+        this.userPermissionService = userPermissionService;
         this.holUserRepository = holUserRepository;
     }
 
@@ -129,12 +133,12 @@ public class UserTrigger extends Trigger<User, Long, UserRepository> {
         holuser.setTopKulMaz(0.00);
         holUserRepository.save(holuser);
 
-        // todo:İZİN AMİRLERİ OLUŞTURMA (HOLMANAGER)
-
+        // İZİN AMİRLERİ OLUŞTURMA (HOLMANAGER)
+        holManagerService.createHolManager(newEntity);
         // todo:JHI_ROLE_USER , USER_GROUP ve VARSA BUY_LIMIT oluşturma
 
-        // todo:USER_PERMISSION OLUŞTURMA
-
+        // KULLANICI YETKİLERİ OLUŞTURMA (USER_PERMISSION)
+        userPermissionService.createUserPermission(newEntity);
         /**Optional<Role> optionalRole = roleRepository.findById("ROLE_USER");
         Role role = optionalRole.orElseThrow(() -> new RuntimeException("Role not found"));
 

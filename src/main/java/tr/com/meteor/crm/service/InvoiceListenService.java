@@ -4,10 +4,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.w3c.dom.Node;
-import tr.com.meteor.crm.domain.AttributeValue;
-import tr.com.meteor.crm.domain.Customer;
-import tr.com.meteor.crm.domain.InvoiceList;
-import tr.com.meteor.crm.domain.SapSoap;
+import tr.com.meteor.crm.domain.*;
 import tr.com.meteor.crm.repository.AttributeValueRepository;
 import tr.com.meteor.crm.repository.CustomerRepository;
 import tr.com.meteor.crm.repository.InvoiceListRepository;
@@ -30,6 +27,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import tr.com.meteor.crm.repository.SapSoapRepository;
+import tr.com.meteor.crm.utils.configuration.Configurations;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -92,13 +90,21 @@ public class InvoiceListenService extends GenericIdNameAuditingEntityService<Inv
             }
 
             System.out.println("FATURA LİSTESİ SERVİSİ BAŞLATILDI. " + DBSirket + " veritabanından faturalar çekiliyor...");
-
+            String startedDate = "";
+            List<Configuration> configuration = baseConfigurationService.getConfigurations();
+            for (Configuration configuration1 : configuration) {
+                if (configuration1.getId().equals(Configurations.INVOICELIST_START_DATE.getId())) {
+                    startedDate = configuration1.getStoredValue() + "T00:00:00.00Z";
+                }
+            }
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
-            Instant ensontarih = Instant.parse("2000-01-01T00:00:00.000Z");
+            Instant ensontarih = Instant.parse(startedDate);
             List<InvoiceList> invoiceLists = invoiceListRepository.findAll();
             for (InvoiceList invoiceList : invoiceLists) {
-                if (ensontarih.compareTo(invoiceList.getSendDate())<0) {
-                    ensontarih = invoiceList.getSendDate();
+                if (invoiceList.getSendDate() != null) {
+                    if (invoiceList.getSendDate().compareTo(ensontarih)>0) {
+                        ensontarih = invoiceList.getSendDate();
+                    }
                 }
             }
             ZonedDateTime strbaslangic = ensontarih.atZone(ZoneId.systemDefault());

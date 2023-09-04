@@ -30,14 +30,14 @@ public class UserPermissionService extends GenericIdNameAuditingEntityService<Us
     }
 
     public void createUserPermission(User user) {
-        User defaultUser = baseUserService.getUserFullFetched(2L).get();
+        //User defaultUser = baseUserService.getUserFullFetched(2L).get();
         UserPermission userPermission = new UserPermission();
         userPermission.setId(UUID.randomUUID());
         userPermission.setUser(user);
-        userPermission.setOwner(defaultUser);
-        userPermission.setCreatedBy(defaultUser);
+        userPermission.setOwner(getCurrentUser());
+        userPermission.setCreatedBy(getCurrentUser());
         userPermission.setCreatedDate(Instant.now());
-        userPermission.setLastModifiedBy(defaultUser);
+        userPermission.setLastModifiedBy(getCurrentUser());
         userPermission.setLastModifiedDate(Instant.now());
         userPermission.setSearch(userPermission.getId().toString() + " " + user.getFullName());
         userPermission.setHolidayView(false);

@@ -54,6 +54,7 @@ public class StoreTrigger extends Trigger<Store, UUID, StoreRepository> {
                 newEntity.getAssigner().getBirim().getId().equals(TaskType.TaskBirim.BIRIM_IcDenetim.getId()) ||
                 newEntity.getAssigner().getBirim().getId().equals(TaskType.TaskBirim.BIRIM_Risk.getId()) ||
                 newEntity.getAssigner().getBirim().getId().equals(TaskType.TaskBirim.BIRIM_Paz.getId()) ||
+                newEntity.getAssigner().getBirim().getId().equals(TaskType.TaskBirim.BIRIM_Web.getId()) ||
                 newEntity.getAssigner().getBirim().getId().equals(TaskType.TaskBirim.BIRIM_IT.getId())) {
                 newEntity.setOwner(baseUserService.getUserFullFetched(90L).get());     //CEMAL ELİTAŞ
             } else if (newEntity.getAssigner().getId().equals(baseUserService.getUserFullFetched(103L).get().getId())) {
@@ -70,9 +71,6 @@ public class StoreTrigger extends Trigger<Store, UUID, StoreRepository> {
                 !newEntity.getAssigner().getId().equals(baseUserService.getUserFullFetched(91L).get().getId())) ||
                 newEntity.getAssigner().getBirim().getId().equals(TaskType.TaskBirim.BIRIM_Kafe.getId())) {
                 newEntity.setOwner(baseUserService.getUserFullFetched(91L).get());    //MURAT GEDİK
-            } else if (newEntity.getAssigner().getBirim().getId().equals(TaskType.TaskBirim.BIRIM_Web.getId()) &&
-                !newEntity.getAssigner().getId().equals(baseUserService.getUserFullFetched(83L).get().getId())) {
-                newEntity.setOwner(baseUserService.getUserFullFetched(83L).get());    //SEDA ÜNEL
             } else if (newEntity.getAssigner().getBirim().getId().equals(TaskType.TaskBirim.BIRIM_Ins.getId()) &&
                 !newEntity.getAssigner().getId().equals(baseUserService.getUserFullFetched(94L).get().getId())) {
                 newEntity.setOwner(baseUserService.getUserFullFetched(94L).get());    //MURAT CAN
@@ -237,7 +235,7 @@ public class StoreTrigger extends Trigger<Store, UUID, StoreRepository> {
     @Override
     public Store afterUpdate(Store oldEntity, Store newEntity) throws Exception {
         if (newEntity.getStatus().getId().equals(ContractStatus.AKTIF.getId())) {
-            mailService.sendEmail(newEntity.getAssigner().getEposta(),
+            /*mailService.sendEmail(newEntity.getAssigner().getEposta(),
                 "MeteorPanel - Satın Alma Talebi", newEntity.getOwner().getFullName() + ", " +
                     newEntity.getMaliyet().getLabel() + " adına " +
                     newEntity.getRequest() + " ürünü için yapmış olduğunuz talebi onayladı." +
@@ -251,14 +249,14 @@ public class StoreTrigger extends Trigger<Store, UUID, StoreRepository> {
                     "\nİlgili talebin SATIN ALMA SORUMLUSU sizsiniz. En az 3 teklif oluşturup proforma faturaları ekledikten sonra her bir teklif için Teklifi Tamamla butonuna basın.\n" +
                     "Eğer isterseniz önerdiğiniz teklif için Öner butonuna da basabilirsiniz. Onaycının onayı ile birlikte satın alma süreci tamamlanacaktır.\n" +
                     "Onaylanan teklifteki ürünü satın alıp talep eden kişiye ulaştırabilirsiniz.",
-                false, false);
+                false, false);*/
         }
         if (newEntity.getStatus().getId().equals(ContractStatus.RED.getId())) {
-            mailService.sendEmail(newEntity.getAssigner().getEposta(),
+            /*mailService.sendEmail(newEntity.getAssigner().getEposta(),
                 "MeteorPanel - Satın Alma Talebi", newEntity.getOwner().getFullName() + ", " +
                     newEntity.getMaliyet().getLabel() + " adına " +
                     newEntity.getRequest() + " ürünü için yapmış olduğunuz talebi reddetti.",
-                false, false);
+                false, false);*/
         }
         return newEntity;
     }

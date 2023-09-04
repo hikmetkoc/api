@@ -92,9 +92,13 @@ public class HolidayTrigger extends Trigger<Holiday, UUID, HolidayRepository> {
             LocalDate vocationStartDate = voca.getHolStart().atZone(ZoneId.systemDefault()).toLocalDate();
             LocalDate vocationEndDate = voca.getHolEnd().atZone(ZoneId.systemDefault()).toLocalDate();
 
-            if (startDate.isBefore(vocationEndDate) && endDate.isAfter(vocationStartDate)) {
-                throw new Exception("İzin başlangıç ve bitiş tarihleri, " + voca.getDescription() + " tatil aralığına denk geliyor!");
+            if ((startDate.isEqual(vocationStartDate) || startDate.isEqual(vocationEndDate) ||
+                endDate.isEqual(vocationStartDate) || endDate.isEqual(vocationEndDate) ||
+                (startDate.isAfter(vocationStartDate) && startDate.isBefore(vocationEndDate)) ||
+                (endDate.isAfter(vocationStartDate) && endDate.isBefore(vocationEndDate)))) {
+                throw new Exception("İzin başlangıç veya bitiş tarihi, " + voca.getDescription() + " tatil aralığındaki bir güne denk geliyor!");
             }
+
         }
 
 
@@ -256,13 +260,13 @@ public class HolidayTrigger extends Trigger<Holiday, UUID, HolidayRepository> {
         String ibat = izinbaslangictarihi.format(formatter);
         String ibit = izinbitistarihi.format(formatter);
 
-       mailService.sendEmail(newEntity.getAssigner().getEposta(),
+       /*mailService.sendEmail(newEntity.getAssigner().getEposta(),
             "MeteorPanel - Yeni İzin Talebi",newEntity.getOwner().getFullName() + ", " +
                 olt + " tarihinde " + ibat + " - " +
                 ibit + " tarihlerinde kullanılmak üzere " + newEntity.getType().getLabel() +
                 " talebinde bulunmuştur.\nTalep edilen iznin süresi " + newEntity.getIzingun().toString() + " gündür.\n" +
                 "İlgili talebin onaycısı sizsiniz.",
-            false,false);
+            false,false);*/
         return newEntity;
     }
 

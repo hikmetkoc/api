@@ -209,6 +209,7 @@ public class BuyTrigger extends Trigger<Buy, UUID, BuyRepository> {
                 if (newEntity.getPreparation().getId().equals(BuyQuoteStatus.ONAY.getId())) {
                     List<FileDescriptor> fileDescriptors = fileDescriptorRepository.findAllByEntityId(newEntity.getId().toString());
                     if (fileDescriptors.isEmpty()) {
+                        newEntity.getPreparation().setId(BuyQuoteStatus.BEKLE.getId());
                         throw new Exception("Tamamlamak istediğiniz teklife proforma fatura eklenmemiştir!");
                     }
 

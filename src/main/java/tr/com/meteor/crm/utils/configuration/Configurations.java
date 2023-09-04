@@ -9,7 +9,9 @@ public enum Configurations {
     SOZLESME_CC("Sözleşme CC"),
     BACKEND_VERSION("Backend Version"),
     KULLANMA_KILAVUZU_YOLU("Kullanma Kılavuzu Yolu"),
-    FIREBASE_AUTHORIZATION_KEY("Firebase Authorization Key");
+    FIREBASE_AUTHORIZATION_KEY("Firebase Authorization Key"),
+
+    INVOICELIST_START_DATE("InvoiceList Start Date");
 
     String id;
 

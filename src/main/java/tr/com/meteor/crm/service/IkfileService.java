@@ -406,4 +406,35 @@ public class IkfileService extends GenericIdNameAuditingEntityService<Ikfile, UU
 
         return out.toByteArray();
     }
+
+    public void createIkFile(User newEntity) throws Exception {
+        Ikfile ikfile = new Ikfile();
+        ikfile.setId(UUID.randomUUID());
+        ikfile.setOwner(getCurrentUser());
+        ikfile.setUser(newEntity);
+        ikfile.setCreatedBy(newEntity.getCreatedBy());
+        ikfile.setCreatedDate(newEntity.getCreatedDate());
+        ikfile.setLastModifiedBy(newEntity.getLastModifiedBy());
+        ikfile.setLastModifiedDate(newEntity.getLastModifiedDate());
+        ikfile.setSearch(ikfile.getId().toString() + " " + newEntity.getFullName());
+        ikfile.setNufus(false);
+        ikfile.setNufuskayit(false);
+        ikfile.setIkametgah(false);
+        ikfile.setSaglik(false);
+        ikfile.setDiploma(false);
+        ikfile.setSicil(false);
+        ikfile.setVesikalik(false);
+        ikfile.setAilebelge(false);
+        ikfile.setAskerlik(false);
+        ikfile.setIssozlesme(false);
+        ikfile.setSgk(false);
+        ikfile.setFazlamesai(false);
+        ikfile.setKvk(false);
+        ikfile.setEhliyet(false);
+        ikfile.setZimmetliarac(false);
+        ikfile.setGizlilik(false);
+        ikfile.setIstanimi(false);
+        ikfile.setSubject("Dosya");
+        repository.save(ikfile);
+    }
 }

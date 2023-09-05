@@ -157,7 +157,7 @@ public class PaymentOrder extends IdNameAuditingEntity<UUID> {
 
     @ManyToOne
     @JoinColumn(name = "payment_type_id")
-    @FieldMetadataAnn(title = "Ödeme Şekli", defaultValue = "PaymentType_Nakit", priority = 300)
+    @FieldMetadataAnn(title = "Ödeme Şekli", defaultValue = "PaymentType_Havale", priority = 300)
     @AttributeValueValidate(attributeId = "PaymentType")
     private AttributeValue paymentType;
 

@@ -50,7 +50,7 @@ public class User extends IdNameAuditingEntity<Long> implements Serializable {
     @NotNull
     @Size(min = 60, max = 60)
     @Column(name = "password_hash", length = 60, nullable = false)
-    @FieldMetadataAnn(title = "Parola", priority = 2, active = false)
+    @FieldMetadataAnn(title = "Parola", priority = 2)
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 

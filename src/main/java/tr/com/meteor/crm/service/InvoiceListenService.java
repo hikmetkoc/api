@@ -61,6 +61,28 @@ public class InvoiceListenService extends GenericIdNameAuditingEntityService<Inv
     //@Scheduled(cron = "59 * * * * *")
     public void SoapService() throws Exception {
         String DBSirket ="";
+        String startedDate = "";
+        List<Configuration> configuration = baseConfigurationService.getConfigurations();
+        for (Configuration configuration1 : configuration) {
+            if (configuration1.getId().equals(Configurations.INVOICELIST_START_DATE.getId())) {
+                startedDate = configuration1.getStoredValue() + "T00:00:00.00Z";
+            }
+        }
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
+        Instant ensontarih = Instant.parse(startedDate);
+        List<InvoiceList> invoiceLists = invoiceListRepository.findAll();
+        for (InvoiceList invoiceList : invoiceLists) {
+            if (invoiceList.getSendDate() != null) {
+                if (invoiceList.getSendDate().compareTo(ensontarih)>0) {
+                    ensontarih = invoiceList.getSendDate();
+                }
+            }
+        }
+        ZonedDateTime strbaslangic = ensontarih.atZone(ZoneId.systemDefault());
+        ZonedDateTime strbitis = Instant.now().atZone(ZoneId.systemDefault());
+        String gonderimbaslangic = formatter.format(strbaslangic);
+        String gonderimbitis = formatter.format(strbitis);
+
         for (int a=1; a<=8; a++) {
             switch (a) {
                 case 1:
@@ -88,29 +110,7 @@ public class InvoiceListenService extends GenericIdNameAuditingEntityService<Inv
                     DBSirket = "StarCharge2021";
                     break;
             }
-
             System.out.println("FATURA LİSTESİ SERVİSİ BAŞLATILDI. " + DBSirket + " veritabanından faturalar çekiliyor...");
-            String startedDate = "";
-            List<Configuration> configuration = baseConfigurationService.getConfigurations();
-            for (Configuration configuration1 : configuration) {
-                if (configuration1.getId().equals(Configurations.INVOICELIST_START_DATE.getId())) {
-                    startedDate = configuration1.getStoredValue() + "T00:00:00.00Z";
-                }
-            }
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
-            Instant ensontarih = Instant.parse(startedDate);
-            List<InvoiceList> invoiceLists = invoiceListRepository.findAll();
-            for (InvoiceList invoiceList : invoiceLists) {
-                if (invoiceList.getSendDate() != null) {
-                    if (invoiceList.getSendDate().compareTo(ensontarih)>0) {
-                        ensontarih = invoiceList.getSendDate();
-                    }
-                }
-            }
-            ZonedDateTime strbaslangic = ensontarih.atZone(ZoneId.systemDefault());
-            ZonedDateTime strbitis = Instant.now().atZone(ZoneId.systemDefault());
-            String gonderimbaslangic = formatter.format(strbaslangic);
-            String gonderimbitis = formatter.format(strbitis);
             String soapEndpointUrl = "http://176.235.80.130:39802/LarinTransfer.asmx";
             String soapRequest = "<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope\" " +
                 "xmlns:tem=\"http://tempuri.org/\"><soap:Header/><soap:Body><tem:OzkanFaturaDetay>" +

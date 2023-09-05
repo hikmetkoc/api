@@ -17,6 +17,7 @@ import tr.com.meteor.crm.utils.request.Request;
 import java.io.ByteArrayOutputStream;
 import java.time.Instant;
 import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.UUID;
@@ -207,5 +208,41 @@ public class HolUserService extends GenericIdNameAuditingEntityService<HolUser, 
         workbook.close();
 
         return out.toByteArray();
+    }
+
+    public void createHolUser(User newEntity) {
+        HolUser holuser = new HolUser();
+        holuser.setId(UUID.randomUUID());
+        holuser.setUser(newEntity);
+        holuser.setCreatedBy(newEntity.getCreatedBy());
+        holuser.setCreatedDate(newEntity.getCreatedDate());
+        holuser.setLastModifiedBy(newEntity.getLastModifiedBy());
+        holuser.setLastModifiedDate(newEntity.getLastModifiedDate());
+        holuser.setSearch(holuser.getId().toString() + " " + newEntity.getFullName());
+        holuser.setDogTar(newEntity.getBirthDate());
+        holuser.setIsBas(newEntity.getStartDate());
+        Instant startInstant = newEntity.getStartDate();
+        ZonedDateTime startZonedDateTime = startInstant.atZone(ZoneId.systemDefault());
+        ZonedDateTime resultZonedDateTime = startZonedDateTime.plusYears(1);
+        Instant resultInstant = resultZonedDateTime.toInstant();
+        holuser.setYilHak(resultInstant);
+        holuser.setKulYil(0.00);
+        holuser.setKalYil(0.00);
+        holuser.setTopYil(0.00);
+        holuser.setKulMaz(0.00);
+        holuser.setKalMaz(3.00);
+        holuser.setKulBaba(0.00);
+        holuser.setKulOlum(0.00);
+        holuser.setKulEvl(0.00);
+        holuser.setKulDog(0.00);
+        holuser.setKulRap(0.00);
+        holuser.setKulIdr(0.00);
+        holuser.setKulUcr(0.00);
+        holuser.setYilGun(0.00);
+        holuser.setTopHak(0.00);
+        holuser.setYilDevir(0.00);
+        holuser.setTopKul(0.00);
+        holuser.setTopKulMaz(0.00);
+        repository.save(holuser);
     }
 }

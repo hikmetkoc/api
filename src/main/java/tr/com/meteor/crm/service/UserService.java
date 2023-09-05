@@ -11,7 +11,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import tr.com.meteor.crm.domain.Store;
+import tr.com.meteor.crm.domain.*;
 import tr.com.meteor.crm.service.dto.UserDTO;
 import tr.com.meteor.crm.service.mapper.UserMapper;
 import tr.com.meteor.crm.service.util.RandomUtil;
@@ -21,8 +21,6 @@ import tr.com.meteor.crm.utils.jasper.rest.errors.EmailAlreadyUsedException;
 import tr.com.meteor.crm.utils.jasper.rest.errors.InvalidPasswordException;
 import tr.com.meteor.crm.utils.jasper.rest.errors.LoginAlreadyUsedException;
 import tr.com.meteor.crm.config.Constants;
-import tr.com.meteor.crm.domain.Role;
-import tr.com.meteor.crm.domain.User;
 import tr.com.meteor.crm.repository.RoleRepository;
 import tr.com.meteor.crm.repository.UserRepository;
 import tr.com.meteor.crm.security.RolesConstants;
@@ -30,6 +28,7 @@ import tr.com.meteor.crm.security.SecurityUtils;
 import tr.com.meteor.crm.utils.request.Request;
 
 import java.io.ByteArrayOutputStream;
+import java.math.BigDecimal;
 import java.time.Instant;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
@@ -338,7 +337,6 @@ public class UserService extends GenericIdNameAuditingEntityService<User, Long, 
 
         repository.save(user);
     }
-
     public byte[] generateExcelUserReport(User currentUser, Instant startDate, Instant endDate) throws Exception {
         List<User> hierarchicalUsers = baseUserService.getHierarchicalUsersOnlyDownwards(currentUser);
         List<Long> hierarchicalUserIds = hierarchicalUsers.stream().map(User::getId).collect(Collectors.toList());

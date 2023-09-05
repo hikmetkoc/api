@@ -4,6 +4,7 @@ import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import tr.com.meteor.crm.domain.InvoiceList;
 import tr.com.meteor.crm.repository.InvoiceListRepository;
@@ -24,8 +25,6 @@ public class InvoiceListController extends GenericIdNameAuditingEntityController
         super(service);
         this.invoiceListenService = invoiceListenService;
     }
-
-
     public final InvoiceListenService invoiceListenService;
 
     @PostMapping("report")

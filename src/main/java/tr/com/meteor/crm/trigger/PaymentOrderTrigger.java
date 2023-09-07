@@ -160,6 +160,9 @@ public class PaymentOrderTrigger extends Trigger<PaymentOrder, UUID, PaymentOrde
                 }
             }
         }
+        if (newEntity.getAssigner() == null || newEntity.getSecondAssigner() == null) {
+            throw new Exception("Bu maliyet yerine ait bir onay sisteminiz mevcut değildir. Lütfen IT ekibiyle iletişime geçiniz.");
+        }
         return newEntity;
     }
 

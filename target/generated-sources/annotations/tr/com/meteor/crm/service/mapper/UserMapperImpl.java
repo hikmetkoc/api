@@ -12,7 +12,7 @@ import tr.com.meteor.crm.service.dto.UserDTO;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-08-31T17:10:46+0300",
+    date = "2023-09-06T10:38:09+0300",
     comments = "version: 1.3.0.Final, compiler: javac, environment: Java 1.8.0_202 (Oracle Corporation)"
 )
 @Component

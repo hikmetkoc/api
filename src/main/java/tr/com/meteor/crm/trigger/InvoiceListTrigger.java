@@ -170,6 +170,9 @@ public class InvoiceListTrigger extends Trigger<InvoiceList, UUID, InvoiceListRe
                 }
             }
 
+            if (paymentOrder.getAssigner() == null || paymentOrder.getSecondAssigner() == null) {
+                throw new Exception("Bu maliyet yerine ait bir onay sisteminiz mevcut değildir. Lütfen IT ekibiyle iletişime geçiniz.");
+            }
             paymentOrder.setInvoiceDate(newEntity.getInvoiceDate());
             paymentOrder.setMaturityDate(newEntity.getMaturityDate());
             paymentOrder.setInvoiceNum(newEntity.getInvoiceNum());

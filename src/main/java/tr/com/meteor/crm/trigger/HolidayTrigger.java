@@ -76,7 +76,7 @@ public class HolidayTrigger extends Trigger<Holiday, UUID, HolidayRepository> {
             for (HolManager HolManager : limits) {
                 if (HolManager.getUser().getId().equals(newEntity.getOwner().getId())) {
                     newEntity.setAssigner(HolManager.getChief());
-                    if (newEntity.getUser() != null && !newEntity.getUser().getId().equals(newEntity.getOwner().getId()) && !getCurrentUser().equals(baseUserService.getUserFullFetched(2000L).get())) {
+                    if (newEntity.getUser() != null && !newEntity.getUser().getId().equals(newEntity.getOwner().getId()) && !getCurrentUser().equals(baseUserService.getUserFullFetched(2000L).get()) && !getCurrentUserId().equals(baseUserService.getUserFullFetched(2001L).get().getId())) {
                         if (!newEntity.getUser().getId().equals(HolManager.getChief().getId())) {
                             throw new Exception("Sadece kendi adınıza ve bir alt biriminizin çalışanlarına izin oluşturabilirsiniz!");
                         }
@@ -164,7 +164,7 @@ public class HolidayTrigger extends Trigger<Holiday, UUID, HolidayRepository> {
         if(newEntity.getApprovalStatus().getId().equals(HolidayStateStatus.RED.getId()) && !newEntity.getAssigner().getId().equals(getCurrentUserId())){
             throw new Exception("Sadece yöneticiniz reddebilir!");
         }
-        if(newEntity.getApprovalStatus().getId().equals(HolidayStateStatus.ISLENDI.getId()) && !getCurrentUserId().equals(baseUserService.getUserFullFetched(2000L).get().getId())) {
+        if(newEntity.getApprovalStatus().getId().equals(HolidayStateStatus.ISLENDI.getId()) && !getCurrentUserId().equals(baseUserService.getUserFullFetched(2000L).get().getId()) && !getCurrentUserId().equals(baseUserService.getUserFullFetched(2001L).get().getId())) {
             throw new Exception("Sadece İnsan Kaynakları Personeli İŞLENDİ durumuna çevirebilir!");
         }
         if (newEntity.getStartDate() == null) {
@@ -359,10 +359,10 @@ public class HolidayTrigger extends Trigger<Holiday, UUID, HolidayRepository> {
             newEntity.setOwner(getCurrentUser());
         }
         List <HolManager> holManagers = limitRepository.findByUserId(newEntity.getOwner().getId());
-        if(newEntity.getApprovalStatus().getId().equals(HolidayStateStatus.ISLENDI.getId()) && !getCurrentUserId().equals(baseUserService.getUserFullFetched(2000L).get().getId())) {
+        if(newEntity.getApprovalStatus().getId().equals(HolidayStateStatus.ISLENDI.getId()) && !getCurrentUserId().equals(baseUserService.getUserFullFetched(2000L).get().getId()) && !getCurrentUserId().equals(baseUserService.getUserFullFetched(2001L).get().getId())) {
             throw new Exception("Sadece İnsan Kaynakları Personeli İŞLENDİ durumuna çevirebilir!");
         }
-        else if(!newEntity.getAssigner().getId().equals(getCurrentUserId()) && !newEntity.getUser().getId().equals(getCurrentUserId()) && !getCurrentUserId().equals(baseUserService.getUserFullFetched(2000L).get().getId()) && !getCurrentUserId().equals(holManagers.get(0).getManager().getId())){
+        else if(!newEntity.getAssigner().getId().equals(getCurrentUserId()) && !newEntity.getUser().getId().equals(getCurrentUserId()) && !getCurrentUserId().equals(baseUserService.getUserFullFetched(2000L).get().getId()) && !getCurrentUserId().equals(baseUserService.getUserFullFetched(2001L).get().getId()) && !getCurrentUserId().equals(holManagers.get(0).getManager().getId())){
             throw new Exception("Sadece talebi oluşturan kişi ve onaycı kişi düzenleme yapabilir!");
         }
         if(newEntity.getApprovalStatus().getId().equals(HolidayStateStatus.AKTIF.getId()) && !newEntity.getAssigner().getId().equals(getCurrentUserId()) && !getCurrentUserId().equals(holManagers.get(0).getManager().getId())){

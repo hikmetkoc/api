@@ -87,8 +87,8 @@ public class InvoiceListTrigger extends Trigger<InvoiceList, UUID, InvoiceListRe
         }
         if (!getCurrentUserId().equals(baseUserService.getUserFullFetched(26800L).get().getId()) && newEntity.getOwner() != null) {
             // ZORUNLU ALAN KONTROLLERİ
-            if (newEntity.getIban() == null) {
-                throw new Exception("IBAN Bilgisi zorunlu alandır. Eğer listelenen bir IBAN yoksa Tedarikçiler bölümünden ilgili tedarikçeye IBAN ekleyiniz!");
+            if (newEntity.getIban() == null && !newEntity.getPaymentType().getId().equals("PaymentType_Kredi") && newEntity.getSuccess().equals(false)) {
+                throw new Exception("Havale ödemelerinde IBAN Bilgisi zorunlu alandır. Eğer listelenen bir IBAN yoksa Tedarikçiler bölümünden ilgili tedarikçeye IBAN ekleyiniz!");
             }
             if (newEntity.getOdemeYapanSirket() == null) {
                 throw new Exception("Ödeme Yapan Firma alanı boş bırakılamaz!");
@@ -232,7 +232,9 @@ public class InvoiceListTrigger extends Trigger<InvoiceList, UUID, InvoiceListRe
                     spendRepository.insertSpend(UUID.randomUUID(), getCurrentUserId(), SpendStatus.ODENDI.getId(), paymentOrder.getId(), newEntity.getAmount(), "Otomatik Ödendi", false, this.baseUserService.getUserFullFetched(1L).get().getId(), Instant.now(), newEntity.getMaturityDate(), "Tek Ödeme", newEntity.getPayTl(), newEntity.getCustomer().getId());
                 }
             }
-            paymentOrder.setStrIban(newEntity.getIban().getName());
+            if (newEntity.getIban() != null) {
+                paymentOrder.setStrIban(newEntity.getIban().getName());
+            }
             paymentOrderRepository.save(paymentOrder);
 
             //TALİMATA DÖNÜŞTÜRÜLDÜ STATUS DEĞİŞİMİ

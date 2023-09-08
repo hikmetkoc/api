@@ -111,6 +111,7 @@ public class PaymentOrderController extends GenericIdNameAuditingEntityControlle
     @PutMapping("/{id}")
     public ResponseEntity<String> updatePaymentOrderStatus(@PathVariable UUID id, @RequestParam String status, @RequestParam String description) throws Exception {
         try {
+            System.out.println(description);
             List<PaymentStatus> paymentStatuses = Arrays.asList(PaymentStatus.values());
             for (PaymentStatus paymentStatus: paymentStatuses) {
                 if (paymentStatus.getId().equals(status)) {

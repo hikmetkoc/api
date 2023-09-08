@@ -21,7 +21,7 @@ import java.util.UUID;
 public class Iban extends IdNameAuditingEntity<UUID> {
 
     @FieldMetadataAnn(required = true, type="iban", defaultValue = "TR", title = "Iban Numarası", priority = 6)
-    @Column(length = 26)
+    @Column(length = 30)
     private String name;
     @ManyToOne
     @FieldMetadataAnn(title = "Tedarikçi", readOnly = true, priority = 3)

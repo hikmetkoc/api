@@ -65,7 +65,7 @@ public class StoreTrigger extends Trigger<Store, UUID, StoreRepository> {
                 !newEntity.getAssigner().getId().equals(baseUserService.getUserFullFetched(103L).get().getId())) {
                 newEntity.setOwner(baseUserService.getUserFullFetched(103L).get());    //MUSTAFA KARAMAN
             } else if (newEntity.getAssigner().getBirim().getId().equals(TaskType.TaskBirim.BIRIM_Avelice.getId()) &&
-                !newEntity.getAssigner().getId().equals(baseUserService.getUserFullFetched(139L).get().getId())) {
+                !newEntity.getAssigner().getId().equals(baseUserService.getUserFullFetched(133L).get().getId())) {
                 newEntity.setOwner(baseUserService.getUserFullFetched(133L).get());    //MUSTAFA ÖCAL
             } else if ((newEntity.getAssigner().getBirim().getId().equals(TaskType.TaskBirim.BIRIM_Satin.getId()) &&
                 !newEntity.getAssigner().getId().equals(baseUserService.getUserFullFetched(91L).get().getId())) ||

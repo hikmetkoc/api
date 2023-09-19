@@ -87,7 +87,7 @@ public class InvoiceListTrigger extends Trigger<InvoiceList, UUID, InvoiceListRe
         }
         if (!getCurrentUserId().equals(baseUserService.getUserFullFetched(26800L).get().getId()) && newEntity.getOwner() != null) {
             // ZORUNLU ALAN KONTROLLERİ
-            if (newEntity.getIban() == null && !newEntity.getPaymentType().getId().equals("PaymentType_Kredi") && newEntity.getSuccess().equals(false)) {
+            if (newEntity.getIban() == null && newEntity.getPaymentType().getId().equals("PaymentType_Havale") && newEntity.getSuccess().equals(false)) {
                 throw new Exception("Havale ödemelerinde IBAN Bilgisi zorunlu alandır. Eğer listelenen bir IBAN yoksa Tedarikçiler bölümünden ilgili tedarikçeye IBAN ekleyiniz!");
             }
             if (newEntity.getOdemeYapanSirket() == null) {

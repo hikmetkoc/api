@@ -71,7 +71,7 @@ public class PaymentOrderTrigger extends Trigger<PaymentOrder, UUID, PaymentOrde
         if (newEntity.getCustomer() == null) {
             throw new Exception("Lütfen Ödeme yapılacak firmayı yazın!");
         }
-        if (newEntity.getIban() == null && !newEntity.getPaymentType().getId().equals("PaymentType_Kredi") && newEntity.getSuccess().equals(false)) {
+        if (newEntity.getIban() == null && newEntity.getPaymentType().getId().equals("PaymentType_Havale") && newEntity.getSuccess().equals(false)) {
             throw new Exception("Havale ödemelerinde IBAN Bilgisi zorunlu alandır. Eğer listelenen bir IBAN yoksa Tedarikçiler bölümünden ilgili tedarikçeye IBAN ekleyiniz!");
         }
         if (newEntity.getSirket() == null) {

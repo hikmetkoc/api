@@ -24,8 +24,8 @@ public interface PaymentOrderRepository extends GenericIdNameAuditingEntityRepos
 
     @Transactional
     @Modifying
-    @Query("UPDATE PaymentOrder p SET p.status = :status, p.cancelDate = :cancelDate, p.cancelUser = :cancelUser, p.okeyMuh = :okeyMuh, p.okeyFirst = :okeyFirst, p.okeySecond = :okeySecond, p.payamount = :payAmount, p.nextamount = :nextAmount, p.description = :description WHERE p.id = :id")
-    void updateStatusById(@Param("status") AttributeValue status, @Param("id") UUID id, @Param("cancelDate") Instant cancelDate, @Param("cancelUser") User cancelUser, @Param("okeyMuh") Instant okeyMuh, @Param("okeyFirst") Instant okeyFirst, @Param("okeySecond") Instant okeySecond, @Param("payAmount") BigDecimal payAmount, @Param("nextAmount") BigDecimal nextAmount, @Param("description") String description);
+    @Query("UPDATE PaymentOrder p SET p.status = :status, p.cancelDate = :cancelDate, p.cancelUser = :cancelUser, p.okeyMuh = :okeyMuh, p.okeyFirst = :okeyFirst, p.okeySecond = :okeySecond, p.payamount = :payAmount, p.nextamount = :nextAmount, p.description = :description, p.muhasebeGoruntusu = :muhasebeGoruntusu WHERE p.id = :id")
+    void updateStatusById(@Param("status") AttributeValue status, @Param("id") UUID id, @Param("cancelDate") Instant cancelDate, @Param("cancelUser") User cancelUser, @Param("okeyMuh") Instant okeyMuh, @Param("okeyFirst") Instant okeyFirst, @Param("okeySecond") Instant okeySecond, @Param("payAmount") BigDecimal payAmount, @Param("nextAmount") BigDecimal nextAmount, @Param("description") String description, @Param("muhasebeGoruntusu") Boolean muhasebeGoruntusu);
 
     @Transactional
     @Modifying

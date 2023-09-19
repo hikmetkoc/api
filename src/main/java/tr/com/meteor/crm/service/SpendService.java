@@ -433,4 +433,25 @@ public class SpendService extends GenericIdNameAuditingEntityService<Spend, UUID
         }
         return veri;
     }
+
+    public String controlTotal() throws Exception {
+        BigDecimal toplamtl = BigDecimal.ZERO;
+        BigDecimal toplamdl = BigDecimal.ZERO;
+        List<Spend> spendList = repository.findAll();
+
+        for (Spend spend : spendList) {
+            if (spend.getStatus().getLabel().equals("Ödendi")) continue;
+            if (spend.getPaymentorder().getMoneyType().getId().equals("Par_Bir_Tl")) {
+                toplamtl = toplamtl.add(spend.getAmount());
+            } else {
+                if (spend.getPaymentorder().getPaymentStyle().getId().equals("Payment_Style_Tl")) {
+                    toplamtl = toplamtl.add(spend.getPayTl());
+                } else {
+                    toplamdl = toplamdl.add(spend.getAmount());
+                }
+            }
+        }
+        String degerler = toplamtl.toString() + "-" + toplamdl.toString();
+        return degerler;
+    }
 }

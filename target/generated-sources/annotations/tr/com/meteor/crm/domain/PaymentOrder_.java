@@ -11,6 +11,7 @@ import javax.persistence.metamodel.StaticMetamodel;
 public abstract class PaymentOrder_ extends tr.com.meteor.crm.domain.IdNameAuditingEntity_ {
 
 	public static volatile SingularAttribute<PaymentOrder, String> base64File;
+	public static volatile SingularAttribute<PaymentOrder, Boolean> muhasebeGoruntusu;
 	public static volatile SingularAttribute<PaymentOrder, Instant> cancelDate;
 	public static volatile SingularAttribute<PaymentOrder, AttributeValue> sirket;
 	public static volatile SingularAttribute<PaymentOrder, AttributeValue> moneyType;
@@ -49,6 +50,7 @@ public abstract class PaymentOrder_ extends tr.com.meteor.crm.domain.IdNameAudit
 	public static volatile SingularAttribute<PaymentOrder, AttributeValue> status;
 
 	public static final String BASE64_FILE = "base64File";
+	public static final String MUHASEBE_GORUNTUSU = "muhasebeGoruntusu";
 	public static final String CANCEL_DATE = "cancelDate";
 	public static final String SIRKET = "sirket";
 	public static final String MONEY_TYPE = "moneyType";

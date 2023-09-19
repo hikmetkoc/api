@@ -26,6 +26,7 @@ public abstract class InvoiceList_ extends tr.com.meteor.crm.domain.IdNameAuditi
 	public static volatile SingularAttribute<InvoiceList, AttributeValue> cost;
 	public static volatile SingularAttribute<InvoiceList, Boolean> autopay;
 	public static volatile SingularAttribute<InvoiceList, Boolean> kismi;
+	public static volatile SingularAttribute<InvoiceList, User> permission;
 	public static volatile SingularAttribute<InvoiceList, Instant> invoiceDate;
 	public static volatile SingularAttribute<InvoiceList, String> invoiceNum;
 	public static volatile SingularAttribute<InvoiceList, AttributeValue> odemeYapanSirket;
@@ -53,6 +54,7 @@ public abstract class InvoiceList_ extends tr.com.meteor.crm.domain.IdNameAuditi
 	public static final String COST = "cost";
 	public static final String AUTOPAY = "autopay";
 	public static final String KISMI = "kismi";
+	public static final String PERMISSION = "permission";
 	public static final String INVOICE_DATE = "invoiceDate";
 	public static final String INVOICE_NUM = "invoiceNum";
 	public static final String ODEME_YAPAN_SIRKET = "odemeYapanSirket";

@@ -37,10 +37,10 @@ public class Customer extends IdNameAuditingEntity<UUID> {
     @JsonIgnoreProperties({"groups", "members", "createdBy", "lastModifiedBy", "roles"})
     private User owner;
 
-    @FieldMetadataAnn(required = true, title = "Mail", type = "Email", search = true)
+    @FieldMetadataAnn(title = "Mail", type = "Email", search = true)
     private String email;
 
-    @FieldMetadataAnn(required = true, title = "Telefon", type = "Phone", search = true, display = true, priority = 30, filterable = true)
+    @FieldMetadataAnn(title = "Telefon", type = "Phone", search = true, display = true, priority = 30, filterable = true)
     private String phone;
 
     @FieldMetadataAnn(title = "Web Sitesi", search = true)

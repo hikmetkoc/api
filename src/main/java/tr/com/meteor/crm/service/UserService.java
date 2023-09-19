@@ -1,7 +1,12 @@
 package tr.com.meteor.crm.service;
 
+import com.itextpdf.text.*;
+import com.itextpdf.text.Document;
+import com.itextpdf.tool.xml.XMLWorkerHelper;
 import org.apache.poi.ss.usermodel.FillPatternType;
 import org.apache.poi.xssf.usermodel.*;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Element;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.cache.CacheManager;
@@ -27,14 +32,18 @@ import tr.com.meteor.crm.security.RolesConstants;
 import tr.com.meteor.crm.security.SecurityUtils;
 import tr.com.meteor.crm.utils.request.Request;
 
-import java.io.ByteArrayOutputStream;
+import java.io.*;
 import java.math.BigDecimal;
 import java.time.Instant;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
+import java.util.List;
 import java.util.stream.Collectors;
+
+import com.itextpdf.text.pdf.PdfWriter;
+import java.util.Base64;
 
 /**
  * Service class for managing users.
@@ -336,6 +345,24 @@ public class UserService extends GenericIdNameAuditingEntityService<User, Long, 
         user.addFcmToken(token);
 
         repository.save(user);
+    }
+
+    public byte[] generateResignBase64(String htmlContent) throws IOException, DocumentException {
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        Document document = new Document();
+        PdfWriter.getInstance(document, outputStream);
+        document.open();
+
+        // JSoup ile HTML içeriği analiz edilir
+        org.jsoup.nodes.Document jsoupDoc = Jsoup.parse(htmlContent);
+
+        // HTML içeriğini PDF'e ekleme
+        Font font = FontFactory.getFont(FontFactory.HELVETICA, 12);
+        Paragraph paragraph = new Paragraph(jsoupDoc.text(), font);
+        document.add(paragraph);
+
+        document.close();
+        return outputStream.toByteArray();
     }
     public byte[] generateExcelUserReport(User currentUser, Instant startDate, Instant endDate) throws Exception {
         List<User> hierarchicalUsers = baseUserService.getHierarchicalUsersOnlyDownwards(currentUser);

@@ -110,4 +110,13 @@ public class SpendController extends GenericIdNameAuditingEntityController<Spend
             return ResponseEntity.badRequest().build();
         }
     }
+
+    @PostMapping("/controltotalspends")
+    public ResponseEntity<String> controlTotalSpends() throws Exception{
+        try {
+            return ResponseEntity.ok(service.controlTotal());
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body("HATALI İŞLEM");
+        }
+    }
 }

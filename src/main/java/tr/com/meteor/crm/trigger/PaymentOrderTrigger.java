@@ -74,11 +74,17 @@ public class PaymentOrderTrigger extends Trigger<PaymentOrder, UUID, PaymentOrde
         if (newEntity.getIban() == null && !newEntity.getPaymentType().getId().equals("PaymentType_Kredi") && newEntity.getSuccess().equals(false)) {
             throw new Exception("Havale ödemelerinde IBAN Bilgisi zorunlu alandır. Eğer listelenen bir IBAN yoksa Tedarikçiler bölümünden ilgili tedarikçeye IBAN ekleyiniz!");
         }
+        if (newEntity.getSirket() == null) {
+            throw new Exception("Fatura Sahibi Firma alanı boş bırakılamaz!");
+        }
         if (newEntity.getOdemeYapanSirket() == null) {
             throw new Exception("Ödeme Yapan Firma alanı boş bırakılamaz!");
         }
         if (newEntity.getCost() == null) {
             throw new Exception("Maliyet yeri boş bırakılamaz!");
+        }
+        if (newEntity.getInvoiceDate() == null) {
+            throw new Exception("Fatura tarihi boş bırakılamaz!");
         }
         if (newEntity.getMaturityDate() == null) {
             throw new Exception("Vade tarihi boş bırakılamaz!");
@@ -164,6 +170,9 @@ public class PaymentOrderTrigger extends Trigger<PaymentOrder, UUID, PaymentOrde
         }
         if (newEntity.getAssigner() == null || newEntity.getSecondAssigner() == null) {
             throw new Exception("Bu maliyet yerine ait bir onay sisteminiz mevcut değildir. Lütfen IT ekibiyle iletişime geçiniz.");
+        }
+        if (newEntity.getOwner().getBirim().getId().equals("Birim_Muh")) {
+            newEntity.setMuhasebeGoruntusu(true);
         }
         return newEntity;
     }

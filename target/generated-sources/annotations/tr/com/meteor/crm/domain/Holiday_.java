@@ -11,6 +11,7 @@ public abstract class Holiday_ extends tr.com.meteor.crm.domain.IdNameAuditingEn
 
 	public static volatile SingularAttribute<Holiday, User> owner;
 	public static volatile SingularAttribute<Holiday, AttributeValue> approvalStatus;
+	public static volatile SingularAttribute<Holiday, String> base64File;
 	public static volatile SingularAttribute<Holiday, City> city;
 	public static volatile SingularAttribute<Holiday, Instant> endDate;
 	public static volatile SingularAttribute<Holiday, Instant> comeDate;
@@ -28,6 +29,7 @@ public abstract class Holiday_ extends tr.com.meteor.crm.domain.IdNameAuditingEn
 
 	public static final String OWNER = "owner";
 	public static final String APPROVAL_STATUS = "approvalStatus";
+	public static final String BASE64_FILE = "base64File";
 	public static final String CITY = "city";
 	public static final String END_DATE = "endDate";
 	public static final String COME_DATE = "comeDate";

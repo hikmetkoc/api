@@ -31,16 +31,20 @@ public class PaymentOrderService extends GenericIdNameAuditingEntityService<Paym
     private final InvoiceListRepository invoiceListRepository;
     private final StoreRepository storeRepository;
 
+    private final PostaGuverciniService postaGuverciniService;
+    private final MailService mailService;
     public PaymentOrderService(BaseUserService baseUserService, BaseRoleService baseRoleService,
                                BasePermissionService basePermissionService, BaseFileDescriptorService baseFileDescriptorService,
                                BaseConfigurationService baseConfigurationService,
-                               PaymentOrderRepository repository, AttributeValueRepository attributeValueRepository, SpendRepository spendRepository, InvoiceListRepository invoiceListRepository, StoreRepository storeRepository) {
+                               PaymentOrderRepository repository, AttributeValueRepository attributeValueRepository, SpendRepository spendRepository, InvoiceListRepository invoiceListRepository, StoreRepository storeRepository, PostaGuverciniService postaGuverciniService, MailService mailService) {
         super(baseUserService, baseRoleService, basePermissionService, baseFileDescriptorService, baseConfigurationService,
             PaymentOrder.class, repository);
         this.attributeValueRepository = attributeValueRepository;
         this.spendRepository = spendRepository;
         this.invoiceListRepository = invoiceListRepository;
         this.storeRepository = storeRepository;
+        this.postaGuverciniService = postaGuverciniService;
+        this.mailService = mailService;
     }
     public byte[] generateExcelOrderReport(User currentUser, Instant startDate, Instant endDate) throws Exception {
         List<User> hierarchicalUsers = baseUserService.getHierarchicalUsersOnlyDownwards(currentUser);
@@ -571,7 +575,9 @@ public class PaymentOrderService extends GenericIdNameAuditingEntityService<Paym
             if (paymentOrder.getMoneyType() != null) {
                 MoneyTypeCell.setCellValue(paymentOrder.getMoneyType().getLabel());
             }
-            if (paymentOrder.getIban().getName() != null) {
+            if (paymentOrder.getIban() == null) {
+                IbanCell.setCellValue("");
+            } else {
                 IbanCell.setCellValue(paymentOrder.getIban().getName());
             }
             if (StringUtils.isNotBlank(paymentOrder.getDescription())) {
@@ -637,10 +643,6 @@ public class PaymentOrderService extends GenericIdNameAuditingEntityService<Paym
         return out.toByteArray();
     }
 
-    public PaymentOrder getPaymentOrderById(UUID id) {
-        return repository.findById(id).orElse(null);
-    }
-
     public void updatePaymentOrderStatus(UUID id, AttributeValue status, String description) throws Exception{
         Instant iptalzamani = null;
         User iptaleden = null;
@@ -651,10 +653,17 @@ public class PaymentOrderService extends GenericIdNameAuditingEntityService<Paym
         BigDecimal nextAmount = BigDecimal.ZERO;
         String kaynak = "";
         String invoiceNum = "";
+        String olusturan = "";
+        String onay1 = "";
+        String onay2 = "";
+        String muhasebe = "";
+        PaymentOrder odemeTalimati = new PaymentOrder();
+        Boolean muhasebeGoruntusu = false;
 
         List <PaymentOrder> paymentOrder = repository.findAll();
         for (PaymentOrder paymentOrder1 : paymentOrder) {
             if (paymentOrder1.getId().equals(id)) {
+                odemeTalimati = paymentOrder1;
                 iptalzamani = paymentOrder1.getCancelDate();
                 iptaleden = paymentOrder1.getCancelUser();
                 muhasebeOnayi = paymentOrder1.getOkeyMuh();
@@ -664,6 +673,12 @@ public class PaymentOrderService extends GenericIdNameAuditingEntityService<Paym
                 nextAmount = paymentOrder1.getNextamount();
                 kaynak  = paymentOrder1.getKaynak();
                 invoiceNum = paymentOrder1.getInvoiceNum();
+                olusturan = paymentOrder1.getOwner().getEposta();
+                onay1 = paymentOrder1.getAssigner().getEposta();
+                onay2 = paymentOrder1.getSecondAssigner().getEposta();
+                if (paymentOrder1.getCost().getId().equals("Cost_Place_MeteorIzmir")) muhasebe = "elif.kucukkurt@loher.com.tr;selin.akbayirli@loher.com.tr";
+                else if (paymentOrder1.getCost().getId().equals("Cost_Place_MeteorIgdir") || paymentOrder1.getCost().getId().equals("Cost_Place_Avelice")) muhasebe = "muharrem.alcan@aveliceasansor.com.tr";
+                else muhasebe = "muhasebe@meteorpetrol.com";
                 break;
             }
         }
@@ -676,13 +691,12 @@ public class PaymentOrderService extends GenericIdNameAuditingEntityService<Paym
 
             //todo: BURADA REDDEDİLEN TALİMATIN FATURA LİSTESİNDEKİ GÜNCELLEMESİ YAPILACAK...
             if (kaynak.equals("FATURA LİSTESİ")) {
-                List<InvoiceList> invoiceList = invoiceListRepository.findByInvoiceNum(invoiceNum); // hata burada
+                List<InvoiceList> invoiceList = invoiceListRepository.findByInvoiceNum(invoiceNum);
                 List<InvoiceStatus> invoiceStatuses = Arrays.asList(InvoiceStatus.values());
                 for (InvoiceStatus invoiceStatus: invoiceStatuses) {
                     if (invoiceStatus.getId().equals("Fatura_Durumlari_Atandi")) {
                         for (InvoiceList invoiceList1: invoiceList) {
                             if (invoiceList1.getInvoiceNum().equals(invoiceNum)) {
-                                //invoiceListRepository.updateStatusById(invoiceStatus.getAttributeValue(), invoiceList1.getId(), "Talimatı Reddedildi...");
                                 invoiceListRepository.updateInvoice(invoiceStatus.getAttributeValue(), invoiceList1.getId(), "Talimatı Reddedildi...");
                             }
                         }
@@ -691,16 +705,53 @@ public class PaymentOrderService extends GenericIdNameAuditingEntityService<Paym
             }
         } else if(status.getId().equals("Payment_Status_Bek2") && getCurrentUser().getBirim().getId().equals("Birim_Muh")){
             muhasebeOnayi = Instant.now();  // Muhasebeci Onay Verdiyse Muhasebe Onay Zamanını Al
+            muhasebeGoruntusu = false;
         } else if(status.getId().equals("Payment_Status_Bek2") && !getCurrentUser().getBirim().getId().equals("Birim_Muh")){
             okeyFirst = Instant.now();      // Prim ödemesi, 1.Onaycı onay verdi ve Muhasebe onayı atlandıysa 1.Onay Zamanını Al
+            muhasebeGoruntusu = false;
         } else if(status.getId().equals("Payment_Status_Onay")){
             okeySecond = Instant.now();     // 2.Onaycı onay Verdiyse 2.Onay Zamanını Al
         } else if(status.getId().equals("Payment_Status_Muh")){
+            muhasebeGoruntusu = true;
             okeyFirst = Instant.now();      // 1.Onaycı onay Verdiyse 1.Onay Zamanını Al
         }
-
-        repository.updateStatusById(status, id, iptalzamani, iptaleden, muhasebeOnayi, okeyFirst, okeySecond, payAmount, nextAmount, description);
+        //mailSend(olusturan, onay1, muhasebe, onay2, status.getLabel(), odemeTalimati);
+        repository.updateStatusById(status, id, iptalzamani, iptaleden, muhasebeOnayi, okeyFirst, okeySecond, payAmount, nextAmount, description, muhasebeGoruntusu);
         //todo: Talimat onay durumu değiştiğinde Ödeme ekranındaki Talimat Onay Durumu'da güncellensin.
+
+    }
+
+    public void mailSend(String olusturan, String onay1, String muhasebe, String onay2, String durum, PaymentOrder paymentOrder) throws Exception {
+       String text = paymentOrder.getInvoiceNum() + " fatura numaralı ödeme talimatı, ";
+       String testmail = "hikmet@meteorpetrol.com";
+       try {
+           if (durum.equals("1.Onay Bekleniyor")) {
+               text = text + " (" + onay1 + " kişisine mail atılacaktı) " + durum + ", " +
+                   " durumundadır ve onayınız beklenmektedir. meteorpanel.com/paymentorder adresinden ilgili talimata ulaşabilirsiniz.";
+               mailService.sendEmail(testmail, "MeteorPanel - Ödeme Talimatı", text,false, false);
+           } else if (durum.equals("2.Onay Bekleniyor")) {
+               text = text + " (" + onay2 + " kişisine mail atılacaktı) " + durum + ", " +
+                   " durumundadır ve onayınız beklenmektedir. meteorpanel.com/paymentorder adresinden ilgili talimata ulaşabilirsiniz.";
+               mailService.sendEmail(testmail, "MeteorPanel - Ödeme Talimatı", text,false, false);
+           } else if (durum.equals("Muhasebe Onayı")) {
+               text = text + " (" + muhasebe + " kişisine mail atılacaktı) " + durum + ", " +
+                   " durumundadır ve onayınız beklenmektedir. meteorpanel.com/paymentorder adresinden ilgili talimata ulaşabilirsiniz.";
+               mailService.sendEmail(testmail, "MeteorPanel - Ödeme Talimatı", text,false, false);
+           } else if (durum.equals("Reddedildi")) {
+               text = text + " (" + olusturan + " kişisine mail atılacaktı) " + durum + ", " + " REDDEDİLMİŞTİR. meteorpanel.com/paymentorder adresinden ilgili talimata ulaşabilirsiniz.";
+               mailService.sendEmail(testmail, "MeteorPanel - Ödeme Talimatı", text,false, false);
+           } else {
+
+           }
+
+           if (paymentOrder.getAssigner().getUnvan().getId().equals("Unvan_Gen_Mud") || paymentOrder.getAssigner().getUnvan().getId().equals("Unvan_Yon_Bas") ||
+               paymentOrder.getAssigner().getUnvan().getId().equals("Unvan_San_Bas") || paymentOrder.getAssigner().getUnvan().getId().equals("Unvan_Ins_Dir")
+           ) {
+               postaGuverciniService.SendSmsService("5442458391", text);
+           }
+       } catch (Exception e) {
+           throw new Exception(e.getMessage());
+       }
 
     }
     public PaymentOrder updatePaymentOrder(UUID id, String base64file) throws Exception {

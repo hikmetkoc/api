@@ -78,7 +78,11 @@ public class InvoiceListenService extends GenericIdNameAuditingEntityService<Inv
                 }
             }
         }
-        ZonedDateTime strbaslangic = ensontarih.atZone(ZoneId.systemDefault());
+        ZonedDateTime strbaslangic = ensontarih.atZone(ZoneId.systemDefault()).minusDays(7);
+        ZonedDateTime dokuzEylul2023 = ZonedDateTime.of(2023, 9, 9, 0, 0, 0, 0, ZoneId.systemDefault());
+        if (strbaslangic.isBefore(dokuzEylul2023)) {
+            strbaslangic = dokuzEylul2023;
+        }
         ZonedDateTime strbitis = Instant.now().atZone(ZoneId.systemDefault());
         String gonderimbaslangic = formatter.format(strbaslangic);
         String gonderimbitis = formatter.format(strbitis);
@@ -291,6 +295,7 @@ public class InvoiceListenService extends GenericIdNameAuditingEntityService<Inv
             invoiceList.setAmount(bigDecimal);
         }
 
+        invoiceList.setPermission(baseUserService.getUserFullFetched(1L).get());
         if (parabirimi.equals("TRY")) {
             invoiceList.setMoneyType(getAttributeValueById(attributeValues, "Par_Bir_Tl"));
         } else {

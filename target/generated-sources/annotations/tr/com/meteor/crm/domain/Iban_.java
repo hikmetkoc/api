@@ -10,11 +10,13 @@ public abstract class Iban_ extends tr.com.meteor.crm.domain.IdNameAuditingEntit
 
 	public static volatile SingularAttribute<Iban, AttributeValue> bank;
 	public static volatile SingularAttribute<Iban, String> instanceName;
+	public static volatile SingularAttribute<Iban, AttributeValue> moneyType;
 	public static volatile SingularAttribute<Iban, String> name;
 	public static volatile SingularAttribute<Iban, Customer> customer;
 
 	public static final String BANK = "bank";
 	public static final String INSTANCE_NAME = "instanceName";
+	public static final String MONEY_TYPE = "moneyType";
 	public static final String NAME = "name";
 	public static final String CUSTOMER = "customer";
 

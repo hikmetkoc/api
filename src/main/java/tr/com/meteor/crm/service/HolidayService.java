@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import tr.com.meteor.crm.domain.Buy;
 import tr.com.meteor.crm.domain.Holiday;
+import tr.com.meteor.crm.domain.PaymentOrder;
 import tr.com.meteor.crm.domain.User;
 import tr.com.meteor.crm.repository.HolidayRepository;
 import tr.com.meteor.crm.utils.filter.Filter;
@@ -201,5 +202,30 @@ public class HolidayService extends GenericIdNameAuditingEntityService<Holiday, 
         mailService.sendEmail(receiver,
             subject,message,
             false,false);
+    }
+
+    public Holiday uploadHoliday(UUID id, String base64file) throws Exception {
+        System.out.println(id.toString() + " id li izne dosya eklendi.");
+        try {
+            repository.updateBase64(id,base64file);
+        } catch (Exception e) {
+            System.out.println("HATA MESAJI: " + e.getMessage());
+            e.printStackTrace();
+            throw new Exception("HATA!");
+        }
+        // Eğer id ile eşleşen bir PaymentOrder bulunamazsa burada null döndürmelisiniz.
+        return null;
+    }
+
+    public String getEttntById(UUID id) throws Exception {
+        List<Holiday> holidays = repository.findAll();
+        String veri = "";
+        for (Holiday holiday: holidays) {
+            if (holiday.getId().equals(id)) {
+                veri = holiday.getBase64File();
+                break;
+            }
+        }
+        return veri;
     }
 }

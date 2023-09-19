@@ -33,6 +33,7 @@ import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.time.Instant;
+import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -194,5 +195,16 @@ public class UserController extends GenericIdNameAuditingEntityController<User, 
             .header("Content-Disposition", "attachment; filename=" + service.getEntityMetaData().getName() + ".xlsx")
             .contentType(MediaType.parseMediaType("application/vnd.ms-excel;charset=UTF-8"))
             .body(new ByteArrayResource(service.generateExcelUserReport(getCurrentUser(), startDate, endDate)));
+    }
+
+    @PostMapping("/generate-resign-form")
+    public ResponseEntity<String> generatePdf(@RequestBody String htmlContent) {
+        try {
+            byte[] base64Pdf = service.generateResignBase64(htmlContent);
+            String base64EncodedPDF = Base64.getEncoder().encodeToString(base64Pdf);
+            return ResponseEntity.ok(base64EncodedPDF);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("PDF oluşturma hatası: " + e.getMessage());
+        }
     }
 }

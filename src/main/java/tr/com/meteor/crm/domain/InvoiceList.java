@@ -17,7 +17,7 @@ import java.util.UUID;
 @Entity
 @IdType(idType = IdType.IdTypeEnum.UUID)
 @EntityMetadataAnn(apiName = "invoice_lists", displayField = "instanceName", title = "Fatura Listesi", pluralTitle = "Faturalar",
-    ownerPath = "owner.id")
+    ownerPath = "owner.id", otherPath = "permission.id")
 @Table(indexes = {@Index(columnList = "search")})
 public class InvoiceList extends IdNameAuditingEntity<UUID> {
 
@@ -35,6 +35,12 @@ public class InvoiceList extends IdNameAuditingEntity<UUID> {
     @FieldMetadataAnn(title = "Fatura Sahibi", priority = 5, filterable = true)
     @JsonIgnoreProperties({"groups", "members", "createdBy", "lastModifiedBy", "roles"})
     private User owner;
+
+    @ManyToOne
+    @JoinColumn(name = "permission_id")
+    @FieldMetadataAnn(title = "Görüntüleme Yetkilisi", priority = 5, active = false)
+    @JsonIgnoreProperties({"groups", "members", "createdBy", "lastModifiedBy", "roles"})
+    private User permission;
 
     /*@ManyToOne
     @FieldMetadataAnn(title = "Atayan Muhasebeci", display = true, priority = 2, readOnly = true, filterable = true)
@@ -382,5 +388,13 @@ public class InvoiceList extends IdNameAuditingEntity<UUID> {
 
     public void setPayTl(BigDecimal payTl) {
         this.payTl = payTl;
+    }
+
+    public User getPermission() {
+        return permission;
+    }
+
+    public void setPermission(User permission) {
+        this.permission = permission;
     }
 }

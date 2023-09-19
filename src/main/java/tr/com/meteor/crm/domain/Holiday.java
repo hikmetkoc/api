@@ -79,6 +79,9 @@ public class Holiday extends IdNameAuditingEntity<UUID> {
     @AttributeValueValidate(attributeId = "Izin_Turu")
     @FieldMetadataAnn(title = "İzin Türü", display = true, defaultValue = "Iz_Tur_Yil", priority = 150, filterable = true)
     private AttributeValue type;
+
+    @FieldMetadataAnn(title = "PDF", active = false)
+    private String base64File;
     @Formula("name")
     @FieldMetadataAnn(title = "Başlık", active = false)
     private String instanceName;
@@ -224,5 +227,13 @@ public class Holiday extends IdNameAuditingEntity<UUID> {
 
     public void setHaftalikGun(AttributeValue haftalikGun) {
         this.haftalikGun = haftalikGun;
+    }
+
+    public String getBase64File() {
+        return base64File;
+    }
+
+    public void setBase64File(String base64File) {
+        this.base64File = base64File;
     }
 }

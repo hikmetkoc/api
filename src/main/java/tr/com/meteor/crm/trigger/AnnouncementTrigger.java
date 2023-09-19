@@ -29,7 +29,7 @@ public class AnnouncementTrigger extends Trigger<Announcement, UUID, Announcemen
     @Override
     public Announcement afterInsert(Announcement newEntity) throws Exception {
         //notificationService.sendAnnouncementNotification(newEntity);
-        postaGuverciniService.SendSmsService("5442458391", "DENEME");
+        //postaGuverciniService.SendSmsService("5442458391", "DENEME");
 
         return newEntity;
     }

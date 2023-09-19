@@ -21,7 +21,7 @@ import java.util.UUID;
 public class Iban extends IdNameAuditingEntity<UUID> {
 
     @FieldMetadataAnn(required = true, type="iban", defaultValue = "TR", title = "Iban Numarası", priority = 6)
-    @Column(length = 30)
+    @Column(length = 34)
     private String name;
     @ManyToOne
     @FieldMetadataAnn(title = "Tedarikçi", readOnly = true, priority = 3)
@@ -32,6 +32,11 @@ public class Iban extends IdNameAuditingEntity<UUID> {
     @FieldMetadataAnn(title = "Banka", priority = 10, display = true, readOnly = false)
     private AttributeValue bank;
 
+    @ManyToOne
+    @JoinColumn(name = "money_type_id")
+    @FieldMetadataAnn(title = "Iban Para Birimi", defaultValue = "Par_Bir_Tl",priority = 15, display = true)
+    @AttributeValueValidate(attributeId = "Par_Bir")
+    private AttributeValue moneyType;
     @Formula("name")
     @FieldMetadataAnn(readOnly = true, title = "Başlık")
     private String instanceName;
@@ -87,5 +92,13 @@ public class Iban extends IdNameAuditingEntity<UUID> {
 
     public void setBank(AttributeValue bank) {
         this.bank = bank;
+    }
+
+    public AttributeValue getMoneyType() {
+        return moneyType;
+    }
+
+    public void setMoneyType(AttributeValue moneyType) {
+        this.moneyType = moneyType;
     }
 }

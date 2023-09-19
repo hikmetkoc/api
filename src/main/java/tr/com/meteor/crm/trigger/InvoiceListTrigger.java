@@ -235,6 +235,9 @@ public class InvoiceListTrigger extends Trigger<InvoiceList, UUID, InvoiceListRe
             if (newEntity.getIban() != null) {
                 paymentOrder.setStrIban(newEntity.getIban().getName());
             }
+            if (newEntity.getOwner().getBirim().getId().equals("Birim_Muh")) {
+                paymentOrder.setMuhasebeGoruntusu(true);
+            }
             paymentOrderRepository.save(paymentOrder);
 
             //TALİMATA DÖNÜŞTÜRÜLDÜ STATUS DEĞİŞİMİ

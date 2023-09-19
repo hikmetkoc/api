@@ -179,6 +179,9 @@ public class PaymentOrder extends IdNameAuditingEntity<UUID> {
     @FieldMetadataAnn(title = "Otomatik Ödemede Mi?", priority = 310)
     private Boolean autopay = false;
 
+    @FieldMetadataAnn(title = "Muhasebe Görüntüsü", active = false)
+    private Boolean muhasebeGoruntusu = false;
+
     @FieldMetadataAnn(title = "PDF", priority = 120, active = false)
     private String base64File;
 
@@ -509,5 +512,13 @@ public class PaymentOrder extends IdNameAuditingEntity<UUID> {
 
     public void setStrIban(String strIban) {
         this.strIban = strIban;
+    }
+
+    public Boolean getMuhasebeGoruntusu() {
+        return muhasebeGoruntusu;
+    }
+
+    public void setMuhasebeGoruntusu(Boolean muhasebeGoruntusu) {
+        this.muhasebeGoruntusu = muhasebeGoruntusu;
     }
 }

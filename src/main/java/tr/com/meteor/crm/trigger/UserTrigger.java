@@ -97,7 +97,7 @@ public class UserTrigger extends Trigger<User, Long, UserRepository> {
         newEntity.setGroups(groups);
 
         // KULLANICI YETKİLERİ OLUŞTURMA (USER_PERMISSION)
-        userPermissionService.createUserPermission(newEntity);
+        //userPermissionService.createUserPermission(newEntity);
 
         return newEntity;
     }

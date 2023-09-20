@@ -70,61 +70,61 @@ public class User extends IdNameAuditingEntity<Long> implements Serializable {
     private String tck;
     @ManyToOne
     @JoinColumn(name = "sirket_id")
-    @FieldMetadataAnn(title = "Bağlı Olduğu Şirket", defaultValue = "Sirket_Meteor", display = true, priority = 30, search = true, filterable = true, required = true)
+    @FieldMetadataAnn(title = "Bağlı Olduğu Şirket", display = true, priority = 30, search = true, filterable = true, required = true)
     @AttributeValueValidate(attributeId = "Sirketler")
     private AttributeValue sirket;
 
     @ManyToOne
     @JoinColumn(name = "birim_id")
-    @FieldMetadataAnn(title = "Bağlı Olduğu Birim", defaultValue = "Birim_IT", display = true, priority = 31, search = true, filterable = true, required = true)
+    @FieldMetadataAnn(title = "Bağlı Olduğu Birim", display = true, priority = 31, search = true, filterable = true, required = true)
     @AttributeValueValidate(attributeId = "Birimler")
     private AttributeValue birim;
 
     @ManyToOne
     @JoinColumn(name = "unvan_id")
-    @FieldMetadataAnn(title = "Bağlı Olduğu Unvan", defaultValue = "Unvan_BT_Sef", display = true, priority = 32, search = true, filterable = true, required = true)
+    @FieldMetadataAnn(title = "Bağlı Olduğu Unvan", display = true, priority = 32, search = true, filterable = true, required = true)
     @AttributeValueValidate(attributeId = "Unvanlar")
     private AttributeValue unvan;
 
     @ManyToOne
     @JoinColumn(name = "sgksirket_id")
-    @FieldMetadataAnn(title = "Sigortalı Olduğu Şirket", defaultValue = "Sirket_Meteor", display = true, priority = 10, search = true, filterable = true)
+    @FieldMetadataAnn(title = "Sigortalı Olduğu Şirket", display = true, priority = 10, search = true, filterable = true)
     @AttributeValueValidate(attributeId = "Sirketler")
     private AttributeValue sgksirket;
 
     @ManyToOne
     @JoinColumn(name = "sgkbirim_id")
-    @FieldMetadataAnn(title = "Sigortalı Olduğu Birim", defaultValue = "Birim_IT", active = false, priority = 11, search = true)
+    @FieldMetadataAnn(title = "Sigortalı Olduğu Birim", active = false, priority = 11, search = true)
     @AttributeValueValidate(attributeId = "Birimler")
     private AttributeValue sgkbirim;
 
     @ManyToOne
     @JoinColumn(name = "sgkunvan_id")
-    @FieldMetadataAnn(title = "Sigortalı Olduğu Unvan", defaultValue = "Unvan_BT_Sef", display = true, priority = 12, search = true, filterable = true)
+    @FieldMetadataAnn(title = "Sigortalı Olduğu Unvan", display = true, priority = 12, search = true, filterable = true)
     @AttributeValueValidate(attributeId = "Unvanlar")
     private AttributeValue sgkunvan;
 
     @ManyToOne
     @JoinColumn(name = "cinsiyet_id")
-    @FieldMetadataAnn(title = "Cinsiyet", defaultValue = "Cin_Erk", search = true)
+    @FieldMetadataAnn(title = "Cinsiyet", search = true)
     @AttributeValueValidate(attributeId = "Cinsiyetler")
     private AttributeValue cinsiyet;
 
     @ManyToOne
     @JoinColumn(name = "askerlik_id")
-    @FieldMetadataAnn(title = "Askerlik Durumu", defaultValue = "Ask_Tam", search = true)
+    @FieldMetadataAnn(title = "Askerlik Durumu", search = true)
     @AttributeValueValidate(attributeId = "Askerlik_Durumlari")
     private AttributeValue askerlik;
 
     @ManyToOne
     @JoinColumn(name = "egitim_id")
-    @FieldMetadataAnn(title = "Eğitim Durumu", defaultValue = "Egt_Ilk", search = true)
+    @FieldMetadataAnn(title = "Eğitim Durumu", search = true)
     @AttributeValueValidate(attributeId = "Egitim_Durumlari")
     private AttributeValue egitim;
 
     @ManyToOne
     @JoinColumn(name = "ehliyet_id")
-    @FieldMetadataAnn(title = "Ehliyet Sınıfı", defaultValue = "Ehl_Yok", search = true)
+    @FieldMetadataAnn(title = "Ehliyet Sınıfı", search = true)
     @AttributeValueValidate(attributeId = "Ehliyet_Siniflari")
     private AttributeValue ehliyet;
 

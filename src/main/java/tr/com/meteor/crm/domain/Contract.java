@@ -37,12 +37,12 @@ public class Contract extends IdNameAuditingEntity<UUID> {
     private User assigner;
 
     @ManyToOne
-    @FieldMetadataAnn(title = "Şirket", defaultValue = "Sirket_Meteor", display = true, priority = 20, filterable = true)
+    @FieldMetadataAnn(title = "Şirket", defaultValue = "Sirketler_Meteor", display = true, priority = 20, filterable = true)
     @AttributeValueValidate(attributeId = "Sirketler")
     private AttributeValue sirket;
 
     @ManyToOne
-    @FieldMetadataAnn(title = "Birim", defaultValue = "Birim_T_IT", display = true, priority = 25, filterable = true)
+    @FieldMetadataAnn(title = "Birim", defaultValue = "Birimler_T_IT", display = true, priority = 25, filterable = true)
     @AttributeValueValidate(attributeId = "Birimler_T")
     private AttributeValue birim;
     @FieldMetadataAnn(title = "Satın Alma Gerekçesi", display = true, priority = 120, filterable = true)

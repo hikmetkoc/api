@@ -33,14 +33,9 @@ public class Document extends IdNameAuditingEntity<UUID> {
     private String subject;
 
     @ManyToOne
-    @FieldMetadataAnn(title = "Şirket", defaultValue = "Sirket_Doc_Meteor", display = true, priority = 2, search = true, filterable = true, required = true)
+    @FieldMetadataAnn(title = "Şirket", defaultValue = "Dokuman_Sirketleri_Meteor", display = true, priority = 2, search = true, filterable = true, required = true)
     @AttributeValueValidate(attributeId = "Dokuman_Sirketleri")
     private AttributeValue sirket;
-
-    /*@ManyToOne
-    @FieldMetadataAnn(title = "Birim", defaultValue = "Birim_IT", display = true, priority = 31, search = true, filterable = true, required = true)
-    @AttributeValueValidate(attributeId = "Birimler")
-    private AttributeValue birim;*/
 
     @FieldMetadataAnn(title = "Açıklama", priority = 5)
     private String description;

@@ -171,7 +171,7 @@ public class PaymentOrderTrigger extends Trigger<PaymentOrder, UUID, PaymentOrde
         if (newEntity.getAssigner() == null || newEntity.getSecondAssigner() == null) {
             throw new Exception("Bu maliyet yerine ait bir onay sisteminiz mevcut değildir. Lütfen IT ekibiyle iletişime geçiniz.");
         }
-        if (newEntity.getOwner().getBirim().getId().equals("Birim_Muh")) {
+        if (newEntity.getOwner().getBirim().getId().equals("Birimler_Muh")) {
             newEntity.setMuhasebeGoruntusu(true);
         }
         return newEntity;

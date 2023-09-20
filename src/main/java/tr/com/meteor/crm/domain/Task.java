@@ -35,14 +35,12 @@ public class Task extends IdNameAuditingEntity<UUID> {
 
     @FieldMetadataAnn(title = "Tamamlanma Tarihi", required = false, display = true, priority = 55, filterable = false)
     private Instant oktime;
-    /*@FieldMetadataAnn(title = "Konu", search = true, readOnly = true, active = true)
-    private String subject;
-*/
+
     @FieldMetadataAnn(title = "Açıklama", priority = 100)
     @Column(length = 2048)
     private String description;
     @ManyToOne
-    @FieldMetadataAnn(title = "Birim", defaultValue = "Birim_IT", display = true, priority = 20, filterable = true)
+    @FieldMetadataAnn(title = "Birim", defaultValue = "Birimler_IT", display = true, priority = 20, filterable = true)
     @AttributeValueValidate(attributeId = "Birimler")
     private AttributeValue birim;
     @ManyToOne
@@ -63,10 +61,6 @@ public class Task extends IdNameAuditingEntity<UUID> {
     @FieldMetadataAnn(title = "Önem Derecesi", defaultValue = "Gör_Imp_Orta", display = true, priority = 65, filterable = true)
     @AttributeValueValidate(attributeId = "Gör_Imp")
     private AttributeValue importance;
-
-
-/*@FieldMetadataAnn(title = "Başarısızlık Nedeni", priority = 0)
-    private String failReason;*/
 
     @Formula("subject")
     @FieldMetadataAnn(title = "Başlık", active = false)
@@ -112,14 +106,6 @@ public class Task extends IdNameAuditingEntity<UUID> {
         this.oktime = oktime;
     }
 
-   /* public String getSubject() {
-        return subject;
-    }
-
-    public void setSubject(String subject) {
-        this.subject = subject;
-    }
-*/
     public String getDescription() {
         return description;
     }

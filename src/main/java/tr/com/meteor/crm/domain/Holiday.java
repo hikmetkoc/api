@@ -77,7 +77,7 @@ public class Holiday extends IdNameAuditingEntity<UUID> {
 
     @ManyToOne
     @AttributeValueValidate(attributeId = "Izin_Turu")
-    @FieldMetadataAnn(title = "İzin Türü", display = true, defaultValue = "Iz_Tur_Yil", priority = 150, filterable = true)
+    @FieldMetadataAnn(title = "İzin Türü", display = true, defaultValue = "Izin_Turu_Yil", priority = 150, filterable = true)
     private AttributeValue type;
 
     @FieldMetadataAnn(title = "PDF", active = false)

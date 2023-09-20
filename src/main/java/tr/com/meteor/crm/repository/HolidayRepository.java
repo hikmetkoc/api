@@ -5,10 +5,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-import tr.com.meteor.crm.domain.ContProduct;
-import tr.com.meteor.crm.domain.HolUser;
 import tr.com.meteor.crm.domain.Holiday;
-import tr.com.meteor.crm.domain.Store;
 
 import java.time.Instant;
 import java.util.List;

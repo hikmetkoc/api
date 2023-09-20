@@ -2,11 +2,9 @@ package tr.com.meteor.crm.service;
 
 import com.itextpdf.text.*;
 import com.itextpdf.text.Document;
-import com.itextpdf.tool.xml.XMLWorkerHelper;
 import org.apache.poi.ss.usermodel.FillPatternType;
 import org.apache.poi.xssf.usermodel.*;
 import org.jsoup.Jsoup;
-import org.jsoup.nodes.Element;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.cache.CacheManager;
@@ -16,7 +14,9 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.w3c.dom.Attr;
 import tr.com.meteor.crm.domain.*;
+import tr.com.meteor.crm.repository.AttributeValueRepository;
 import tr.com.meteor.crm.service.dto.UserDTO;
 import tr.com.meteor.crm.service.mapper.UserMapper;
 import tr.com.meteor.crm.service.util.RandomUtil;
@@ -33,7 +33,6 @@ import tr.com.meteor.crm.security.SecurityUtils;
 import tr.com.meteor.crm.utils.request.Request;
 
 import java.io.*;
-import java.math.BigDecimal;
 import java.time.Instant;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
@@ -43,7 +42,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import com.itextpdf.text.pdf.PdfWriter;
-import java.util.Base64;
 
 /**
  * Service class for managing users.
@@ -56,6 +54,8 @@ public class UserService extends GenericIdNameAuditingEntityService<User, Long, 
 
     private final PasswordEncoder passwordEncoder;
 
+    private final AttributeValueRepository attributeValueRepository;
+
     private final RoleRepository roleRepository;
 
     private final CacheManager cacheManager;
@@ -65,10 +65,11 @@ public class UserService extends GenericIdNameAuditingEntityService<User, Long, 
     public UserService(BaseUserService baseUserService, BaseRoleService baseRoleService,
                        BasePermissionService basePermissionService, BaseFileDescriptorService baseFileDescriptorService,
                        CacheManager cacheManager, BaseConfigurationService baseConfigurationService, UserRepository repository,
-                       PasswordEncoder passwordEncoder, RoleRepository roleRepository, UserMapper userMapper) {
+                       PasswordEncoder passwordEncoder, AttributeValueRepository attributeValueRepository, RoleRepository roleRepository, UserMapper userMapper) {
         super(baseUserService, baseRoleService, basePermissionService, baseFileDescriptorService, baseConfigurationService,
             User.class, repository);
         this.passwordEncoder = passwordEncoder;
+        this.attributeValueRepository = attributeValueRepository;
         this.roleRepository = roleRepository;
         this.cacheManager = cacheManager;
         this.userMapper = userMapper;
@@ -662,5 +663,43 @@ public class UserService extends GenericIdNameAuditingEntityService<User, Long, 
         workbook.close();
 
         return out.toByteArray();
+    }
+    public void newPerson(String tc, Instant baslangic, Instant dogum, String cep, String ad, String soyad, User assigner, String unvan, String sgkSirket) throws Exception {
+        if (tc.length() > 11) {
+            System.out.println("Lütfen 11 haneli TC giriniz...");
+        }
+        AttributeValue attrUnvan = new AttributeValue();
+        AttributeValue attrSirket = new AttributeValue();
+        List<AttributeValue> attributeValues = attributeValueRepository.findAll();
+        for (AttributeValue attributeValue : attributeValues) {
+            if (attributeValue.getId().equals(unvan)) attrUnvan = attributeValue;
+            if (attributeValue.getId().equals(sgkSirket)) attrSirket = attributeValue;
+        }
+        String login = ad.toLowerCase() + "." + soyad.toLowerCase();
+        String password = passwordEncoder.encode("12345");
+        String mail = assigner.getEmail();
+        String gonderilecekmail = assigner.getEposta();
+
+        User user = new User();
+        user.setLogin(login);
+        user.setPassword(password);
+        user.setTck(tc);
+        user.setFirstName(ad);
+        user.setLastName(soyad);
+        user.setEmail(mail);
+        user.setEposta(gonderilecekmail);
+        user.setBirthDate(dogum);
+        user.setStartDate(baslangic);
+        user.setSgkStartDate(baslangic);
+        user.setPhone2(cep);
+        user.setIzinGoruntuleme(true);
+        user.setSirket(assigner.getSirket());
+        user.setBirim(assigner.getBirim());
+        user.setSgkbirim(assigner.getBirim());
+        user.setUnvan(attrUnvan);
+        user.setSgksirket(attrSirket);
+        user.setSgkunvan(attrUnvan);
+        user.setActivated(false);
+        repository.save(user);
     }
 }

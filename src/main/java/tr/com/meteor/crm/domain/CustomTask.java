@@ -39,7 +39,7 @@ public class CustomTask extends IdNameAuditingEntity<UUID> {
     @Column(length = 2048)
     private String description;
     @ManyToOne
-    @FieldMetadataAnn(title = "Konu", defaultValue = "Gor_Ko_Ran", display = true, priority = 10, required = true, search = true, filterable = true)
+    @FieldMetadataAnn(title = "Konu", defaultValue = "Gorev_Konular_Ran", display = true, priority = 10, required = true, search = true, filterable = true)
     @AttributeValueValidate(attributeId = "Gorev_Konular")
     private AttributeValue type;
 

@@ -12,20 +12,20 @@ import tr.com.meteor.crm.service.dto.UserDTO;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-09-15T15:38:58+0300",
+    date = "2023-09-20T16:13:37+0300",
     comments = "version: 1.3.0.Final, compiler: javac, environment: Java 1.8.0_202 (Oracle Corporation)"
 )
 @Component
 public class UserMapperImpl implements UserMapper {
 
     @Override
-    public List<User> toEntity(List<UserDTO> dtoList) {
-        if ( dtoList == null ) {
+    public List<User> toEntity(List<UserDTO> arg0) {
+        if ( arg0 == null ) {
             return null;
         }
 
-        List<User> list = new ArrayList<User>( dtoList.size() );
-        for ( UserDTO userDTO : dtoList ) {
+        List<User> list = new ArrayList<User>( arg0.size() );
+        for ( UserDTO userDTO : arg0 ) {
             list.add( toEntity( userDTO ) );
         }
 
@@ -33,13 +33,13 @@ public class UserMapperImpl implements UserMapper {
     }
 
     @Override
-    public List<UserDTO> toDto(List<User> entityList) {
-        if ( entityList == null ) {
+    public List<UserDTO> toDto(List<User> arg0) {
+        if ( arg0 == null ) {
             return null;
         }
 
-        List<UserDTO> list = new ArrayList<UserDTO>( entityList.size() );
-        for ( User user : entityList ) {
+        List<UserDTO> list = new ArrayList<UserDTO>( arg0.size() );
+        for ( User user : arg0 ) {
             list.add( toDto( user ) );
         }
 

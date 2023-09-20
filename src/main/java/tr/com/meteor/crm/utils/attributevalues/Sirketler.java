@@ -4,10 +4,10 @@ import tr.com.meteor.crm.domain.AttributeValue;
 
 public enum Sirketler {
     ATTRIBUTE("Sirketler"),
-    METEOR("Sirket_Meteor"),
-    CEMCAN("Sirket_Cemcan"),
-    INSAAT("Sirket_MeteorIns"),
-    IGDIR("Sirket_Igdır");
+    METEOR("Sirketler_Meteor"),
+    CEMCAN("Sirketler_Cemcan"),
+    INSAAT("Sirketler_MeteorIns"),
+    IGDIR("Sirketler_Igdır");
     final String id;
 
     Sirketler(String id) {

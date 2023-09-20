@@ -6,10 +6,18 @@ public enum FaturaSirketleri {
     ATTRIBUTE("Fatura_Sirketleri"),
     METEOR("Fatura_Sirketleri_Meteor"),
     CEMCAN("Fatura_Sirketleri_Cemcan"),
-    INSAAT("Fatura_SirketleriMeteorIns"),
-    IGDIR("Fatura_Sirketleri_Igdır");
-    final String id;
+    NCC("Fatura_Sirketleri_Ncc"),
+    INSAAT("Fatura_Sirketleri_MeteorIns"),
+    IGDIR("Fatura_Sirketleri_Igdir"),
+    IZMIR("Fatura_Sirketleri_Izmir"),
+    SIMYA("Fatura_Sirketleri_Simya"),
+    BIRCE("Fatura_Sirketleri_Birce"),
+    MUDANYA("Fatura_Sirketleri_Mudanya"),
+    STAR("Fatura_Sirketleri_Star"),
+    CHARGE("Fatura_Sirketleri_Charge"),
+    AVELICE("Fatura_Sirketleri_Avelice");
 
+    final String id;
     FaturaSirketleri(String id) {
         this.id = id;
     }

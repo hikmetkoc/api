@@ -30,7 +30,7 @@ public class ResignController extends GenericIdNameAuditingEntityController<Resi
     }
 
     @PutMapping("/saveAnket")
-    public ResponseEntity<String> getEttntByInvoiceNum(@RequestBody Resign resign, @RequestParam String sorumluluk,
+    public ResponseEntity<String> saveAnket(@RequestBody Resign resign, @RequestParam String sorumluluk,
                                                        @RequestParam String calismaSaat, @RequestParam String calismaOrtam,
                                                        @RequestParam String odeme, @RequestParam String takdir, @RequestParam String gelistirme,
                                                        @RequestParam String iliski, @RequestParam String kariyer, @RequestParam String iletisim) {

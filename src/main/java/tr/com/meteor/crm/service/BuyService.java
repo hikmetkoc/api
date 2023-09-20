@@ -1,44 +1,33 @@
 package tr.com.meteor.crm.service;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.poi.ss.usermodel.BorderStyle;
 import org.apache.poi.ss.usermodel.FillPatternType;
 import org.apache.poi.xssf.usermodel.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import tr.com.meteor.crm.domain.Buy;
-import tr.com.meteor.crm.domain.ContProduct;
 import tr.com.meteor.crm.domain.User;
-import tr.com.meteor.crm.repository.ActivityRepository;
 import tr.com.meteor.crm.repository.BuyRepository;
-import tr.com.meteor.crm.repository.ContProductRepository;
 import tr.com.meteor.crm.utils.filter.Filter;
 import tr.com.meteor.crm.utils.filter.FilterItem;
 import tr.com.meteor.crm.utils.request.Request;
 
 import java.io.ByteArrayOutputStream;
-import java.math.BigDecimal;
 import java.time.Instant;
-import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static tr.com.meteor.crm.utils.ExcelUtils.addBorderToCell;
-
 @Service
 @Transactional(rollbackFor = Exception.class)
 public class BuyService extends GenericIdNameAuditingEntityService<Buy, UUID, BuyRepository> {
-
-    private ContProductRepository contProductRepository;
     public BuyService(BaseUserService baseUserService, BaseRoleService baseRoleService,
                       BasePermissionService basePermissionService, BaseFileDescriptorService baseFileDescriptorService,
                       BaseConfigurationService baseConfigurationService,
                       BuyRepository repository) {
         super(baseUserService, baseRoleService, basePermissionService, baseFileDescriptorService, baseConfigurationService,
             Buy.class, repository);
-        this.contProductRepository = contProductRepository;
     }
 
     public List<Buy> saveWeekly(List<Buy> Buys) throws Exception {

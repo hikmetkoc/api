@@ -703,10 +703,10 @@ public class PaymentOrderService extends GenericIdNameAuditingEntityService<Paym
                     }
                 }
             }
-        } else if(status.getId().equals("Payment_Status_Bek2") && getCurrentUser().getBirim().getId().equals("Birim_Muh")){
+        } else if(status.getId().equals("Payment_Status_Bek2") && getCurrentUser().getBirim().getId().equals("Birimler_Muh")){
             muhasebeOnayi = Instant.now();  // Muhasebeci Onay Verdiyse Muhasebe Onay Zamanını Al
             muhasebeGoruntusu = false;
-        } else if(status.getId().equals("Payment_Status_Bek2") && !getCurrentUser().getBirim().getId().equals("Birim_Muh")){
+        } else if(status.getId().equals("Payment_Status_Bek2") && !getCurrentUser().getBirim().getId().equals("Birimler_Muh")){
             okeyFirst = Instant.now();      // Prim ödemesi, 1.Onaycı onay verdi ve Muhasebe onayı atlandıysa 1.Onay Zamanını Al
             muhasebeGoruntusu = false;
         } else if(status.getId().equals("Payment_Status_Onay")){
@@ -744,8 +744,8 @@ public class PaymentOrderService extends GenericIdNameAuditingEntityService<Paym
 
            }
 
-           if (paymentOrder.getAssigner().getUnvan().getId().equals("Unvan_Gen_Mud") || paymentOrder.getAssigner().getUnvan().getId().equals("Unvan_Yon_Bas") ||
-               paymentOrder.getAssigner().getUnvan().getId().equals("Unvan_San_Bas") || paymentOrder.getAssigner().getUnvan().getId().equals("Unvan_Ins_Dir")
+           if (paymentOrder.getAssigner().getUnvan().getId().equals("Unvanlar_Gen_Mud") || paymentOrder.getAssigner().getUnvan().getId().equals("Unvanlar_Yon_Bas") ||
+               paymentOrder.getAssigner().getUnvan().getId().equals("Unvanlar_San_Bas") || paymentOrder.getAssigner().getUnvan().getId().equals("Unvanlar_Ins_Dir")
            ) {
                postaGuverciniService.SendSmsService("5442458391", text);
            }

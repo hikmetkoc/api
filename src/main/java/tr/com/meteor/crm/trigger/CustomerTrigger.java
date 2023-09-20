@@ -44,11 +44,11 @@ public class CustomerTrigger extends Trigger<Customer, UUID, CustomerRepository>
         if (newEntity.getCommercialTitle() == null) {
             newEntity.setCommercialTitle(newEntity.getName());
         }
-        /*List<Customer> custom = customerRepository.findAllTaxNumber(newEntity.getTaxNumber());
-        if (custom != null) {
+
+        if (customerRepository.existsByTaxNumber(newEntity.getTaxNumber())) {
             throw new Exception("Bu vergi numarasına kayıtlı bir tedarikçi zaten kayıtlı!");
         }
-*/
+
         if(newEntity.getTaxNumber().length()!=11){
             throw new Exception("Lütfen 11 haneli vergili numarası giriniz. Eğer 10 haneli ise başına 0 koyarak girebilirsiniz.");
         }
@@ -59,10 +59,6 @@ public class CustomerTrigger extends Trigger<Customer, UUID, CustomerRepository>
 
     @Override
     public Customer afterInsert(@NotNull Customer newEntity) throws Exception {
-        /*List<Customer> custom = customerRepository.findAllTaxNumber(newEntity.getTaxNumber());
-        if (custom != null) {
-            throw new Exception("Bu vergi numarasına kayıtlı bir tedarikçi zaten kayıtlı!");
-        }*/
         if(newEntity.getTaxNumber().length()!=11){
             throw new Exception("Lütfen 11 haneli vergili numarası giriniz. Eğer 10 haneli ise başına 0 koyarak girebilirsiniz.");
         }
@@ -74,10 +70,9 @@ public class CustomerTrigger extends Trigger<Customer, UUID, CustomerRepository>
 
     @Override
     public Customer beforeUpdate(@NotNull Customer oldEntity, @NotNull Customer newEntity) throws Exception {
-        /*List<Customer> custom = customerRepository.findAllTaxNumber(newEntity.getTaxNumber());
-        if (custom != null) {
+        if (customerRepository.existsByTaxNumber(newEntity.getTaxNumber())) {
             throw new Exception("Bu vergi numarasına kayıtlı bir tedarikçi zaten kayıtlı!");
-        }*/
+        }
         if(newEntity.getTaxNumber().length()!=11){
             throw new Exception("Lütfen 11 haneli vergili numarası giriniz. Eğer 10 haneli ise başına 0 koyarak girebilirsiniz.");
         }

@@ -2,7 +2,6 @@ package tr.com.meteor.crm.repository;
 
 import org.springframework.stereotype.Repository;
 import tr.com.meteor.crm.domain.Buy;
-import tr.com.meteor.crm.domain.ContProduct;
 
 import java.util.List;
 import java.util.UUID;

@@ -9,10 +9,8 @@ import tr.com.meteor.crm.service.BaseConfigurationService;
 import tr.com.meteor.crm.service.BaseUserService;
 import tr.com.meteor.crm.service.MailService;
 import tr.com.meteor.crm.service.MobileNotificationService;
-import tr.com.meteor.crm.utils.attributevalues.ContractStatus;
 import tr.com.meteor.crm.utils.attributevalues.CostPlace;
 import tr.com.meteor.crm.utils.attributevalues.FuelStatus;
-import tr.com.meteor.crm.utils.attributevalues.MaliyetYerleri;
 
 import javax.validation.constraints.NotNull;
 import java.time.Instant;
@@ -25,7 +23,6 @@ public class FuelLimitTrigger extends Trigger<FuelLimit, UUID, FuelLimitReposito
 
     private final CustomerRepository customerRepository;
     private final StoreRepository storeRepository;
-    private final ContProductRepository contProductRepository;
 
     private final BuyLimitRepository limitRepository;
 
@@ -35,11 +32,10 @@ public class FuelLimitTrigger extends Trigger<FuelLimit, UUID, FuelLimitReposito
 
     public FuelLimitTrigger(CacheManager cacheManager, FuelLimitRepository fuellimitRepository, BaseUserService baseUserService,
                             BaseConfigurationService baseConfigurationService, CustomerRepository customerRepository,
-                            StoreRepository storeRepository, ContProductRepository contProductRepository, BuyLimitRepository limitRepository, MailService mailService, MobileNotificationService mobileNotificationService) {
+                            StoreRepository storeRepository,  BuyLimitRepository limitRepository, MailService mailService, MobileNotificationService mobileNotificationService) {
         super(cacheManager, FuelLimit.class, FuelLimitTrigger.class, fuellimitRepository, baseUserService, baseConfigurationService);
         this.customerRepository = customerRepository;
         this.storeRepository = storeRepository;
-        this.contProductRepository = contProductRepository;
         this.limitRepository = limitRepository;
         this.mailService = mailService;
         this.mobileNotificationService = mobileNotificationService;

@@ -3,20 +3,20 @@ package tr.com.meteor.crm.utils.attributevalues;
 import tr.com.meteor.crm.domain.AttributeValue;
 
 public enum HolidayStatus {
-    ATTRIBUTE("Izın_Turu"),
-    YILLIK("Iz_Tur_Yil"),
+    ATTRIBUTE("Izin_Turu"),
+    YILLIK("Izin_Turu_Yil"),
 
-    MAZERET("Iz_Tur_Maz"),
-    BABALIK("Iz_Tur_Bab"),
-    DOGUM("Iz_Tur_Dog"),
-    OLUM("Iz_Tur_Olm"),
-    RAPOR("Iz_Tur_Rap"),
+    MAZERET("Izin_Turu_Maz"),
+    BABALIK("Izin_Turu_Bab"),
+    DOGUM("Izin_Turu_Dog"),
+    OLUM("Izin_Turu_Olm"),
+    RAPOR("Izin_Turu_Rap"),
 
-    EVLILIK("Iz_Tur_Evl"),
+    EVLILIK("Izin_Turu_Evl"),
 
-    IDARI("Iz_Tur_Idr"),
+    IDARI("Izin_Turu_Idr"),
 
-    UCRETSIZ("Iz_Tur_Ucr");
+    UCRETSIZ("Izin_Turu_Ucr");
     final String id;
 
     HolidayStatus(String id) {

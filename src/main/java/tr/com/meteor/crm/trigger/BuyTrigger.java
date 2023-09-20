@@ -25,7 +25,6 @@ public class BuyTrigger extends Trigger<Buy, UUID, BuyRepository> {
 
     private final CustomerRepository customerRepository;
     private final StoreRepository storeRepository;
-    private final ContProductRepository contProductRepository;
 
     private final FileDescriptorRepository fileDescriptorRepository;
 
@@ -37,11 +36,10 @@ public class BuyTrigger extends Trigger<Buy, UUID, BuyRepository> {
 
     public BuyTrigger(CacheManager cacheManager, BuyRepository buyRepository, BaseUserService baseUserService,
                       BaseConfigurationService baseConfigurationService, CustomerRepository customerRepository,
-                      StoreRepository storeRepository, ContProductRepository contProductRepository, FileDescriptorRepository fileDescriptorRepository, BuyLimitRepository limitRepository, MailService mailService, MobileNotificationService mobileNotificationService) {
+                      StoreRepository storeRepository, FileDescriptorRepository fileDescriptorRepository, BuyLimitRepository limitRepository, MailService mailService, MobileNotificationService mobileNotificationService) {
         super(cacheManager, Buy.class, BuyTrigger.class, buyRepository, baseUserService, baseConfigurationService);
         this.customerRepository = customerRepository;
         this.storeRepository = storeRepository;
-        this.contProductRepository = contProductRepository;
         this.fileDescriptorRepository = fileDescriptorRepository;
         this.limitRepository = limitRepository;
         this.mailService = mailService;

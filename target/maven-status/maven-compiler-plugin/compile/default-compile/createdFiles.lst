@@ -86,6 +86,7 @@ tr\com\meteor\crm\CrmApp.class
 tr\com\meteor\crm\domain\CustomTask_.class
 tr\com\meteor\crm\domain\VocationDay.class
 tr\com\meteor\crm\utils\attributevalues\HolDayStatus.class
+tr\com\meteor\crm\utils\jasper\rest\ResignController.class
 tr\com\meteor\crm\service\ConfigurationService.class
 tr\com\meteor\crm\utils\idgenerator\GenericIdGenerator.class
 tr\com\meteor\crm\utils\attributevalues\PaymentStatus.class
@@ -156,6 +157,7 @@ tr\com\meteor\crm\domain\IdNameEntity_.class
 tr\com\meteor\crm\service\SurveyAnswerService.class
 tr\com\meteor\crm\utils\filter\FilterUtils$1.class
 tr\com\meteor\crm\domain\FieldMetadata.class
+tr\com\meteor\crm\service\ResignService.class
 tr\com\meteor\crm\utils\filter\CbUtils$1.class
 tr\com\meteor\crm\domain\FieldMetadata_.class
 tr\com\meteor\crm\service\BasePermissionService.class
@@ -232,6 +234,7 @@ tr\com\meteor\crm\repository\ContProductRepository.class
 tr\com\meteor\crm\domain\VocationDay_.class
 tr\com\meteor\crm\domain\ContProduct_.class
 tr\com\meteor\crm\domain\Contact.class
+tr\com\meteor\crm\domain\Resign_.class
 tr\com\meteor\crm\service\MobileNotificationService.class
 tr\com\meteor\crm\domain\EntityMetadata_.class
 tr\com\meteor\crm\config\DatabaseConfiguration.class
@@ -370,9 +373,11 @@ tr\com\meteor\crm\config\Constants.class
 tr\com\meteor\crm\domain\Holiday.class
 tr\com\meteor\crm\repository\FileDescriptorRepository.class
 tr\com\meteor\crm\repository\FuelLimitRepository.class
+tr\com\meteor\crm\repository\ResignRepository.class
 tr\com\meteor\crm\repository\UserPermissionRepository.class
 tr\com\meteor\crm\utils\jasper\rest\ContProductController.class
 tr\com\meteor\crm\trigger\ResponsibleTrigger.class
+tr\com\meteor\crm\domain\Resign.class
 tr\com\meteor\crm\repository\CampaignRepository.class
 tr\com\meteor\crm\domain\Contract_.class
 tr\com\meteor\crm\domain\Responsible_.class
@@ -416,6 +421,7 @@ tr\com\meteor\crm\service\ManagerReportService.class
 tr\com\meteor\crm\utils\attributevalues\TaskType$TaskBirim.class
 tr\com\meteor\crm\utils\jasper\rest\errors\RecordNotFoundException.class
 tr\com\meteor\crm\domain\AbstractAuditingEntity.class
+tr\com\meteor\crm\trigger\ResignTrigger.class
 tr\com\meteor\crm\domain\SurveyQuestion.class
 tr\com\meteor\crm\utils\jasper\rest\AnnouncementController.class
 tr\com\meteor\crm\utils\jasper\rest\HolidayController.class
@@ -484,6 +490,7 @@ tr\com\meteor\crm\repository\OpetFleetRepository.class
 tr\com\meteor\crm\domain\EntityMetadata.class
 tr\com\meteor\crm\domain\Buy.class
 tr\com\meteor\crm\domain\Responsible.class
+tr\com\meteor\crm\utils\attributevalues\ResignStatus.class
 tr\com\meteor\crm\utils\export\ExportUtils$1.class
 tr\com\meteor\crm\repository\AddressRepository.class
 tr\com\meteor\crm\utils\attributevalues\FuelStatus.class

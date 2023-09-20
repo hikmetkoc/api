@@ -20,11 +20,6 @@ public class CustomTaskController extends GenericIdNameAuditingEntityController<
         super(service);
     }
 
-    @PutMapping("weekly")
-    public List<CustomTask> saveWeekly(@RequestBody List<CustomTask> customTasks) throws Exception {
-        return service.saveWeekly(customTasks);
-    }
-
     @PostMapping("report-custom-task-wizard")
     public ResponseEntity<ByteArrayResource> reportCustomTaskWizard(@RequestParam Instant startDate, @RequestParam Instant endDate) throws Exception {
         return ResponseEntity.ok()

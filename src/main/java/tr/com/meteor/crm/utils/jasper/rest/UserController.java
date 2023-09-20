@@ -16,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import tr.com.meteor.crm.domain.Resign;
 import tr.com.meteor.crm.utils.jasper.rest.GenericIdNameAuditingEntityController;
 import tr.com.meteor.crm.utils.jasper.rest.errors.BadRequestAlertException;
 import tr.com.meteor.crm.utils.jasper.rest.errors.EmailAlreadyUsedException;
@@ -30,6 +31,7 @@ import tr.com.meteor.crm.service.dto.UserDTO;
 import tr.com.meteor.crm.service.mapper.UserMapper;
 
 import javax.validation.Valid;
+import javax.validation.constraints.Null;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.time.Instant;
@@ -205,6 +207,27 @@ public class UserController extends GenericIdNameAuditingEntityController<User, 
             return ResponseEntity.ok(base64EncodedPDF);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("PDF oluşturma hatası: " + e.getMessage());
+        }
+    }
+    @PutMapping("/newPerson")
+    public ResponseEntity<String> addNewPerson(
+        @RequestBody User assigner,
+        @RequestParam String tc,
+        @RequestParam Instant baslangic,
+        @RequestParam Instant dogum,
+        @RequestParam String cep,
+        @RequestParam String ad,
+        @RequestParam String soyad,
+        @RequestParam String unvan,
+        @RequestParam String sgkSirket) throws Exception{
+
+        try {
+            // Diğer işlemleri burada gerçekleştirin
+            service.newPerson(tc, baslangic, dogum, cep, ad, soyad, assigner, unvan, sgkSirket);
+            return ResponseEntity.ok().build();
+        } catch (NullPointerException exception) {
+            // Hata durumunda uygun bir hata yanıtı döndürün
+            return ResponseEntity.badRequest().body("Eksik veya hatalı veri girişi yapıldı!");
         }
     }
 }

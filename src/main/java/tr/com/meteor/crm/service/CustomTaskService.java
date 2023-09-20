@@ -38,22 +38,6 @@ public class CustomTaskService extends GenericIdNameAuditingEntityService<Custom
         this.activityRepository = activityRepository;
     }
 
-    public List<CustomTask> saveWeekly(List<CustomTask> CustomTasks) throws Exception {
-        List<CustomTask> CustomTaskList = new ArrayList<>();
-        for (CustomTask CustomTask : CustomTasks) {
-            if (!StringUtils.isBlank(CustomTask.getDescription()) && CustomTask.getId() != null) {
-                CustomTaskList.add(update(getCurrentUser(), CustomTask));
-            } else if (CustomTask.getId() == null) {
-                CustomTask.setType(CustomTaskType.KOLAY_AJANDA.getAttributeValue());
-                CustomTask.setStatus(CustomTaskStatus.YENI.getAttributeValue());
-                CustomTaskList.add(add(getCurrentUser(), CustomTask));
-            } else if (StringUtils.isBlank(CustomTask.getDescription())) {
-                delete(getCurrentUser(), CustomTask.getId());
-            }
-        }
-
-        return CustomTaskList;
-    }
 
     public byte[] generateExcelCustomTaskWizardReportForUser(User currentUser, Instant startDate, Instant endDate) throws Exception {
         startDate = startDate.atZone(ZoneId.systemDefault()).toLocalDate().atStartOfDay(ZoneId.systemDefault()).toInstant();
@@ -64,7 +48,6 @@ public class CustomTaskService extends GenericIdNameAuditingEntityService<Custom
 
         Request request = Request.build().page(0).size(Integer.MAX_VALUE).filter(
             Filter.And(
-                Filter.FilterItem("type.id", FilterItem.Operator.EQUALS, CustomTaskType.KOLAY_AJANDA.getId()),
                 Filter.FilterItem("dueTime", FilterItem.Operator.GREATER_OR_EQUAL_THAN, startDate),
                 Filter.FilterItem("dueTime", FilterItem.Operator.LESS_THAN, endDate),
                 Filter.FilterItem("owner.id", FilterItem.Operator.IN, hierarchicalUserIds)

@@ -17,6 +17,7 @@ import tr.com.meteor.crm.utils.request.Request;
 import java.io.ByteArrayOutputStream;
 import java.math.BigDecimal;
 import java.time.Instant;
+import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -349,7 +350,10 @@ public class PaymentOrderService extends GenericIdNameAuditingEntityService<Paym
         List<User> hierarchicalUsers = baseUserService.getHierarchicalUsersOnlyDownwards(currentUser);
         List<Long> hierarchicalUserIds = hierarchicalUsers.stream().map(User::getId).collect(Collectors.toList());
 
-        Request request = Request.build().page(0).size(Integer.MAX_VALUE).filter(
+        Request request = Request.build()
+            .page(0)
+            .size(Integer.MAX_VALUE)
+            .filter(
             Filter.And(
                 Filter.FilterItem("id", FilterItem.Operator.IN, ids),
                 Filter.Or(

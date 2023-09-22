@@ -4,6 +4,7 @@ import tr.com.meteor.crm.utils.filter.Filter;
 import tr.com.meteor.crm.utils.filter.FilterItem;
 
 import java.io.Serializable;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 

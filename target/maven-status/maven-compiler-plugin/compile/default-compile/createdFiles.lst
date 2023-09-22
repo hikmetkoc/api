@@ -70,7 +70,6 @@ tr\com\meteor\crm\utils\export\ExportUtils.class
 tr\com\meteor\crm\service\BaseConfigurationService.class
 tr\com\meteor\crm\utils\jasper\rest\CityController.class
 tr\com\meteor\crm\service\CacheService.class
-tr\com\meteor\crm\domain\ExuseHoliday.class
 tr\com\meteor\crm\service\FuelLimitService.class
 tr\com\meteor\crm\service\FieldMetadataService.class
 tr\com\meteor\crm\service\mapper\UserMapperImpl.class
@@ -138,7 +137,6 @@ tr\com\meteor\crm\service\AddressService.class
 tr\com\meteor\crm\utils\jasper\rest\errors\ObjectAccessDeniedException$AccessType.class
 tr\com\meteor\crm\repository\GenericIdNameEntityRepository.class
 tr\com\meteor\crm\repository\SapSoapRepository.class
-tr\com\meteor\crm\utils\attributevalues\TaskType$TaskImportance.class
 tr\com\meteor\crm\domain\Holiday_.class
 tr\com\meteor\crm\domain\UserPermission_.class
 tr\com\meteor\crm\utils\jasper\rest\errors\ObjectAccessDeniedException.class
@@ -179,7 +177,6 @@ tr\com\meteor\crm\service\VocationDayService.class
 tr\com\meteor\crm\repository\TaskRepository.class
 tr\com\meteor\crm\domain\IdEntity_.class
 tr\com\meteor\crm\repository\UserRepository.class
-tr\com\meteor\crm\domain\ExuseHoliday_.class
 tr\com\meteor\crm\domain\Configuration_.class
 tr\com\meteor\crm\domain\Address.class
 tr\com\meteor\crm\utils\attributevalues\FileDescriptorType.class
@@ -189,7 +186,6 @@ tr\com\meteor\crm\config\HibernateValidatorConfig.class
 tr\com\meteor\crm\domain\Ikfile_.class
 tr\com\meteor\crm\utils\jasper\rest\HolUserController.class
 tr\com\meteor\crm\trigger\TriggerInterface.class
-tr\com\meteor\crm\utils\attributevalues\MaliyetYerleri.class
 tr\com\meteor\crm\domain\Activity.class
 tr\com\meteor\crm\domain\Buy_.class
 tr\com\meteor\crm\utils\jasper\rest\errors\EmailNotFoundException.class
@@ -208,7 +204,6 @@ tr\com\meteor\crm\utils\attributevalues\CustomTaskStatus.class
 tr\com\meteor\crm\service\OperationService.class
 tr\com\meteor\crm\utils\attributevalues\TaskType.class
 tr\com\meteor\crm\domain\Spend_.class
-tr\com\meteor\crm\service\ExuseHolidayService.class
 tr\com\meteor\crm\utils\jasper\rest\QuoteVersionLineItemController.class
 tr\com\meteor\crm\repository\CityRepository.class
 tr\com\meteor\crm\service\CustomerSurveyAnswerService.class
@@ -230,26 +225,20 @@ tr\com\meteor\crm\repository\CustomAuditEventRepository.class
 tr\com\meteor\crm\trigger\ConfigurationTrigger.class
 tr\com\meteor\crm\utils\jasper\rest\errors\ErrorConstants.class
 tr\com\meteor\crm\domain\Ikfile.class
-tr\com\meteor\crm\repository\ContProductRepository.class
 tr\com\meteor\crm\domain\VocationDay_.class
-tr\com\meteor\crm\domain\ContProduct_.class
 tr\com\meteor\crm\domain\Contact.class
 tr\com\meteor\crm\domain\Resign_.class
 tr\com\meteor\crm\service\MobileNotificationService.class
 tr\com\meteor\crm\domain\EntityMetadata_.class
 tr\com\meteor\crm\config\DatabaseConfiguration.class
 tr\com\meteor\crm\utils\export\ExportUtils$ExcelColumnCallback.class
-tr\com\meteor\crm\utils\attributevalues\TaskType$Sirket.class
 tr\com\meteor\crm\utils\idgenerator\GenericIdGenerator$1.class
 tr\com\meteor\crm\utils\attributevalues\PaymentSubjectStatus.class
 tr\com\meteor\crm\trigger\PermissionTrigger.class
 tr\com\meteor\crm\utils\attributevalues\ContactType.class
 tr\com\meteor\crm\domain\Campaign_.class
 tr\com\meteor\crm\domain\SurveyAnswer_.class
-tr\com\meteor\crm\utils\jasper\rest\ExuseHolidayController.class
 tr\com\meteor\crm\trigger\HolUserTrigger.class
-tr\com\meteor\crm\repository\ExuseHolidayRepository.class
-tr\com\meteor\crm\utils\attributevalues\CustomTaskType$CustomTaskBirim.class
 tr\com\meteor\crm\utils\jasper\rest\PermissionController.class
 tr\com\meteor\crm\utils\attributevalues\ContractStatus.class
 tr\com\meteor\crm\utils\jasper\rest\DocumentController.class
@@ -375,7 +364,6 @@ tr\com\meteor\crm\repository\FileDescriptorRepository.class
 tr\com\meteor\crm\repository\FuelLimitRepository.class
 tr\com\meteor\crm\repository\ResignRepository.class
 tr\com\meteor\crm\repository\UserPermissionRepository.class
-tr\com\meteor\crm\utils\jasper\rest\ContProductController.class
 tr\com\meteor\crm\trigger\ResponsibleTrigger.class
 tr\com\meteor\crm\domain\Resign.class
 tr\com\meteor\crm\repository\CampaignRepository.class
@@ -399,7 +387,6 @@ tr\com\meteor\crm\utils\attributevalues\TaskStatus.class
 tr\com\meteor\crm\utils\request\Column.class
 tr\com\meteor\crm\utils\jasper\rest\GenericIdEntityController.class
 tr\com\meteor\crm\domain\Lead.class
-tr\com\meteor\crm\trigger\ExuseHolidayTrigger.class
 tr\com\meteor\crm\utils\idgenerator\IdType$IdTypeEnum.class
 tr\com\meteor\crm\repository\GenericIdNameAuditingEntityRepository.class
 tr\com\meteor\crm\domain\Configuration.class
@@ -444,7 +431,6 @@ tr\com\meteor\crm\utils\jasper\rest\ConfigurationController.class
 tr\com\meteor\crm\domain\QuoteVersion.class
 tr\com\meteor\crm\aop\logging\SoftDeleteAspect.class
 tr\com\meteor\crm\repository\IkfileRepository.class
-tr\com\meteor\crm\domain\ContProduct.class
 tr\com\meteor\crm\repository\SummaryUserCustomerRepository.class
 tr\com\meteor\crm\utils\jasper\rest\LeadController.class
 tr\com\meteor\crm\utils\attributevalues\LeadStatus.class
@@ -453,7 +439,6 @@ tr\com\meteor\crm\service\InvoiceListService.class
 tr\com\meteor\crm\trigger\Trigger.class
 tr\com\meteor\crm\utils\jasper\rest\ActivityController.class
 tr\com\meteor\crm\domain\HaveInstanceName.class
-tr\com\meteor\crm\utils\attributevalues\CustomTaskType$CustomTaskImportance.class
 tr\com\meteor\crm\service\InsertHolidayService.class
 tr\com\meteor\crm\service\MailService.class
 tr\com\meteor\crm\domain\QuoteVersionLineItem_.class
@@ -496,8 +481,6 @@ tr\com\meteor\crm\repository\AddressRepository.class
 tr\com\meteor\crm\utils\attributevalues\FuelStatus.class
 tr\com\meteor\crm\utils\filter\Filter$Operator.class
 tr\com\meteor\crm\service\DistrictService.class
-tr\com\meteor\crm\trigger\ContProductTrigger.class
-tr\com\meteor\crm\service\ContProductService.class
 tr\com\meteor\crm\utils\jasper\JasperUtils.class
 tr\com\meteor\crm\domain\Layout.class
 tr\com\meteor\crm\utils\validate\AttributeValueValidate.class

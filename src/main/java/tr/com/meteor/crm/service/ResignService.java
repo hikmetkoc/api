@@ -63,7 +63,11 @@ public class ResignService extends GenericIdNameAuditingEntityService<Resign, UU
             }
         }
         repository.save(resign);
-        mailService.sendEmail(resign.getAssigner().getEposta(), "meteorpanel - İşten Çıkış Anketi","Çalışanlarınızdan " +
-            resign.getOwner().getFullName() + " işten çıkış anketini doldurarak istifa etmek istediğini belirtti. Personeller bölümünden anketi inceleyebilirsiniz.", false, false);
+        mailService.sendEmail(resign.getAssigner().getEposta(), "meteorpanel - İşten Çıkış Anketi","Çalışanlardan " +
+            resign.getOwner().getFullName() + " işten çıkış anketini doldurdu. Personeller bölümünden anketi inceleyebilirsiniz.", false, false);
+
+        mailService.sendEmail("bt@meteorgrup.com.tr", "meteorpanel - İşten Çıkış Anketi","Çalışanlardan " +
+            resign.getOwner().getFullName() + " işten çıkış anketini doldurdu. Personeller bölümünden anketi inceleyebilirsiniz.", false, false);
+
     }
 }

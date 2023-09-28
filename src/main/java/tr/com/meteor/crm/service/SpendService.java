@@ -6,7 +6,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import tr.com.meteor.crm.domain.*;
 import tr.com.meteor.crm.repository.*;
+import tr.com.meteor.crm.utils.attributevalues.FaturaSirketleri;
 import tr.com.meteor.crm.utils.attributevalues.PaymentStatus;
+import tr.com.meteor.crm.utils.attributevalues.TaskType;
 import tr.com.meteor.crm.utils.filter.Filter;
 import tr.com.meteor.crm.utils.filter.FilterItem;
 import tr.com.meteor.crm.utils.request.Request;
@@ -39,133 +41,6 @@ public class SpendService extends GenericIdNameAuditingEntityService<Spend, UUID
         this.mailService = mailService;
     }
 
-    public byte[] generateExcelSpendReportForUser(User currentUser, Instant startDate, Instant endDate) throws Exception {
-        List<User> hierarchicalUsers = baseUserService.getHierarchicalUsersOnlyDownwards(currentUser);
-        List<Long> hierarchicalUserIds = hierarchicalUsers.stream().map(User::getId).collect(Collectors.toList());
-
-        Request request = Request.build().page(0).size(Integer.MAX_VALUE).filter(
-            Filter.And(
-                Filter.FilterItem("createdDate", FilterItem.Operator.GREATER_OR_EQUAL_THAN, startDate),
-                Filter.FilterItem("createdDate", FilterItem.Operator.LESS_THAN, endDate),
-                Filter.FilterItem("owner.id", FilterItem.Operator.IN, hierarchicalUserIds)
-            )
-        );
-
-        List<Spend> activities = getData(null, request, false).getBody();
-        Map<Long, List<Spend>> userIdActivities = new HashMap<>();
-
-        for (Spend activity : activities) {
-            List<Spend> userActivities = new ArrayList<>();
-
-            if (userIdActivities.containsKey(activity.getOwner().getId())) {
-                userActivities = userIdActivities.get(activity.getOwner().getId());
-            }
-
-            userActivities.add(activity);
-
-            userIdActivities.put(activity.getOwner().getId(), userActivities);
-        }
-
-        XSSFWorkbook workbook = new XSSFWorkbook();
-        XSSFSheet sheet = workbook.createSheet();
-
-        sheet.setColumnWidth(0, 200);
-        sheet.createRow(0).setHeight((short) 200);
-
-        XSSFFont boldFont = workbook.createFont();
-        boldFont.setBold(true);
-
-        int rowIndex = 1;
-        int columnIndex = 1;
-
-        XSSFRow headerRow = sheet.createRow(rowIndex++);
-
-        XSSFCellStyle headerCellStyle = workbook.createCellStyle();
-        headerCellStyle.setFont(boldFont);
-        headerCellStyle.setFillForegroundColor(new XSSFColor(new byte[]{(byte) 255, (byte) 255, (byte) 0}, null));
-        headerCellStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
-
-        XSSFCell supplierHeaderCell = headerRow.createCell(columnIndex++);  //Tedarikçi
-        XSSFCell taskHeaderCell = headerRow.createCell(columnIndex++);  //Görev
-        XSSFCell usernameHeaderCell = headerRow.createCell(columnIndex++);  //İşlem Yapan
-        XSSFCell taskSubjectHeaderCell = headerRow.createCell(columnIndex++);  //Konu
-        XSSFCell taskSubjdescHeaderCell = headerRow.createCell(columnIndex++);  //Konu Başlığı
-        XSSFCell activityStatusHeaderCell = headerRow.createCell(columnIndex++);    //Durum
-        XSSFCell planningHeaderCell = headerRow.createCell(columnIndex++);   //Planlanan Tarih
-        XSSFCell creatorHeaderCell = headerRow.createCell(columnIndex++);  //Oluşturan
-        XSSFCell creatorTimeHeaderCell = headerRow.createCell(columnIndex++);      //Oluşturma Tarihi
-        XSSFCell descriptionHeaderCell = headerRow.createCell(columnIndex++); //Açıklama
-
-        supplierHeaderCell.setCellStyle(headerCellStyle);
-        supplierHeaderCell.setCellValue("Tedarikçi");
-        taskHeaderCell.setCellStyle(headerCellStyle);
-        taskHeaderCell.setCellValue("Görev ID");
-        usernameHeaderCell.setCellStyle(headerCellStyle);
-        usernameHeaderCell.setCellValue("İşlem Yapan");
-        taskSubjectHeaderCell.setCellStyle(headerCellStyle);
-        taskSubjectHeaderCell.setCellValue("Konu");
-        taskSubjdescHeaderCell.setCellStyle(headerCellStyle);
-        taskSubjdescHeaderCell.setCellValue("Konu Başlığı");
-        activityStatusHeaderCell.setCellStyle(headerCellStyle);
-        activityStatusHeaderCell.setCellValue("Durum");
-        planningHeaderCell.setCellStyle(headerCellStyle);
-        planningHeaderCell.setCellValue("Planlanan Tarih");
-        creatorHeaderCell.setCellStyle(headerCellStyle);
-        creatorHeaderCell.setCellValue("Oluşturan");
-        creatorTimeHeaderCell.setCellStyle(headerCellStyle);
-        creatorTimeHeaderCell.setCellValue("Oluşturma Zamanı");
-        descriptionHeaderCell.setCellStyle(headerCellStyle);
-        descriptionHeaderCell.setCellValue("Açıklama");
-
-        for (User user : hierarchicalUsers) {
-            if (!userIdActivities.containsKey(user.getId())) continue;
-            List<Spend> sortedUserActivities = userIdActivities.get(user.getId()).stream()
-                .sorted(Comparator.comparing(Spend::getCreatedDate, Comparator.nullsLast(Comparator.naturalOrder())))
-                .collect(Collectors.toList());
-            for (Spend activity : sortedUserActivities) {
-                XSSFRow row = sheet.createRow(rowIndex++);
-                columnIndex = 1;
-
-                XSSFCell supplierCell = row.createCell(columnIndex++);  //Tedarikçi
-                XSSFCell taskIdCell = row.createCell(columnIndex++);  //Task ID
-                XSSFCell usernameCell = row.createCell(columnIndex++);  //İşlem Yapan
-                XSSFCell taskSubjectCell = row.createCell(columnIndex++);  //Konu
-                XSSFCell taskSubjdescCell = row.createCell(columnIndex++);  //Konu Başlığı
-                XSSFCell activityStatusCell = row.createCell(columnIndex++);    //Durum
-                XSSFCell planningCell = row.createCell(columnIndex++);   //Planlanan Tarih
-                XSSFCell creatorCell = row.createCell(columnIndex++);  //Oluşturan
-                XSSFCell creatorTimeCell = row.createCell(columnIndex++);      //Oluşturma Tarihi
-                XSSFCell descriptionCell = row.createCell(columnIndex++); //Açıklama
-
-                if (activity.getStatus() != null) {
-                    activityStatusCell.setCellValue(activity.getStatus().getLabel());
-                }
-
-                if (activity.getCreatedBy() != null) {
-                    creatorCell.setCellValue(activity.getCreatedBy().getFullName());
-                }
-
-                if (activity.getCreatedDate() != null) {
-                    creatorTimeCell.setCellValue(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm").withZone(ZoneId.systemDefault()).format(activity.getCreatedDate()));
-                }
-
-                if (activity.getDescription() != null) {
-                    descriptionCell.setCellValue(activity.getDescription());
-                }
-
-            }
-        }
-
-        for (int i = 0; i < 30; i++) {
-            sheet.autoSizeColumn(i);
-        }
-
-        ByteArrayOutputStream out = new ByteArrayOutputStream();
-        workbook.write(out);
-        workbook.close();
-
-        return out.toByteArray();
-    }
     public byte[] generateSelectedExcelSpendReport(List<UUID> ids, User currentUser, String type, String qualification, String description) throws Exception {
         List<User> hierarchicalUsers = baseUserService.getHierarchicalUsersOnlyDownwards(currentUser);
         List<Long> hierarchicalUserIds = hierarchicalUsers.stream().map(User::getId).collect(Collectors.toList());
@@ -278,6 +153,199 @@ public class SpendService extends GenericIdNameAuditingEntityService<Spend, UUID
 
         return out.toByteArray();
     }
+
+
+    public byte[] excelReport(User currentUser) throws Exception {
+        List<User> hierarchicalUsers = baseUserService.getHierarchicalUsersOnlyDownwards(currentUser);
+        List<Long> hierarchicalUserIds = hierarchicalUsers.stream().map(User::getId).collect(Collectors.toList());
+        Request request = Request.build().page(0).size(Integer.MAX_VALUE).filter(
+            Filter.And(
+                Filter.Or(
+                    Filter.FilterItem("owner.id", FilterItem.Operator.IN, hierarchicalUserIds),
+                    Filter.FilterItem("finance.id", FilterItem.Operator.IN, hierarchicalUserIds)
+                )
+            )
+        );
+
+        List<Spend> spends = getData(null, request, false).getBody();
+
+        XSSFWorkbook workbook = new XSSFWorkbook();
+        XSSFSheet sheet = workbook.createSheet();
+
+        sheet.setColumnWidth(0, 200);
+        sheet.createRow(0).setHeight((short) 200);
+
+        XSSFFont boldFont = workbook.createFont();
+        boldFont.setBold(true);
+
+        int rowIndex = 0;
+        int columnIndex = 0;
+
+        XSSFRow headerRow = sheet.createRow(rowIndex++);
+
+        XSSFCellStyle headerCellStyle = workbook.createCellStyle();
+        headerCellStyle.setFont(boldFont);
+        headerCellStyle.setFillForegroundColor(new XSSFColor(new byte[]{(byte) 189, (byte) 215, (byte) 238}, null));
+        headerCellStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+
+        XSSFCell odemeYapanSirket = headerRow.createCell(columnIndex++);     //Ödeme Yapan Şirket
+        XSSFCell odemeYapilacakSirket = headerRow.createCell(columnIndex++);     //Ödeme Yapılacak Şirket
+        XSSFCell odemeYapilanParaBirimi = headerRow.createCell(columnIndex++);  //Ödeme Yapılan Para Birimi
+        XSSFCell odenecekTutar = headerRow.createCell(columnIndex++);  // Ödenecek Tutar
+        XSSFCell odenenTlTutari = headerRow.createCell(columnIndex++);  //Ödenen TL Tutarı (Fatura Dolar ise)
+        XSSFCell kurTutari = headerRow.createCell(columnIndex++);  //Kur Tutarı
+        XSSFCell odemeTipi = headerRow.createCell(columnIndex++);  //Ödeme Tipi
+        XSSFCell vadeTarihi = headerRow.createCell(columnIndex++);  //Vade Tarihi
+        XSSFCell islemYapan = headerRow.createCell(columnIndex++);  //İşlem Yapan
+        XSSFCell islemTarihi = headerRow.createCell(columnIndex++);  //İşlem Tarihi
+        XSSFCell odemeDurumu = headerRow.createCell(columnIndex++);  //Ödeme Durumu
+        XSSFCell talimatOnayDurumu = headerRow.createCell(columnIndex++);  //Talimat Onay Durumu
+        XSSFCell odemeSirasi = headerRow.createCell(columnIndex++);  //Ödeme Sırası
+        XSSFCell olusturan = headerRow.createCell(columnIndex++);  //Oluşturan
+        XSSFCell aciklama = headerRow.createCell(columnIndex++);  //Açıklama
+        XSSFCell faturadakiParaBirimi = headerRow.createCell(columnIndex++);  //Faturadaki Para Birimi
+        XSSFCell faturadakiToplamTutar = headerRow.createCell(columnIndex++);  //Faturadaki Toplam Tutar
+        XSSFCell toplamOdenenTutar = headerRow.createCell(columnIndex++);  //Toplam Ödenen Tutar
+        XSSFCell kalanTutar = headerRow.createCell(columnIndex++);  //Kalan Tutar
+
+        odemeYapanSirket.setCellStyle(headerCellStyle);
+        odemeYapilacakSirket.setCellStyle(headerCellStyle);
+        odemeYapilanParaBirimi.setCellStyle(headerCellStyle);
+        odenecekTutar.setCellStyle(headerCellStyle);
+        odenenTlTutari.setCellStyle(headerCellStyle);
+        kurTutari.setCellStyle(headerCellStyle);
+        odemeTipi.setCellStyle(headerCellStyle);
+        vadeTarihi.setCellStyle(headerCellStyle);
+        islemYapan.setCellStyle(headerCellStyle);
+        islemTarihi.setCellStyle(headerCellStyle);
+        odemeDurumu.setCellStyle(headerCellStyle);
+        talimatOnayDurumu.setCellStyle(headerCellStyle);
+        odemeSirasi.setCellStyle(headerCellStyle);
+        olusturan.setCellStyle(headerCellStyle);
+        aciklama.setCellStyle(headerCellStyle);
+        faturadakiParaBirimi.setCellStyle(headerCellStyle);
+        faturadakiToplamTutar.setCellStyle(headerCellStyle);
+        toplamOdenenTutar.setCellStyle(headerCellStyle);
+        kalanTutar.setCellStyle(headerCellStyle);
+
+        odemeYapanSirket.setCellValue("Ödeme Yapan Şirket");
+        odemeYapilacakSirket.setCellValue("Ödeme Yapılacak Şirket");
+        odemeYapilanParaBirimi.setCellValue("Ödeme Yapılan Para Birimi");
+        odenecekTutar.setCellValue("Ödenecek Tutar");
+        odenenTlTutari.setCellValue("Ödenen TL Tutarı(Ödeme $ ise)");
+        kurTutari.setCellValue("Kur Tutarı");
+        odemeTipi.setCellValue("Ödeme Tipi");
+        vadeTarihi.setCellValue("Vade Tarihi");
+        islemYapan.setCellValue("İşlem Yapan");
+        islemTarihi.setCellValue("İşlem Tarihi");
+        odemeDurumu.setCellValue("Ödeme Durumu");
+        talimatOnayDurumu.setCellValue("Talimat Onay Durumu");
+        odemeSirasi.setCellValue("Ödeme Sırası");
+        olusturan.setCellValue("Oluşturan");
+        aciklama.setCellValue("Açıklama");
+        faturadakiParaBirimi.setCellValue("Faturadaki Para Birimi");
+        faturadakiToplamTutar.setCellValue("Faturadaki Toplam Tutar");
+        toplamOdenenTutar.setCellValue("Toplam Ödenen Tutar");
+        kalanTutar.setCellValue("Kalan Tutar");
+
+
+        for (Spend spend : spends) {
+            columnIndex = 0;
+
+            XSSFRow row = sheet.createRow(rowIndex++);
+
+            XSSFCell odemeYapanSirketRow = row.createCell(columnIndex++);     //Ödeme Yapan Şirket
+            XSSFCell odemeYapilacakSirketRow = row.createCell(columnIndex++);     //Ödeme Yapılacak Şirket
+            XSSFCell odemeYapilanParaBirimiRow = row.createCell(columnIndex++);  //Ödeme Yapılan Para Birimi
+            XSSFCell odenecekTutarRow = row.createCell(columnIndex++);  // Ödenecek Tutar
+            XSSFCell odenenTlTutariRow = row.createCell(columnIndex++);  //Ödenen TL Tutarı (Fatura Dolar ise)
+            XSSFCell kurTutariRow = row.createCell(columnIndex++);  //Kur Tutarı
+            XSSFCell odemeTipiRow = row.createCell(columnIndex++);  //Ödeme Tipi
+            XSSFCell vadeTarihiRow = row.createCell(columnIndex++);  //Vade Tarihi
+            XSSFCell islemYapanRow = row.createCell(columnIndex++);  //İşlem Yapan
+            XSSFCell islemTarihiRow = row.createCell(columnIndex++);  //İşlem Tarihi
+            XSSFCell odemeDurumuRow = row.createCell(columnIndex++);  //Ödeme Durumu
+            XSSFCell talimatOnayDurumuRow = row.createCell(columnIndex++);  //Talimat Onay Durumu
+            XSSFCell odemeSirasiRow = row.createCell(columnIndex++);  //Ödeme Sırası
+            XSSFCell olusturanRow = row.createCell(columnIndex++);  //Oluşturan
+            XSSFCell aciklamaRow = row.createCell(columnIndex++);  //Açıklama
+            XSSFCell faturadakiParaBirimiRow = row.createCell(columnIndex++);  //Faturadaki Para Birimi
+            XSSFCell faturadakiToplamTutarRow = row.createCell(columnIndex++);  //Faturadaki Toplam Tutar
+            XSSFCell toplamOdenenTutarRow = row.createCell(columnIndex++);  //Toplam Ödenen Tutar
+            XSSFCell kalanTutarRow = row.createCell(columnIndex++);  //Kalan Tutar
+
+
+
+            if (spend.getPaymentorder().getOdemeYapanSirket() != null) {
+                odemeYapanSirketRow.setCellValue(spend.getPaymentorder().getOdemeYapanSirket().getLabel());
+            }
+            if (spend.getPaymentorder().getCustomer() != null) {
+                odemeYapilacakSirketRow.setCellValue(spend.getPaymentorder().getCustomer().getName());
+            }
+            if (spend.getPaymentorder().getPaymentStyle() != null) {
+                odemeYapilanParaBirimiRow.setCellValue(spend.getPaymentorder().getPaymentStyle().getLabel());
+            }
+            if (spend.getAmount() != null) {
+                odenecekTutarRow.setCellValue(spend.getAmount().floatValue());
+            }
+            if (spend.getPayTl() != null) {
+                odenenTlTutariRow.setCellValue(spend.getPayTl().floatValue());
+            }
+            if (spend.getExchangeMoney() != null) {
+                kurTutariRow.setCellValue(spend.getExchangeMoney().floatValue());
+            }
+            if (spend.getPaymentorder().getPaymentType() != null) {
+                odemeTipiRow.setCellValue(spend.getPaymentorder().getMoneyType().getLabel());
+            }
+            if (spend.getMaturityDate() != null) {
+                vadeTarihiRow.setCellValue(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm").withZone(ZoneId.systemDefault()).format(spend.getMaturityDate()));
+            }
+            if (spend.getOwner() != null) {
+                islemYapanRow.setCellValue(spend.getOwner().getFullName());
+            }
+            if (spend.getSpendDate() != null) {
+                islemTarihiRow.setCellValue(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm").withZone(ZoneId.systemDefault()).format(spend.getSpendDate()));
+            }
+            if (spend.getStatus() != null) {
+                odemeDurumuRow.setCellValue(spend.getStatus().getLabel());
+            }
+            if (spend.getPaymentStatus() != null) {
+                talimatOnayDurumuRow.setCellValue(spend.getPaymentStatus());
+            }
+            if (spend.getPaymentNum() != null) {
+                odemeSirasiRow.setCellValue(spend.getPaymentNum());
+            }
+            if (spend.getCreatedBy() != null) {
+                olusturanRow.setCellValue(spend.getCreatedBy().getFullName());
+            }
+            if (spend.getDescription() != null) {
+                aciklamaRow.setCellValue(spend.getDescription());
+            }
+            if (spend.getPaymentorder().getMoneyType() != null) {
+                faturadakiParaBirimiRow.setCellValue(spend.getPaymentorder().getMoneyType().getLabel());
+            }
+            if (spend.getPaymentorder().getAmount() != null) {
+                faturadakiToplamTutarRow.setCellValue(spend.getPaymentorder().getAmount().floatValue());
+            }
+            if (spend.getPaymentorder().getPayamount() != null) {
+                toplamOdenenTutarRow.setCellValue(spend.getPaymentorder().getPayamount().floatValue());
+            }
+            if (spend.getPaymentorder().getNextamount() != null) {
+                kalanTutarRow.setCellValue(spend.getPaymentorder().getNextamount().floatValue());
+            }
+        }
+
+        for (int i = 0; i < 20; i++) {
+            sheet.autoSizeColumn(i);
+        }
+
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        workbook.write(out);
+        workbook.close();
+
+        return out.toByteArray();
+    }
+
     public void updateSpendStatus(UUID id, AttributeValue status, String description) throws Exception{
         Instant okeyFirst = null;
         Boolean lock = false;
@@ -435,23 +503,171 @@ public class SpendService extends GenericIdNameAuditingEntityService<Spend, UUID
     }
 
     public String controlTotal() throws Exception {
-        BigDecimal toplamtl = BigDecimal.ZERO;
-        BigDecimal toplamdl = BigDecimal.ZERO;
+        BigDecimal mpetroltoplamtl = BigDecimal.ZERO;
+        BigDecimal mpetroltoplamdl = BigDecimal.ZERO;
+        BigDecimal insaattoplamtl = BigDecimal.ZERO;
+        BigDecimal insaattoplamdl = BigDecimal.ZERO;
+        BigDecimal cemcantoplamtl = BigDecimal.ZERO;
+        BigDecimal cemcantoplamdl = BigDecimal.ZERO;
+        BigDecimal ncctoplamtl = BigDecimal.ZERO;
+        BigDecimal ncctoplamdl = BigDecimal.ZERO;
+        BigDecimal izmirtoplamtl = BigDecimal.ZERO;
+        BigDecimal izmirtoplamdl = BigDecimal.ZERO;
+        BigDecimal igdirtoplamtl = BigDecimal.ZERO;
+        BigDecimal igdirtoplamdl = BigDecimal.ZERO;
+        BigDecimal simyatoplamtl = BigDecimal.ZERO;
+        BigDecimal simyatoplamdl = BigDecimal.ZERO;
+        BigDecimal bircetoplamtl = BigDecimal.ZERO;
+        BigDecimal bircetoplamdl = BigDecimal.ZERO;
+        BigDecimal mudanyatoplamtl = BigDecimal.ZERO;
+        BigDecimal mudanyatoplamdl = BigDecimal.ZERO;
+        BigDecimal startoplamtl = BigDecimal.ZERO;
+        BigDecimal startoplamdl = BigDecimal.ZERO;
+        BigDecimal chargetoplamtl = BigDecimal.ZERO;
+        BigDecimal chargetoplamdl = BigDecimal.ZERO;
+        BigDecimal avelicetoplamtl = BigDecimal.ZERO;
+        BigDecimal avelicetoplamdl = BigDecimal.ZERO;
         List<Spend> spendList = repository.findAll();
 
         for (Spend spend : spendList) {
             if (spend.getStatus().getLabel().equals("Ödendi")) continue;
-            if (spend.getPaymentorder().getMoneyType().getId().equals("Par_Bir_Tl")) {
-                toplamtl = toplamtl.add(spend.getAmount());
-            } else {
-                if (spend.getPaymentorder().getPaymentStyle().getId().equals("Payment_Style_Tl")) {
-                    toplamtl = toplamtl.add(spend.getPayTl());
+            if (spend.getPaymentorder().getOdemeYapanSirket().getId().equals(FaturaSirketleri.METEOR.getId())) {
+                if (spend.getPaymentorder().getMoneyType().getId().equals("Par_Bir_Tl")) {
+                    mpetroltoplamtl = mpetroltoplamtl.add(spend.getAmount());
                 } else {
-                    toplamdl = toplamdl.add(spend.getAmount());
+                    if (spend.getPaymentorder().getPaymentStyle().getId().equals("Payment_Style_Tl")) {
+                        mpetroltoplamtl = mpetroltoplamtl.add(spend.getPayTl());
+                    } else {
+                        mpetroltoplamdl = mpetroltoplamdl.add(spend.getAmount());
+                    }
+                }
+            } else if (spend.getPaymentorder().getOdemeYapanSirket().getId().equals(FaturaSirketleri.INSAAT.getId())) {
+                if (spend.getPaymentorder().getMoneyType().getId().equals("Par_Bir_Tl")) {
+                    insaattoplamtl = insaattoplamtl.add(spend.getAmount());
+                } else {
+                    if (spend.getPaymentorder().getPaymentStyle().getId().equals("Payment_Style_Tl")) {
+                        insaattoplamtl = insaattoplamtl.add(spend.getPayTl());
+                    } else {
+                        insaattoplamdl = insaattoplamdl.add(spend.getAmount());
+                    }
+                }
+            } else if (spend.getPaymentorder().getOdemeYapanSirket().getId().equals(FaturaSirketleri.CEMCAN.getId())) {
+                if (spend.getPaymentorder().getMoneyType().getId().equals("Par_Bir_Tl")) {
+                    cemcantoplamtl = cemcantoplamtl.add(spend.getAmount());
+                } else {
+                    if (spend.getPaymentorder().getPaymentStyle().getId().equals("Payment_Style_Tl")) {
+                        cemcantoplamtl = cemcantoplamtl.add(spend.getPayTl());
+                    } else {
+                        cemcantoplamdl = cemcantoplamdl.add(spend.getAmount());
+                    }
+                }
+            } else if (spend.getPaymentorder().getOdemeYapanSirket().getId().equals(FaturaSirketleri.NCC.getId())) {
+                if (spend.getPaymentorder().getMoneyType().getId().equals("Par_Bir_Tl")) {
+                    ncctoplamtl = ncctoplamtl.add(spend.getAmount());
+                } else {
+                    if (spend.getPaymentorder().getPaymentStyle().getId().equals("Payment_Style_Tl")) {
+                        ncctoplamtl = ncctoplamtl.add(spend.getPayTl());
+                    } else {
+                        ncctoplamdl = ncctoplamdl.add(spend.getAmount());
+                    }
+                }
+            } else if (spend.getPaymentorder().getOdemeYapanSirket().getId().equals(FaturaSirketleri.IZMIR.getId())) {
+                if (spend.getPaymentorder().getMoneyType().getId().equals("Par_Bir_Tl")) {
+                    izmirtoplamtl = izmirtoplamtl.add(spend.getAmount());
+                } else {
+                    if (spend.getPaymentorder().getPaymentStyle().getId().equals("Payment_Style_Tl")) {
+                        izmirtoplamtl = izmirtoplamtl.add(spend.getPayTl());
+                    } else {
+                        izmirtoplamdl = izmirtoplamdl.add(spend.getAmount());
+                    }
+                }
+            } else if (spend.getPaymentorder().getOdemeYapanSirket().getId().equals(FaturaSirketleri.IGDIR.getId())) {
+                if (spend.getPaymentorder().getMoneyType().getId().equals("Par_Bir_Tl")) {
+                    igdirtoplamtl = igdirtoplamtl.add(spend.getAmount());
+                } else {
+                    if (spend.getPaymentorder().getPaymentStyle().getId().equals("Payment_Style_Tl")) {
+                        igdirtoplamtl = igdirtoplamtl.add(spend.getPayTl());
+                    } else {
+                        igdirtoplamdl = igdirtoplamdl.add(spend.getAmount());
+                    }
+                }
+            } else if (spend.getPaymentorder().getOdemeYapanSirket().getId().equals(FaturaSirketleri.SIMYA.getId())) {
+                if (spend.getPaymentorder().getMoneyType().getId().equals("Par_Bir_Tl")) {
+                    simyatoplamtl = simyatoplamtl.add(spend.getAmount());
+                } else {
+                    if (spend.getPaymentorder().getPaymentStyle().getId().equals("Payment_Style_Tl")) {
+                        simyatoplamtl = simyatoplamtl.add(spend.getPayTl());
+                    } else {
+                        simyatoplamdl = simyatoplamdl.add(spend.getAmount());
+                    }
+                }
+            } else if (spend.getPaymentorder().getOdemeYapanSirket().getId().equals(FaturaSirketleri.BIRCE.getId())) {
+                if (spend.getPaymentorder().getMoneyType().getId().equals("Par_Bir_Tl")) {
+                    bircetoplamtl = bircetoplamtl.add(spend.getAmount());
+                } else {
+                    if (spend.getPaymentorder().getPaymentStyle().getId().equals("Payment_Style_Tl")) {
+                        bircetoplamtl = bircetoplamtl.add(spend.getPayTl());
+                    } else {
+                        bircetoplamdl = bircetoplamdl.add(spend.getAmount());
+                    }
+                }
+            } else if (spend.getPaymentorder().getOdemeYapanSirket().getId().equals(FaturaSirketleri.MUDANYA.getId())) {
+                if (spend.getPaymentorder().getMoneyType().getId().equals("Par_Bir_Tl")) {
+                    mudanyatoplamtl = mudanyatoplamtl.add(spend.getAmount());
+                } else {
+                    if (spend.getPaymentorder().getPaymentStyle().getId().equals("Payment_Style_Tl")) {
+                        mudanyatoplamtl = mudanyatoplamtl.add(spend.getPayTl());
+                    } else {
+                        mudanyatoplamdl = mudanyatoplamdl.add(spend.getAmount());
+                    }
+                }
+            } else if (spend.getPaymentorder().getOdemeYapanSirket().getId().equals(FaturaSirketleri.STAR.getId())) {
+                if (spend.getPaymentorder().getMoneyType().getId().equals("Par_Bir_Tl")) {
+                    startoplamtl = startoplamtl.add(spend.getAmount());
+                } else {
+                    if (spend.getPaymentorder().getPaymentStyle().getId().equals("Payment_Style_Tl")) {
+                        startoplamtl = startoplamtl.add(spend.getPayTl());
+                    } else {
+                        startoplamdl = startoplamdl.add(spend.getAmount());
+                    }
+                }
+            } else if (spend.getPaymentorder().getOdemeYapanSirket().getId().equals(FaturaSirketleri.CHARGE.getId())) {
+                if (spend.getPaymentorder().getMoneyType().getId().equals("Par_Bir_Tl")) {
+                    chargetoplamtl = chargetoplamtl.add(spend.getAmount());
+                } else {
+                    if (spend.getPaymentorder().getPaymentStyle().getId().equals("Payment_Style_Tl")) {
+                        chargetoplamtl = chargetoplamtl.add(spend.getPayTl());
+                    } else {
+                        chargetoplamdl = chargetoplamdl.add(spend.getAmount());
+                    }
+                }
+            } else if (spend.getPaymentorder().getOdemeYapanSirket().getId().equals(FaturaSirketleri.AVELICE.getId())) {
+                if (spend.getPaymentorder().getMoneyType().getId().equals("Par_Bir_Tl")) {
+                    avelicetoplamtl = avelicetoplamtl.add(spend.getAmount());
+                } else {
+                    if (spend.getPaymentorder().getPaymentStyle().getId().equals("Payment_Style_Tl")) {
+                        avelicetoplamtl = avelicetoplamtl.add(spend.getPayTl());
+                    } else {
+                        avelicetoplamdl = avelicetoplamdl.add(spend.getAmount());
+                    }
                 }
             }
+
         }
-        String degerler = toplamtl.toString() + "-" + toplamdl.toString();
-        return degerler;
+        String meteorpetrol = mpetroltoplamtl + "-" + mpetroltoplamdl;
+        String meteorinsaat = insaattoplamtl + "-" + insaattoplamdl;
+        String cemcanpetrol = cemcantoplamtl + "-" + cemcantoplamdl;
+        String nccpetrol = ncctoplamtl + "-" + ncctoplamdl;
+        String izmirsube = izmirtoplamtl + "-" + izmirtoplamdl;
+        String igdirsube = igdirtoplamtl + "-" + igdirtoplamdl;
+        String simya = simyatoplamtl + "-" + simyatoplamdl;
+        String birce = bircetoplamtl + "-" + bircetoplamdl;
+        String mudanya = mudanyatoplamtl + "-" + mudanyatoplamdl;
+        String star = startoplamtl + "-" + startoplamdl;
+        String charge = chargetoplamtl + "-" + chargetoplamdl;
+        String avelice = avelicetoplamtl + "-" + avelicetoplamdl;
+        return meteorpetrol + "&" + meteorinsaat + "&" + cemcanpetrol + "&" + nccpetrol + "&" +
+            izmirsube + "&" + igdirsube + "&" + simya + "&" + birce + "&" + mudanya + "&" +
+            star + "&" + charge + "&" + avelice;
     }
 }

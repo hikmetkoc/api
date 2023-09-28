@@ -46,7 +46,7 @@ public class Spend extends IdNameAuditingEntity<UUID> {
     @JsonIgnoreProperties({"groups", "members", "createdBy", "lastModifiedBy", "roles"})
     @FieldMetadataAnn(title = "Ödeme Yapılacak Şirket", priority = 0, filterable = true)
     private Customer customer;
-    @FieldMetadataAnn(title = "Açıklama")
+    @FieldMetadataAnn(title = "Açıklama", display = false)
     @Column(length = 2048)
     private String description;
 
@@ -55,16 +55,16 @@ public class Spend extends IdNameAuditingEntity<UUID> {
     @ManyToOne
     private AttributeValue status;
 
-    @FieldMetadataAnn(title = "Talimat Onay Durumu")
+    @FieldMetadataAnn(title = "Talimat Onay Durumu", display = true)
     private String paymentStatus;
 
-    @FieldMetadataAnn(title = "İşlem Tarihi", display = true, priority = 70, readOnly = true, filterable = true)
+    @FieldMetadataAnn(title = "İşlem Tarihi", display = false, priority = 70, filterable = true)
     private Instant spendDate;
 
-    @FieldMetadataAnn(title = "Vade Tarihi", display = true, priority = 70, readOnly = false, filterable = true)
+    @FieldMetadataAnn(title = "Vade Tarihi", display = true, priority = 70, readOnly = false)
     private Instant maturityDate;
 
-    @FieldMetadataAnn(title = "Ödeme Sırası")
+    @FieldMetadataAnn(title = "Ödeme Sırası", display = false)
     private String paymentNum;
 
     @FieldMetadataAnn(title = "Ödenecek Tutar", priority = 100, display = true, required = true)
@@ -81,6 +81,9 @@ public class Spend extends IdNameAuditingEntity<UUID> {
 
     @FieldMetadataAnn(title = "Dekont", priority = 120, active = false)
     private String dekont;
+
+    @FieldMetadataAnn(title = "Ödeme Yapan Şirket", priority = 0, readOnly = true, display = true)
+    private String odemeYapanSirket;
     @Formula("description")
     @FieldMetadataAnn(readOnly = true, title = "Başlık", active = false)
     private String instanceName;
@@ -230,5 +233,13 @@ public class Spend extends IdNameAuditingEntity<UUID> {
 
     public void setDekont(String dekont) {
         this.dekont = dekont;
+    }
+
+    public String getOdemeYapanSirket() {
+        return odemeYapanSirket;
+    }
+
+    public void setOdemeYapanSirket(String odemeYapanSirket) {
+        this.odemeYapanSirket = odemeYapanSirket;
     }
 }

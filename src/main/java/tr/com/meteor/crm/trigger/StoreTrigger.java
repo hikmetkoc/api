@@ -243,7 +243,7 @@ public class StoreTrigger extends Trigger<Store, UUID, StoreRepository> {
                     "onaycıların onayı ile birlikte satın alma süreci tamamlanacaktır.",
                 false, false);
             mailService.sendEmail(newEntity.getBuyowner().getEposta(),
-                "MeteorPanel - Satın Alma Talebi", newEntity.getOwner().getFullName() + ", " +
+                "MeteorPanel - Satın Alma Talebi", newEntity.getAssigner().getFullName() + ", " +
                     newEntity.getMaliyet().getLabel() + " adına " +
                     newEntity.getRequest() + " ürünü için bir talepte bulundu ve talep " + newEntity.getOwner().getFullName() + " tarafından onayladı." +
                     "\nİlgili talebin SATIN ALMA SORUMLUSU sizsiniz. En az 3 teklif oluşturup proforma faturaları ekledikten sonra her bir teklif için Teklifi Tamamla butonuna basın.\n" +

@@ -225,11 +225,11 @@ public class InvoiceListTrigger extends Trigger<InvoiceList, UUID, InvoiceListRe
             // TEK ÖDEME OLUŞTURMA
             if (newEntity.getKismi().equals(false)) {
                 if (newEntity.getSuccess().equals(false) && newEntity.getAutopay().equals(false)) { // ÖDENMEYEN FATURA
-                    spendRepository.insertSpend(UUID.randomUUID(), getCurrentUserId(), SpendStatus.ODENMEDI.getId(), paymentOrder.getId(), newEntity.getAmount(), "1.Onay Bekleniyor", false, this.baseUserService.getUserFullFetched(1L).get().getId(), Instant.now(), newEntity.getMaturityDate(), "Tek Ödeme", newEntity.getPayTl(), newEntity.getCustomer().getId());
+                    spendRepository.insertSpend(UUID.randomUUID(), getCurrentUserId(), SpendStatus.ODENMEDI.getId(), paymentOrder.getId(), newEntity.getAmount(), "1.Onay Bekleniyor", false, this.baseUserService.getUserFullFetched(1L).get().getId(), Instant.now(), newEntity.getMaturityDate(), "Tek Ödeme", newEntity.getPayTl(), newEntity.getCustomer().getId(), newEntity.getOdemeYapanSirket().getLabel());
                 } else if (newEntity.getSuccess().equals(true) && newEntity.getAutopay().equals(false)) { // ÖDENDİ TİKLİ FATURA
-                    spendRepository.insertSpend(UUID.randomUUID(), getCurrentUserId(), SpendStatus.ODENDI.getId(), paymentOrder.getId(), newEntity.getAmount(), "Ödendi", false, this.baseUserService.getUserFullFetched(1L).get().getId(), Instant.now(), newEntity.getMaturityDate(), "Tek Ödeme", newEntity.getPayTl(), newEntity.getCustomer().getId());
+                    spendRepository.insertSpend(UUID.randomUUID(), getCurrentUserId(), SpendStatus.ODENDI.getId(), paymentOrder.getId(), newEntity.getAmount(), "Ödendi", false, this.baseUserService.getUserFullFetched(1L).get().getId(), Instant.now(), newEntity.getMaturityDate(), "Tek Ödeme", newEntity.getPayTl(), newEntity.getCustomer().getId(), newEntity.getOdemeYapanSirket().getLabel());
                 } else if (newEntity.getSuccess().equals(false) && newEntity.getAutopay().equals(true)) { // OTOMATİK ÖDENDİ TİKLİ FATURA
-                    spendRepository.insertSpend(UUID.randomUUID(), getCurrentUserId(), SpendStatus.ODENDI.getId(), paymentOrder.getId(), newEntity.getAmount(), "Otomatik Ödendi", false, this.baseUserService.getUserFullFetched(1L).get().getId(), Instant.now(), newEntity.getMaturityDate(), "Tek Ödeme", newEntity.getPayTl(), newEntity.getCustomer().getId());
+                    spendRepository.insertSpend(UUID.randomUUID(), getCurrentUserId(), SpendStatus.ODENDI.getId(), paymentOrder.getId(), newEntity.getAmount(), "Otomatik Ödendi", false, this.baseUserService.getUserFullFetched(1L).get().getId(), Instant.now(), newEntity.getMaturityDate(), "Tek Ödeme", newEntity.getPayTl(), newEntity.getCustomer().getId(), newEntity.getOdemeYapanSirket().getLabel());
                 }
             }
             if (newEntity.getIban() != null) {

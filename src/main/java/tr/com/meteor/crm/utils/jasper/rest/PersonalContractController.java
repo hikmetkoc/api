@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tr.com.meteor.crm.domain.PersonalContract;
 import tr.com.meteor.crm.domain.Task;
+import tr.com.meteor.crm.domain.User;
 import tr.com.meteor.crm.repository.PersonalContractRepository;
 import tr.com.meteor.crm.repository.TaskRepository;
 import tr.com.meteor.crm.service.PersonalContractService;
@@ -27,9 +28,9 @@ public class PersonalContractController extends GenericIdNameAuditingEntityContr
         super(service);
     }
 
-    @GetMapping("/download-degistirilmis-belge")
-    public ResponseEntity<ByteArrayResource> download(@RequestParam String adsoyad) throws Exception {
-        File file = service.ChangeWord(adsoyad);
+    @PostMapping("/download-degistirilmis-belge")
+    public ResponseEntity<ByteArrayResource> download(@RequestBody User user, @RequestParam String sozlesme) throws Exception {
+        File file = service.ChangeWord(user, sozlesme);
         byte[] fileContent = Files.readAllBytes(file.toPath());
         ByteArrayResource resource = new ByteArrayResource(fileContent);
 

@@ -69,6 +69,7 @@ public class SpendTrigger extends Trigger<Spend, UUID, SpendRepository> {
         newEntity.setPaymentNum(sayac + ".Ödeme");
         newEntity.setPaymentStatus(newEntity.getPaymentorder().getStatus().getLabel());
         newEntity.setFinance(baseUserService.getUserFullFetched(1L).get());
+        newEntity.setOdemeYapanSirket(newEntity.getPaymentorder().getOdemeYapanSirket().getLabel());
         return newEntity;
     }
 

@@ -27,14 +27,6 @@ public class SpendController extends GenericIdNameAuditingEntityController<Spend
         super(service);
     }
 
-    @PostMapping("/report")
-    public ResponseEntity report(@RequestParam Instant startDate, @RequestParam Instant endDate) throws Exception {
-        return ResponseEntity.ok()
-            .header("Content-Disposition", "attachment; filename=" + service.getEntityMetaData().getName() + ".xlsx")
-            .contentType(MediaType.parseMediaType("application/vnd.ms-excel;charset=UTF-8"))
-            .body(new ByteArrayResource(service.generateExcelSpendReportForUser(getCurrentUser(), startDate, endDate)));
-    }
-
     @PutMapping("/{id}")
     public ResponseEntity<String> updateSpendStatus(@PathVariable UUID id, @RequestParam String status, @RequestParam String description) throws Exception {
         try {
@@ -68,6 +60,14 @@ public class SpendController extends GenericIdNameAuditingEntityController<Spend
             .header("Content-Disposition", "attachment; filename=" + service.getEntityMetaData().getName() + ".xlsx")
             .contentType(MediaType.parseMediaType("application/vnd.ms-excel;charset=UTF-8"))
             .body(new ByteArrayResource(service.generateSelectedExcelSpendReport(ids, getCurrentUser(), type, qualification, description)));
+    }
+
+    @PostMapping("excelReport")
+    public ResponseEntity<ByteArrayResource> excelReport() throws Exception {
+        return ResponseEntity.ok()
+            .header("Content-Disposition", "attachment; filename=" + service.getEntityMetaData().getName() + ".xlsx")
+            .contentType(MediaType.parseMediaType("application/vnd.ms-excel;charset=UTF-8"))
+            .body(new ByteArrayResource(service.excelReport(getCurrentUser())));
     }
 
     @PutMapping("/paytotl/{id}")

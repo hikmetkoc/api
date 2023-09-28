@@ -25,6 +25,11 @@ import java.util.UUID;
 @Repository
 public interface UserRepository extends GenericIdNameAuditingEntityRepository<User, Long> {
 
+    User findByTck(String tck);
+
+    boolean existsByLogin(String login);
+
+    boolean existsByTck(String tck);
     String USERS_BY_LOGIN_CACHE = "usersByLogin";
 
     String USERS_BY_EMAIL_CACHE = "usersByEmail";

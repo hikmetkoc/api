@@ -211,19 +211,18 @@ public class UserController extends GenericIdNameAuditingEntityController<User, 
     }
     @PutMapping("/newPerson")
     public ResponseEntity<String> addNewPerson(
-        @RequestBody User assigner,
-        @RequestParam String tc,
-        @RequestParam Instant baslangic,
-        @RequestParam Instant dogum,
-        @RequestParam String cep,
-        @RequestParam String ad,
-        @RequestParam String soyad,
+        @RequestBody User user,
         @RequestParam String unvan,
-        @RequestParam String sgkSirket) throws Exception{
+        @RequestParam String sgkSirket,
+        @RequestParam String egitim,
+        @RequestParam String askerlik,
+        @RequestParam String cinsiyet,
+        @RequestParam String ehliyet
+    ) throws Exception{
 
         try {
             // Diğer işlemleri burada gerçekleştirin
-            service.newPerson(tc, baslangic, dogum, cep, ad, soyad, assigner, unvan, sgkSirket);
+            service.newPerson(user, unvan, sgkSirket, egitim, askerlik, cinsiyet, ehliyet);
             return ResponseEntity.ok().build();
         } catch (NullPointerException exception) {
             // Hata durumunda uygun bir hata yanıtı döndürün

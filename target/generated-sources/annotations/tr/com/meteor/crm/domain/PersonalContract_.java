@@ -14,6 +14,7 @@ public abstract class PersonalContract_ extends tr.com.meteor.crm.domain.IdNameA
 	public static volatile SingularAttribute<PersonalContract, String> instanceName;
 	public static volatile SingularAttribute<PersonalContract, String> name;
 	public static volatile SingularAttribute<PersonalContract, String> description;
+	public static volatile SingularAttribute<PersonalContract, String> sozlesme;
 
 	public static final String OWNER = "owner";
 	public static final String BELGE = "belge";
@@ -21,6 +22,7 @@ public abstract class PersonalContract_ extends tr.com.meteor.crm.domain.IdNameA
 	public static final String INSTANCE_NAME = "instanceName";
 	public static final String NAME = "name";
 	public static final String DESCRIPTION = "description";
+	public static final String SOZLESME = "sozlesme";
 
 }
 

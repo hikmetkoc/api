@@ -39,6 +39,10 @@ public class PersonalContract extends IdNameAuditingEntity<UUID> {
     @Column(length = 2048)
     private String description;
 
+    @FieldMetadataAnn(title = "Sözleşme Adı", display = true, priority = 120, filterable = true)
+    @Column(length = 2048)
+    private String sozlesme;
+
     @FieldMetadataAnn(title = "Word Belgesi", priority = 110)
     private String belge;
 
@@ -104,5 +108,13 @@ public class PersonalContract extends IdNameAuditingEntity<UUID> {
 
     public void setBelge(String belge) {
         this.belge = belge;
+    }
+
+    public String getSozlesme() {
+        return sozlesme;
+    }
+
+    public void setSozlesme(String sozlesme) {
+        this.sozlesme = sozlesme;
     }
 }

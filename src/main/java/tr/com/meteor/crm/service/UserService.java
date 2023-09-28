@@ -4,6 +4,7 @@ import com.itextpdf.text.*;
 import com.itextpdf.text.Document;
 import org.apache.poi.ss.usermodel.FillPatternType;
 import org.apache.poi.xssf.usermodel.*;
+import org.checkerframework.checker.units.qual.A;
 import org.jsoup.Jsoup;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,6 +34,7 @@ import tr.com.meteor.crm.security.SecurityUtils;
 import tr.com.meteor.crm.utils.request.Request;
 
 import java.io.*;
+import java.text.Normalizer;
 import java.time.Instant;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
@@ -664,42 +666,87 @@ public class UserService extends GenericIdNameAuditingEntityService<User, Long, 
 
         return out.toByteArray();
     }
-    public void newPerson(String tc, Instant baslangic, Instant dogum, String cep, String ad, String soyad, User assigner, String unvan, String sgkSirket) throws Exception {
-        if (tc.length() > 11) {
+
+    public String turkishToEnglish(String input) {
+        String normalizedInput = Normalizer.normalize(input, Normalizer.Form.NFD);
+        String removedSpecialCharacters = normalizedInput.replaceAll("[^\\p{ASCII}]", "");
+
+        // Küçük harfe çevir ve noktaları ekleyerek login oluştur
+        return removedSpecialCharacters.toLowerCase().replaceAll("\\s+", ".");
+    }
+    public void newPerson(User userEmployee, String unvan, String sgkSirket, String egitim, String askerlik, String cinsiyet, String ehliyet) throws Exception {
+        if (userEmployee.getTck().length() > 11) {
             System.out.println("Lütfen 11 haneli TC giriniz...");
         }
         AttributeValue attrUnvan = new AttributeValue();
         AttributeValue attrSirket = new AttributeValue();
+        AttributeValue attrEgitim = new AttributeValue();
+        AttributeValue attrAskerlik = new AttributeValue();
+        AttributeValue attrCinsiyet = new AttributeValue();
+        AttributeValue attrEhliyet = new AttributeValue();
         List<AttributeValue> attributeValues = attributeValueRepository.findAll();
         for (AttributeValue attributeValue : attributeValues) {
             if (attributeValue.getId().equals(unvan)) attrUnvan = attributeValue;
             if (attributeValue.getId().equals(sgkSirket)) attrSirket = attributeValue;
+            if (attributeValue.getId().equals(egitim)) attrEgitim = attributeValue;
+            if (attributeValue.getId().equals(askerlik)) attrAskerlik = attributeValue;
+            if (attributeValue.getId().equals(cinsiyet)) attrCinsiyet = attributeValue;
+            if (attributeValue.getId().equals(ehliyet)) attrEhliyet = attributeValue;
         }
-        String login = ad.toLowerCase() + "." + soyad.toLowerCase();
+        String login = turkishToEnglish(userEmployee.getFirstName()).toLowerCase() + "." + turkishToEnglish(userEmployee.getLastName()).toLowerCase();
         String password = passwordEncoder.encode("12345");
-        String mail = assigner.getEmail();
-        String gonderilecekmail = assigner.getEposta();
+        String mail = getCurrentUser().getEmail();
+        String gonderilecekmail = getCurrentUser().getEposta();
+
+        if (repository.existsByLogin(login)) {
+            throw new Exception("Bu kullanıcı adı zaten mevcut! Lütfen Ad Soyad kontrol ediniz. Doğru ise Bilgi İşlem personeli ile iletişime geçiniz!");
+        }
+        if (repository.existsByTck(userEmployee.getTck())) {
+            throw new Exception("Bu T.C. Kimlik numarasına sahip personelin kaydı zaten var!");
+        }
 
         User user = new User();
         user.setLogin(login);
         user.setPassword(password);
-        user.setTck(tc);
-        user.setFirstName(ad);
-        user.setLastName(soyad);
+        user.setTck(userEmployee.getTck());
+        user.setFirstName(userEmployee.getFirstName());
+        user.setLastName(userEmployee.getLastName());
         user.setEmail(mail);
         user.setEposta(gonderilecekmail);
-        user.setBirthDate(dogum);
-        user.setStartDate(baslangic);
-        user.setSgkStartDate(baslangic);
-        user.setPhone2(cep);
+        user.setBirthDate(userEmployee.getBirthDate());
+        user.setStartDate(userEmployee.getSgkStartDate());
+        user.setSgkStartDate(userEmployee.getSgkStartDate());
+        user.setPhone2(userEmployee.getPhone2());
         user.setIzinGoruntuleme(true);
-        user.setSirket(assigner.getSirket());
-        user.setBirim(assigner.getBirim());
-        user.setSgkbirim(assigner.getBirim());
+        user.setSirket(getCurrentUser().getSirket());
+        user.setBirim(getCurrentUser().getBirim());
+        user.setSgkbirim(getCurrentUser().getBirim());
         user.setUnvan(attrUnvan);
         user.setSgksirket(attrSirket);
         user.setSgkunvan(attrUnvan);
-        user.setActivated(false);
+        user.setEgitim(attrEgitim);
+        user.setAskerlik(attrAskerlik);
+        user.setCinsiyet(attrCinsiyet);
+        user.setEhliyet(attrEhliyet);
+        user.setActivated(true);
+        user.setAciladsoyad(userEmployee.getAciladsoyad());
+        user.setAcilyakinlik(userEmployee.getAcilyakinlik());
+        user.setAcilno(userEmployee.getAcilno());
+        user.setCity(userEmployee.getCity());
+        user.setDistrict(userEmployee.getDistrict());
+        user.setMezunkurum(userEmployee.getMezunkurum());
+        user.setMezunbolum(userEmployee.getMezunbolum());
+        user.setIban(userEmployee.getIban());
+        user.setEmekli(userEmployee.getEmekli());
+        user.setEngelli(userEmployee.getEngelli());
+        user.setEscalisma(userEmployee.getEscalisma());
+        user.setTcv(userEmployee.getTcv());
+        user.setMuaf(userEmployee.getMuaf());
+        user.setKan(userEmployee.getKan());
+        user.setAciklama(userEmployee.getAciklama());
+        user.setAdres(userEmployee.getAdres());
+        user.setMyb(userEmployee.getMyb());
+
         repository.save(user);
     }
 }

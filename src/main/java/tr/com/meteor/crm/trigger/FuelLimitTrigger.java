@@ -72,11 +72,11 @@ public class FuelLimitTrigger extends Trigger<FuelLimit, UUID, FuelLimitReposito
             throw new Exception("Bitiş Tarihi boş bırakılmamalıdır!");
         }
         newEntity.setIslem(false);
-        mailService.sendEmail(newEntity.getAssigner().getEposta(),
+        /*mailService.sendEmail(newEntity.getAssigner().getEposta(),
             "MeteorPanel - Ek Limit Talebi Hk.",newEntity.getOwner().getFullName() + ", " +
                 newEntity.getCurcode() + " cari kodlu müşterisine " + newEntity.getStartDate().toString() + "  -  " + newEntity.getEndDate() + " tarihleri için " +
                 newEntity.getFuelTl().toString() + " TL lik ek limit talep ediyor.",
-            false,false);
+            false,false);*/
         return newEntity;
     }
 
@@ -110,11 +110,11 @@ public class FuelLimitTrigger extends Trigger<FuelLimit, UUID, FuelLimitReposito
                 }
                 newEntity.setIslem(true);
                 newEntity.setOkeyFirst(Instant.now());
-                mailService.sendEmail(newEntity.getOwner().getEposta(),
+                /*mailService.sendEmail(newEntity.getOwner().getEposta(),
                             "MeteorPanel - Ek Limit Talebi Hk.",newEntity.getOwner().getFullName() + ", " +
                                 newEntity.getCurcode() + " cari kodlu müşteriniz için " + newEntity.getStartDate().toString() + "  -  " + newEntity.getEndDate() + " tarihleri için " +
                                 " yapmış olduğunuz " + newEntity.getFuelTl().toString() + " TL lik ek limit talebiniz ONAYLANMIŞTIR!",
-                            false,false);
+                            false,false);*/
             }
             if (newEntity.getStatus().getId().equals(FuelStatus.RED.getId())) {   // REDDEDİLDİYSE
                 List<BuyLimit> limit = limitRepository.findByUserIdAndMaliyet(newEntity.getAssigner().getId(), CostPlace.OTOBIL.getAttributeValue());
@@ -124,11 +124,11 @@ public class FuelLimitTrigger extends Trigger<FuelLimit, UUID, FuelLimitReposito
                     }
                 }
                 newEntity.setIslem(true);
-                mailService.sendEmail(newEntity.getOwner().getEposta(),
+                /*mailService.sendEmail(newEntity.getOwner().getEposta(),
                     "MeteorPanel - Ek Limit Talebi Hk.",newEntity.getOwner().getFullName() + ", " +
                         newEntity.getCurcode() + " cari kodlu müşteriniz için " + newEntity.getStartDate().toString() + "  -  " + newEntity.getEndDate() + " tarihleri için " +
                         " yapmış olduğunuz " + newEntity.getFuelTl().toString() + " TL lik ek limit talebiniz REDDEDİLMİŞTİR!",
-                    false,false);
+                    false,false);*/
             }
         } else { // DÜZENLEME YAPAN 1.ONAYCI DEĞİLSE
             if (newEntity.getStatus().getId().equals(FuelStatus.BEKLIYOR.getId())) {

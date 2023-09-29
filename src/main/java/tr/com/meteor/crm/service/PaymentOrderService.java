@@ -657,17 +657,18 @@ public class PaymentOrderService extends GenericIdNameAuditingEntityService<Paym
         BigDecimal nextAmount = BigDecimal.ZERO;
         String kaynak = "";
         String invoiceNum = "";
+        String onayciUnvani = "";
         String olusturan = "";
         String onay1 = "";
         String onay2 = "";
-        String muhasebe = "";
+        String muhOnay = "hikmet@meteorpetrol.com";
         PaymentOrder odemeTalimati = new PaymentOrder();
         Boolean muhasebeGoruntusu = false;
 
         List <PaymentOrder> paymentOrder = repository.findAll();
         for (PaymentOrder paymentOrder1 : paymentOrder) {
             if (paymentOrder1.getId().equals(id)) {
-                odemeTalimati = paymentOrder1;
+                onayciUnvani = paymentOrder1.getAssigner().getUnvan().getId();
                 iptalzamani = paymentOrder1.getCancelDate();
                 iptaleden = paymentOrder1.getCancelUser();
                 muhasebeOnayi = paymentOrder1.getOkeyMuh();
@@ -680,9 +681,9 @@ public class PaymentOrderService extends GenericIdNameAuditingEntityService<Paym
                 olusturan = paymentOrder1.getOwner().getEposta();
                 onay1 = paymentOrder1.getAssigner().getEposta();
                 onay2 = paymentOrder1.getSecondAssigner().getEposta();
-                if (paymentOrder1.getCost().getId().equals("Cost_Place_MeteorIzmir")) muhasebe = "elif.kucukkurt@loher.com.tr;selin.akbayirli@loher.com.tr";
-                else if (paymentOrder1.getCost().getId().equals("Cost_Place_MeteorIgdir") || paymentOrder1.getCost().getId().equals("Cost_Place_Avelice")) muhasebe = "muharrem.alcan@aveliceasansor.com.tr";
-                else muhasebe = "muhasebe@meteorpetrol.com";
+                if (paymentOrder1.getCost().getId().equals("Cost_Place_MeteorIzmir")) muhOnay = "elif.kucukkurt@loher.com.tr;selin.akbayirli@loher.com.tr";
+                else if (paymentOrder1.getCost().getId().equals("Cost_Place_MeteorIgdir") || paymentOrder1.getCost().getId().equals("Cost_Place_Avelice")) muhOnay = "muharrem.alcan@aveliceasansor.com.tr";
+                else muhOnay = "muhasebe@meteorpetrol.com";
                 break;
             }
         }
@@ -719,37 +720,41 @@ public class PaymentOrderService extends GenericIdNameAuditingEntityService<Paym
             muhasebeGoruntusu = true;
             okeyFirst = Instant.now();      // 1.Onaycı onay Verdiyse 1.Onay Zamanını Al
         }
-        //mailSend(olusturan, onay1, muhasebe, onay2, status.getLabel(), odemeTalimati);
         repository.updateStatusById(status, id, iptalzamani, iptaleden, muhasebeOnayi, okeyFirst, okeySecond, payAmount, nextAmount, description, muhasebeGoruntusu);
-        //todo: Talimat onay durumu değiştiğinde Ödeme ekranındaki Talimat Onay Durumu'da güncellensin.
-
+        //todo:Mail ve sms gönderimi.
+        System.out.println(olusturan + " - " +  onay1 + " - " + muhOnay + " " + onay2 + " - " + status.getId() + " - " + invoiceNum);
+        mailSend(olusturan, onay1, muhOnay, onay2, status.getId(), invoiceNum, "Unvanlar_Gen_Mud");
     }
 
-    public void mailSend(String olusturan, String onay1, String muhasebe, String onay2, String durum, PaymentOrder paymentOrder) throws Exception {
-       String text = paymentOrder.getInvoiceNum() + " fatura numaralı ödeme talimatı, ";
+    public void mailSend(String olusturan, String onay1, String muhasebe, String onay2, String durum, String invoiceNum, String onayciUnvani) throws Exception {
+       String text = invoiceNum + " fatura numarali odeme talimati, ";
        String testmail = "hikmet@meteorpetrol.com";
        try {
-           if (durum.equals("1.Onay Bekleniyor")) {
+           if (durum.equals("Payment_Status_Bek1")) {
                text = text + " (" + onay1 + " kişisine mail atılacaktı) " + durum + ", " +
                    " durumundadır ve onayınız beklenmektedir. meteorpanel.com/paymentorder adresinden ilgili talimata ulaşabilirsiniz.";
                mailService.sendEmail(testmail, "MeteorPanel - Ödeme Talimatı", text,false, false);
-           } else if (durum.equals("2.Onay Bekleniyor")) {
+           } else if (durum.equals("Payment_Status_Bek2")) {
                text = text + " (" + onay2 + " kişisine mail atılacaktı) " + durum + ", " +
                    " durumundadır ve onayınız beklenmektedir. meteorpanel.com/paymentorder adresinden ilgili talimata ulaşabilirsiniz.";
                mailService.sendEmail(testmail, "MeteorPanel - Ödeme Talimatı", text,false, false);
-           } else if (durum.equals("Muhasebe Onayı")) {
+           } else if (durum.equals("Payment_Status_Muh")) {
                text = text + " (" + muhasebe + " kişisine mail atılacaktı) " + durum + ", " +
                    " durumundadır ve onayınız beklenmektedir. meteorpanel.com/paymentorder adresinden ilgili talimata ulaşabilirsiniz.";
                mailService.sendEmail(testmail, "MeteorPanel - Ödeme Talimatı", text,false, false);
-           } else if (durum.equals("Reddedildi")) {
+           } else if (durum.equals("Payment_Status_Onay")) {
+               text = text + " (" + muhasebe + " kişisine mail atılacaktı) " + durum + ", " +
+                   " durumundadır ve onayınız beklenmektedir. meteorpanel.com/paymentorder adresinden ilgili talimata ulaşabilirsiniz.";
+               mailService.sendEmail(testmail, "MeteorPanel - Ödeme Talimatı", text,false, false);
+           } else if (durum.equals("Payment_Status_Red")) {
                text = text + " (" + olusturan + " kişisine mail atılacaktı) " + durum + ", " + " REDDEDİLMİŞTİR. meteorpanel.com/paymentorder adresinden ilgili talimata ulaşabilirsiniz.";
                mailService.sendEmail(testmail, "MeteorPanel - Ödeme Talimatı", text,false, false);
            } else {
 
            }
 
-           if (paymentOrder.getAssigner().getUnvan().getId().equals("Unvanlar_Gen_Mud") || paymentOrder.getAssigner().getUnvan().getId().equals("Unvanlar_Yon_Bas") ||
-               paymentOrder.getAssigner().getUnvan().getId().equals("Unvanlar_San_Bas") || paymentOrder.getAssigner().getUnvan().getId().equals("Unvanlar_Ins_Dir")
+           if (onayciUnvani.equals("Unvanlar_Gen_Mud") || onayciUnvani.equals("Unvanlar_Yon_Bas") ||
+               onayciUnvani.equals("Unvanlar_San_Bas") || onayciUnvani.equals("Unvanlar_Ins_Dir")
            ) {
                postaGuverciniService.SendSmsService("5442458391", text);
            }

@@ -67,8 +67,8 @@ public class Holiday extends IdNameAuditingEntity<UUID> {
     @FieldMetadataAnn(title = "Kullanılan İzin Günü", display = true, readOnly = true, priority = 300)
     private Double izingun = 0.00;
 
-    @FieldMetadataAnn(title = "Kilit", active = false, priority = 300)
-    private Boolean lock = false;
+    /*@FieldMetadataAnn(title = "Kilit", active = false, priority = 300)
+    private Boolean lock = false;*/
 
     @ManyToOne
     @AttributeValueValidate(attributeId = "Izin_Dur")
@@ -189,13 +189,13 @@ public class Holiday extends IdNameAuditingEntity<UUID> {
         this.izingun = izingun;
     }
 
-    public Boolean getLock() {
+    /*public Boolean getLock() {
         return lock;
     }
 
     public void setLock(Boolean lock) {
         this.lock = lock;
-    }
+    }*/
 
     /*public String getHolidayAddress() {
         return holidayAddress;

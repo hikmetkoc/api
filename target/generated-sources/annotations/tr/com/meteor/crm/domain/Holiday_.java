@@ -23,7 +23,6 @@ public abstract class Holiday_ extends tr.com.meteor.crm.domain.IdNameAuditingEn
 	public static volatile SingularAttribute<Holiday, AttributeValue> type;
 	public static volatile SingularAttribute<Holiday, Double> izingun;
 	public static volatile SingularAttribute<Holiday, String> name;
-	public static volatile SingularAttribute<Holiday, Boolean> lock;
 	public static volatile SingularAttribute<Holiday, User> user;
 	public static volatile SingularAttribute<Holiday, Instant> startDate;
 
@@ -41,7 +40,6 @@ public abstract class Holiday_ extends tr.com.meteor.crm.domain.IdNameAuditingEn
 	public static final String TYPE = "type";
 	public static final String IZINGUN = "izingun";
 	public static final String NAME = "name";
-	public static final String LOCK = "lock";
 	public static final String USER = "user";
 	public static final String START_DATE = "startDate";
 

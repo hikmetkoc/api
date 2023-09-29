@@ -40,13 +40,13 @@ public class Task extends IdNameAuditingEntity<UUID> {
     @Column(length = 2048)
     private String description;
     @ManyToOne
-    @FieldMetadataAnn(title = "Birim", defaultValue = "Birimler_IT", display = true, priority = 20, filterable = true)
+    @FieldMetadataAnn(title = "Birim", display = true, priority = 20, filterable = true)
     @AttributeValueValidate(attributeId = "Birimler")
     private AttributeValue birim;
     @ManyToOne
     @FieldMetadataAnn(title = "Konu", display = true, priority = 10, required = true, search = true, filterable = true)
     @AttributeValueValidate(attributeId = "Konular")
-    private AttributeValue type;
+    private AttributeValue taskType;
 
     @FieldMetadataAnn(title = "Konu Başlığı", priority = 100, search = true)
     @Column(length = 2048)
@@ -121,14 +121,6 @@ public class Task extends IdNameAuditingEntity<UUID> {
     public void setSubjectdesc(String subjectdesc) {
         this.subjectdesc = subjectdesc;
     }
-    public AttributeValue getType() {
-        return type;
-    }
-
-    public void setType(AttributeValue type) {
-        this.type = type;
-    }
-
     public AttributeValue getStatus() {
         return status;
     }
@@ -165,10 +157,18 @@ public class Task extends IdNameAuditingEntity<UUID> {
             search += " " + description;
         }
 
-        if (type != null) {
-            search += type.getLabel();
+        if (taskType != null) {
+            search += taskType.getLabel();
         }
 
         search = search.toLowerCase(new Locale("tr", "TR"));
+    }
+
+    public AttributeValue getTaskType() {
+        return taskType;
+    }
+
+    public void setTaskType(AttributeValue taskType) {
+        this.taskType = taskType;
     }
 }

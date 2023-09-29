@@ -54,7 +54,7 @@ public class TaskTrigger extends Trigger<Task, UUID, TaskRepository> {
             newEntity.setOwner(baseUserService.getUserFullFetched(amir).get());
         }
         //Birime Göre Konu Kontrolü
-        if(!newEntity.getType().getIlgilibirim().equals(newEntity.getBirim().getId())) {
+        if(!newEntity.getTaskType().getIlgilibirim().equals(newEntity.getBirim().getId())) {
             throw new Exception("Lütfen Birime göre Konu seçiniz!");
         }
 
@@ -70,7 +70,7 @@ public class TaskTrigger extends Trigger<Task, UUID, TaskRepository> {
         }
         mailService.sendEmail(newEntity.getOwner().getEposta(),
             "MeteorPanel - Yeni Talep",newEntity.getAssigner().getFullName() + ", " +
-            newEntity.getType().getLabel() + " konulu yeni bir talepte bulundu.",false,false);
+            newEntity.getTaskType().getLabel() + " konulu yeni bir talepte bulundu.",false,false);
         return newEntity;
     }
 
@@ -94,7 +94,7 @@ public class TaskTrigger extends Trigger<Task, UUID, TaskRepository> {
             }
         }
         //Birime Göre Konu Kontrolü
-        if(!newEntity.getType().getIlgilibirim().equals(newEntity.getBirim().getId())) {
+        if(!newEntity.getTaskType().getIlgilibirim().equals(newEntity.getBirim().getId())) {
             throw new Exception("Lütfen Birime göre Konu seçiniz!");
         }
         //Durum Tamamlandıya çevrilirse Tamamlanma Tarihini Şuan olarak gir.
@@ -102,13 +102,13 @@ public class TaskTrigger extends Trigger<Task, UUID, TaskRepository> {
             newEntity.setOktime(Instant.now());
             mailService.sendEmail(newEntity.getAssigner().getEposta(),"MeteorPanel - Tamamlanan Talep",
                 newEntity.getAssigner().getFullName() + ", " +
-                newEntity.getType().getLabel() + " konulu talebiniz TAMAMLANDI.",false,false);
+                newEntity.getTaskType().getLabel() + " konulu talebiniz TAMAMLANDI.",false,false);
         }
 
         //Talep Reddedilirse Mail At.
         if(newEntity.getStatus().getId().equals(TaskStatus.YAPILAMADI.getId())) {
             mailService.sendEmail(newEntity.getAssigner().getEposta(),"MeteorPanel - Reddedilen Talep",newEntity.getAssigner().getFullName() + ", " +
-                newEntity.getType().getLabel() + " konulu talebiniz REDDEDİLDİ.",false,false);
+                newEntity.getTaskType().getLabel() + " konulu talebiniz REDDEDİLDİ.",false,false);
         }
         //Talep başka bir kullanıcıya atandıysa Mail At.
         if(newEntity.getStatus().getId().equals(TaskStatus.YENI.getId()) && !newEntity.getOwner().getId().equals(newEntity.getAssigner().getId())) {
@@ -116,7 +116,7 @@ public class TaskTrigger extends Trigger<Task, UUID, TaskRepository> {
                 "MeteorPanel - Atanan Talep", newEntity.getAssigner().getFullName() + " tarafından " +
                     newEntity.getCreatedDate().toString() +
                     " tarihinde oluşturulan " +
-                    newEntity.getType().getLabel() + " konulu talep birim amiriniz tarafından size atandı.", false, false);
+                    newEntity.getTaskType().getLabel() + " konulu talep birim amiriniz tarafından size atandı.", false, false);
         }
         return newEntity;
     }

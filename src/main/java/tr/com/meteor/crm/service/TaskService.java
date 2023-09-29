@@ -47,7 +47,7 @@ public class TaskService extends GenericIdNameAuditingEntityService<Task, UUID, 
             if (!StringUtils.isBlank(task.getDescription()) && task.getId() != null) {
                 taskList.add(update(getCurrentUser(), task));
             } else if (task.getId() == null) {
-                task.setType(TaskType.KOLAY_AJANDA.getAttributeValue());
+                task.setTaskType(TaskType.KOLAY_AJANDA.getAttributeValue());
                 task.setStatus(TaskStatus.YENI.getAttributeValue());
                 taskList.add(add(getCurrentUser(), task));
             } else if (StringUtils.isBlank(task.getDescription())) {
@@ -67,7 +67,7 @@ public class TaskService extends GenericIdNameAuditingEntityService<Task, UUID, 
 
         Request request = Request.build().page(0).size(Integer.MAX_VALUE).filter(
             Filter.And(
-                Filter.FilterItem("type.id", FilterItem.Operator.EQUALS, TaskType.KOLAY_AJANDA.getId()),
+                Filter.FilterItem("taskType.id", FilterItem.Operator.EQUALS, TaskType.KOLAY_AJANDA.getId()),
                 Filter.FilterItem("dueTime", FilterItem.Operator.GREATER_OR_EQUAL_THAN, startDate),
                 Filter.FilterItem("dueTime", FilterItem.Operator.LESS_THAN, endDate),
                 Filter.FilterItem("owner.id", FilterItem.Operator.IN, hierarchicalUserIds)
@@ -274,8 +274,8 @@ public class TaskService extends GenericIdNameAuditingEntityService<Task, UUID, 
             XSSFCell okDateCell = row.createCell(columnIndex++);
 
             taskIdCell.setCellValue(task.getId().toString());
-            if (task.getType() != null) {
-                typeCell.setCellValue(task.getType().getLabel());
+            if (task.getTaskType() != null) {
+                typeCell.setCellValue(task.getTaskType().getLabel());
             }
 
             if (task.getOwner() != null) {
@@ -353,7 +353,7 @@ public class TaskService extends GenericIdNameAuditingEntityService<Task, UUID, 
             Filter.And(
                 Filter.FilterItem("createdDate", FilterItem.Operator.GREATER_OR_EQUAL_THAN, startDate),
                 Filter.FilterItem("createdDate", FilterItem.Operator.LESS_THAN, endDate),
-                Filter.FilterItem("type", FilterItem.Operator.EQUALS, TaskType.BT_ISSURECLERI.getId()),
+                Filter.FilterItem("taskType", FilterItem.Operator.EQUALS, TaskType.BT_ISSURECLERI.getId()),
                 Filter.Or(
                     Filter.FilterItem("status", FilterItem.Operator.EQUALS, TaskStatus.YENI.getId()),
                     Filter.FilterItem("status", FilterItem.Operator.EQUALS, TaskStatus.DEVAM_EDIYOR.getId())

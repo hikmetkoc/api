@@ -50,7 +50,7 @@ public class HolidayTrigger extends Trigger<Holiday, UUID, HolidayRepository> {
 
     @Override
     public Holiday beforeInsert(@NotNull Holiday newEntity) throws Exception {
-        newEntity.setLock(false);
+        //newEntity.setLock(false);
         if (newEntity.getOwner() == null) {
             newEntity.setOwner(baseUserService.getUserFullFetched(getCurrentUserId()).get());
         } else {
@@ -260,13 +260,13 @@ public class HolidayTrigger extends Trigger<Holiday, UUID, HolidayRepository> {
         String ibat = izinbaslangictarihi.format(formatter);
         String ibit = izinbitistarihi.format(formatter);
 
-       /*mailService.sendEmail(newEntity.getAssigner().getEposta(),
+       mailService.sendEmail(newEntity.getAssigner().getEposta(),
             "MeteorPanel - Yeni İzin Talebi",newEntity.getOwner().getFullName() + ", " +
                 olt + " tarihinde " + ibat + " - " +
                 ibit + " tarihlerinde kullanılmak üzere " + newEntity.getType().getLabel() +
                 " talebinde bulunmuştur.\nTalep edilen iznin süresi " + newEntity.getIzingun().toString() + " gündür.\n" +
                 "İlgili talebin onaycısı sizsiniz.",
-            false,false);*/
+            false,false);
         return newEntity;
     }
 
@@ -368,29 +368,29 @@ public class HolidayTrigger extends Trigger<Holiday, UUID, HolidayRepository> {
         if(newEntity.getApprovalStatus().getId().equals(HolidayStateStatus.AKTIF.getId()) && !newEntity.getAssigner().getId().equals(getCurrentUserId()) && !getCurrentUserId().equals(holManagers.get(0).getManager().getId())){
             throw new Exception("Bu talebe sadece Onaycınız onay verebilir!");
         }
-        if(newEntity.getApprovalStatus().getId().equals(HolidayStateStatus.AKTIF.getId()) && newEntity.getAssigner().getId().equals(getCurrentUserId()) && newEntity.getLock().equals(true)){
+        /*if(newEntity.getApprovalStatus().getId().equals(HolidayStateStatus.AKTIF.getId()) && newEntity.getAssigner().getId().equals(getCurrentUserId()) && newEntity.getLock().equals(true)){
             throw new Exception("Onaylanan izinde değişiklik yapamazsınız!");
         }
         if(newEntity.getApprovalStatus().getId().equals(HolidayStateStatus.RED.getId()) && newEntity.getAssigner().getId().equals(getCurrentUserId()) && newEntity.getLock().equals(true)){
             throw new Exception("Reddedilen izinde değişiklik yapamazsınız!");
-        }
+        }*/
         if(newEntity.getApprovalStatus().getId().equals(HolidayStateStatus.RED.getId()) && !newEntity.getAssigner().getId().equals(getCurrentUserId())){
             throw new Exception("Bu talebi sadece Onaycınız reddebilir!");
         }
-        if(newEntity.getApprovalStatus().getId().equals(HolidayStateStatus.PASIF.getId()) && !newEntity.getAssigner().getId().equals(getCurrentUserId()) && newEntity.getLock().equals(true)){
+        /*if(newEntity.getApprovalStatus().getId().equals(HolidayStateStatus.PASIF.getId()) && !newEntity.getAssigner().getId().equals(getCurrentUserId()) && newEntity.getLock().equals(true)){
             throw new Exception("Talep onaylandıktan veya reddedildikten sonra işlem yapamazsınız!");
         }
         if(newEntity.getApprovalStatus().getId().equals(HolidayStateStatus.IPTAL.getId()) && !newEntity.getAssigner().getId().equals(getCurrentUserId()) && newEntity.getLock().equals(true)){
             throw new Exception("Talep onaylandıktan veya reddedildikten sonra işlem yapamazsınız!");
-        }
+        }*/
 
         if(!newEntity.getOwner().getId().equals(getCurrentUserId()) && newEntity.getApprovalStatus().getId().equals(HolidayStateStatus.IPTAL.getId())) {
             throw new Exception("Sadece talep eden kişi Onay Bekliyor ya da İptal durumuna çevirebilir!");
         }
 
-        if(newEntity.getAssigner().getId().equals(getCurrentUserId()) && newEntity.getLock().equals(false)){
+        /*if(newEntity.getAssigner().getId().equals(getCurrentUserId()) && newEntity.getLock().equals(false)){
             newEntity.setLock(true);
-        }
+        }*/
         /*if(newEntity.getOwner().getId().equals(getCurrentUserId()) && newEntity.getApprovalStatus().getId().equals(HolidayStateStatus.PASIF.getId())) {
             newEntity.setLock(false);
         }

@@ -39,7 +39,7 @@ public class ActivityTrigger extends Trigger<Activity, UUID, ActivityRepository>
         if (newEntity.getOwner() == null) {
             newEntity.setOwner(getCurrentUser());
         }
-        newEntity.setSubject(newEntity.getTask().getType().getLabel());
+        newEntity.setSubject(newEntity.getTask().getTaskType().getLabel());
         newEntity.setSubjdesc(newEntity.getTask().getSubjectdesc());
 
         //Yeni İşlem Yapıldığında, İşlemi Yapan Kişi Talebi giren kişi değilse Mail AT..
@@ -48,14 +48,14 @@ public class ActivityTrigger extends Trigger<Activity, UUID, ActivityRepository>
             if (task.isPresent()) {
                 mailService.sendEmail(newEntity.getTask().getAssigner().getEposta(),
                     "MeteorPanel - Yeni İşlem", newEntity.getOwner().getFullName() + ",  " +
-                    newEntity.getTask().getType().getLabel() + " konulu talebinize yeni bir işlem yaptı.", false, false);
+                    newEntity.getTask().getTaskType().getLabel() + " konulu talebinize yeni bir işlem yaptı.", false, false);
             }
         }
         return newEntity;
     }
     @Override
     public Activity beforeUpdate(@NotNull Activity oldEntity, @NotNull Activity newEntity) throws Exception {
-        newEntity.setSubject(newEntity.getTask().getType().getLabel());
+        newEntity.setSubject(newEntity.getTask().getTaskType().getLabel());
         newEntity.setSubjdesc(newEntity.getTask().getSubjectdesc());
         return newEntity;
     }

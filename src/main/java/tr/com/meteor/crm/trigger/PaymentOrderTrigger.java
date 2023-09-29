@@ -4,17 +4,13 @@ import org.springframework.cache.CacheManager;
 import org.springframework.stereotype.Component;
 import tr.com.meteor.crm.domain.*;
 import tr.com.meteor.crm.repository.*;
-import tr.com.meteor.crm.service.BaseConfigurationService;
-import tr.com.meteor.crm.service.BaseUserService;
-import tr.com.meteor.crm.service.MailService;
-import tr.com.meteor.crm.service.MobileNotificationService;
+import tr.com.meteor.crm.service.*;
 import tr.com.meteor.crm.utils.attributevalues.*;
 
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 @Component(PaymentOrderTrigger.QUALIFIER)
@@ -28,18 +24,21 @@ public class PaymentOrderTrigger extends Trigger<PaymentOrder, UUID, PaymentOrde
 
     private final BuyLimitRepository limitRepository;
 
+    private final PaymentOrderService service;
+
     private final MailService mailService;
 
     private final MobileNotificationService mobileNotificationService;
 
     public PaymentOrderTrigger(CacheManager cacheManager, PaymentOrderRepository paymentOrderRepository, BaseUserService baseUserService,
                                BaseConfigurationService baseConfigurationService, CustomerRepository customerRepository,
-                               StoreRepository storeRepository, SpendRepository spendRepository, BuyLimitRepository limitRepository, MailService mailService, MobileNotificationService mobileNotificationService) {
+                               StoreRepository storeRepository, SpendRepository spendRepository, BuyLimitRepository limitRepository, PaymentOrderService service, MailService mailService, MobileNotificationService mobileNotificationService) {
         super(cacheManager, PaymentOrder.class, PaymentOrderTrigger.class, paymentOrderRepository, baseUserService, baseConfigurationService);
         this.customerRepository = customerRepository;
         this.storeRepository = storeRepository;
         this.spendRepository = spendRepository;
         this.limitRepository = limitRepository;
+        this.service = service;
         this.mailService = mailService;
         this.mobileNotificationService = mobileNotificationService;
     }
@@ -188,6 +187,7 @@ public class PaymentOrderTrigger extends Trigger<PaymentOrder, UUID, PaymentOrde
                 spendRepository.insertSpend(UUID.randomUUID(), getCurrentUserId(), SpendStatus.ODENDI.getId(), newEntity.getId(), newEntity.getAmount(), "Otomatik Ödendi", false, this.baseUserService.getUserFullFetched(1L).get().getId(), Instant.now(), newEntity.getMaturityDate(), "Tek Ödeme", newEntity.getPayTl(), newEntity.getCustomer().getId(), newEntity.getOdemeYapanSirket().getLabel());
             }
         }
+        service.mailSend(newEntity.getOwner().getEposta(),newEntity.getAssigner().getEposta(), "hikmet@meteorpetrol.com", newEntity.getSecondAssigner().getEposta(), newEntity.getStatus().getId(), newEntity.getInvoiceNum(), newEntity.getAssigner().getUnvan().getId());
         return newEntity;
     }
 

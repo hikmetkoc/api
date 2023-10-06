@@ -9,5 +9,7 @@ import java.util.UUID;
 
 @Repository
 public interface IbanRepository extends GenericIdNameAuditingEntityRepository<Iban, UUID> {
+
+    boolean existsByName(String name);
     List<Iban> findAllByCustomerId(UUID customerId);
 }

@@ -7,6 +7,7 @@ tr\com\meteor\crm\domain\User.class
 tr\com\meteor\crm\repository\QuoteVersionLineItemRepository.class
 tr\com\meteor\crm\trigger\IbanTrigger.class
 tr\com\meteor\crm\config\DefaultProfileUtil.class
+tr\com\meteor\crm\repository\PersonalContractRepository.class
 tr\com\meteor\crm\utils\jasper\rest\IbanController.class
 tr\com\meteor\crm\utils\jasper\rest\CampaignController.class
 tr\com\meteor\crm\domain\Contact_.class
@@ -125,6 +126,7 @@ tr\com\meteor\crm\domain\Country.class
 tr\com\meteor\crm\domain\SummaryOpetSale_.class
 tr\com\meteor\crm\repository\SurveyAnswerRepository.class
 tr\com\meteor\crm\service\dto\Table$Row.class
+tr\com\meteor\crm\service\PersonalContractService.class
 tr\com\meteor\crm\domain\HolManager.class
 tr\com\meteor\crm\domain\Quote_.class
 tr\com\meteor\crm\domain\Store_.class
@@ -171,6 +173,7 @@ tr\com\meteor\crm\service\dto\QuickActivityDTO.class
 tr\com\meteor\crm\utils\jasper\rest\UserGuideController.class
 tr\com\meteor\crm\repository\TargetRepository.class
 tr\com\meteor\crm\repository\CustomActivityRepository.class
+tr\com\meteor\crm\domain\CompanyMaterial.class
 tr\com\meteor\crm\utils\attributevalues\OfferStage.class
 tr\com\meteor\crm\domain\Spend.class
 tr\com\meteor\crm\service\VocationDayService.class
@@ -200,6 +203,7 @@ tr\com\meteor\crm\domain\Announcement_.class
 tr\com\meteor\crm\utils\filter\Specificator.class
 tr\com\meteor\crm\repository\OpetSaleRepository.class
 tr\com\meteor\crm\domain\Attribute_.class
+tr\com\meteor\crm\trigger\PersonalContractTrigger.class
 tr\com\meteor\crm\utils\attributevalues\CustomTaskStatus.class
 tr\com\meteor\crm\service\OperationService.class
 tr\com\meteor\crm\utils\attributevalues\TaskType.class
@@ -384,6 +388,7 @@ tr\com\meteor\crm\trigger\SapSoapTrigger.class
 tr\com\meteor\crm\repository\CountryRepository.class
 tr\com\meteor\crm\service\dto\Table$Cell.class
 tr\com\meteor\crm\utils\attributevalues\TaskStatus.class
+tr\com\meteor\crm\domain\PersonalContract.class
 tr\com\meteor\crm\utils\request\Column.class
 tr\com\meteor\crm\utils\jasper\rest\GenericIdEntityController.class
 tr\com\meteor\crm\domain\Lead.class
@@ -392,6 +397,7 @@ tr\com\meteor\crm\repository\GenericIdNameAuditingEntityRepository.class
 tr\com\meteor\crm\domain\Configuration.class
 tr\com\meteor\crm\repository\HolManagerRepository.class
 tr\com\meteor\crm\domain\PersistentAuditEvent.class
+tr\com\meteor\crm\domain\PersonalContract_.class
 tr\com\meteor\crm\domain\QuoteVersionLineItem.class
 tr\com\meteor\crm\utils\jasper\rest\SpendController.class
 tr\com\meteor\crm\service\BaseService.class
@@ -508,6 +514,7 @@ tr\com\meteor\crm\utils\jasper\rest\FuelLimitController.class
 tr\com\meteor\crm\config\postgresql\MeteorPostgreSqlDialect.class
 tr\com\meteor\crm\security\jwt\TokenProvider.class
 tr\com\meteor\crm\utils\attributevalues\SurveyQuestionType.class
+tr\com\meteor\crm\utils\jasper\rest\PersonalContractController.class
 tr\com\meteor\crm\domain\OpetFleet.class
 tr\com\meteor\crm\security\CustomSecurityUser.class
 tr\com\meteor\crm\config\VersionHeaderFilter.class
@@ -545,3 +552,4 @@ tr\com\meteor\crm\utils\jasper\rest\AccountResource$AccountResourceException.cla
 tr\com\meteor\crm\utils\operations\Operations.class
 tr\com\meteor\crm\domain\User_.class
 tr\com\meteor\crm\service\dto\PaymentOrderDTO.class
+tr\com\meteor\crm\domain\CompanyMaterial_.class

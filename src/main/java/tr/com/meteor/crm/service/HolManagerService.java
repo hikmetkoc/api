@@ -27,10 +27,13 @@ public class HolManagerService extends GenericIdNameAuditingEntityService<HolMan
     public void createHolManager(User user) {
         User defaultUser = baseUserService.getUserFullFetched(2L).get();
         Long chiefUser = Long.valueOf(user.getBirim().getIlgilibirim());
+        if (!getCurrentUser().getId().equals(2000L) || !getCurrentUser().getId().equals(2001L) || !getCurrentUser().getId().equals(2L)) {
+            chiefUser = getCurrentUserId();
+        }
         User chief = baseUserService.getUserFullFetched(chiefUser).get();
         User manager = lookManager(chief);
         User director = baseUserService.getUserFullFetched(101L).get();
-        if (manager.getId().equals(90L)) {
+        if (manager.getId().equals(90L) || manager.getId().equals(91L) || manager.getId().equals(93L)) {
             director = baseUserService.getUserFullFetched(99L).get();
         } else if (manager.getId().equals(103L) || manager.getId().equals(133L)) {
             director = baseUserService.getUserFullFetched(102L).get();
@@ -74,6 +77,8 @@ public class HolManagerService extends GenericIdNameAuditingEntityService<HolMan
         } else if (chief.getBirim().getId().equals(TaskType.TaskBirim.BIRIM_Satis.getId())) {
             manager = baseUserService.getUserFullFetched(99L).get();
         } else if (chief.getBirim().getId().equals(TaskType.TaskBirim.BIRIM_Satin.getId())) {
+            manager = baseUserService.getUserFullFetched(91L).get();
+        } else if (chief.getBirim().getId().equals(TaskType.TaskBirim.BIRIM_Ter.getId())) {
             manager = baseUserService.getUserFullFetched(91L).get();
         } else if (chief.getBirim().getId().equals(TaskType.TaskBirim.BIRIM_Ins.getId())) {
             manager = baseUserService.getUserFullFetched(94L).get();

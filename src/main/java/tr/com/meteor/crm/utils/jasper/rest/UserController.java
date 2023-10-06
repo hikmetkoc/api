@@ -219,11 +219,9 @@ public class UserController extends GenericIdNameAuditingEntityController<User, 
         @RequestParam String cinsiyet,
         @RequestParam String ehliyet
     ) throws Exception{
-
         try {
-            // Diğer işlemleri burada gerçekleştirin
-            service.newPerson(user, unvan, sgkSirket, egitim, askerlik, cinsiyet, ehliyet);
-            return ResponseEntity.ok().build();
+            String response = service.newPerson(user, unvan, sgkSirket, egitim, askerlik, cinsiyet, ehliyet);
+            return ResponseEntity.ok(response);
         } catch (NullPointerException exception) {
             // Hata durumunda uygun bir hata yanıtı döndürün
             return ResponseEntity.badRequest().body("Eksik veya hatalı veri girişi yapıldı!");

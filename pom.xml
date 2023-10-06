@@ -624,7 +624,7 @@
                         <changeLogFile>${project.basedir}/src/main/resources/config/liquibase/master.xml</changeLogFile>
                         <diffChangeLogFile>${project.basedir}/src/main/resources/config/liquibase/changelog/${maven.build.timestamp}_changelog.xml</diffChangeLogFile>
                         <driver>org.postgresql.Driver</driver>
-                        <url>jdbc:postgresql://localhost:5432/meteorpanel</url>
+                        <url>jdbc:postgresql://localhost/meteorpanel</url>
                         <defaultSchemaName></defaultSchemaName>
                         <username>postgres</username>
                         <password>Metx123!</password>

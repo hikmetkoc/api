@@ -260,13 +260,13 @@ public class HolidayTrigger extends Trigger<Holiday, UUID, HolidayRepository> {
         String ibat = izinbaslangictarihi.format(formatter);
         String ibit = izinbitistarihi.format(formatter);
 
-       mailService.sendEmail(newEntity.getAssigner().getEposta(),
+       /*mailService.sendEmail(newEntity.getAssigner().getEposta(),
             "MeteorPanel - Yeni İzin Talebi",newEntity.getOwner().getFullName() + ", " +
                 olt + " tarihinde " + ibat + " - " +
                 ibit + " tarihlerinde kullanılmak üzere " + newEntity.getType().getLabel() +
                 " talebinde bulunmuştur.\nTalep edilen iznin süresi " + newEntity.getIzingun().toString() + " gündür.\n" +
                 "İlgili talebin onaycısı sizsiniz.",
-            false,false);
+            false,false);*/
         return newEntity;
     }
 
@@ -397,6 +397,32 @@ public class HolidayTrigger extends Trigger<Holiday, UUID, HolidayRepository> {
         if(!newEntity.getOwner().getId().equals(getCurrentUserId()) && (newEntity.getApprovalStatus().getId().equals(HolidayStateStatus.PASIF.getId()) || newEntity.getApprovalStatus().getId().equals(HolidayStateStatus.IPTAL.getId()))) {
             throw new Exception("Sadece talep eden kişi Onay Bekliyor ya da İptal durumuna çevirebilir!");
         }*/
+        User owner = baseUserService.getUserFullFetched(newEntity.getOwner().getId()).get();
+        String roleName = owner.getRoles().toString();
+        String cleanedRoleName = roleName.replaceAll("^\\[Role\\{id='(.+)'\\}\\]$", "$1");
+        if (newEntity.getType().getId().equals(HolidayStatus.MAZERET.getId())) {
+            List<HolUser> holUser2 = holUserRepository.findByUserId(newEntity.getOwner().getId());
+            for (HolUser holuser : holUser2) {
+                if (holuser.getUser().getId().equals(newEntity.getOwner().getId())) {
+                    Instant start1 = newEntity.getStartDate();
+                    Instant end1 = newEntity.getEndDate();
+                    Boolean haftalik = newEntity.getHaftalikizin();
+                    String izingun = newEntity.getHaftalikGun().getId();
+                    float leaveDays2 = calculateLeaveDays(start1, end1, cleanedRoleName, haftalik, izingun);
+                    DecimalFormatSymbols decimalFormatSymbols = new DecimalFormatSymbols();
+                    decimalFormatSymbols.setDecimalSeparator(','); // Ondalık ayırıcıyı virgül olarak ayarlayın
+                    decimalFormatSymbols.setGroupingSeparator('.'); // Grup ayırıcıyı nokta olarak ayarlayın
+
+                    DecimalFormat decimalFormat = new DecimalFormat("#,##", decimalFormatSymbols);
+
+                    String formattedValue = decimalFormat.format(leaveDays2);
+                    double izingunDouble2 = Double.parseDouble(formattedValue);
+                    if (holuser.getKalMaz() - izingunDouble2 < 0) {
+                        throw new Exception("Personelin kullanılabilir mazeret izni kalmamıştır!");
+                    }
+                }
+            }
+        }
         return newEntity;
     }
 
@@ -493,7 +519,7 @@ public class HolidayTrigger extends Trigger<Holiday, UUID, HolidayRepository> {
         String ibit = izinbitistarihi.format(formatter);
 
         if (newEntity.getApprovalStatus().getId().equals(HolidayStateStatus.AKTIF.getId())) {
-            mailService.sendEmail(newEntity.getOwner().getEposta(),
+            /*mailService.sendEmail(newEntity.getOwner().getEposta(),
                 "MeteorPanel - İzin Talebi",newEntity.getOwner().getFullName() + ", " +
                     olt + " tarihinde " + ibat + " - " +
                     ibit + " tarihlerinde kullanılmak üzere " + newEntity.getType().getLabel() +
@@ -501,15 +527,15 @@ public class HolidayTrigger extends Trigger<Holiday, UUID, HolidayRepository> {
                     "Talep edilen iznin süresi " + newEntity.getIzingun().toString() + " gündür.\n" +
                     "İzni kullanabilmeniz için İZİN TALEP FORMU'nu yazdırın. Onaycınıza ve İnsan Kaynakları'na imzalattıktan sonra DOSYA YÖNETİCİSİ bölümünden taratıp yükleyin.\n" +
                     "Eğer İnsan Kaynakları personeline ulaşamazsanız Onaycınıza imzalattıktan sonra da DOSYA YÖNETİCİSİ'ne yükleme yapabilirsiniz.",
-                false,false);
+                false,false);*/
         }
         if (newEntity.getApprovalStatus().getId().equals(HolidayStateStatus.RED.getId())) {
-            mailService.sendEmail(newEntity.getOwner().getEposta(),
+            /*mailService.sendEmail(newEntity.getOwner().getEposta(),
                 "MeteorPanel - Yeni İzin Talebi",newEntity.getOwner().getFullName() + ", " +
                     olt + " tarihinde " + ibat + " - " +
                     ibit + " tarihlerinde kullanılmak üzere " + newEntity.getType().getLabel() +
                     " türünde yapmış olduğunuz talep " + newEntity.getAssigner().getFullName() + " tarafından REDDEDİLMİŞTİR.\n",
-                false,false);
+                false,false);*/
         }
 
         return newEntity;

@@ -43,11 +43,11 @@ public class TaskController extends GenericIdNameAuditingEntityController<Task, 
     }
 
     @PostMapping("reportBT")
-    public ResponseEntity<ByteArrayResource> reportTaskBT(@RequestParam Instant startDate, @RequestParam Instant endDate) throws Exception {
+    public ResponseEntity<ByteArrayResource> reportTaskBT() throws Exception {
         return ResponseEntity.ok()
             .header("Content-Disposition", "attachment; filename=" + service.getEntityMetaData().getName() + ".xlsx")
             .contentType(MediaType.parseMediaType("application/vnd.ms-excel;charset=UTF-8"))
-            .body(new ByteArrayResource(service.generateExcelTaskBTReport(getCurrentUser(), startDate, endDate)));
+            .body(new ByteArrayResource(service.generateExcelTaskBTReport(getCurrentUser())));
     }
 
     @PostMapping("/sendnotificationmail")

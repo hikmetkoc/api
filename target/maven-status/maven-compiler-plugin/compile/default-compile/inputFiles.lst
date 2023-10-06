@@ -61,6 +61,7 @@ D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\aop\logging\ValidatorAspe
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\domain\Buy.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\utils\jasper\rest\GenericIdNameEntityController.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\trigger\HolManagerTrigger.java
+D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\domain\PersonalContract.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\service\dto\PasswordChangeDTO.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\service\RoleService.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\utils\filter\FilterItem.java
@@ -81,6 +82,7 @@ D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\utils\attributevalues\Fue
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\service\BuyService.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\service\BaseEntityMetadataService.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\config\audit\AuditEventConverter.java
+D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\utils\jasper\rest\PersonalContractController.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\service\UserPermissionService.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\utils\jasper\rest\BuyController.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\repository\OpetSaleRepository.java
@@ -215,6 +217,7 @@ D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\utils\attributevalues\Act
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\utils\attributevalues\SurveyQuestionType.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\trigger\CustomTaskTrigger.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\service\opetmodels\OpetLogin.java
+D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\domain\CompanyMaterial.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\service\GenericIdNameEntityService.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\config\CacheConfiguration.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\utils\jasper\rest\TaskController.java
@@ -237,6 +240,7 @@ D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\utils\jasper\rest\UserJWT
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\repository\CustomTaskRepository.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\service\DashboardService.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\trigger\BuyTrigger.java
+D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\service\PersonalContractService.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\domain\AttributeValue.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\trigger\ConfigurationTrigger.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\service\opetmodels\OpetSales.java
@@ -444,6 +448,7 @@ D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\utils\attributevalues\Tas
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\utils\jasper\rest\AddressController.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\utils\attributevalues\PaymentStatus.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\domain\Announcement.java
+D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\repository\PersonalContractRepository.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\service\mapper\UserMapper.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\repository\DistrictRepository.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\service\dto\NearestCustomersOutputDTO.java
@@ -456,6 +461,7 @@ D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\domain\QuoteVersionLineIt
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\repository\PaymentOrderRepository.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\utils\jasper\rest\errors\RecordAccessDeniedException.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\utils\attributevalues\CustomerStatus.java
+D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\trigger\PersonalContractTrigger.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\utils\attributevalues\MoneyTypeStatus.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\utils\jasper\rest\package-info.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\service\ActivityService.java

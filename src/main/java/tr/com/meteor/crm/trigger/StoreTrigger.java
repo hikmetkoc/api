@@ -130,22 +130,22 @@ public class StoreTrigger extends Trigger<Store, UUID, StoreRepository> {
         if (newEntity.getEndDate() != null) {
             LocalDateTime sontarih = LocalDateTime.ofInstant(newEntity.getEndDate(), ZoneId.systemDefault());
             String sta = sontarih.format(formatter);
-            mailService.sendEmail(newEntity.getOwner().getEposta(),
+            /*mailService.sendEmail(newEntity.getOwner().getEposta(),
                 "MeteorPanel - Yeni Satın Alma Talebi", newEntity.getAssigner().getFullName() + ", " +
                     newEntity.getSirket().getLabel() + " adına " + newEntity.getMaliyet().getLabel() + " maliyet yeri için " +
                     newEntity.getRequest() + " talebinde bulundu.\nGerekçesi : " + newEntity.getDescription() +
                     "\nİlgili talep " + sta + " tarihine kadar talep edilmektedir." +
                     "\nEğer uygunsa talebi onaylamanız ve SATIN ALMA SORUMLUSU seçmeniz gerekiyor.",
-                false, false);
+                false, false);*/
 
         } else {
-            mailService.sendEmail(newEntity.getOwner().getEposta(),
+            /*mailService.sendEmail(newEntity.getOwner().getEposta(),
                 "MeteorPanel - Yeni Satın Alma Talebi", newEntity.getAssigner().getFullName() + ", " +
                     newEntity.getSirket().getLabel() + " adına " + newEntity.getMaliyet().getLabel() + " maliyet yeri için " +
                     newEntity.getRequest() + " talebinde bulundu.\nGerekçesi : " + newEntity.getDescription() +
                     "\nİlgili talep için bir Son Talep tarihi girilmemiştir." +
                     "\nEğer uygunsa talebi onaylamanız ve SATIN ALMA SORUMLUSU seçmeniz gerekiyor.",
-                false, false);
+                false, false);*/
         }
         return newEntity;
     }
@@ -235,7 +235,7 @@ public class StoreTrigger extends Trigger<Store, UUID, StoreRepository> {
     @Override
     public Store afterUpdate(Store oldEntity, Store newEntity) throws Exception {
         if (newEntity.getStatus().getId().equals(ContractStatus.AKTIF.getId())) {
-            mailService.sendEmail(newEntity.getAssigner().getEposta(),
+            /*mailService.sendEmail(newEntity.getAssigner().getEposta(),
                 "MeteorPanel - Satın Alma Talebi", newEntity.getOwner().getFullName() + ", " +
                     newEntity.getMaliyet().getLabel() + " adına " +
                     newEntity.getRequest() + " ürünü için yapmış olduğunuz talebi onayladı." +
@@ -249,14 +249,14 @@ public class StoreTrigger extends Trigger<Store, UUID, StoreRepository> {
                     "\nİlgili talebin SATIN ALMA SORUMLUSU sizsiniz. En az 3 teklif oluşturup proforma faturaları ekledikten sonra her bir teklif için Teklifi Tamamla butonuna basın.\n" +
                     "Eğer isterseniz önerdiğiniz teklif için Öner butonuna da basabilirsiniz. Onaycının onayı ile birlikte satın alma süreci tamamlanacaktır.\n" +
                     "Onaylanan teklifteki ürünü satın alıp talep eden kişiye ulaştırabilirsiniz.",
-                false, false);
+                false, false);*/
         }
         if (newEntity.getStatus().getId().equals(ContractStatus.RED.getId())) {
-            mailService.sendEmail(newEntity.getAssigner().getEposta(),
+            /*mailService.sendEmail(newEntity.getAssigner().getEposta(),
                 "MeteorPanel - Satın Alma Talebi", newEntity.getOwner().getFullName() + ", " +
                     newEntity.getMaliyet().getLabel() + " adına " +
                     newEntity.getRequest() + " ürünü için yapmış olduğunuz talebi reddetti.",
-                false, false);
+                false, false);*/
         }
         return newEntity;
     }

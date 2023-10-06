@@ -7,6 +7,8 @@ import tr.com.meteor.crm.domain.PersonalContract;
 import tr.com.meteor.crm.domain.User;
 import tr.com.meteor.crm.repository.PersonalContractRepository;
 import tr.com.meteor.crm.repository.UserRepository;
+import tr.com.meteor.crm.utils.attributevalues.FaturaSirketleri;
+import tr.com.meteor.crm.utils.attributevalues.Sirketler;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -77,6 +79,75 @@ public class PersonalContractService extends GenericIdNameAuditingEntityService<
             String yoneticiTel = "";
             String yoneticiAdres = "";
 
+            if (user.getSgksirket() != null) {
+                if (user.getSgksirket().getId().equals(Sirketler.METEOR.getId())) {
+                    sskSicil = "247300101104582907701-07/000";
+                    sirket = "METEOR PETROL ÜRN.SAN. VE TİC.A.Ş.";
+                    sirketAdres = "ISMETPASA MAH.ATATÜRK BULVARI N:156 Dıs kapı no:156 Iç kapı no:0 YALOVA/MERKEZ";
+                } else if (user.getSgksirket().getId().equals(Sirketler.TERMINAL.getId())) {
+                    sskSicil = "247300101108390807701-62/000";
+                    sirket = "METEOR PETROL ÜRN.SAN. VE TİC.A.Ş.";
+                    sirketAdres = "BAYRAKTEPE MAH.BURSA YOLU CAD. N:138 Dıs kapı no:138 Iç kapı no:0 YALOVA/MERKEZ";
+                } else if (user.getSgksirket().getId().equals(Sirketler.GORUKLE.getId())) {
+                    sskSicil = "441200101140791601612-13/000";
+                    sirket = "METEOR PETROL ÜRN.SAN. VE TİC.A.Ş.";
+                    sirketAdres = "DUMLUPINAR MAHISIMSIZ Dıs kapı no:4 Iç kapı no:A BURSA/NİLÜFER";
+                } else if (user.getSgksirket().getId().equals(Sirketler.ISTANBUL.getId())) {
+                    sskSicil = "247300808124933803432-40/000";
+                    sirket = "METEOR PETROL ÜRN.SAN. VE TİC.A.Ş.";
+                    sirketAdres = "ORHANLI MAHFETTAH BASARAN CAD. Dıs kapı no:85 Iç kapı no:A-1 İSTANBUL/TUZLA";
+                } else if (user.getSgksirket().getId().equals(Sirketler.BURSA.getId())) {
+                    sskSicil = "247300101123361601612-22/000";
+                    sirket = "METEOR PETROL ÜRN.SAN. VE TİC.A.Ş.";
+                    sirketAdres = "AHMET YESEVI MAH HÜRRIYET CADBALAT 16 EVLERI A BLOK Dıs kapı no:13 Iç kapı no:9 BURSA/NİLÜFER";
+                } else if (user.getSgksirket().getId().equals(Sirketler.IGDIR.getId())) {
+                    sskSicil = "228220101101616007601-41/000";
+                    sirket = "METEOR PETROL ÜRN.SAN. VE TİC.A.Ş.";
+                    sirketAdres = "ÇALPALA KÖYÜ ÇALPALA OSB MAH.1.SOK. Dıs kapı no:1 Iç kapı no: IGDIR/MERKEZ";
+                } else if (user.getSgksirket().getId().equals(Sirketler.TEPE.getId())) {
+                    sskSicil = "441200101144143601612-68/000";
+                    sirket = "METEOR PETROL ÜRN.SAN. VE TİC.A.Ş.";
+                    sirketAdres = "BALAT SELIMIYE H21B24C4B PAFTA 4177 ADA 6 PARSEL Dıs kapı no:24A Iç kapı no: BURSA/NİLÜFER\n";
+                } else if (user.getSgksirket().getId().equals(Sirketler.IZMIR.getId())) {
+                    sskSicil = "228220101182179903513-83/000";
+                    sirket = "METEOR PETROL ÜRN.SAN. VE TİC.A.Ş.";
+                    sirketAdres = "MALTEPE SB MAH. SEDİR SK. LÖHER ASANSÖR BLOK NO: 26 MENEMEN / İZMİR";
+                } else if (user.getSgksirket().getId().equals(Sirketler.NCC.getId())) {
+                    sskSicil = "247300101109906907701-91/000";
+                    sirket = "NCC PETROL ÜRN.SAN. VE TİC.A.Ş.";
+                    sirketAdres = "ISMETPASA MAH.ATATÜRK BULVARI N:156 Dıs kapı no:156 Iç kapı no:0 YALOVA/MERKEZ";
+                } else if (user.getSgksirket().getId().equals(Sirketler.CEMCAN.getId())) {
+                    sskSicil = "247300101127913101612-44/000";
+                    sirket = "CEMCAN PETROL ÜRN.İNŞ.NAK.RENT A CAR A.Ş.";
+                    sirketAdres = "FETHIYE MAH. SANAYI CAD. NO: 299 IÇ KAPI NO: 299 NİLÜFER/BURSA";
+                } else if (user.getSgksirket().getId().equals(Sirketler.SIMYA.getId())) {
+                    sskSicil = "256100101141911401612-56/000";
+                    sirket = "SİMYA KAFE";
+                    sirketAdres = "Balat Mah. Bozkır Sk. Meteor Satış Ofısı Blok No: 6 İç Kapı No: 1 NİLÜFER/BURSA";
+                } else if (user.getSgksirket().getId().equals(Sirketler.BIRCE.getId())) {
+                    sskSicil = "247300808120511703432-51/000";
+                    sirket = "BİRCE PETROL İNŞAAT A.Ş.";
+                    sirketAdres = "ORHANLI MAHFETTAH BASARAN CAD. Dıs kapı no:85 Iç kapı no:A-1 İSTANBUL/TUZLA";
+                } else if (user.getSgksirket().getId().equals(Sirketler.MUDANYA.getId())) {
+                    sskSicil = "247300101127638601614-15/000";
+                    sirket = "MUDANYA PETROL ÜRN.İNŞ.SAN. VE TİC.LTD.ŞTİ.";
+                    sirketAdres = "DAVUTDEDE KURTULUŞ No:149/B YILDIRIM/BURSA";
+                } else if (user.getSgksirket().getId().equals(Sirketler.STAR.getId())) {
+                    sskSicil = "246690202133645003421-46/000";
+                    sirket = "STAR ŞARZ ENERJİ A.Ş.";
+                    sirketAdres = "YESILCE MAH. DIKEN SK. NO: 2 IÇ KAPI NO: 5 İSTANBUL/KAĞITHANE";
+                } else if (user.getSgksirket().getId().equals(Sirketler.CHARGE.getId())) {
+                    sskSicil = "246690202133645003421-46/000";
+                    sirket = "STAR CHARGE PRODUCTION A.Ş.";
+                    sirketAdres = "YESILCE MAH. DIKEN SK. NO: 2 IÇ KAPI NO: 5 İSTANBUL/KAĞITHANE";
+                } else if (user.getSgksirket().getId().equals(Sirketler.AVELICE.getId())) {
+                    sskSicil = "228220101100921007601-75/000";
+                    sirket = "AVELICE MAKİNA SANAYİ VE TİCARET ANONİM ŞİRKETİ";
+                    sirketAdres = "ÇALPALA ORGANİZE SANAYİ BÖLGESİ. Dış Kapı No: 1 İç Kapı No:1 Merkez";
+                } else {
+                    sskSicil = "ŞİRKET HATALI!";
+                }
+            }
             if(endDate == null) {
                 endDate = Instant.now();
             }
@@ -133,9 +204,6 @@ public class PersonalContractService extends GenericIdNameAuditingEntityService<
             }
             if (user.getPhone2() != null) {
                 tel = user.getPhone2();
-            }
-            if (user.getSgksirket() != null) {
-                sirket = user.getSgksirket().getLabel();
             }
             if (user.getMyb().equals(true)) {
                 myb = "VAR";

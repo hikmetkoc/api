@@ -5,6 +5,8 @@ import tr.com.meteor.crm.domain.AttributeValue;
 public enum FaturaSirketleri {
     ATTRIBUTE("Fatura_Sirketleri"),
     METEOR("Fatura_Sirketleri_Meteor"),
+
+    TERMINAL("Fatura_Sirketleri_Terminal"),
     CEMCAN("Fatura_Sirketleri_Cemcan"),
     NCC("Fatura_Sirketleri_Ncc"),
     INSAAT("Fatura_Sirketleri_MeteorIns"),

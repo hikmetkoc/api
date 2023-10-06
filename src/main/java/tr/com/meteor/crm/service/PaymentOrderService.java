@@ -722,8 +722,8 @@ public class PaymentOrderService extends GenericIdNameAuditingEntityService<Paym
         }
         repository.updateStatusById(status, id, iptalzamani, iptaleden, muhasebeOnayi, okeyFirst, okeySecond, payAmount, nextAmount, description, muhasebeGoruntusu);
         //todo:Mail ve sms gönderimi.
-        System.out.println(olusturan + " - " +  onay1 + " - " + muhOnay + " " + onay2 + " - " + status.getId() + " - " + invoiceNum);
-        mailSend(olusturan, onay1, muhOnay, onay2, status.getId(), invoiceNum, "Unvanlar_Gen_Mud");
+        //System.out.println(olusturan + " - " +  onay1 + " - " + muhOnay + " " + onay2 + " - " + status.getId() + " - " + invoiceNum);
+        //mailSend(olusturan, onay1, muhOnay, onay2, status.getId(), invoiceNum, "Unvanlar_Gen_Mud");
     }
 
     public void mailSend(String olusturan, String onay1, String muhasebe, String onay2, String durum, String invoiceNum, String onayciUnvani) throws Exception {

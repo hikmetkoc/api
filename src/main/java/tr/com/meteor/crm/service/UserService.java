@@ -4,7 +4,6 @@ import com.itextpdf.text.*;
 import com.itextpdf.text.Document;
 import org.apache.poi.ss.usermodel.FillPatternType;
 import org.apache.poi.xssf.usermodel.*;
-import org.checkerframework.checker.units.qual.A;
 import org.jsoup.Jsoup;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,14 +14,11 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.w3c.dom.Attr;
 import tr.com.meteor.crm.domain.*;
 import tr.com.meteor.crm.repository.AttributeValueRepository;
 import tr.com.meteor.crm.service.dto.UserDTO;
 import tr.com.meteor.crm.service.mapper.UserMapper;
 import tr.com.meteor.crm.service.util.RandomUtil;
-import tr.com.meteor.crm.utils.filter.Filter;
-import tr.com.meteor.crm.utils.filter.FilterItem;
 import tr.com.meteor.crm.utils.jasper.rest.errors.EmailAlreadyUsedException;
 import tr.com.meteor.crm.utils.jasper.rest.errors.InvalidPasswordException;
 import tr.com.meteor.crm.utils.jasper.rest.errors.LoginAlreadyUsedException;
@@ -64,10 +60,15 @@ public class UserService extends GenericIdNameAuditingEntityService<User, Long, 
 
     private final UserMapper userMapper;
 
+    private final IkfileService ikfileService;
+
+    private final HolUserService holUserService;
+
+    private final HolManagerService holManagerService;
     public UserService(BaseUserService baseUserService, BaseRoleService baseRoleService,
                        BasePermissionService basePermissionService, BaseFileDescriptorService baseFileDescriptorService,
                        CacheManager cacheManager, BaseConfigurationService baseConfigurationService, UserRepository repository,
-                       PasswordEncoder passwordEncoder, AttributeValueRepository attributeValueRepository, RoleRepository roleRepository, UserMapper userMapper) {
+                       PasswordEncoder passwordEncoder, AttributeValueRepository attributeValueRepository, RoleRepository roleRepository, UserMapper userMapper, IkfileService ikfileService, HolUserService holUserService, HolManagerService holManagerService) {
         super(baseUserService, baseRoleService, basePermissionService, baseFileDescriptorService, baseConfigurationService,
             User.class, repository);
         this.passwordEncoder = passwordEncoder;
@@ -75,6 +76,9 @@ public class UserService extends GenericIdNameAuditingEntityService<User, Long, 
         this.roleRepository = roleRepository;
         this.cacheManager = cacheManager;
         this.userMapper = userMapper;
+        this.ikfileService = ikfileService;
+        this.holUserService = holUserService;
+        this.holManagerService = holManagerService;
     }
 
     public Optional<User> activateRegistration(String key) {
@@ -373,7 +377,8 @@ public class UserService extends GenericIdNameAuditingEntityService<User, Long, 
         startDate = startDate.atZone(ZoneId.systemDefault()).toLocalDate().atStartOfDay(ZoneId.systemDefault()).toInstant();
         endDate = endDate.atZone(ZoneId.systemDefault()).toLocalDate().atStartOfDay(ZoneId.systemDefault()).plusDays(1).toInstant();
 
-        Request request = Request.build().page(0).size(Integer.MAX_VALUE).filter(
+        Request request = Request.build().page(0).size(Integer.MAX_VALUE);
+            /*.filter(
             Filter.And(
                 Filter.FilterItem("createdDate", FilterItem.Operator.GREATER_OR_EQUAL_THAN, startDate),
                 Filter.FilterItem("createdDate", FilterItem.Operator.LESS_THAN, endDate),
@@ -381,7 +386,7 @@ public class UserService extends GenericIdNameAuditingEntityService<User, Long, 
                     Filter.FilterItem("id", FilterItem.Operator.IN, hierarchicalUserIds)
                 )
             )
-        );
+        );*/
 
         List<User> Users = getData(null, request, false).getBody();
 
@@ -674,7 +679,7 @@ public class UserService extends GenericIdNameAuditingEntityService<User, Long, 
         // Küçük harfe çevir ve noktaları ekleyerek login oluştur
         return removedSpecialCharacters.toLowerCase().replaceAll("\\s+", ".");
     }
-    public void newPerson(User userEmployee, String unvan, String sgkSirket, String egitim, String askerlik, String cinsiyet, String ehliyet) throws Exception {
+    public String newPerson(User userEmployee, String unvan, String sgkSirket, String egitim, String askerlik, String cinsiyet, String ehliyet) throws Exception {
         if (userEmployee.getTck().length() > 11) {
             System.out.println("Lütfen 11 haneli TC giriniz...");
         }
@@ -699,10 +704,10 @@ public class UserService extends GenericIdNameAuditingEntityService<User, Long, 
         String gonderilecekmail = getCurrentUser().getEposta();
 
         if (repository.existsByLogin(login)) {
-            throw new Exception("Bu kullanıcı adı zaten mevcut! Lütfen Ad Soyad kontrol ediniz. Doğru ise Bilgi İşlem personeli ile iletişime geçiniz!");
+            return "Bu kullanıcı adı zaten mevcut! Lütfen Ad Soyad kontrol ediniz. Doğru ise Bilgi İşlem personeli ile iletişime geçiniz!";
         }
         if (repository.existsByTck(userEmployee.getTck())) {
-            throw new Exception("Bu T.C. Kimlik numarasına sahip personelin kaydı zaten var!");
+            return "Bu T.C. Kimlik numarasına sahip personelin kaydı zaten var!";
         }
 
         User user = new User();
@@ -748,5 +753,27 @@ public class UserService extends GenericIdNameAuditingEntityService<User, Long, 
         user.setMyb(userEmployee.getMyb());
 
         repository.save(user);
+
+        //ÖZLÜK DOSYASI OLUŞTURMA
+        ikfileService.createIkFile(user);
+
+        // İZİN DETAYLARI OLUŞTURMA
+        holUserService.createHolUser(user);
+
+        // İZİN AMİRLERİ OLUŞTURMA (HOLMANAGER)
+        holManagerService.createHolManager(user);
+
+        // todo:JHI_ROLE_USER , USER_GROUP ve VARSA BUY_LIMIT oluşturma
+        Set<Role> roles = new HashSet<>();
+        roleRepository.findById(RolesConstants.MAVI).ifPresent(roles::add);
+        user.setRoles(roles);
+
+        Set<User> groups = new HashSet<>();
+        groups.add(user);
+        groups.add(getCurrentUser());
+        // ADD = GROUP_ID , NEWENTITY = MEMBER_ID
+        //groups.add(baseUserService.getUserFullFetched(2000L).get());
+        user.setGroups(groups);
+        return "Kayıt Başarılı";
     }
 }

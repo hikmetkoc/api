@@ -505,6 +505,8 @@ public class SpendService extends GenericIdNameAuditingEntityService<Spend, UUID
     public String controlTotal() throws Exception {
         BigDecimal mpetroltoplamtl = BigDecimal.ZERO;
         BigDecimal mpetroltoplamdl = BigDecimal.ZERO;
+        BigDecimal terminaltoplamtl = BigDecimal.ZERO;
+        BigDecimal terminaltoplamdl = BigDecimal.ZERO;
         BigDecimal insaattoplamtl = BigDecimal.ZERO;
         BigDecimal insaattoplamdl = BigDecimal.ZERO;
         BigDecimal cemcantoplamtl = BigDecimal.ZERO;
@@ -539,6 +541,16 @@ public class SpendService extends GenericIdNameAuditingEntityService<Spend, UUID
                         mpetroltoplamtl = mpetroltoplamtl.add(spend.getPayTl());
                     } else {
                         mpetroltoplamdl = mpetroltoplamdl.add(spend.getAmount());
+                    }
+                }
+            } else if (spend.getPaymentorder().getOdemeYapanSirket().getId().equals(FaturaSirketleri.TERMINAL.getId())) {
+                if (spend.getPaymentorder().getMoneyType().getId().equals("Par_Bir_Tl")) {
+                    terminaltoplamtl = terminaltoplamtl.add(spend.getAmount());
+                } else {
+                    if (spend.getPaymentorder().getPaymentStyle().getId().equals("Payment_Style_Tl")) {
+                        terminaltoplamtl = terminaltoplamtl.add(spend.getPayTl());
+                    } else {
+                        terminaltoplamdl = terminaltoplamdl.add(spend.getAmount());
                     }
                 }
             } else if (spend.getPaymentorder().getOdemeYapanSirket().getId().equals(FaturaSirketleri.INSAAT.getId())) {
@@ -655,6 +667,7 @@ public class SpendService extends GenericIdNameAuditingEntityService<Spend, UUID
 
         }
         String meteorpetrol = mpetroltoplamtl + "-" + mpetroltoplamdl;
+        String terminal = terminaltoplamtl + "-" + terminaltoplamdl;
         String meteorinsaat = insaattoplamtl + "-" + insaattoplamdl;
         String cemcanpetrol = cemcantoplamtl + "-" + cemcantoplamdl;
         String nccpetrol = ncctoplamtl + "-" + ncctoplamdl;
@@ -666,7 +679,7 @@ public class SpendService extends GenericIdNameAuditingEntityService<Spend, UUID
         String star = startoplamtl + "-" + startoplamdl;
         String charge = chargetoplamtl + "-" + chargetoplamdl;
         String avelice = avelicetoplamtl + "-" + avelicetoplamdl;
-        return meteorpetrol + "&" + meteorinsaat + "&" + cemcanpetrol + "&" + nccpetrol + "&" +
+        return meteorpetrol + "&" + terminal + "&" + meteorinsaat + "&" + cemcanpetrol + "&" + nccpetrol + "&" +
             izmirsube + "&" + igdirsube + "&" + simya + "&" + birce + "&" + mudanya + "&" +
             star + "&" + charge + "&" + avelice;
     }

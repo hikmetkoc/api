@@ -42,6 +42,8 @@ public enum TaskType {
         BIRIM_Loher("Birimler_Loher"),
         BIRIM_Avelice("Birimler_Avelice"),
         BIRIM_Satin("Birimler_Satin"),
+
+        BIRIM_Ter("Birimler_Ter"),
         BIRIM_Kafe("Birimler_Kafe"),
 
         BIRIM_Gnl("Birimler_Gnl_Mud"),

@@ -126,7 +126,7 @@ public class InvoiceListTrigger extends Trigger<InvoiceList, UUID, InvoiceListRe
             // MÜKERRER FATURA KONTROLÜ
             List<PaymentOrder> paymentOrders = paymentOrderRepository.findAll();
             for (PaymentOrder paymentOrder : paymentOrders) {
-                if (paymentOrder.getInvoiceNum().equals(newEntity.getInvoiceNum()) && !paymentOrder.getStatus().getId().equals(PaymentStatus.RED.getId())) {
+                if (paymentOrder.getInvoiceNum().equals(newEntity.getInvoiceNum()) && !paymentOrder.getStatus().getId().equals(PaymentStatus.RED.getId()) && paymentOrder.getCustomer().equals(newEntity.getCustomer())) {
                     throw new Exception("Bu fatura numarasına ait bir fatura Ödeme Talimatlarında mevcut! Lütfen kontrol ediniz!");
                 }
             }

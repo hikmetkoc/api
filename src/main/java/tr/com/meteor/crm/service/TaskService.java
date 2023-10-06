@@ -343,16 +343,14 @@ public class TaskService extends GenericIdNameAuditingEntityService<Task, UUID, 
         return out.toByteArray();
     }
 
-    public byte[] generateExcelTaskBTReport(User currentUser, Instant startDate, Instant endDate) throws Exception {
+    public byte[] generateExcelTaskBTReport(User currentUser) throws Exception {
         List<User> hierarchicalUsers = baseUserService.getHierarchicalUsersOnlyDownwards(currentUser);
         List<Long> hierarchicalUserIds = hierarchicalUsers.stream().map(User::getId).collect(Collectors.toList());
-        startDate = startDate.atZone(ZoneId.systemDefault()).toLocalDate().atStartOfDay(ZoneId.systemDefault()).toInstant();
-        endDate = endDate.atZone(ZoneId.systemDefault()).toLocalDate().atStartOfDay(ZoneId.systemDefault()).plusDays(1).toInstant();
+        /*startDate = startDate.atZone(ZoneId.systemDefault()).toLocalDate().atStartOfDay(ZoneId.systemDefault()).toInstant();
+        endDate = endDate.atZone(ZoneId.systemDefault()).toLocalDate().atStartOfDay(ZoneId.systemDefault()).plusDays(1).toInstant();*/
 
         Request request = Request.build().page(0).size(Integer.MAX_VALUE).filter(
             Filter.And(
-                Filter.FilterItem("createdDate", FilterItem.Operator.GREATER_OR_EQUAL_THAN, startDate),
-                Filter.FilterItem("createdDate", FilterItem.Operator.LESS_THAN, endDate),
                 Filter.FilterItem("taskType", FilterItem.Operator.EQUALS, TaskType.BT_ISSURECLERI.getId()),
                 Filter.Or(
                     Filter.FilterItem("status", FilterItem.Operator.EQUALS, TaskStatus.YENI.getId()),

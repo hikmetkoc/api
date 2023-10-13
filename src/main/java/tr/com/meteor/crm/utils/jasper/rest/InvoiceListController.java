@@ -35,22 +35,6 @@ public class InvoiceListController extends GenericIdNameAuditingEntityController
             .body(new ByteArrayResource(service.generateExcelOrderReport(getCurrentUser(), startDate, endDate)));
     }
 
-    @GetMapping("/{invoiceNum}")
-    public ResponseEntity<String> getEttntByInvoiceNum(@PathVariable String invoiceNum) {
-        try {
-            String base64 = service.getEttntByInvoiceNum(invoiceNum);
-            HttpHeaders headers = new HttpHeaders();
-            headers.setContentType(MediaType.APPLICATION_PDF);
-            headers.add(HttpHeaders.CONTENT_DISPOSITION, "inline; filename=" + invoiceNum + ".pdf");
-            return ResponseEntity.ok()
-                .headers(headers)
-                .body(base64);
-        } catch (Exception e) {
-            // Hata durumunda uygun bir hata yanıtı döndürebilirsiniz
-            return ResponseEntity.badRequest().build();
-        }
-    }
-
     @PutMapping("/{id}")
     public ResponseEntity<String> updatePaymentOrderStatus(@PathVariable UUID id, @RequestParam String status, @RequestParam String description) throws Exception {
         try {

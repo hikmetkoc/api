@@ -10,6 +10,7 @@ import javax.persistence.metamodel.StaticMetamodel;
 @StaticMetamodel(InvoiceList.class)
 public abstract class InvoiceList_ extends tr.com.meteor.crm.domain.IdNameAuditingEntity_ {
 
+	public static volatile SingularAttribute<InvoiceList, AttributeValue> approvalGroup;
 	public static volatile SingularAttribute<InvoiceList, AttributeValue> sirket;
 	public static volatile SingularAttribute<InvoiceList, Instant> sendDate;
 	public static volatile SingularAttribute<InvoiceList, String> instanceName;
@@ -38,6 +39,7 @@ public abstract class InvoiceList_ extends tr.com.meteor.crm.domain.IdNameAuditi
 	public static volatile SingularAttribute<InvoiceList, AttributeValue> invoiceStatus;
 	public static volatile SingularAttribute<InvoiceList, Customer> customer;
 
+	public static final String APPROVAL_GROUP = "approvalGroup";
 	public static final String SIRKET = "sirket";
 	public static final String SEND_DATE = "sendDate";
 	public static final String INSTANCE_NAME = "instanceName";

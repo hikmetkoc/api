@@ -86,6 +86,12 @@ public class PaymentOrder extends IdNameAuditingEntity<UUID> {
     private AttributeValue cost;
 
     @ManyToOne
+    @JoinColumn(name = "approval_group_id")
+    @FieldMetadataAnn(title = "Onay Grubu", defaultValue = "Approval_Group_Merkez", priority = 20, filterable = true)
+    @AttributeValueValidate(attributeId = "Approval_Group")
+    private AttributeValue approvalGroup;
+
+    @ManyToOne
     @JoinColumn(name = "payment_subject_id")
     @FieldMetadataAnn(title = "Ödeme Konusu", defaultValue = "Payment_Sub_Fatura", priority = 20, filterable = true)
     @AttributeValueValidate(attributeId = "Payment_Sub")
@@ -111,7 +117,7 @@ public class PaymentOrder extends IdNameAuditingEntity<UUID> {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "iban_id")
-    @FieldMetadataAnn(title = "Iban", required = true, priority = 110)
+    @FieldMetadataAnn(title = "Iban", priority = 110)
     @JsonIgnoreProperties({"groups", "members", "createdBy", "lastModifiedBy", "roles"})
     private Iban iban;
     @FieldMetadataAnn(title = "Açıklama", priority = 120)
@@ -140,7 +146,7 @@ public class PaymentOrder extends IdNameAuditingEntity<UUID> {
     @FieldMetadataAnn(title = "Muhasebe Tarihi", priority = 62, filterable = true)
     private Instant okeyMuh;
 
-    @FieldMetadataAnn(title = "Reddetme Tarihi", priority = 63, filterable = true)
+    @FieldMetadataAnn(title = "Reddetme Tarihi", priority = 63)
     private Instant cancelDate;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -181,9 +187,6 @@ public class PaymentOrder extends IdNameAuditingEntity<UUID> {
 
     @FieldMetadataAnn(title = "Muhasebe Görüntüsü", active = false)
     private Boolean muhasebeGoruntusu = false;
-
-    @FieldMetadataAnn(title = "PDF", priority = 120, active = false)
-    private String base64File;
 
     @Transient
     @Formula("name")
@@ -394,14 +397,6 @@ public class PaymentOrder extends IdNameAuditingEntity<UUID> {
         this.cost = cost;
     }
 
-    public String getBase64File() {
-        return base64File;
-    }
-
-    public void setBase64File(String base64File) {
-        this.base64File = base64File;
-    }
-
     public User getMuhasebeci() {
         return muhasebeci;
     }
@@ -520,5 +515,13 @@ public class PaymentOrder extends IdNameAuditingEntity<UUID> {
 
     public void setMuhasebeGoruntusu(Boolean muhasebeGoruntusu) {
         this.muhasebeGoruntusu = muhasebeGoruntusu;
+    }
+
+    public AttributeValue getApprovalGroup() {
+        return approvalGroup;
+    }
+
+    public void setApprovalGroup(AttributeValue approvalGroup) {
+        this.approvalGroup = approvalGroup;
     }
 }

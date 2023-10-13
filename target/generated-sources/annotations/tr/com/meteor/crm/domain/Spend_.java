@@ -18,7 +18,6 @@ public abstract class Spend_ extends tr.com.meteor.crm.domain.IdNameAuditingEnti
 	public static volatile SingularAttribute<Spend, BigDecimal> exchangeMoney;
 	public static volatile SingularAttribute<Spend, PaymentOrder> paymentorder;
 	public static volatile SingularAttribute<Spend, String> description;
-	public static volatile SingularAttribute<Spend, String> dekont;
 	public static volatile SingularAttribute<Spend, String> odemeYapanSirket;
 	public static volatile SingularAttribute<Spend, Instant> maturityDate;
 	public static volatile SingularAttribute<Spend, BigDecimal> payTl;
@@ -36,7 +35,6 @@ public abstract class Spend_ extends tr.com.meteor.crm.domain.IdNameAuditingEnti
 	public static final String EXCHANGE_MONEY = "exchangeMoney";
 	public static final String PAYMENTORDER = "paymentorder";
 	public static final String DESCRIPTION = "description";
-	public static final String DEKONT = "dekont";
 	public static final String ODEME_YAPAN_SIRKET = "odemeYapanSirket";
 	public static final String MATURITY_DATE = "maturityDate";
 	public static final String PAY_TL = "payTl";

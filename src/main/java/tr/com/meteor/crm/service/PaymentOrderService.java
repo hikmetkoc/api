@@ -9,6 +9,7 @@ import tr.com.meteor.crm.domain.*;
 import tr.com.meteor.crm.repository.*;
 import tr.com.meteor.crm.service.dto.PaymentOrderDTO;
 import tr.com.meteor.crm.utils.attributevalues.InvoiceStatus;
+import tr.com.meteor.crm.utils.attributevalues.PaymentStatus;
 import tr.com.meteor.crm.utils.filter.Filter;
 import tr.com.meteor.crm.utils.filter.FilterItem;
 import tr.com.meteor.crm.utils.jasper.rest.errors.RecordNotFoundException;
@@ -731,23 +732,23 @@ public class PaymentOrderService extends GenericIdNameAuditingEntityService<Paym
        String testmail = "hikmet@meteorpetrol.com";
        try {
            if (durum.equals("Payment_Status_Bek1")) {
-               text = text + " (" + onay1 + " kişisine mail atılacaktı) " + durum + ", " +
+               text = text + " (" + onay1 + "1.Onay Bekliyor" + ", " +
                    " durumundadır ve onayınız beklenmektedir. meteorpanel.com/paymentorder adresinden ilgili talimata ulaşabilirsiniz.";
                mailService.sendEmail(testmail, "MeteorPanel - Ödeme Talimatı", text,false, false);
            } else if (durum.equals("Payment_Status_Bek2")) {
-               text = text + " (" + onay2 + " kişisine mail atılacaktı) " + durum + ", " +
+               text = text + " (" + onay2 + "2.Onay Bekliyor" + ", " +
                    " durumundadır ve onayınız beklenmektedir. meteorpanel.com/paymentorder adresinden ilgili talimata ulaşabilirsiniz.";
                mailService.sendEmail(testmail, "MeteorPanel - Ödeme Talimatı", text,false, false);
            } else if (durum.equals("Payment_Status_Muh")) {
-               text = text + " (" + muhasebe + " kişisine mail atılacaktı) " + durum + ", " +
+               text = text + " (" + muhasebe + "Muhasebe Onayı" + ", " +
                    " durumundadır ve onayınız beklenmektedir. meteorpanel.com/paymentorder adresinden ilgili talimata ulaşabilirsiniz.";
                mailService.sendEmail(testmail, "MeteorPanel - Ödeme Talimatı", text,false, false);
            } else if (durum.equals("Payment_Status_Onay")) {
-               text = text + " (" + muhasebe + " kişisine mail atılacaktı) " + durum + ", " +
+               text = text + " (" + muhasebe + "Onaylandı" + ", " +
                    " durumundadır ve onayınız beklenmektedir. meteorpanel.com/paymentorder adresinden ilgili talimata ulaşabilirsiniz.";
                mailService.sendEmail(testmail, "MeteorPanel - Ödeme Talimatı", text,false, false);
            } else if (durum.equals("Payment_Status_Red")) {
-               text = text + " (" + olusturan + " kişisine mail atılacaktı) " + durum + ", " + " REDDEDİLMİŞTİR. meteorpanel.com/paymentorder adresinden ilgili talimata ulaşabilirsiniz.";
+               text = text + " (" + olusturan + "," + " REDDEDİLMİŞTİR. meteorpanel.com/paymentorder adresinden ilgili talimata ulaşabilirsiniz.";
                mailService.sendEmail(testmail, "MeteorPanel - Ödeme Talimatı", text,false, false);
            } else {
 
@@ -763,24 +764,6 @@ public class PaymentOrderService extends GenericIdNameAuditingEntityService<Paym
        }
 
     }
-    public PaymentOrder updatePaymentOrder(UUID id, String base64file) throws Exception {
-        System.out.println(id.toString() + " ID SI ALINDI");
-        try {
-            List<PaymentOrder> paymentOrderOptional = repository.findAll();
-            for (PaymentOrder paymentOrder : paymentOrderOptional) {
-                if (paymentOrder.getId().equals(id)) {
-                    paymentOrder.setBase64File(base64file);
-                    return repository.save(paymentOrder);
-                }
-            }
-        } catch (Exception e) {
-            System.out.println("HATA MESAJI: " + e.getMessage());
-            e.printStackTrace();
-            throw new Exception("HATA!");
-        }
-        // Eğer id ile eşleşen bir PaymentOrder bulunamazsa burada null döndürmelisiniz.
-        return null;
-    }
 
     public PaymentOrder updateStoreId(UUID id, UUID storeid) throws Exception {
         try {
@@ -794,19 +777,6 @@ public class PaymentOrderService extends GenericIdNameAuditingEntityService<Paym
         }
         return null;
     }
-
-    public String getEttntById(UUID id) throws Exception {
-        List<PaymentOrder> paymentOrder = repository.findAll();
-        String veri = "";
-        for (PaymentOrder paymentOrder1: paymentOrder) {
-            if (paymentOrder1.getId().equals(id)) {
-                veri = paymentOrder1.getBase64File();
-                break;
-            }
-        }
-        return veri;
-    }
-
     public void updateStatus(PaymentOrderDTO paymentOrderDTO) throws Exception {
         //User currentUser = getCurrentUser();
         Optional<PaymentOrder> paymentOrder = repository.findById(paymentOrderDTO.getPaymentId());
@@ -824,5 +794,16 @@ public class PaymentOrderService extends GenericIdNameAuditingEntityService<Paym
 
         add(getCurrentUser(), paymentOrder.get());
         System.out.println("SERVICE PUT ATTI");
+    }
+    public List<PaymentOrder> myCorrect () {
+        List<PaymentOrder> paymentOrders = repository.findAll();
+        List<PaymentOrder> returnList = new ArrayList<>();
+        for (PaymentOrder paymentOrder : paymentOrders) {
+            if (paymentOrder.getStatus().getId().equals(PaymentStatus.ONAY1.getId()) && paymentOrder.getAssigner().equals(getCurrentUser()) ||
+                paymentOrder.getStatus().getId().equals(PaymentStatus.ONAY2.getId()) && paymentOrder.getSecondAssigner().equals(getCurrentUser())) {
+                returnList.add(paymentOrder);
+            }
+        }
+        return returnList;
     }
 }

@@ -7,8 +7,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import tr.com.meteor.crm.domain.AttributeValue;
 import tr.com.meteor.crm.domain.InvoiceList;
-import tr.com.meteor.crm.domain.PaymentOrder;
-import tr.com.meteor.crm.domain.User;
 
 import java.util.List;
 import java.util.Optional;
@@ -17,8 +15,6 @@ import java.util.UUID;
 @Repository
 public interface InvoiceListRepository extends GenericIdNameAuditingEntityRepository<InvoiceList, UUID> {
     boolean existsByInvoiceNum(String invoiceNum);
-    //List<InvoiceList> findByCreatedById(Long kisi);
-
     List<InvoiceList> findByInvoiceNum (String invoiceNum);
     @Transactional
     @Modifying

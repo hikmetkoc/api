@@ -11,6 +11,7 @@ import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Component(InvoiceListTrigger.QUALIFIER)
@@ -39,9 +40,15 @@ public class InvoiceListTrigger extends Trigger<InvoiceList, UUID, InvoiceListRe
 
     private final MobileNotificationService mobileNotificationService;
 
+    private final FileContainerService fileContainerService;
+
+    private final CorrectGroupRepository correctGroupRepository;
+
+    private final ApprovalUserLimitRepository approvalUserLimitRepository;
+
     public InvoiceListTrigger(CacheManager cacheManager, InvoiceListRepository paymentOrderRepository, BaseUserService baseUserService,
                               BaseConfigurationService baseConfigurationService, CustomerRepository customerRepository,
-                              SpendRepository spendRepository, InvoiceListService invoiceListService, PaymentOrderRepository paymentOrderRepository1, AttributeValueRepository attributeValueRepository, AttributeValueRepository attRepository, ResponsibleRepository responsibleRepository, StoreRepository storeRepository, BuyLimitRepository limitRepository, MailService mailService, PostaGuverciniService postaGuverciniService, MobileNotificationService mobileNotificationService) {
+                              SpendRepository spendRepository, InvoiceListService invoiceListService, PaymentOrderRepository paymentOrderRepository1, AttributeValueRepository attributeValueRepository, AttributeValueRepository attRepository, ResponsibleRepository responsibleRepository, StoreRepository storeRepository, BuyLimitRepository limitRepository, MailService mailService, PostaGuverciniService postaGuverciniService, MobileNotificationService mobileNotificationService, FileContainerService fileContainerService, CorrectGroupRepository correctGroupRepository, ApprovalUserLimitRepository approvalUserLimitRepository) {
         super(cacheManager, InvoiceList.class, InvoiceListTrigger.class, paymentOrderRepository, baseUserService, baseConfigurationService);
         this.customerRepository = customerRepository;
         this.spendRepository = spendRepository;
@@ -55,6 +62,9 @@ public class InvoiceListTrigger extends Trigger<InvoiceList, UUID, InvoiceListRe
         this.mailService = mailService;
         this.postaGuverciniService = postaGuverciniService;
         this.mobileNotificationService = mobileNotificationService;
+        this.fileContainerService = fileContainerService;
+        this.correctGroupRepository = correctGroupRepository;
+        this.approvalUserLimitRepository = approvalUserLimitRepository;
     }
 
     @Override
@@ -136,35 +146,97 @@ public class InvoiceListTrigger extends Trigger<InvoiceList, UUID, InvoiceListRe
             paymentOrder.setId(UUID.randomUUID());
             paymentOrder.setOwner(newEntity.getOwner());
 
-            // ONAYCILARI ATAMA
-            List<BuyLimit> limit = limitRepository.findByUserIdAndMaliyet(newEntity.getOwner().getId(), newEntity.getCost());
-            for (BuyLimit limits : limit) {
+            Optional<CorrectGroup> correctGroup = correctGroupRepository.findByApprovalGroupId(newEntity.getApprovalGroup().getId());
+            if (correctGroup.isPresent()) {
+                ApprovalUserLimit chief = approvalUserLimitRepository.findByUser(correctGroup.get().getChief());
+                ApprovalUserLimit manager = approvalUserLimitRepository.findByUser(correctGroup.get().getManager());
+                ApprovalUserLimit director = approvalUserLimitRepository.findByUser(correctGroup.get().getDirector());
+
                 if (newEntity.getMoneyType().getId().equals(MoneyTypeStatus.TL.getId())) {
-                    if (limits.getChiefTl().compareTo(newEntity.getAmount()) > 0) {
-                        paymentOrder.setAssigner(baseUserService.getUserFullFetched(getCurrentUserId()).get());
-                        paymentOrder.setSecondAssigner(limits.getChief());
-                    } else if (limits.getManagerTl().compareTo(newEntity.getAmount()) > 0) {
-                        paymentOrder.setAssigner(limits.getChief());
-                        paymentOrder.setSecondAssigner(limits.getManager());
-                    } else if (limits.getDirectorTl().compareTo(newEntity.getAmount()) > 0) {
-                        paymentOrder.setAssigner(limits.getManager());
-                        paymentOrder.setSecondAssigner(limits.getDirector());
-                    } else if (limits.getDirectorTl().compareTo(newEntity.getAmount()) < 0) {
-                        paymentOrder.setAssigner(limits.getDirector());
+                    if (chief.getTlLimit().compareTo(newEntity.getAmount()) > 0) {
+                        if (newEntity.getOwner().equals(chief.getUser())) {
+                            paymentOrder.setAssigner(chief.getUser());
+                            paymentOrder.setSecondAssigner(chief.getUser());
+                        } else {
+                            paymentOrder.setAssigner(getCurrentUser());
+                            paymentOrder.setSecondAssigner(chief.getUser());
+                        }
+                    } else if (manager.getTlLimit().compareTo(newEntity.getAmount()) > 0) {
+                        if (newEntity.getOwner().equals(manager.getUser())) {
+                            paymentOrder.setAssigner(manager.getUser());
+                            paymentOrder.setSecondAssigner(manager.getUser());
+                        } else {
+                            paymentOrder.setAssigner(chief.getUser());
+                            paymentOrder.setSecondAssigner(manager.getUser());
+                        }
+                    } else if (director.getTlLimit().compareTo(newEntity.getAmount()) > 0) {
+                        if (newEntity.getOwner().equals(director.getUser())) {
+                            paymentOrder.setAssigner(director.getUser());
+                            paymentOrder.setSecondAssigner(director.getUser());
+                        } else {
+                            paymentOrder.setAssigner(manager.getUser());
+                            paymentOrder.setSecondAssigner(director.getUser());
+                        }
+                    } else {
+                        paymentOrder.setAssigner(director.getUser());
                         paymentOrder.setSecondAssigner(baseUserService.getUserFullFetched(101L).get());
                     }
-                } else {
-                    if (limits.getChiefDl().compareTo(newEntity.getAmount()) > 0) {
-                        paymentOrder.setAssigner(baseUserService.getUserFullFetched(getCurrentUserId()).get());
-                        paymentOrder.setSecondAssigner(limits.getChief());
-                    } else if (limits.getManagerDl().compareTo(newEntity.getAmount()) > 0) {
-                        paymentOrder.setAssigner(limits.getChief());
-                        paymentOrder.setSecondAssigner(limits.getManager());
-                    } else if (limits.getDirectorDl().compareTo(newEntity.getAmount()) > 0) {
-                        paymentOrder.setAssigner(limits.getManager());
-                        paymentOrder.setSecondAssigner(limits.getDirector());
-                    } else if (limits.getDirectorDl().compareTo(newEntity.getAmount()) < 0) {
-                        paymentOrder.setAssigner(limits.getDirector());
+                } else if (newEntity.getMoneyType().getId().equals(MoneyTypeStatus.DOLAR.getId())) {
+                    if (chief.getDlLimit().compareTo(newEntity.getAmount()) > 0) {
+                        if (newEntity.getOwner().equals(chief.getUser())) {
+                            paymentOrder.setAssigner(chief.getUser());
+                            paymentOrder.setSecondAssigner(chief.getUser());
+                        } else {
+                            paymentOrder.setAssigner(getCurrentUser());
+                            paymentOrder.setSecondAssigner(chief.getUser());
+                        }
+                    } else if (manager.getDlLimit().compareTo(newEntity.getAmount()) > 0) {
+                        if (newEntity.getOwner().equals(manager.getUser())) {
+                            paymentOrder.setAssigner(manager.getUser());
+                            paymentOrder.setSecondAssigner(manager.getUser());
+                        } else {
+                            paymentOrder.setAssigner(chief.getUser());
+                            paymentOrder.setSecondAssigner(manager.getUser());
+                        }
+                    } else if (director.getDlLimit().compareTo(newEntity.getAmount()) > 0) {
+                        if (newEntity.getOwner().equals(director.getUser())) {
+                            paymentOrder.setAssigner(director.getUser());
+                            paymentOrder.setSecondAssigner(director.getUser());
+                        } else {
+                            paymentOrder.setAssigner(manager.getUser());
+                            paymentOrder.setSecondAssigner(director.getUser());
+                        }
+                    } else {
+                        paymentOrder.setAssigner(director.getUser());
+                        paymentOrder.setSecondAssigner(baseUserService.getUserFullFetched(101L).get());
+                    }
+                } else if (newEntity.getMoneyType().getId().equals(MoneyTypeStatus.EURO.getId())) {
+                    if (chief.getEuroLimit().compareTo(newEntity.getAmount()) > 0) {
+                        if (newEntity.getOwner().equals(chief.getUser())) {
+                            paymentOrder.setAssigner(chief.getUser());
+                            paymentOrder.setSecondAssigner(chief.getUser());
+                        } else {
+                            paymentOrder.setAssigner(getCurrentUser());
+                            paymentOrder.setSecondAssigner(chief.getUser());
+                        }
+                    } else if (manager.getEuroLimit().compareTo(newEntity.getAmount()) > 0) {
+                        if (newEntity.getOwner().equals(manager.getUser())) {
+                            paymentOrder.setAssigner(manager.getUser());
+                            paymentOrder.setSecondAssigner(manager.getUser());
+                        } else {
+                            paymentOrder.setAssigner(chief.getUser());
+                            paymentOrder.setSecondAssigner(manager.getUser());
+                        }
+                    } else if (director.getEuroLimit().compareTo(newEntity.getAmount()) > 0) {
+                        if (newEntity.getOwner().equals(director.getUser())) {
+                            paymentOrder.setAssigner(director.getUser());
+                            paymentOrder.setSecondAssigner(director.getUser());
+                        } else {
+                            paymentOrder.setAssigner(manager.getUser());
+                            paymentOrder.setSecondAssigner(director.getUser());
+                        }
+                    } else {
+                        paymentOrder.setAssigner(director.getUser());
                         paymentOrder.setSecondAssigner(baseUserService.getUserFullFetched(101L).get());
                     }
                 }
@@ -180,6 +252,7 @@ public class InvoiceListTrigger extends Trigger<InvoiceList, UUID, InvoiceListRe
             paymentOrder.setSirket(newEntity.getSirket());
             paymentOrder.setOdemeYapanSirket(newEntity.getOdemeYapanSirket());
             paymentOrder.setCost(newEntity.getCost());
+            paymentOrder.setApprovalGroup(newEntity.getApprovalGroup());
             paymentOrder.setPaymentSubject(newEntity.getPaymentSubject());
             paymentOrder.setAmount(newEntity.getAmount());
             paymentOrder.setMoneyType(newEntity.getMoneyType());
@@ -192,8 +265,6 @@ public class InvoiceListTrigger extends Trigger<InvoiceList, UUID, InvoiceListRe
             paymentOrder.setKismi(newEntity.getKismi());
             paymentOrder.setAutopay(newEntity.getAutopay());
             paymentOrder.setPaymentStyle(newEntity.getPaymentStyle());
-            paymentOrder.setBase64File(invoiceListService.getEttntByInvoiceNum(newEntity.getInvoiceNum()));
-            paymentOrder.setPaymentType(newEntity.getPaymentType());
             paymentOrder.setName(newEntity.getInvoiceNum() + " " + newEntity.getCustomer().getCommercialTitle());
             paymentOrder.setPayTl(newEntity.getPayTl());
             paymentOrder.setKaynak("FATURA LİSTESİ");

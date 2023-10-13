@@ -15,9 +15,4 @@ import java.util.UUID;
 public interface HolidayRepository extends GenericIdNameAuditingEntityRepository<Holiday, UUID> {
 
     List<Holiday> findByStartDateBetweenOrEndDateBetween(Instant startOfSelectedMonth, Instant endOfSelectedMonth, Instant startOfSelectedMonth2, Instant endOfSelectedMonth2);
-
-    @Transactional
-    @Modifying
-    @Query("UPDATE Holiday h SET h.base64File = :base64File WHERE h.id = :id")
-    void updateBase64(@Param("id") UUID id, @Param("base64File") String base64File);
 }

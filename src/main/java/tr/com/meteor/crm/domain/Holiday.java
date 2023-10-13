@@ -67,9 +67,6 @@ public class Holiday extends IdNameAuditingEntity<UUID> {
     @FieldMetadataAnn(title = "Kullanılan İzin Günü", display = true, readOnly = true, priority = 300)
     private Double izingun = 0.00;
 
-    /*@FieldMetadataAnn(title = "Kilit", active = false, priority = 300)
-    private Boolean lock = false;*/
-
     @ManyToOne
     @AttributeValueValidate(attributeId = "Izin_Dur")
     @FieldMetadataAnn(title = "Onay Durumu", display = true, defaultValue = "Izin_Dur_Pasif", priority = 150, filterable = true)
@@ -79,9 +76,6 @@ public class Holiday extends IdNameAuditingEntity<UUID> {
     @AttributeValueValidate(attributeId = "Izin_Turu")
     @FieldMetadataAnn(title = "İzin Türü", display = true, defaultValue = "Izin_Turu_Yil", priority = 150, filterable = true)
     private AttributeValue type;
-
-    @FieldMetadataAnn(title = "PDF", active = false)
-    private String base64File;
     @Formula("name")
     @FieldMetadataAnn(title = "Başlık", active = false)
     private String instanceName;
@@ -189,22 +183,6 @@ public class Holiday extends IdNameAuditingEntity<UUID> {
         this.izingun = izingun;
     }
 
-    /*public Boolean getLock() {
-        return lock;
-    }
-
-    public void setLock(Boolean lock) {
-        this.lock = lock;
-    }*/
-
-    /*public String getHolidayAddress() {
-        return holidayAddress;
-    }
-
-    public void setHolidayAddress(String holidayAddress) {
-        this.holidayAddress = holidayAddress;
-    }*/
-
     public City getCity() {
         return city;
     }
@@ -227,13 +205,5 @@ public class Holiday extends IdNameAuditingEntity<UUID> {
 
     public void setHaftalikGun(AttributeValue haftalikGun) {
         this.haftalikGun = haftalikGun;
-    }
-
-    public String getBase64File() {
-        return base64File;
-    }
-
-    public void setBase64File(String base64File) {
-        this.base64File = base64File;
     }
 }

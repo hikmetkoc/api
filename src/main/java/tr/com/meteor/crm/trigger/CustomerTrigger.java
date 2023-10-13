@@ -41,9 +41,6 @@ public class CustomerTrigger extends Trigger<Customer, UUID, CustomerRepository>
         if (newEntity.getOwner() == null) {
             newEntity.setOwner(getCurrentUser());
         }
-        if (newEntity.getCommercialTitle() == null) {
-            newEntity.setCommercialTitle(newEntity.getName());
-        }
 
         if (customerRepository.existsByTaxNumber(newEntity.getTaxNumber())) {
             throw new Exception("Bu vergi numarasına kayıtlı bir tedarikçi zaten kayıtlı!");
@@ -62,34 +59,24 @@ public class CustomerTrigger extends Trigger<Customer, UUID, CustomerRepository>
         if(newEntity.getTaxNumber().length()!=11){
             throw new Exception("Lütfen 11 haneli vergili numarası giriniz. Eğer 10 haneli ise başına 0 koyarak girebilirsiniz.");
         }
-        if (newEntity.getCommercialTitle() == null) {
-            newEntity.setCommercialTitle(newEntity.getName());
-        }
+        newEntity.setCommercialTitle(newEntity.getName());
         return newEntity;
     }
 
     @Override
     public Customer beforeUpdate(@NotNull Customer oldEntity, @NotNull Customer newEntity) throws Exception {
-        if (customerRepository.existsByTaxNumber(newEntity.getTaxNumber())) {
+        if (customerRepository.existsByTaxNumberAndIdNot(newEntity.getTaxNumber(), newEntity.getId())) {
             throw new Exception("Bu vergi numarasına kayıtlı bir tedarikçi zaten kayıtlı!");
-        }
+        } // todo: Buraya bak.
         if(newEntity.getTaxNumber().length()!=11){
             throw new Exception("Lütfen 11 haneli vergili numarası giriniz. Eğer 10 haneli ise başına 0 koyarak girebilirsiniz.");
         }
-        if (newEntity.getCommercialTitle() == null) {
-            newEntity.setCommercialTitle(newEntity.getName());
-        }
+        newEntity.setCommercialTitle(newEntity.getName());
         return newEntity;
     }
 
     @Override
     public Customer afterUpdate(@NotNull Customer oldEntity, @NotNull Customer newEntity) {
-        /*if (Utils.isChanged(oldEntity.getFleetCode(), newEntity.getFleetCode())) {
-            updateSummaries(newEntity, oldEntity.getFleetCode(), newEntity.getFleetCode());
-        }*/
-        if (newEntity.getCommercialTitle() == null) {
-            newEntity.setCommercialTitle(newEntity.getName());
-        }
         return newEntity;
     }
 

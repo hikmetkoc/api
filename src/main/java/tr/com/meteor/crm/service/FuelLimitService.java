@@ -6,6 +6,7 @@ import org.apache.poi.xssf.usermodel.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
+import tr.com.meteor.crm.domain.AttributeValue;
 import tr.com.meteor.crm.domain.FuelLimit;
 import tr.com.meteor.crm.domain.User;
 import tr.com.meteor.crm.repository.FuelLimitRepository;
@@ -14,10 +15,10 @@ import tr.com.meteor.crm.utils.filter.FilterItem;
 import tr.com.meteor.crm.utils.request.Request;
 
 import java.io.ByteArrayOutputStream;
+import java.math.BigDecimal;
 import java.time.Instant;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -29,30 +30,16 @@ public class FuelLimitService extends GenericIdNameAuditingEntityService<FuelLim
     private final String apiUrl = "https://srv.meteorpetrol.com/DisServis/limitguncelle";
     private final RestTemplate restTemplate;
 
+    private final MailService mailService;
+
     public FuelLimitService(BaseUserService baseUserService, BaseRoleService baseRoleService,
                             BasePermissionService basePermissionService, BaseFileDescriptorService baseFileDescriptorService,
                             BaseConfigurationService baseConfigurationService,
-                            FuelLimitRepository repository, RestTemplate restTemplate) {
+                            FuelLimitRepository repository, RestTemplate restTemplate, MailService mailService) {
         super(baseUserService, baseRoleService, basePermissionService, baseFileDescriptorService, baseConfigurationService,
             FuelLimit.class, repository);
         this.restTemplate = restTemplate;
-    }
-
-    public List<FuelLimit> saveWeekly(List<FuelLimit> FuelLimits) throws Exception {
-        List<FuelLimit> FuelLimitList = new ArrayList<>();
-        for (FuelLimit FuelLimit : FuelLimits) {
-            if (!StringUtils.isBlank(FuelLimit.getDescription()) && FuelLimit.getId() != null) {
-                FuelLimitList.add(update(getCurrentUser(), FuelLimit));
-            } else if (FuelLimit.getId() == null) {
-                /*Buy.setType(BuyType.KOLAY_AJANDA.getAttributeValue());
-                Buy.setStatus(BuyStatus.YENI.getAttributeValue());*/
-                FuelLimitList.add(add(getCurrentUser(), FuelLimit));
-            } else if (StringUtils.isBlank(FuelLimit.getDescription())) {
-                delete(getCurrentUser(), FuelLimit.getId());
-            }
-        }
-
-        return FuelLimitList;
+        this.mailService = mailService;
     }
     public byte[] generateExcelFuelLimitReport(User currentUser, Instant startDate, Instant endDate) throws Exception {
         List<User> hierarchicalUsers = baseUserService.getHierarchicalUsersOnlyDownwards(currentUser);
@@ -269,4 +256,27 @@ public class FuelLimitService extends GenericIdNameAuditingEntityService<FuelLim
             "\"BaslangicTarihi\": \"" + BaslangicTarihi + "\"," +
             "\"BitisTarihi\": \"" + BitisTarihi + "\"" +
             "}";*/
+
+    public Boolean updateStatus(UUID id, AttributeValue status, String unvan, String totalTl, Instant startDate, Instant endDate) throws Exception {
+        try {
+            BigDecimal total = new BigDecimal(totalTl);
+            Instant okeyFirst = Instant.now();
+            repository.updateStatusById(status, unvan, total, startDate, endDate, okeyFirst, id);
+
+            String start = DateTimeFormatter.ofPattern("dd-MM-yyyy").withZone(ZoneId.systemDefault()).format(startDate);
+            String end = DateTimeFormatter.ofPattern("dd-MM-yyyy").withZone(ZoneId.systemDefault()).format(endDate);
+            FuelLimit fuelLimit = repository.findById(id).get();
+            String mailOwner = fuelLimit.getOwner().getEposta();
+            mailService.sendEmail("hikmet@meteorpetrol.com",
+                "MeteorPanel - Ek Limit Talebi",fuelLimit.getOwner().getFullName() + ", " +
+                    fuelLimit.getCurcode() + " cari kodlu müşteriniz için " + start + "  -  " + end + " tarihleri için" +
+                    " yapmış olduğunuz " + fuelLimit.getFuelTl().toString() + " TL lik ek limit talebiniz " + fuelLimit.getStatus().getLabel(),
+                false,false);
+
+
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
 }

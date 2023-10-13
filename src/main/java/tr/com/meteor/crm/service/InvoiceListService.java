@@ -189,13 +189,12 @@ public class InvoiceListService extends GenericIdNameAuditingEntityService<Invoi
         return out.toByteArray();
     }
 
-    public String getEttntByInvoiceNum(String invoiceNum) throws Exception {
-        List<SapSoap> sapSoap = sapSoapRepository.findByFaturano(invoiceNum);
-        String veri = "";
-        for (SapSoap sapSoap1: sapSoap) {
-            veri = sapSoap1.getFpdf();
-        }
-        return veri;
+    public String getByInvoiceNum(String invoiceNum, String cardName) throws Exception {
+        return sapSoapRepository.findFpdfByFaturanoAndCardname(invoiceNum, cardName);
+    }
+
+    public String getByEttn(String invoiceNum, String cardName) throws Exception {
+        return sapSoapRepository.findEttnByFaturanoAndCardname(invoiceNum, cardName);
     }
 
     public void updateStatus(UUID id, AttributeValue status, String description) throws Exception{

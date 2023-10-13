@@ -1,19 +1,19 @@
 package tr.com.meteor.crm.utils.jasper.rest;
 
-import org.json.JSONObject;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import tr.com.meteor.crm.domain.Buy;
+import tr.com.meteor.crm.domain.AttributeValue;
 import tr.com.meteor.crm.domain.FuelLimit;
-import tr.com.meteor.crm.repository.BuyRepository;
+import tr.com.meteor.crm.repository.AttributeValueRepository;
 import tr.com.meteor.crm.repository.FuelLimitRepository;
-import tr.com.meteor.crm.service.BuyService;
 import tr.com.meteor.crm.service.FuelLimitService;
+import tr.com.meteor.crm.utils.attributevalues.FuelStatus;
+import tr.com.meteor.crm.utils.attributevalues.InvoiceStatus;
 
-import java.math.BigDecimal;
 import java.time.Instant;
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
@@ -21,14 +21,12 @@ import java.util.UUID;
 @RequestMapping("/api/fuellimits")
 public class FuelLimitController extends GenericIdNameAuditingEntityController<FuelLimit, UUID, FuelLimitRepository, FuelLimitService> {
 
-    public FuelLimitController(FuelLimitService service) {
+    public FuelLimitController(FuelLimitService service, AttributeValueRepository attributeValueRepository) {
         super(service);
+        this.attributeValueRepository = attributeValueRepository;
     }
 
-    @PutMapping("weekly")
-    public List<FuelLimit> saveWeekly(@RequestBody List<FuelLimit> FuelLimits) throws Exception {
-        return service.saveWeekly(FuelLimits);
-    }
+    public final AttributeValueRepository attributeValueRepository;
 
     @PostMapping("report")
     public ResponseEntity<ByteArrayResource> reportFuelLimit(@RequestParam Instant startDate, @RequestParam Instant endDate) throws Exception {
@@ -38,38 +36,27 @@ public class FuelLimitController extends GenericIdNameAuditingEntityController<F
             .body(new ByteArrayResource(service.generateExcelFuelLimitReport(getCurrentUser(), startDate, endDate)));
     }
 
-    /*@PostMapping("/makeApiRequest")
-    public ResponseEntity<String> makeApiRequest(@RequestParam String curcode, @RequestParam BigDecimal fuelTl, @RequestParam String description, @RequestParam Instant startDate, @RequestParam Instant endDate) {
-        ResponseEntity<String> apiResponse = service.makeApiRequest(curcode, fuelTl, description, startDate, endDate);
+    @PutMapping("/updateStatus")
+    public Boolean updateStatus(@RequestParam String id, @RequestParam String status, @RequestParam String unvan,
+                                @RequestParam String totalTl, @RequestParam String startDate, @RequestParam String endDate) throws Exception {
+        try {
+            UUID newId = UUID.fromString(id);
+            startDate = startDate + "T05:00:00Z";
+            endDate = endDate + "T20:59:59Z";
+            Instant start = Instant.parse(startDate);
+            Instant end = Instant.parse(endDate);
 
-        JSONObject jsonResponse = new JSONObject();
-        jsonResponse.put("status", apiResponse.getStatusCodeValue());
-        jsonResponse.put("body", new JSONObject(apiResponse.getBody()));
+            List<FuelStatus> invoiceStatuses = Arrays.asList(FuelStatus.values());
+            for (FuelStatus invoiceStatus: invoiceStatuses) {
+                if (invoiceStatus.getId().equals(status)) {
+                    return service.updateStatus(newId, invoiceStatus.getAttributeValue(), unvan, totalTl, start, end);
+                }
+            }
 
-        return ResponseEntity.ok(jsonResponse.toString());
-    }*/
-
-    /*@PostMapping("/makeApiRequest")
-    public ResponseEntity<String> makeApiRequest(@RequestParam String curcode, @RequestParam Integer fuelTl, @RequestParam String description, @RequestParam String startDate, @RequestParam String endDate) {
-        ResponseEntity<String> apiResponse = service.makeApiRequest(curcode, fuelTl, description, startDate, endDate);
-
-        JSONObject jsonResponse = new JSONObject();
-        jsonResponse.put("status", apiResponse.getStatusCodeValue());
-        jsonResponse.put("body", new JSONObject(apiResponse.getBody()));
-
-        return ResponseEntity.ok(jsonResponse.toString());
-    }*/
-
-    /*@PostMapping("/makeApiRequest")
-    public ResponseEntity<String> makeApiRequest(@RequestBody FuelLimitRequest request) {
-        // Burada gelen JSON verisini kullanarak işlemleri gerçekleştirin.
-        // Örnek olarak:
-        // service.processFuelLimitRequest(request);
-
-        // Başarılı cevap döndürme örneği:
-        JSONObject jsonResponse = new JSONObject();
-        jsonResponse.put("status", 200);
-        jsonResponse.put("message", "Request processed successfully.");
-        return ResponseEntity.ok(jsonResponse.toString());
-    }*/
+        } catch (Exception e) {
+            // Hata durumunda uygun bir hata yanıtı döndürebilirsiniz
+            return false;
+        }
+        return false;
+    }
 }

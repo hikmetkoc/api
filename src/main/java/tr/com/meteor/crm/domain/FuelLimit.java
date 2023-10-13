@@ -28,11 +28,11 @@ public class FuelLimit extends IdNameAuditingEntity<UUID> {
     @JsonIgnoreProperties({"groups", "members", "createdBy", "lastModifiedBy", "roles"})
     private User owner;
     @ManyToOne
-    @FieldMetadataAnn(title = "1.Onaycı", display = true, priority = 2, readOnly = true)
+    @FieldMetadataAnn(title = "Onaycı", display = true, priority = 2, readOnly = true)
     @JsonIgnoreProperties({"groups", "members", "createdBy", "lastModifiedBy", "roles"})
     private User assigner;
 
-    @FieldMetadataAnn(title = "Onay Tarihi", display = true, priority = 60)
+    @FieldMetadataAnn(title = "İşlem Tarihi", display = true, priority = 60)
     private Instant okeyFirst;
 
     @FieldMetadataAnn(title = "Cari Kod", display = true, priority = 20, filterable = true)
@@ -46,17 +46,20 @@ public class FuelLimit extends IdNameAuditingEntity<UUID> {
     private BigDecimal fuelTl;
 
     @ManyToOne
-    @FieldMetadataAnn(title = "Onay Durumu", defaultValue = "Fuel_Dur_Bekle", display = true, priority = 140, filterable = true)
+    @FieldMetadataAnn(title = "Onay Durumu", defaultValue = "Fuel_Dur_Bekle", display = true, readOnly = true, priority = 140, filterable = true)
     @AttributeValueValidate(attributeId = "Fuel_Dur")
     private AttributeValue status;
-    @FieldMetadataAnn(title = "Başlangıç Tarihi", display = true, priority = 60)
+    @FieldMetadataAnn(title = "Başlangıç Tarihi", display = true, readOnly = true, priority = 60)
     private Instant startDate;
 
-    @FieldMetadataAnn(title = "Bitiş Tarihi", display = true, priority = 70)
+    @FieldMetadataAnn(title = "Bitiş Tarihi", display = true, readOnly = true, priority = 70)
     private Instant endDate;
 
-    @FieldMetadataAnn(title = "İşlem", active = false)
-    private Boolean islem;
+    @FieldMetadataAnn(title = "Cari Unvan", display = true, readOnly = true, priority = 80, filterable = true)
+    private String unvan;
+
+    @FieldMetadataAnn(title = "Toplam Kullanılabilir Limit", readOnly = true)
+    private BigDecimal totalTl;
 
     @Formula("name")
     @FieldMetadataAnn(readOnly = true, title = "Başlık", active = false)
@@ -146,15 +149,6 @@ public class FuelLimit extends IdNameAuditingEntity<UUID> {
 
         search = search.toLowerCase(new Locale("tr", "TR"));
     }
-
-    public Boolean getIslem() {
-        return islem;
-    }
-
-    public void setIslem(Boolean islem) {
-        this.islem = islem;
-    }
-
     public Instant getOkeyFirst() {
         return okeyFirst;
     }
@@ -169,5 +163,21 @@ public class FuelLimit extends IdNameAuditingEntity<UUID> {
 
     public void setCurcode(String curcode) {
         this.curcode = curcode;
+    }
+
+    public String getUnvan() {
+        return unvan;
+    }
+
+    public void setUnvan(String unvan) {
+        this.unvan = unvan;
+    }
+
+    public BigDecimal getTotalTl() {
+        return totalTl;
+    }
+
+    public void setTotalTl(BigDecimal totalTl) {
+        this.totalTl = totalTl;
     }
 }

@@ -470,38 +470,6 @@ public class SpendService extends GenericIdNameAuditingEntityService<Spend, UUID
         }
         paymentOrderRepository.updatePay(paymentOrderPay, paymentOrderId);
     }
-
-    public Spend uploadPDF(UUID id, String base64file) throws Exception {
-        System.out.println(id.toString() + " ID SI ALINDI");
-        try {
-            List<Spend> spendList = repository.findAll();
-            for (Spend spend : spendList) {
-                if (spend.getId().equals(id)) {
-                    spend.setDekont(base64file);
-                    return repository.save(spend);
-                }
-            }
-        } catch (Exception e) {
-            System.out.println("HATA MESAJI: " + e.getMessage());
-            e.printStackTrace();
-            throw new Exception("HATA!");
-        }
-        // Eğer id ile eşleşen bir PaymentOrder bulunamazsa burada null döndürmelisiniz.
-        return null;
-    }
-
-    public String getShowDekont(UUID id) throws Exception {
-        List<Spend> spendList = repository.findAll();
-        String veri = "";
-        for (Spend spend: spendList) {
-            if (spend.getId().equals(id)) {
-                veri = spend.getDekont();
-                break;
-            }
-        }
-        return veri;
-    }
-
     public String controlTotal() throws Exception {
         BigDecimal mpetroltoplamtl = BigDecimal.ZERO;
         BigDecimal mpetroltoplamdl = BigDecimal.ZERO;

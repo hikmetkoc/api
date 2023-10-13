@@ -15,4 +15,6 @@ public interface CustomerRepository extends GenericIdNameAuditingEntityRepositor
     List<Customer> findByTaxNumber(String tnum);
 
     boolean existsByTaxNumber(String taxNumber);
+
+    boolean existsByTaxNumberAndIdNot(String taxNumber, UUID id);
 }

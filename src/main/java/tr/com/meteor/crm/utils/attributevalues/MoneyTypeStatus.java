@@ -5,7 +5,9 @@ import tr.com.meteor.crm.domain.AttributeValue;
 public enum MoneyTypeStatus {
     ATTRIBUTE("Par_Bir"),
     TL("Par_Bir_Tl"),
-    DOLAR("Par_Bir_Dl");
+    DOLAR("Par_Bir_Dl"),
+
+    EURO("Par_Bir_Euro");
     final String id;
 
     MoneyTypeStatus(String id) {

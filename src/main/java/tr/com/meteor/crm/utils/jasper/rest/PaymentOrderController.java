@@ -21,6 +21,7 @@ import tr.com.meteor.crm.service.dto.PaymentOrderFileDTO;
 import tr.com.meteor.crm.utils.attributevalues.PaymentStatus;
 
 import java.awt.*;
+import java.lang.reflect.Array;
 import java.time.Instant;
 import java.util.*;
 import java.util.List;
@@ -44,70 +45,10 @@ public class PaymentOrderController extends GenericIdNameAuditingEntityControlle
             .body(new ByteArrayResource(service.generateExcelOrderReport(getCurrentUser(), startDate, endDate)));
     }
 
-    @GetMapping("/get-file-details")
-    public ResponseEntity<?> getFileDetails(@RequestParam UUID fileId) {
-        try {
-            Optional<FileDescriptor> fileDescriptor = service.getFileDetails(fileId);
-            if (fileDescriptor.isPresent()) {
-                FileDescriptor file = fileDescriptor.get();
-                return ResponseEntity.ok(file);
-            } else {
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Dosya bilgileri bulunamadı.");
-            }
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Dosya bilgileri alınamadı.");
-        }
-    }
-    /*@PostMapping("/uploadPDF")
-    public ResponseEntity uploadBase64(@RequestParam String id, @RequestParam String base64String) throws Exception{
-        try {
-            UUID uuid = UUID.fromString(id);
-            //System.out.println(uuid);
-            service.updatePaymentOrder(uuid, base64String);
-            return ResponseEntity.ok().build();
-        } catch (IllegalArgumentException e) {
-            return ResponseEntity.badRequest().body("Geçersiz UUID formatı.");
-        } catch (Exception e) {
-            return ResponseEntity.status(500).body("Veritabanına kaydedilirken bir hata oluştu.");
-        }
-    }*/
-    @PostMapping("/uploadPDF")
-    public ResponseEntity<ByteArrayResource> uploadBase64(@RequestParam String id, @RequestBody byte[] binaryValue) throws Exception{
-        try {
-            UUID uuid = UUID.fromString(id);
-            String base64Data = Base64.getEncoder().encodeToString(binaryValue);
-            service.updatePaymentOrder(uuid, base64Data);
-            return ResponseEntity.ok().build();
-        } catch (IllegalArgumentException e) {
-            return ResponseEntity.badRequest().body(new ByteArrayResource(new byte[0]));
-        } catch (Exception e) {
-            return ResponseEntity.status(500).body(new ByteArrayResource(new byte[0]));
-        }
-    }
-
     @PutMapping("/updatePayment")
     public void updateStatus(@RequestBody PaymentOrderDTO paymentOrderDTO) throws Exception {
-        System.out.println("PUT ATTI");
         service.updateStatus(paymentOrderDTO);
-        System.out.println("PUT ATTI");
     }
-
-    @GetMapping("/{id}")
-    public ResponseEntity<String> getEttntByInvoiceNum(@PathVariable UUID id) {
-        try {
-            String base64 = service.getEttntById(id);
-            HttpHeaders headers = new HttpHeaders();
-            headers.setContentType(MediaType.APPLICATION_PDF);
-            headers.add(HttpHeaders.CONTENT_DISPOSITION, "inline; filename=" + id.toString() + ".pdf");
-            return ResponseEntity.ok()
-                .headers(headers)
-                .body(base64);
-        } catch (Exception e) {
-            // Hata durumunda uygun bir hata yanıtı döndürebilirsiniz
-            return ResponseEntity.badRequest().build();
-        }
-    }
-
     @PutMapping("/{id}")
     public ResponseEntity<String> updatePaymentOrderStatus(@PathVariable UUID id, @RequestParam String status, @RequestParam String description) throws Exception {
         try {
@@ -144,6 +85,14 @@ public class PaymentOrderController extends GenericIdNameAuditingEntityControlle
         } catch (Exception e) {
             // Hata durumunda uygun bir hata yanıtı döndürebilirsiniz
             return ResponseEntity.badRequest().build();
+        }
+    }
+    @PostMapping("/mycorrect")
+    public ResponseEntity<List<PaymentOrder>> myCorrectPayment() throws Exception{
+        try {
+            return ResponseEntity.ok(service.myCorrect());
+        } catch (Exception e) {
+            return ResponseEntity.status(500).build();
         }
     }
 }

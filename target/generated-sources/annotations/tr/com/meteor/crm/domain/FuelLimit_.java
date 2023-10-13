@@ -15,11 +15,12 @@ public abstract class FuelLimit_ extends tr.com.meteor.crm.domain.IdNameAuditing
 	public static volatile SingularAttribute<FuelLimit, Instant> okeyFirst;
 	public static volatile SingularAttribute<FuelLimit, Instant> endDate;
 	public static volatile SingularAttribute<FuelLimit, String> instanceName;
-	public static volatile SingularAttribute<FuelLimit, Boolean> islem;
-	public static volatile SingularAttribute<FuelLimit, String> name;
 	public static volatile SingularAttribute<FuelLimit, User> assigner;
 	public static volatile SingularAttribute<FuelLimit, String> curcode;
 	public static volatile SingularAttribute<FuelLimit, String> description;
+	public static volatile SingularAttribute<FuelLimit, String> unvan;
+	public static volatile SingularAttribute<FuelLimit, BigDecimal> totalTl;
+	public static volatile SingularAttribute<FuelLimit, String> name;
 	public static volatile SingularAttribute<FuelLimit, Instant> startDate;
 	public static volatile SingularAttribute<FuelLimit, AttributeValue> status;
 
@@ -28,11 +29,12 @@ public abstract class FuelLimit_ extends tr.com.meteor.crm.domain.IdNameAuditing
 	public static final String OKEY_FIRST = "okeyFirst";
 	public static final String END_DATE = "endDate";
 	public static final String INSTANCE_NAME = "instanceName";
-	public static final String ISLEM = "islem";
-	public static final String NAME = "name";
 	public static final String ASSIGNER = "assigner";
 	public static final String CURCODE = "curcode";
 	public static final String DESCRIPTION = "description";
+	public static final String UNVAN = "unvan";
+	public static final String TOTAL_TL = "totalTl";
+	public static final String NAME = "name";
 	public static final String START_DATE = "startDate";
 	public static final String STATUS = "status";
 

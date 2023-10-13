@@ -103,9 +103,9 @@ public class UserTrigger extends Trigger<User, Long, UserRepository> {
     }
     @Override
     public User beforeUpdate(@NotNull User oldEntity, @NotNull User newEntity) throws Exception {
-        if (getCurrentUserId() != 2 && getCurrentUserId() != 2000){
+        /*if (getCurrentUserId() != 2 && getCurrentUserId() != 2000){
             throw new Exception("Düzenleme yetkisi Yönetici Personelindedir...");
-        }
+        }*/
         if (newEntity.getTck().length() > 11) {
             throw new Exception("Lütfen 11 haneli TC giriniz...");
         }

@@ -67,6 +67,7 @@ D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\service\RoleService.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\utils\filter\FilterItem.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\domain\Target.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\service\HolidayService.java
+D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\service\FuelRiskService.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\domain\Document.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\repository\ConfigurationRepository.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\service\HolManagerService.java
@@ -91,6 +92,7 @@ D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\utils\jasper\rest\HolUser
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\config\LoggingAspectConfiguration.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\utils\ArrayListToStringConverter.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\service\BaseConfigurationService.java
+D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\trigger\ApprovalUserLimitTrigger.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\service\BaseUserService.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\utils\attributevalues\CustomTaskType.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\repository\OperationRepository.java
@@ -119,6 +121,7 @@ D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\utils\attributevalues\Con
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\repository\CustomerRepository.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\repository\SurveyAnswerRepository.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\trigger\AttributeTrigger.java
+D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\repository\CompanyMaterialRepository.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\utils\jasper\rest\ProductController.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\service\dto\package-info.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\trigger\InvoiceListTrigger.java
@@ -127,7 +130,9 @@ D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\repository\AnnouncementRe
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\repository\LeadRepository.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\service\dto\DashboardSearchDTO.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\config\WebFilterConfiguration.java
+D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\utils\jasper\rest\ApprovalUserLimitController.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\security\RolesConstants.java
+D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\domain\ApprovalUserLimit.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\utils\jasper\rest\SpendController.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\domain\FieldMetadata.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\service\CountryService.java
@@ -136,6 +141,7 @@ D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\security\SpringSecurityAu
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\utils\jasper\rest\errors\BadRequestAlertException.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\config\LoggingConfiguration.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\config\postgresql\timestamp\PostgreSqlTimeStampDiffFuncUnit.java
+D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\utils\jasper\rest\CorrectGroupController.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\utils\configuration\Configurations.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\utils\attributevalues\ActivityType.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\security\CustomSecurityUser.java
@@ -165,6 +171,7 @@ D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\domain\Product.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\repository\TargetRepository.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\utils\attributevalues\HolDayStatus.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\utils\jasper\rest\CityController.java
+D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\trigger\FuelRiskTrigger.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\trigger\AnnouncementTrigger.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\utils\jasper\rest\errors\RecordNotFoundException.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\domain\Lead.java
@@ -191,6 +198,7 @@ D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\aop\logging\LoggingAspect
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\security\DomainUserDetailsService.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\utils\jasper\rest\errors\WrongFilterPathException.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\repository\ActivityRepository.java
+D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\trigger\CorrectGroupTrigger.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\service\BasePermissionService.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\ApplicationWebXml.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\utils\jasper\rest\VocationDayController.java
@@ -211,6 +219,7 @@ D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\utils\jasper\rest\Contrac
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\utils\jasper\rest\ResignController.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\utils\jasper\rest\CustomerSurveyAnswerController.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\trigger\QuoteTrigger.java
+D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\domain\FileContainer.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\utils\jasper\rest\QuoteVersionController.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\domain\SummaryOpetSale.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\utils\attributevalues\ActivityReason.java
@@ -221,6 +230,7 @@ D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\domain\CompanyMaterial.ja
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\service\GenericIdNameEntityService.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\config\CacheConfiguration.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\utils\jasper\rest\TaskController.java
+D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\utils\jasper\rest\CompanyMaterialController.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\config\DateTimeFormatConfiguration.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\utils\attributevalues\ActivityStatus.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\domain\FuelLimit.java
@@ -228,12 +238,15 @@ D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\service\IbanService.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\domain\Activity.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\domain\IdEntity.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\service\QuoteVersionService.java
+D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\repository\FileContainerRepository.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\utils\jasper\rest\CampaignController.java
+D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\service\FileContainerService.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\service\dto\OfferSendDocumentDTO.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\utils\jasper\rest\errors\EmailAlreadyUsedException.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\utils\attributevalues\PaymentSubjectStatus.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\utils\jasper\PdfTemplates.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\repository\CustomerSurveyAnswerRepository.java
+D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\service\CompanyMaterialService.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\repository\TaskRepository.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\repository\ResignRepository.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\utils\jasper\rest\UserJWTController.java
@@ -261,6 +274,7 @@ D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\service\BuyLimitService.j
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\service\OfferService.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\utils\jasper\rest\errors\package-info.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\repository\StoreRepository.java
+D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\utils\jasper\rest\FuelRiskController.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\trigger\TriggerInterface.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\utils\attributevalues\ResignStatus.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\config\FileStorageConfiguration.java
@@ -282,6 +296,7 @@ D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\domain\Resign.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\utils\attributevalues\SpendStatus.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\trigger\CustomerTrigger.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\domain\Configuration.java
+D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\repository\CorrectGroupRepository.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\service\MailService.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\utils\idgenerator\IdType.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\domain\Role.java
@@ -297,6 +312,7 @@ D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\utils\filter\FilterUtils.
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\repository\ReportRepository.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\service\ReportService.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\repository\QuoteRepository.java
+D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\service\CorrectGroupService.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\domain\EntityMetadata.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\utils\jasper\rest\AccountResource.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\utils\jasper\rest\DashboardController.java
@@ -320,6 +336,7 @@ D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\domain\HolManager.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\config\audit\package-info.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\repository\SapSoapRepository.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\service\CustomerSurveyAnswerService.java
+D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\trigger\CompanyMaterialTrigger.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\domain\CustomActivity.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\service\PaymentOrderService.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\service\InvoiceListService.java
@@ -358,7 +375,10 @@ D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\service\dto\QuickActivity
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\trigger\HolidayTrigger.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\config\WebConfigurer.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\service\CampaignService.java
+D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\trigger\FileContainerTrigger.java
+D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\domain\CorrectGroup.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\CrmApp.java
+D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\repository\ApprovalUserLimitRepository.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\domain\QuoteVersion.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\repository\InvoiceListRepository.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\utils\attributevalues\TaskStatus.java
@@ -415,6 +435,7 @@ D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\trigger\CustomActivityTri
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\service\SummaryOpetSaleService.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\utils\attributevalues\CostPlace.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\domain\Store.java
+D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\service\ApprovalUserLimitService.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\trigger\AttributeValueTrigger.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\trigger\UserTrigger.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\domain\Iban.java
@@ -432,6 +453,7 @@ D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\trigger\UserPermissionTri
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\utils\jasper\rest\LayoutController.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\utils\jasper\rest\GenericIdNameAuditingEntityController.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\utils\attributevalues\Sirketler.java
+D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\utils\jasper\rest\FileContainerController.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\service\PermissionService.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\aop\logging\UserIsActiveAspect.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\config\LiquibaseConfiguration.java
@@ -468,7 +490,9 @@ D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\service\ActivityService.j
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\service\ResponsibleService.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\utils\jasper\rest\AttributeValueController.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\domain\Attribute.java
+D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\domain\FuelRisk.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\utils\metadata\EntityMetadataAnn.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\utils\export\ExportUtils.java
+D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\repository\FuelRiskRepository.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\utils\request\AssignerType.java
 D:\crm\meteorpanel\api\src\main\java\tr\com\meteor\crm\utils\jasper\rest\CountryController.java

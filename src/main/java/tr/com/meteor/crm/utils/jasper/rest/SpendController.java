@@ -80,37 +80,6 @@ public class SpendController extends GenericIdNameAuditingEntityController<Spend
             return ResponseEntity.badRequest().build();
         }
     }
-
-    @PostMapping("/uploadPDF")
-    public ResponseEntity<ByteArrayResource> uploadBase64(@RequestParam String id, @RequestBody byte[] binaryValue) throws Exception{
-        try {
-            UUID uuid = UUID.fromString(id);
-            String base64Data = Base64.getEncoder().encodeToString(binaryValue);
-            service.uploadPDF(uuid, base64Data);
-            return ResponseEntity.ok().build();
-        } catch (IllegalArgumentException e) {
-            return ResponseEntity.badRequest().body(new ByteArrayResource(new byte[0]));
-        } catch (Exception e) {
-            return ResponseEntity.status(500).body(new ByteArrayResource(new byte[0]));
-        }
-    }
-
-    @GetMapping("/toShowDekont/{id}")
-    public ResponseEntity<String> getEttntByInvoiceNum(@PathVariable UUID id) {
-        try {
-            String base64 = service.getShowDekont(id);
-            HttpHeaders headers = new HttpHeaders();
-            headers.setContentType(MediaType.APPLICATION_PDF);
-            headers.add(HttpHeaders.CONTENT_DISPOSITION, "inline; filename=" + id.toString() + ".pdf");
-            return ResponseEntity.ok()
-                .headers(headers)
-                .body(base64);
-        } catch (Exception e) {
-            // Hata durumunda uygun bir hata yanıtı döndürebilirsiniz
-            return ResponseEntity.badRequest().build();
-        }
-    }
-
     @PostMapping("/controltotalspends")
     public ResponseEntity<String> controlTotalSpends() throws Exception{
         try {

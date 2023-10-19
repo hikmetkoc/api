@@ -52,6 +52,15 @@ public class Customer extends IdNameAuditingEntity<UUID> {
     @FieldMetadataAnn(title = "Vergi Numarası", search = true, display = true, priority = 40, filterable = true)
     private String taxNumber;
 
+    @FieldMetadataAnn(title = "Borç")
+    private BigDecimal loan = BigDecimal.ZERO;
+
+    @FieldMetadataAnn(title = "Alacak")
+    private BigDecimal receive = BigDecimal.ZERO;
+
+    @FieldMetadataAnn(title = "Bakiye")
+    private BigDecimal balance = BigDecimal.ZERO;
+
     /*@FieldMetadataAnn(title = "Ortalama Tüketim(LT)", active = false)
     private BigDecimal fuelLt;
 
@@ -345,5 +354,28 @@ public class Customer extends IdNameAuditingEntity<UUID> {
         }
 
         search = search.toLowerCase(new Locale("tr", "TR"));
+    }
+    public BigDecimal getLoan() {
+        return loan;
+    }
+
+    public void setLoan(BigDecimal loan) {
+        this.loan = loan;
+    }
+
+    public BigDecimal getReceive() {
+        return receive;
+    }
+
+    public void setReceive(BigDecimal receive) {
+        this.receive = receive;
+    }
+
+    public BigDecimal getBalance() {
+        return balance;
+    }
+
+    public void setBalance(BigDecimal balance) {
+        this.balance = balance;
     }
 }

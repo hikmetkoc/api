@@ -267,7 +267,7 @@ public class FuelLimitService extends GenericIdNameAuditingEntityService<FuelLim
             String end = DateTimeFormatter.ofPattern("dd-MM-yyyy").withZone(ZoneId.systemDefault()).format(endDate);
             FuelLimit fuelLimit = repository.findById(id).get();
             String mailOwner = fuelLimit.getOwner().getEposta();
-            mailService.sendEmail("hikmet@meteorpetrol.com",
+            mailService.sendEmail(mailOwner,
                 "MeteorPanel - Ek Limit Talebi",fuelLimit.getOwner().getFullName() + ", " +
                     fuelLimit.getCurcode() + " cari kodlu müşteriniz için " + start + "  -  " + end + " tarihleri için" +
                     " yapmış olduğunuz " + fuelLimit.getFuelTl().toString() + " TL lik ek limit talebiniz " + fuelLimit.getStatus().getLabel(),

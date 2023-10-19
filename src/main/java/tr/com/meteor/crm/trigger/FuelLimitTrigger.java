@@ -12,9 +12,7 @@ import tr.com.meteor.crm.utils.attributevalues.FuelStatus;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.text.Normalizer;
-import java.time.Duration;
-import java.time.Instant;
-import java.time.ZoneId;
+import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Locale;
@@ -62,14 +60,16 @@ public class FuelLimitTrigger extends Trigger<FuelLimit, UUID, FuelLimitReposito
         if (newEntity.getFuelTl().compareTo(onayciLimit) > 0 && newEntity.getOwner().equals(baseUserService.getUserFullFetched(93L).get())) {
             throw new Exception("EN FAZLA 50.000 TL TALEP EDİLEBİLİR!");
         }
-
         if (newEntity.getStartDate() == null) {
             newEntity.setStartDate(Instant.now());
         }
-        if (newEntity.getEndDate() == null) {
-            Duration threeDays = Duration.ofDays(3);
-            newEntity.setEndDate(Instant.now().plus(threeDays));
+        LocalDate startDate = newEntity.getStartDate().atZone(ZoneId.systemDefault()).toLocalDate();
+        Duration addDays = Duration.ofDays(1);
+        if (startDate.getDayOfWeek() == DayOfWeek.FRIDAY) {
+            addDays = Duration.ofDays(3);
         }
+        newEntity.setEndDate(Instant.now().plus(addDays));
+
         if(newEntity.getAssigner() == null) {
             List<BuyLimit> limit = limitRepository.findByUserIdAndMaliyet(newEntity.getOwner().getId(), CostPlace.OTOBIL.getAttributeValue());
             for (BuyLimit limits : limit) {
@@ -98,7 +98,7 @@ public class FuelLimitTrigger extends Trigger<FuelLimit, UUID, FuelLimitReposito
         }
 
         String finalResult = result2.toString().trim();
-        postaGuverciniService.SendSmsService("5442458391",finalResult +
+        postaGuverciniService.SendSmsService("5442088890",finalResult +
             ", " + newEntity.getCurcode() + " cari kodlu musterisine " + DateTimeFormatter.ofPattern("dd-MM-yyyy").withZone(ZoneId.systemDefault()).format(newEntity.getStartDate()) +
             " - " + DateTimeFormatter.ofPattern("dd-MM-yyyy").withZone(ZoneId.systemDefault()).format(newEntity.getEndDate()) +
             " tarihleri icin " + newEntity.getFuelTl().toString() + " TL lik ek limit talep ediyor. Meteor Panel'de onayiniz bekleniyor.");

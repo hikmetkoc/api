@@ -475,7 +475,7 @@ public class HolidayTrigger extends Trigger<Holiday, UUID, HolidayRepository> {
                     kullanilan = (double) holuser.getKulMaz();
                     kalan = (double) Math.round(holuser.getKalMaz() * 100.0) / 100.0;;
                     holuser.setKulMaz(kullanilan + izingunDouble);
-                    holuser.setTopKulMaz(holuser.getTopKulMaz() + holuser.getKulMaz());
+                    holuser.setTopKulMaz(holuser.getTopKulMaz() + izingunDouble);
                     holuser.setKalMaz(kalan - izingunDouble);
                 }
                 if (newEntity.getType().getId().equals(HolidayStatus.BABALIK.getId())) {

@@ -19,6 +19,8 @@ import tr.com.meteor.crm.repository.AttributeValueRepository;
 import tr.com.meteor.crm.service.dto.UserDTO;
 import tr.com.meteor.crm.service.mapper.UserMapper;
 import tr.com.meteor.crm.service.util.RandomUtil;
+import tr.com.meteor.crm.utils.attributevalues.Sirketler;
+import tr.com.meteor.crm.utils.attributevalues.TaskType;
 import tr.com.meteor.crm.utils.jasper.rest.errors.EmailAlreadyUsedException;
 import tr.com.meteor.crm.utils.jasper.rest.errors.InvalidPasswordException;
 import tr.com.meteor.crm.utils.jasper.rest.errors.LoginAlreadyUsedException;
@@ -723,9 +725,15 @@ public class UserService extends GenericIdNameAuditingEntityService<User, Long, 
         user.setSgkStartDate(userEmployee.getSgkStartDate());
         user.setPhone2(userEmployee.getPhone2());
         user.setIzinGoruntuleme(true);
-        user.setSirket(getCurrentUser().getSirket());
-        user.setBirim(getCurrentUser().getBirim());
-        user.setSgkbirim(getCurrentUser().getBirim());
+        if (getCurrentUser().getId().equals(2001L)) {
+            user.setSirket(Sirketler.IZMIR.getAttributeValue());
+            user.setBirim(TaskType.TaskBirim.BIRIM_Loher.getAttributeValue());
+            user.setCreatedBy(baseUserService.getUserFullFetched(2000L).get());
+        } else {
+            user.setSirket(getCurrentUser().getSirket());
+            user.setBirim(getCurrentUser().getBirim());
+        }
+        user.setSgkbirim(null);
         user.setUnvan(attrUnvan);
         user.setSgksirket(attrSirket);
         user.setSgkunvan(attrUnvan);

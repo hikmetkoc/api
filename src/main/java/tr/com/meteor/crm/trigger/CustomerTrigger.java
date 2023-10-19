@@ -56,9 +56,6 @@ public class CustomerTrigger extends Trigger<Customer, UUID, CustomerRepository>
 
     @Override
     public Customer afterInsert(@NotNull Customer newEntity) throws Exception {
-        if(newEntity.getTaxNumber().length()!=11){
-            throw new Exception("Lütfen 11 haneli vergili numarası giriniz. Eğer 10 haneli ise başına 0 koyarak girebilirsiniz.");
-        }
         newEntity.setCommercialTitle(newEntity.getName());
         return newEntity;
     }

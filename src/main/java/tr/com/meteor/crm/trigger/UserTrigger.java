@@ -117,6 +117,12 @@ public class UserTrigger extends Trigger<User, Long, UserRepository> {
             User ne = repository.getOne(newEntity.getId());
             newEntity.setPassword(ne.getPassword());
         }
+        if (newEntity.getEndDate() != null && newEntity.getActivated().equals(true)) {
+            throw new Exception("İşten ayrılan personelin Aktifliğini sonlandırmalısınız!");
+        }
+        if (newEntity.getEndDate() == null && newEntity.getActivated().equals(false)) {
+            throw new Exception("Aktifliği sonlandırılan bir personelin İşten Çıkış Tarihini doldurmak zorundasınız!");
+        }
         return newEntity;
     }
     @Override

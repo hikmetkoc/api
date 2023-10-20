@@ -159,7 +159,7 @@ public class InsertHolidayService extends GenericIdNameAuditingEntityService<Hol
         } catch (Exception e) {
             System.out.println("İZİN EKLENİRKEN BİR HATA OLDU! BU TARİHTE İZİN EKLENMESİ GEREKEN KİŞİYİ KONTROL ET!");
             try {
-                mailService.sendEmail("hikmet@meteorpetrol.com","meteorpanel-InsertHolidayService Hatası!",
+                mailService.sendEmail("bt@meteorpetrol.com","meteorpanel-InsertHolidayService Hatası!",
                     "Servis çalışırken bir hata oluştu, bugün izin eklenmesi gereken biri varsa girip kontrol et!",false,false);
             } catch (Exception ex) {
                 throw new RuntimeException(ex);

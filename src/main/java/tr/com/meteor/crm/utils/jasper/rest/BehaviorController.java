@@ -14,6 +14,8 @@ import tr.com.meteor.crm.service.BehaviorService;
 import tr.com.meteor.crm.service.dto.CheckInOutDTO;
 
 import java.time.Instant;
+import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 @RestController
@@ -23,22 +25,20 @@ public class BehaviorController extends GenericIdNameAuditingEntityController<Be
     public BehaviorController(BehaviorService service) {
         super(service);
     }
-
-    @PutMapping("/checkIn")
-    public void updateCheckIn(@RequestBody CheckInOutDTO checkInOutDTO) throws Exception {
-        service.updateCheckIn(checkInOutDTO);
-    }
-
-    @PutMapping("/checkOut")
-    public void updateCheckOut(@RequestBody CheckInOutDTO checkInOutDTO) throws Exception {
-        service.updateCheckOut(checkInOutDTO);
-    }
-
     @PostMapping("/report")
-    public ResponseEntity report(@RequestParam Instant startDate, @RequestParam Instant endDate) throws Exception {
+    public ResponseEntity report() throws Exception {
         return ResponseEntity.ok()
             .header("Content-Disposition", "attachment; filename=" + service.getEntityMetaData().getName() + ".xlsx")
             .contentType(MediaType.parseMediaType("application/vnd.ms-excel;charset=UTF-8"))
-            .body(new ByteArrayResource(service.generateExcelActivityReportForUser(getCurrentUser(), startDate, endDate)));
+            .body(new ByteArrayResource(service.generateExcelBehaviorReportForUser(getCurrentUser())));
+    }
+
+    @PostMapping("selectedExcelReport")
+    public ResponseEntity<ByteArrayResource> reportExcel(@RequestBody Map<String, List<UUID>> requestMap) throws Exception {
+        List<UUID> ids = requestMap.get("ids");
+        return ResponseEntity.ok()
+            .header("Content-Disposition", "attachment; filename=" + service.getEntityMetaData().getName() + ".xlsx")
+            .contentType(MediaType.parseMediaType("application/vnd.ms-excel;charset=UTF-8"))
+            .body(new ByteArrayResource(service.generateSelectedExcelReport(ids, getCurrentUser())));
     }
 }

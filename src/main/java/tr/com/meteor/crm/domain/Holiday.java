@@ -76,6 +76,9 @@ public class Holiday extends IdNameAuditingEntity<UUID> {
     @AttributeValueValidate(attributeId = "Izin_Turu")
     @FieldMetadataAnn(title = "İzin Türü", display = true, defaultValue = "Izin_Turu_Yil", priority = 150, filterable = true)
     private AttributeValue type;
+
+    @FieldMetadataAnn(title = "İzin Görseli", active = false)
+    private Boolean pdf;
     @Formula("name")
     @FieldMetadataAnn(title = "Başlık", active = false)
     private String instanceName;
@@ -205,5 +208,13 @@ public class Holiday extends IdNameAuditingEntity<UUID> {
 
     public void setHaftalikGun(AttributeValue haftalikGun) {
         this.haftalikGun = haftalikGun;
+    }
+
+    public Boolean getPdf() {
+        return pdf;
+    }
+
+    public void setPdf(Boolean pdf) {
+        this.pdf = pdf;
     }
 }

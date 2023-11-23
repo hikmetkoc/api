@@ -29,8 +29,11 @@ public class FileContainer extends IdNameAuditingEntity<UUID> {
     @FieldMetadataAnn(title = "Tablo Adı", search = true)
     private String locName;
 
-    @FieldMetadataAnn(title = "Tablo Id", filterable = true)
+    @FieldMetadataAnn(title = "Grup Id", filterable = true)
     private String location;
+
+    @FieldMetadataAnn(title = "Konu", filterable = true)
+    private String subject;
 
     @FieldMetadataAnn(title = "PDF", priority = 120, active = false)
     private String code;
@@ -104,5 +107,13 @@ public class FileContainer extends IdNameAuditingEntity<UUID> {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public String getSubject() {
+        return subject;
+    }
+
+    public void setSubject(String subject) {
+        this.subject = subject;
     }
 }

@@ -20,10 +20,10 @@ public class FileContainerController extends GenericIdNameAuditingEntityControll
     }
 
     @PostMapping("/uploadFile")
-    public String uploadBase64(@RequestParam String location, @RequestParam String locName, @RequestParam String name, @RequestBody byte[] binaryValue) throws Exception{
+    public String uploadBase64(@RequestParam String location, @RequestParam String locName, @RequestParam String name, @RequestParam String subject, @RequestBody byte[] binaryValue) throws Exception{
         try {
             String code = Base64.getEncoder().encodeToString(binaryValue);
-            return service.uploadFile(location, locName, code, name);
+            return service.uploadBase64File(location, locName, code, name, subject);
         } catch (IllegalArgumentException e) {
             return "Yükleme hatası!";
         } catch (Exception e) {
@@ -32,9 +32,9 @@ public class FileContainerController extends GenericIdNameAuditingEntityControll
     }
 
     @GetMapping("/showFile")
-    public ResponseEntity<String> getCode(@RequestParam String location, @RequestParam String locName) {
+    public ResponseEntity<String> getCode(@RequestParam String location, @RequestParam String locName, @RequestParam String subject) {
         try {
-            String base64 = service.getBase64FileCode(locName,location);
+            String base64 = service.getBase64FileCode(locName,location,subject);
             HttpHeaders headers = new HttpHeaders();
             headers.setContentType(MediaType.APPLICATION_PDF);
             headers.add(HttpHeaders.CONTENT_DISPOSITION, "inline; filename=Document.pdf");

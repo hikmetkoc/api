@@ -19,13 +19,15 @@ public interface PaymentOrderRepository extends GenericIdNameAuditingEntityRepos
     Optional<PaymentOrder> findByInvoiceNum(String storeid);
     Optional<PaymentOrder> findById(UUID id);
 
+    Long countByPaymentSubjectAndClosePdfAndOwner(AttributeValue paymentSubject, Boolean closePdf, User owner);
+
     @Query("SELECT CASE WHEN COUNT(e) > 0 THEN true ELSE false END FROM PaymentOrder e WHERE e.invoiceNum = :invoiceNum AND e.customer = :customer AND e.status <> 'Payment_Status_Red'")
     boolean existsByInvoiceNumAndCustomerNotPaymentOrderRed(@Param("invoiceNum") String invoiceNum, @Param("customer") Customer customer);
 
     @Transactional
     @Modifying
-    @Query("UPDATE PaymentOrder p SET p.status = :status, p.cancelDate = :cancelDate, p.cancelUser = :cancelUser, p.okeyMuh = :okeyMuh, p.okeyFirst = :okeyFirst, p.okeySecond = :okeySecond, p.payamount = :payAmount, p.nextamount = :nextAmount, p.description = :description, p.muhasebeGoruntusu = :muhasebeGoruntusu WHERE p.id = :id")
-    void updateStatusById(@Param("status") AttributeValue status, @Param("id") UUID id, @Param("cancelDate") Instant cancelDate, @Param("cancelUser") User cancelUser, @Param("okeyMuh") Instant okeyMuh, @Param("okeyFirst") Instant okeyFirst, @Param("okeySecond") Instant okeySecond, @Param("payAmount") BigDecimal payAmount, @Param("nextAmount") BigDecimal nextAmount, @Param("description") String description, @Param("muhasebeGoruntusu") Boolean muhasebeGoruntusu);
+    @Query("UPDATE PaymentOrder p SET p.status = :status, p.cancelDate = :cancelDate, p.cancelUser = :cancelUser, p.okeyMuh = :okeyMuh, p.okeyFirst = :okeyFirst, p.okeySecond = :okeySecond, p.payamount = :payAmount, p.nextamount = :nextAmount, p.description = :description, p.muhasebeGoruntusu = :muhasebeGoruntusu, p.onayMuh = :muhasebeOnaycisi WHERE p.id = :id")
+    void updateStatusById(@Param("status") AttributeValue status, @Param("id") UUID id, @Param("cancelDate") Instant cancelDate, @Param("cancelUser") User cancelUser, @Param("okeyMuh") Instant okeyMuh, @Param("okeyFirst") Instant okeyFirst, @Param("okeySecond") Instant okeySecond, @Param("payAmount") BigDecimal payAmount, @Param("nextAmount") BigDecimal nextAmount, @Param("description") String description, @Param("muhasebeGoruntusu") Boolean muhasebeGoruntusu, @Param("muhasebeOnaycisi") User muhasebeOnaycisi);
 
     @Transactional
     @Modifying

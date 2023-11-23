@@ -62,10 +62,14 @@ public class InvoiceListenService extends GenericIdNameAuditingEntityService<Inv
     public void SoapService() throws Exception {
         String DBSirket ="";
         String startedDate = "";
+        Integer geridenCekme = 7;
         List<Configuration> configuration = baseConfigurationService.getConfigurations();
         for (Configuration configuration1 : configuration) {
             if (configuration1.getId().equals(Configurations.INVOICELIST_START_DATE.getId())) {
                 startedDate = configuration1.getStoredValue() + "T00:00:00.00Z";
+            }
+            if (configuration1.getId().equals(Configurations.GERIDENFATURACEKME.getId())) {
+                geridenCekme = Integer.valueOf(configuration1.getStoredValue());
             }
         }
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
@@ -78,7 +82,7 @@ public class InvoiceListenService extends GenericIdNameAuditingEntityService<Inv
                 }
             }
         }
-        ZonedDateTime strbaslangic = ensontarih.atZone(ZoneId.systemDefault()).minusDays(7);
+        ZonedDateTime strbaslangic = ensontarih.atZone(ZoneId.systemDefault()).minusDays(geridenCekme);
         ZonedDateTime dokuzEylul2023 = ZonedDateTime.of(2023, 9, 9, 0, 0, 0, 0, ZoneId.systemDefault());
         if (strbaslangic.isBefore(dokuzEylul2023)) {
             strbaslangic = dokuzEylul2023;
@@ -115,7 +119,8 @@ public class InvoiceListenService extends GenericIdNameAuditingEntityService<Inv
                     break;
             }
             System.out.println("FATURA LİSTESİ SERVİSİ BAŞLATILDI. " + DBSirket + " veritabanından faturalar çekiliyor...");
-            String soapEndpointUrl = "http://176.235.80.130:39802/LarinTransfer.asmx";
+            //String soapEndpointUrl = "http://176.235.80.130:39802/LarinTransfer.asmx";
+            String soapEndpointUrl = "http://192.168.10.150:39802/LarinTransfer.asmx";
             String soapRequest = "<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope\" " +
                 "xmlns:tem=\"http://tempuri.org/\"><soap:Header/><soap:Body><tem:OzkanFaturaDetay>" +
                 "<tem:MuhatapKodu>12345</tem:MuhatapKodu><tem:BaslangıcTarihi>" + gonderimbaslangic + "</tem:BaslangıcTarihi>" +
@@ -228,6 +233,11 @@ public class InvoiceListenService extends GenericIdNameAuditingEntityService<Inv
                 sapSoapList.add(sapSoap);
                 if (!sapSoapRepository.existsByFaturano(sapSoap.getFaturano())) {
                     sapSoapRepository.save(sapSoap);
+                    if (sapSoap.getFpdf().equals("")) {
+                        mailService.sendEmail("seyma.budak@meteorgrup.com.tr;bt@meteorgrup.com.tr","Meteor Panel - Eksik PDF",
+                            "Merhaba Şeyma Hanım,\n" + sapSoap.getFaturano() + " numaralı, " + sapSoap.getCardname() + " unvanlı tedarikçinin " +
+                            " kesmiş olduğu faturanın PDF'i eklenememiştir. İlgili faturanın PDF'ini panelden ekleyebilirsiniz.",false,false);
+                    }
                 }
 
                 printTagNames(childElement, indent + "  ", dbname);
@@ -298,8 +308,10 @@ public class InvoiceListenService extends GenericIdNameAuditingEntityService<Inv
         invoiceList.setPermission(baseUserService.getUserFullFetched(1L).get());
         if (parabirimi.equals("TRY")) {
             invoiceList.setMoneyType(getAttributeValueById(attributeValues, "Par_Bir_Tl"));
-        } else {
+        } else if (parabirimi.equals("USD")) {
             invoiceList.setMoneyType(getAttributeValueById(attributeValues, "Par_Bir_Dl"));
+        } else if (parabirimi.equals("EUR")) {
+            invoiceList.setMoneyType(getAttributeValueById(attributeValues, "Par_Bir_Euro"));
         }
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
@@ -354,7 +366,10 @@ public class InvoiceListenService extends GenericIdNameAuditingEntityService<Inv
         List<Customer> customers = customerRepository.findByTaxNumber(customer);
         invoiceList.setCustomer(customers.get(0));
 
-
+        List<SapSoap> sapSoap = sapSoapRepository.findByFaturanoAndVkn(invoiceNum,customers.get(0).getTaxNumber());
+        if (!sapSoap.get(0).getFpdf().equals("")) {
+            invoiceList.setPdf(true);
+        }
         invoiceListRepository.save(invoiceList);
         /*List<InvoiceList> invoiceList1 = invoiceListRepository.findByCreatedById(baseUserService.getUserFullFetched(1L).get().getId());
 

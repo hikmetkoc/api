@@ -11,7 +11,9 @@ public enum Configurations {
     KULLANMA_KILAVUZU_YOLU("Kullanma Kılavuzu Yolu"),
     FIREBASE_AUTHORIZATION_KEY("Firebase Authorization Key"),
 
-    INVOICELIST_START_DATE("InvoiceList Start Date");
+    INVOICELIST_START_DATE("InvoiceList Start Date"),
+
+    GERIDENFATURACEKME("InvoiceList Last Days");
 
     String id;
 

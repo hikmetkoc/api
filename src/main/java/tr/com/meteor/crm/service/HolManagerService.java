@@ -15,43 +15,50 @@ import java.util.UUID;
 public class HolManagerService extends GenericIdNameAuditingEntityService<HolManager, UUID, HolManagerRepository> {
 
     private final HolManagerRepository holManagerRepository;
+    private final MailService mailService;
     public HolManagerService(BaseUserService baseUserService, BaseRoleService baseRoleService,
                              BasePermissionService basePermissionService, BaseFileDescriptorService baseFileDescriptorService,
                              BaseConfigurationService baseConfigurationService,
-                             HolManagerRepository repository, HolManagerRepository holManagerRepository) {
+                             HolManagerRepository repository, HolManagerRepository holManagerRepository, MailService mailService) {
         super(baseUserService, baseRoleService, basePermissionService, baseFileDescriptorService, baseConfigurationService,
             HolManager.class, repository);
         this.holManagerRepository = holManagerRepository;
+        this.mailService = mailService;
     }
 
-    public void createHolManager(User user) {
-        User defaultUser = baseUserService.getUserFullFetched(2L).get();
-        Long chiefUser = Long.valueOf(user.getBirim().getIlgilibirim());
-        if (!getCurrentUser().getId().equals(2000L) || !getCurrentUser().getId().equals(2001L) || !getCurrentUser().getId().equals(2L)) {
-            chiefUser = getCurrentUserId();
-        }
-        User chief = baseUserService.getUserFullFetched(chiefUser).get();
-        User manager = lookManager(chief);
-        User director = baseUserService.getUserFullFetched(101L).get();
-        if (manager.getId().equals(90L) || manager.getId().equals(91L) || manager.getId().equals(93L)) {
-            director = baseUserService.getUserFullFetched(99L).get();
-        } else if (manager.getId().equals(103L) || manager.getId().equals(133L)) {
-            director = baseUserService.getUserFullFetched(102L).get();
-        }
+    public void createHolManager(User user) throws Exception {
+        try {
+            User defaultUser = baseUserService.getUserFullFetched(2L).get();
+            Long chiefUser = Long.valueOf(user.getBirim().getIlgilibirim());
+            if (!getCurrentUser().getId().equals(2000L) && !getCurrentUser().getId().equals(2001L) && !getCurrentUser().getId().equals(2L)) {
+                chiefUser = getCurrentUserId();
+            }
+            User chief = baseUserService.getUserFullFetched(chiefUser).get();
+            User manager = lookManager(chief);
+            User director = baseUserService.getUserFullFetched(101L).get();
+            if (manager.getId().equals(90L) || manager.getId().equals(91L) || manager.getId().equals(93L)) {
+                director = baseUserService.getUserFullFetched(99L).get();
+            } else if (manager.getId().equals(103L) || manager.getId().equals(133L)) {
+                director = baseUserService.getUserFullFetched(102L).get();
+            }
 
-        HolManager holManager = new HolManager();
-        holManager.setId(UUID.randomUUID());
-        holManager.setUser(user);
-        holManager.setCreatedBy(defaultUser);
-        holManager.setCreatedDate(Instant.now());
-        holManager.setLastModifiedBy(defaultUser);
-        holManager.setLastModifiedDate(Instant.now());
-        holManager.setSearch(holManager.getId().toString() + " " + user.getLogin());
-        holManager.setName(user.getLogin());
-        holManager.setChief(chief);
-        holManager.setManager(manager);
-        holManager.setDirector(director);
-        holManagerRepository.save(holManager);
+            HolManager holManager = new HolManager();
+            holManager.setId(UUID.randomUUID());
+            holManager.setUser(user);
+            holManager.setCreatedBy(defaultUser);
+            holManager.setCreatedDate(Instant.now());
+            holManager.setLastModifiedBy(defaultUser);
+            holManager.setLastModifiedDate(Instant.now());
+            holManager.setSearch(holManager.getId().toString() + " " + user.getLogin());
+            holManager.setName(user.getLogin());
+            holManager.setChief(chief);
+            holManager.setManager(manager);
+            holManager.setDirector(director);
+            holManagerRepository.save(holManager);
+        } catch (Exception e) {
+            mailService.sendEmail("bt@meteorgrup.com.tr","Personel Ekleme Hatası",
+                "Bir kullanıcı personel eklerken hata almıştır. Lütfen kontrol edin",false,false);
+        }
     }
 
     public User lookManager(User chief) {
@@ -87,6 +94,8 @@ public class HolManagerService extends GenericIdNameAuditingEntityService<HolMan
         } else if (chief.getBirim().getId().equals(TaskType.TaskBirim.BIRIM_Loher.getId())) {
             manager = baseUserService.getUserFullFetched(102L).get();
         } else if (chief.getBirim().getId().equals(TaskType.TaskBirim.BIRIM_Avelice.getId())) {
+            manager = baseUserService.getUserFullFetched(102L).get();
+        }  else if (chief.getBirim().getId().equals(TaskType.TaskBirim.BIRIM_SanayiSatis.getId())) {
             manager = baseUserService.getUserFullFetched(102L).get();
         } else if (chief.getBirim().getId().equals(TaskType.TaskBirim.BIRIM_Yonetim.getId())) {
             manager = baseUserService.getUserFullFetched(101L).get();

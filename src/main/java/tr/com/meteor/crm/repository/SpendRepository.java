@@ -18,6 +18,8 @@ public interface SpendRepository extends GenericIdNameAuditingEntityRepository<S
 
     List<Spend> findByPaymentorderId(UUID id);
 
+    List<Spend> findByPaymentorderIdIn( List<UUID> uuids);
+
     @Transactional
     @Modifying
     @Query("UPDATE Spend p SET p.paymentStatus = :status WHERE p.id = :id")

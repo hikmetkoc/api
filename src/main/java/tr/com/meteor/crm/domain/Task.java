@@ -33,8 +33,11 @@ public class Task extends IdNameAuditingEntity<UUID> {
     @FieldMetadataAnn(title = "Tahmini Tamamlanma Zamanı", required = true, display = true, priority = 40, filterable = true)
     private Instant dueTime;
 
-    @FieldMetadataAnn(title = "Tamamlanma Tarihi", required = false, display = true, priority = 55, filterable = false)
+    @FieldMetadataAnn(title = "Ticket Kapama Tarihi", required = false, display = true, priority = 55, filterable = false)
     private Instant oktime;
+
+    @FieldMetadataAnn(title = "Talep Tamamlanma Tarihi", display = true)
+    private Instant complateDate;
 
     @FieldMetadataAnn(title = "Açıklama", priority = 100)
     @Column(length = 2048)
@@ -170,5 +173,12 @@ public class Task extends IdNameAuditingEntity<UUID> {
 
     public void setTaskType(AttributeValue taskType) {
         this.taskType = taskType;
+    }
+    public Instant getComplateDate() {
+        return complateDate;
+    }
+
+    public void setComplateDate(Instant complateDate) {
+        this.complateDate = complateDate;
     }
 }

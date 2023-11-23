@@ -17,6 +17,7 @@ import tr.com.meteor.crm.utils.request.Request;
 
 import java.io.ByteArrayOutputStream;
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -648,9 +649,208 @@ public class PaymentOrderService extends GenericIdNameAuditingEntityService<Paym
         return out.toByteArray();
     }
 
+    public byte[] generateSelectedSpendExcelReport(List<UUID> ids, User currentUser) throws Exception {
+        List<User> hierarchicalUsers = baseUserService.getHierarchicalUsersOnlyDownwards(currentUser);
+        List<Long> hierarchicalUserIds = hierarchicalUsers.stream().map(User::getId).collect(Collectors.toList());
+
+        Request request = Request.build()
+            .page(0)
+            .size(Integer.MAX_VALUE)
+            .filter(
+                Filter.And(
+                    Filter.FilterItem("paymentorder.id", FilterItem.Operator.IN, ids)
+                )
+            );
+
+        List<Spend> spends = spendRepository.findByPaymentorderIdIn(ids);
+
+        XSSFWorkbook workbook = new XSSFWorkbook();
+        XSSFSheet sheet = workbook.createSheet();
+
+        sheet.setColumnWidth(0, 200);
+        sheet.createRow(0).setHeight((short) 200);
+
+        XSSFFont boldFont = workbook.createFont();
+        boldFont.setBold(true);
+
+        int rowIndex = 0;
+        int columnIndex = 0;
+
+        XSSFRow headerRow = sheet.createRow(rowIndex++);
+
+        XSSFCellStyle headerCellStyle = workbook.createCellStyle();
+        headerCellStyle.setFont(boldFont);
+        headerCellStyle.setFillForegroundColor(new XSSFColor(new byte[]{(byte) 189, (byte) 215, (byte) 238}, null));
+        headerCellStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+
+        XSSFCell headerStatusCell = headerRow.createCell(columnIndex++);  //Onay Durumu
+        XSSFCell headerSpendStatusCell = headerRow.createCell(columnIndex++);  //Ödeme Durumu
+        XSSFCell headerOwnerCell = headerRow.createCell(columnIndex++);     //Talimat Oluşturan
+        XSSFCell headerCreatedDateCell = headerRow.createCell(columnIndex++);       //Oluşturulma Tarihi
+        XSSFCell headerInvoiceDateCell = headerRow.createCell(columnIndex++);  //Fatura Tarihi
+        XSSFCell headerInvoiceNumCell = headerRow.createCell(columnIndex++);  //Fatura Numarası
+        XSSFCell headerPaymentStyleCell = headerRow.createCell(columnIndex++);     //Ödenecek Para Birimi
+        XSSFCell headerSpendAmountCell = headerRow.createCell(columnIndex++);  //Ödenmesi Talep Edilen Tutar
+        XSSFCell headerOdemeYapanSirketCell = headerRow.createCell(columnIndex++);  //Ödeme Yapan Şirket
+        XSSFCell headerCustomerCell = headerRow.createCell(columnIndex++);  //Ödeme Yapılacak Firma
+        XSSFCell headerMoneyTypeCell = headerRow.createCell(columnIndex++);  //Faturadaki Para Birimi
+        XSSFCell headerAmountCell = headerRow.createCell(columnIndex++);  //Toplam Tutar
+        XSSFCell headerPayAmountCell = headerRow.createCell(columnIndex++);  //Ödenen Tutar
+        XSSFCell headerNextAmountCell = headerRow.createCell(columnIndex++);  //Kalan Tutar
+        XSSFCell headerDescriptionCell = headerRow.createCell(columnIndex++);  //Açıklama
+        XSSFCell headerExchangeCell = headerRow.createCell(columnIndex++);     //Kur Tarihi
+        XSSFCell headerPayTlCell = headerRow.createCell(columnIndex++);     //Ödenen Tl Tutarı
+        XSSFCell headerAssignerCell = headerRow.createCell(columnIndex++);  //1.Onaycı
+        XSSFCell headerSecondAssignerCell = headerRow.createCell(columnIndex++);  //2.Onaycı
+
+        headerStatusCell.setCellStyle(headerCellStyle);
+        headerSpendStatusCell.setCellStyle(headerCellStyle);
+        headerOwnerCell.setCellStyle(headerCellStyle);
+        headerCreatedDateCell.setCellStyle(headerCellStyle);
+        headerInvoiceDateCell.setCellStyle(headerCellStyle);
+        headerInvoiceNumCell.setCellStyle(headerCellStyle);
+        headerPaymentStyleCell.setCellStyle(headerCellStyle);
+        headerSpendAmountCell.setCellStyle(headerCellStyle);
+        headerOdemeYapanSirketCell.setCellStyle(headerCellStyle);
+        headerCustomerCell.setCellStyle(headerCellStyle);
+        headerMoneyTypeCell.setCellStyle(headerCellStyle);
+        headerAmountCell.setCellStyle(headerCellStyle);
+        headerPayAmountCell.setCellStyle(headerCellStyle);
+        headerNextAmountCell.setCellStyle(headerCellStyle);
+        headerDescriptionCell.setCellStyle(headerCellStyle);
+        headerExchangeCell.setCellStyle(headerCellStyle);
+        headerPayTlCell.setCellStyle(headerCellStyle);
+        headerAssignerCell.setCellStyle(headerCellStyle);
+        headerSecondAssignerCell.setCellStyle(headerCellStyle);
+
+
+        headerStatusCell.setCellValue("Onay Durumu");
+        headerSpendStatusCell.setCellValue("Ödeme Durumu");
+        headerOwnerCell.setCellValue("Talimat Oluşturan");
+        headerCreatedDateCell.setCellValue("Oluşturulma Tarihi");
+        headerInvoiceDateCell.setCellValue("Fatura Tarihi");
+        headerInvoiceNumCell.setCellValue("Fatura Numarası");
+        headerPaymentStyleCell.setCellValue("Ödenecek Para Birimi");
+        headerSpendAmountCell.setCellValue("Ödenmesi Talep Edilen Tutar");
+        headerOdemeYapanSirketCell.setCellValue("Ödeme Yapan Şirket");
+        headerCustomerCell.setCellValue("Ödeme Yapılacak Firma");
+        headerMoneyTypeCell.setCellValue("Faturadaki Para Birimi");
+        headerAmountCell.setCellValue("Toplam Tutar");
+        headerPayAmountCell.setCellValue("Ödenen Tutar");
+        headerNextAmountCell.setCellValue("Kalan Tutar");
+        headerDescriptionCell.setCellValue("Açıklama");
+        headerExchangeCell.setCellValue("Kur Tarihi");
+        headerPayTlCell.setCellValue("Ödenen Tl Tutarı");
+        headerAssignerCell.setCellValue("1.Onaycı");
+        headerSecondAssignerCell.setCellValue("2.Onaycı");
+
+
+        for (Spend spend : spends) {
+            columnIndex = 0;
+
+            XSSFRow row = sheet.createRow(rowIndex++);
+
+            XSSFCell StatusCell = row.createCell(columnIndex++);  //Onay Durumu
+            XSSFCell SpendStatusCell = row.createCell(columnIndex++);  //Ödeme Durumu
+            XSSFCell ownerCell = row.createCell(columnIndex++);
+            XSSFCell CreatedDateCell = row.createCell(columnIndex++);       //Oluşturulma Tarihi
+            XSSFCell InvoiceDateCell = row.createCell(columnIndex++);  //Fatura Tarihi
+            XSSFCell InvoiceNumCell = row.createCell(columnIndex++);  //Fatura Numarası
+            XSSFCell PaymentStyleCell = row.createCell(columnIndex++);     //Ödenecek Para Birimi
+            XSSFCell SpendAmountCell = row.createCell(columnIndex++);     //Ödenmesi Talep Edilen Tutar
+            XSSFCell OdemeYapanSirketCell = row.createCell(columnIndex++);  //Ödeme Yapan Şirket
+            XSSFCell CustomerCell = row.createCell(columnIndex++);  //Ödeme Yapılacak Firma
+            XSSFCell MoneyTypeCell = row.createCell(columnIndex++);  //Faturadaki Para Birimi
+            XSSFCell AmountCell = row.createCell(columnIndex++);  //Toplam Tutar
+            XSSFCell PayAmountCell = row.createCell(columnIndex++);  //Ödenen Tutar
+            XSSFCell NextAmountCell = row.createCell(columnIndex++);  //Kalan Tutar
+            XSSFCell DescriptionCell = row.createCell(columnIndex++);  //Açıklama
+            XSSFCell ExchangeCell = row.createCell(columnIndex++);     //Kur Tarihi
+            XSSFCell PayTlCell = row.createCell(columnIndex++);         //Ödenen Tl Tutarı
+            XSSFCell assignerCell = row.createCell(columnIndex++);
+            XSSFCell secondAssignerCell = row.createCell(columnIndex++);
+
+            DecimalFormat decimalFormat = new DecimalFormat("#,##0.00");
+            if (spend.getPaymentorder().getOwner() != null) {
+                ownerCell.setCellValue(spend.getPaymentorder().getOwner().getFullName());
+            }
+            if (spend.getPaymentorder().getAssigner() != null) {
+                assignerCell.setCellValue(spend.getPaymentorder().getAssigner().getFullName());
+            }
+            if (spend.getPaymentorder().getSecondAssigner() != null) {
+                secondAssignerCell.setCellValue(spend.getPaymentorder().getSecondAssigner().getFullName());
+            }
+
+            if (spend.getPaymentorder().getInvoiceDate() != null) {
+                InvoiceDateCell.setCellValue(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm").withZone(ZoneId.systemDefault()).format(spend.getPaymentorder().getInvoiceDate()));
+            }
+            InvoiceNumCell.setCellValue(spend.getPaymentorder().getInvoiceNum());
+
+            if (spend.getPaymentorder().getCustomer() != null) {
+                CustomerCell.setCellValue(spend.getPaymentorder().getCustomer().getCommercialTitle());
+            }
+
+            if (spend.getPaymentorder().getOdemeYapanSirket() != null) {
+                OdemeYapanSirketCell.setCellValue(spend.getPaymentorder().getOdemeYapanSirket().getLabel());
+            }
+
+            if (spend.getPaymentorder().getAmount() != null) {
+                AmountCell.setCellValue(decimalFormat.format(spend.getPaymentorder().getAmount()));
+            }
+            if (spend.getAmount() != null) {
+                SpendAmountCell.setCellValue(decimalFormat.format(spend.getAmount()));
+            }
+            if (spend.getPaymentorder().getPayamount() != null) {
+                PayAmountCell.setCellValue(decimalFormat.format(spend.getPaymentorder().getPayamount()));
+            }
+            if (spend.getPaymentorder().getNextamount() != null) {
+                NextAmountCell.setCellValue(decimalFormat.format(spend.getPaymentorder().getNextamount()));
+            }
+
+            if (spend.getPaymentorder().getMoneyType() != null) {
+                MoneyTypeCell.setCellValue(spend.getPaymentorder().getMoneyType().getLabel());
+            }
+
+            if (StringUtils.isNotBlank(spend.getPaymentorder().getDescription())) {
+                DescriptionCell.setCellValue(spend.getPaymentorder().getDescription());
+            }
+            if (spend.getPaymentorder().getStatus() != null) {
+                StatusCell.setCellValue(spend.getPaymentorder().getStatus().getLabel());
+            }
+            if (spend.getStatus() != null) {
+                SpendStatusCell.setCellValue(spend.getStatus().getLabel());
+            }
+
+            if (spend.getPaymentorder().getPaymentStyle() != null) {
+                PaymentStyleCell.setCellValue(spend.getPaymentorder().getPaymentStyle().getLabel());
+            }
+            if (spend.getPaymentorder().getExchange() != null) {
+                ExchangeCell.setCellValue(spend.getPaymentorder().getExchange().getLabel());
+            }
+            if (spend.getPaymentorder().getPayTl() != null) {
+                PayTlCell.setCellValue(decimalFormat.format(spend.getPaymentorder().getPayTl()));
+            }
+
+            if (spend.getPaymentorder().getCreatedDate() != null) {
+                CreatedDateCell.setCellValue(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm").withZone(ZoneId.systemDefault()).format(spend.getPaymentorder().getCreatedDate()));
+            }
+        }
+
+        for (int i = 0; i < 25; i++) {
+            sheet.autoSizeColumn(i);
+        }
+
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        workbook.write(out);
+        workbook.close();
+
+        return out.toByteArray();
+    }
+
     public void updatePaymentOrderStatus(UUID id, AttributeValue status, String description) throws Exception{
         Instant iptalzamani = null;
         User iptaleden = null;
+        User muhasebeOnaycisi = null;
         Instant muhasebeOnayi = null;
         Instant okeyFirst = null;
         Instant okeySecond = null;
@@ -658,7 +858,10 @@ public class PaymentOrderService extends GenericIdNameAuditingEntityService<Paym
         BigDecimal nextAmount = BigDecimal.ZERO;
         String kaynak = "";
         String invoiceNum = "";
-        String onayciUnvani = "";
+        String onayci1Unvani = "";
+        String onayci2Unvani = "";
+        String onayci1Teli = "";
+        String onayci2Teli = "";
         String olusturan = "";
         String onay1 = "";
         String onay2 = "";
@@ -669,7 +872,10 @@ public class PaymentOrderService extends GenericIdNameAuditingEntityService<Paym
         List <PaymentOrder> paymentOrder = repository.findAll();
         for (PaymentOrder paymentOrder1 : paymentOrder) {
             if (paymentOrder1.getId().equals(id)) {
-                onayciUnvani = paymentOrder1.getAssigner().getUnvan().getId();
+                onayci1Unvani = paymentOrder1.getAssigner().getUnvan().getId();
+                onayci2Unvani = paymentOrder1.getSecondAssigner().getUnvan().getId();
+                onayci1Teli = paymentOrder1.getAssigner().getPhone();
+                onayci2Teli = paymentOrder1.getSecondAssigner().getPhone();
                 iptalzamani = paymentOrder1.getCancelDate();
                 iptaleden = paymentOrder1.getCancelUser();
                 muhasebeOnayi = paymentOrder1.getOkeyMuh();
@@ -703,7 +909,7 @@ public class PaymentOrderService extends GenericIdNameAuditingEntityService<Paym
                     if (invoiceStatus.getId().equals("Fatura_Durumlari_Atandi")) {
                         for (InvoiceList invoiceList1: invoiceList) {
                             if (invoiceList1.getInvoiceNum().equals(invoiceNum)) {
-                                invoiceListRepository.updateInvoice(invoiceStatus.getAttributeValue(), invoiceList1.getId(), "Talimatı Reddedildi...");
+                                invoiceListRepository.updateInvoice(invoiceStatus.getAttributeValue(), invoiceList1.getId(), "Talimatı Reddedildi. " + description);
                             }
                         }
                     }
@@ -712,6 +918,7 @@ public class PaymentOrderService extends GenericIdNameAuditingEntityService<Paym
         } else if(status.getId().equals("Payment_Status_Bek2") && getCurrentUser().getBirim().getId().equals("Birimler_Muh")){
             muhasebeOnayi = Instant.now();  // Muhasebeci Onay Verdiyse Muhasebe Onay Zamanını Al
             muhasebeGoruntusu = false;
+            muhasebeOnaycisi = getCurrentUser();
         } else if(status.getId().equals("Payment_Status_Bek2") && !getCurrentUser().getBirim().getId().equals("Birimler_Muh")){
             okeyFirst = Instant.now();      // Prim ödemesi, 1.Onaycı onay verdi ve Muhasebe onayı atlandıysa 1.Onay Zamanını Al
             muhasebeGoruntusu = false;
@@ -721,43 +928,48 @@ public class PaymentOrderService extends GenericIdNameAuditingEntityService<Paym
             muhasebeGoruntusu = true;
             okeyFirst = Instant.now();      // 1.Onaycı onay Verdiyse 1.Onay Zamanını Al
         }
-        repository.updateStatusById(status, id, iptalzamani, iptaleden, muhasebeOnayi, okeyFirst, okeySecond, payAmount, nextAmount, description, muhasebeGoruntusu);
+        repository.updateStatusById(status, id, iptalzamani, iptaleden, muhasebeOnayi, okeyFirst, okeySecond, payAmount, nextAmount, description, muhasebeGoruntusu, muhasebeOnaycisi);
         //todo:Mail ve sms gönderimi.
-        //System.out.println(olusturan + " - " +  onay1 + " - " + muhOnay + " " + onay2 + " - " + status.getId() + " - " + invoiceNum);
-        //mailSend(olusturan, onay1, muhOnay, onay2, status.getId(), invoiceNum, "Unvanlar_Gen_Mud");
+        System.out.println(olusturan + " - " +  onay1 + " - " + muhOnay + " " + onay2 + " - " + status.getId() + " - " + invoiceNum);
+        mailSend(olusturan, onay1, muhOnay, onay2, status.getId(), invoiceNum, onayci1Unvani, onayci2Unvani, onayci1Teli, onayci2Teli);
     }
 
-    public void mailSend(String olusturan, String onay1, String muhasebe, String onay2, String durum, String invoiceNum, String onayciUnvani) throws Exception {
+    public void mailSend(String olusturan, String onay1, String muhasebe, String onay2, String durum, String invoiceNum,  String onayci1Unvani, String onayci2Unvani, String onayci1Teli, String onayci2Teli) throws Exception {
        String text = invoiceNum + " fatura numarali odeme talimati, ";
-       String testmail = "hikmet@meteorpetrol.com";
+       //String testmail = "hikmet@meteorpetrol.com";
        try {
            if (durum.equals("Payment_Status_Bek1")) {
-               text = text + " (" + onay1 + "1.Onay Bekliyor" + ", " +
-                   " durumundadır ve onayınız beklenmektedir. meteorpanel.com/paymentorder adresinden ilgili talimata ulaşabilirsiniz.";
-               mailService.sendEmail(testmail, "MeteorPanel - Ödeme Talimatı", text,false, false);
+               text = text + "1.Onay Bekliyor" +
+                   " durumundadir ve onayiniz beklenmektedir. meteorpanel.com/paymentorder adresinden ilgili talimata ulasabilirsiniz.";
+               mailService.sendEmail(onay1, "MeteorPanel - Ödeme Talimatı", text,false, false);
            } else if (durum.equals("Payment_Status_Bek2")) {
-               text = text + " (" + onay2 + "2.Onay Bekliyor" + ", " +
-                   " durumundadır ve onayınız beklenmektedir. meteorpanel.com/paymentorder adresinden ilgili talimata ulaşabilirsiniz.";
-               mailService.sendEmail(testmail, "MeteorPanel - Ödeme Talimatı", text,false, false);
+               text = text + "2.Onay Bekliyor" +
+                   " durumundadir ve onayiniz beklenmektedir. meteorpanel.com/paymentorder adresinden ilgili talimata ulasabilirsiniz.";
+               mailService.sendEmail(onay2, "MeteorPanel - Ödeme Talimatı", text,false, false);
            } else if (durum.equals("Payment_Status_Muh")) {
-               text = text + " (" + muhasebe + "Muhasebe Onayı" + ", " +
-                   " durumundadır ve onayınız beklenmektedir. meteorpanel.com/paymentorder adresinden ilgili talimata ulaşabilirsiniz.";
-               mailService.sendEmail(testmail, "MeteorPanel - Ödeme Talimatı", text,false, false);
+               text = text + "Muhasebe Onayı" +
+                   " durumundadir ve onayiniz beklenmektedir. meteorpanel.com/paymentorder adresinden ilgili talimata ulasabilirsiniz.";
+               mailService.sendEmail(muhasebe, "MeteorPanel - Ödeme Talimatı", text,false, false);
            } else if (durum.equals("Payment_Status_Onay")) {
-               text = text + " (" + muhasebe + "Onaylandı" + ", " +
-                   " durumundadır ve onayınız beklenmektedir. meteorpanel.com/paymentorder adresinden ilgili talimata ulaşabilirsiniz.";
-               mailService.sendEmail(testmail, "MeteorPanel - Ödeme Talimatı", text,false, false);
+               text = text + "ONAYLANMISTIR." +
+                   " meteorpanel.com/paymentorder adresinden ilgili talimata ulasabilirsiniz.";
+               mailService.sendEmail(olusturan, "MeteorPanel - Ödeme Talimatı", text,false, false);
            } else if (durum.equals("Payment_Status_Red")) {
-               text = text + " (" + olusturan + "," + " REDDEDİLMİŞTİR. meteorpanel.com/paymentorder adresinden ilgili talimata ulaşabilirsiniz.";
-               mailService.sendEmail(testmail, "MeteorPanel - Ödeme Talimatı", text,false, false);
+               text = text + " REDDEDILMISTIR. meteorpanel.com/paymentorder adresinden ilgili talimata ulasabilirsiniz.";
+               mailService.sendEmail(olusturan, "MeteorPanel - Ödeme Talimatı", text,false, false);
            } else {
 
            }
 
-           if (onayciUnvani.equals("Unvanlar_Gen_Mud") || onayciUnvani.equals("Unvanlar_Yon_Bas") ||
-               onayciUnvani.equals("Unvanlar_San_Bas") || onayciUnvani.equals("Unvanlar_Ins_Dir")
+           if ((onayci1Unvani.equals("Unvanlar_Gen_Mud") || onayci1Unvani.equals("Unvanlar_Yon_Bas") ||
+               onayci1Unvani.equals("Unvanlar_San_Bas") || onayci1Unvani.equals("Unvanlar_Ins_Dir")) && durum.equals("Payment_Status_Bek1")
            ) {
-               postaGuverciniService.SendSmsService("5442458391", text);
+               postaGuverciniService.SendSmsService(onayci1Teli, text);
+           }
+           if ((onayci2Unvani.equals("Unvanlar_Gen_Mud") || onayci2Unvani.equals("Unvanlar_Yon_Bas") ||
+               onayci2Unvani.equals("Unvanlar_San_Bas") || onayci2Unvani.equals("Unvanlar_Ins_Dir")) && durum.equals("Payment_Status_Bek2")
+           ) {
+               postaGuverciniService.SendSmsService(onayci2Teli, text);
            }
        } catch (Exception e) {
            throw new Exception(e.getMessage());

@@ -26,6 +26,7 @@ import tr.com.meteor.crm.utils.request.Request;
 import java.io.ByteArrayOutputStream;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -68,7 +69,9 @@ public class InsertHolidayService extends GenericIdNameAuditingEntityService<Hol
                     int yilFarki2 = period2.getYears();
                     LocalDate isBasYilDonduguGun = isBaslangic.plusYears(yilFarki);
                     boolean tamYilDoldu = isBasYilDonduguGun.isEqual(bugun);
-                    Instant yeniHakedisTarihi = holuser.getYilHak().plus(Period.ofYears(1));
+                    LocalDate oncekiHakedisTarihi = holuser.getYilHak().atZone(ZoneId.systemDefault()).toLocalDate();
+                    LocalDate yeniHakedis = oncekiHakedisTarihi.plusYears(1);
+                    Instant yeniHakedisTarihi = yeniHakedis.atStartOfDay(ZoneId.systemDefault()).toInstant();
 
                     if(tamYilDoldu) {
                         System.out.println("Yıl Farkı : " + yilFarki);
@@ -157,8 +160,8 @@ public class InsertHolidayService extends GenericIdNameAuditingEntityService<Hol
 
             System.out.println("İZİN EKLEME SERVİSİ TAMAMLANDI");
         } catch (Exception e) {
-            System.out.println("İZİN EKLENİRKEN BİR HATA OLDU! BU TARİHTE İZİN EKLENMESİ GEREKEN KİŞİYİ KONTROL ET!");
             try {
+                System.out.println("İZİN EKLENİRKEN BİR HATA OLDU! BU TARİHTE İZİN EKLENMESİ GEREKEN KİŞİYİ KONTROL ET!");
                 mailService.sendEmail("bt@meteorpetrol.com","meteorpanel-InsertHolidayService Hatası!",
                     "Servis çalışırken bir hata oluştu, bugün izin eklenmesi gereken biri varsa girip kontrol et!",false,false);
             } catch (Exception ex) {

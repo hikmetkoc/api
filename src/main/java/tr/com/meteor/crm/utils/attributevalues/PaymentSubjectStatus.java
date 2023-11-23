@@ -5,6 +5,7 @@ import tr.com.meteor.crm.domain.AttributeValue;
 public enum PaymentSubjectStatus {
     ATTRIBUTE("Payment_Sub"),
     TRAFIK("Payment_Sub_Tra"),
+    ACIK("Payment_Sub_Acik"),
     PRIM("Payment_Sub_Prim");
     final String id;
 

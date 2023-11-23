@@ -68,6 +68,21 @@ public class UserTrigger extends Trigger<User, Long, UserRepository> {
         if (newEntity.getBirthDate() == null) {
             throw new Exception("Lütfen doğum tarihini girin.");
         }
+        if (newEntity.getEmekli() == null) {
+            newEntity.setEmekli(false);
+        }
+        if (newEntity.getEngelli() == null) {
+            newEntity.setEngelli(false);
+        }
+        if (newEntity.getEscalisma() == null) {
+            newEntity.setEscalisma(false);
+        }
+        if (newEntity.getMyb() == null) {
+            newEntity.setMyb(false);
+        }
+        if (newEntity.getTcv() == null) {
+            newEntity.setTcv(true);
+        }
         return newEntity;
     }
 

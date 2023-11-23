@@ -81,13 +81,13 @@ public class PaymentOrder extends IdNameAuditingEntity<UUID> {
 
     @ManyToOne
     @JoinColumn(name = "cost_id")
-    @FieldMetadataAnn(title = "Maliyet Yeri", defaultValue = "Cost_Place_MeteorMerkez", priority = 20, filterable = true)
+    @FieldMetadataAnn(title = "Maliyet Yeri", priority = 20, filterable = true)
     @AttributeValueValidate(attributeId = "Cost_Place")
     private AttributeValue cost;
 
     @ManyToOne
     @JoinColumn(name = "approval_group_id")
-    @FieldMetadataAnn(title = "Onay Grubu", defaultValue = "Approval_Group_Merkez", priority = 20, filterable = true)
+    @FieldMetadataAnn(title = "Onay Grubu", priority = 20, filterable = true)
     @AttributeValueValidate(attributeId = "Approval_Group")
     private AttributeValue approvalGroup;
 
@@ -143,8 +143,14 @@ public class PaymentOrder extends IdNameAuditingEntity<UUID> {
     @FieldMetadataAnn(title = "2.Onay Tarihi", priority = 61, filterable = true)
     private Instant okeySecond;
 
-    @FieldMetadataAnn(title = "Muhasebe Tarihi", priority = 62, filterable = true)
+    @FieldMetadataAnn(title = "Muhasebe Onay Tarihi", priority = 62, filterable = true)
     private Instant okeyMuh;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "onay_muh_id")
+    @FieldMetadataAnn(title = "Onay Veren Muhasebeci")
+    @JsonIgnoreProperties({"groups", "members", "createdBy", "lastModifiedBy", "roles"})
+    private User onayMuh;
 
     @FieldMetadataAnn(title = "Reddetme Tarihi", priority = 63)
     private Instant cancelDate;
@@ -187,6 +193,12 @@ public class PaymentOrder extends IdNameAuditingEntity<UUID> {
 
     @FieldMetadataAnn(title = "Muhasebe Görüntüsü", active = false)
     private Boolean muhasebeGoruntusu = false;
+
+    @FieldMetadataAnn(title = "Fatura Görüntüsü", active = false)
+    private Boolean pdf = false;
+
+    @FieldMetadataAnn(title = "Kapatılan Fatura Görüntüsü", active = false)
+    private Boolean closePdf = false;
 
     @Transient
     @Formula("name")
@@ -523,5 +535,29 @@ public class PaymentOrder extends IdNameAuditingEntity<UUID> {
 
     public void setApprovalGroup(AttributeValue approvalGroup) {
         this.approvalGroup = approvalGroup;
+    }
+
+    public Boolean getPdf() {
+        return pdf;
+    }
+
+    public void setPdf(Boolean pdf) {
+        this.pdf = pdf;
+    }
+
+    public User getOnayMuh() {
+        return onayMuh;
+    }
+
+    public void setOnayMuh(User onayMuh) {
+        this.onayMuh = onayMuh;
+    }
+
+    public Boolean getClosePdf() {
+        return closePdf;
+    }
+
+    public void setClosePdf(Boolean closePdf) {
+        this.closePdf = closePdf;
     }
 }

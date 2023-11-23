@@ -17,8 +17,7 @@ import java.util.UUID;
 
 @Entity
 @IdType(idType = IdType.IdTypeEnum.UUID)
-@EntityMetadataAnn(apiName = "motionsumss", displayField = "instanceName", title = "Maliyet Yeri", pluralTitle = "Maliyet Yerleri",
-    ownerPath = "owner.id", masterPath = "customer.owner.id")
+@EntityMetadataAnn(apiName = "motionsumss", displayField = "instanceName", title = "Maliyet Yeri", pluralTitle = "Maliyet Yerleri")
 @Table(indexes = {@Index(columnList = "search")})
 public class MotionSums extends IdNameAuditingEntity<UUID> {
 

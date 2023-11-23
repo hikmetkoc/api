@@ -10,12 +10,14 @@ public abstract class FileContainer_ extends tr.com.meteor.crm.domain.IdNameAudi
 
 	public static volatile SingularAttribute<FileContainer, User> owner;
 	public static volatile SingularAttribute<FileContainer, String> code;
+	public static volatile SingularAttribute<FileContainer, String> subject;
 	public static volatile SingularAttribute<FileContainer, String> name;
 	public static volatile SingularAttribute<FileContainer, String> locName;
 	public static volatile SingularAttribute<FileContainer, String> location;
 
 	public static final String OWNER = "owner";
 	public static final String CODE = "code";
+	public static final String SUBJECT = "subject";
 	public static final String NAME = "name";
 	public static final String LOC_NAME = "locName";
 	public static final String LOCATION = "location";

@@ -130,13 +130,18 @@ public class InvoiceListTrigger extends Trigger<InvoiceList, UUID, InvoiceListRe
                 newEntity.setPayTl(BigDecimal.ZERO);
             }
             if (newEntity.getAutopay().equals(true) && newEntity.getSuccess().equals(true)) {
-                throw new Exception("Lütfen ödendi veya otomatik ödendi seçeneklerinden sadece birini seçiniz!");
+                throw new Exception("Lütfen ödendi veya otomatik ödemede seçeneklerinden sadece birini seçiniz!");
             }
 
+            //AÇIK ÖDEME SEÇİM KONTROLÜ
+            if (newEntity.getPaymentSubject().getId().equals(PaymentSubjectStatus.ACIK.getId())) {
+                throw new Exception("Fatura Listesinden Açık Fatura seçimi yapılamaz!");
+            }
             // MÜKERRER FATURA KONTROLÜ
+            Boolean mukerrer = false;
             List<PaymentOrder> paymentOrders = paymentOrderRepository.findAll();
             for (PaymentOrder paymentOrder : paymentOrders) {
-                if (paymentOrder.getInvoiceNum().equals(newEntity.getInvoiceNum()) && !paymentOrder.getStatus().getId().equals(PaymentStatus.RED.getId()) && paymentOrder.getCustomer().equals(newEntity.getCustomer())) {
+                if (paymentOrder.getInvoiceNum().equals(newEntity.getInvoiceNum()) && !paymentOrder.getStatus().getId().equals(PaymentStatus.RED.getId()) && paymentOrder.getCustomer().getId().equals(newEntity.getCustomer().getId())) {
                     throw new Exception("Bu fatura numarasına ait bir fatura Ödeme Talimatlarında mevcut! Lütfen kontrol ediniz!");
                 }
             }
@@ -265,6 +270,7 @@ public class InvoiceListTrigger extends Trigger<InvoiceList, UUID, InvoiceListRe
             paymentOrder.setKismi(newEntity.getKismi());
             paymentOrder.setAutopay(newEntity.getAutopay());
             paymentOrder.setPaymentStyle(newEntity.getPaymentStyle());
+            paymentOrder.setPaymentType(newEntity.getPaymentType());
             paymentOrder.setName(newEntity.getInvoiceNum() + " " + newEntity.getCustomer().getCommercialTitle());
             paymentOrder.setPayTl(newEntity.getPayTl());
             paymentOrder.setKaynak("FATURA LİSTESİ");
@@ -300,7 +306,7 @@ public class InvoiceListTrigger extends Trigger<InvoiceList, UUID, InvoiceListRe
                 } else if (newEntity.getSuccess().equals(true) && newEntity.getAutopay().equals(false)) { // ÖDENDİ TİKLİ FATURA
                     spendRepository.insertSpend(UUID.randomUUID(), getCurrentUserId(), SpendStatus.ODENDI.getId(), paymentOrder.getId(), newEntity.getAmount(), "Ödendi", false, this.baseUserService.getUserFullFetched(1L).get().getId(), Instant.now(), newEntity.getMaturityDate(), "Tek Ödeme", newEntity.getPayTl(), newEntity.getCustomer().getId(), newEntity.getOdemeYapanSirket().getLabel());
                 } else if (newEntity.getSuccess().equals(false) && newEntity.getAutopay().equals(true)) { // OTOMATİK ÖDENDİ TİKLİ FATURA
-                    spendRepository.insertSpend(UUID.randomUUID(), getCurrentUserId(), SpendStatus.ODENDI.getId(), paymentOrder.getId(), newEntity.getAmount(), "Otomatik Ödendi", false, this.baseUserService.getUserFullFetched(1L).get().getId(), Instant.now(), newEntity.getMaturityDate(), "Tek Ödeme", newEntity.getPayTl(), newEntity.getCustomer().getId(), newEntity.getOdemeYapanSirket().getLabel());
+                    spendRepository.insertSpend(UUID.randomUUID(), getCurrentUserId(), SpendStatus.OTO.getId(), paymentOrder.getId(), newEntity.getAmount(), "Otomatik Ödemede", false, this.baseUserService.getUserFullFetched(1L).get().getId(), Instant.now(), newEntity.getMaturityDate(), "Otomatik Ödeme", newEntity.getPayTl(), newEntity.getCustomer().getId(), newEntity.getOdemeYapanSirket().getLabel());
                 }
             }
             if (newEntity.getIban() != null) {
@@ -309,13 +315,29 @@ public class InvoiceListTrigger extends Trigger<InvoiceList, UUID, InvoiceListRe
             if (newEntity.getOwner().getBirim().getId().equals("Birimler_Muh")) {
                 paymentOrder.setMuhasebeGoruntusu(true);
             }
+            paymentOrder.setPdf(true);
             paymentOrderRepository.save(paymentOrder);
 
             //TALİMATA DÖNÜŞTÜRÜLDÜ STATUS DEĞİŞİMİ
             List<AttributeValue> attributeValues = attributeValueRepository.findAll();
             newEntity.setInvoiceStatus(getAttributeValueById(attributeValues, "Fatura_Durumlari_Donus"));
 
-            //POSTA GÜVERCİNİ
+            if (!paymentOrder.getStatus().getId().equals(PaymentStatus.ODENDI.getId()) && !paymentOrder.getStatus().getId().equals(PaymentStatus.OTO.getId())) {
+                String text = newEntity.getInvoiceNum() + " fatura numarali odeme talimati, " +
+                    "1.Onay Bekliyor durumundadir ve onayiniz beklenmektedir. meteorpanel.com/paymentorder adresinden ilgili talimata ulasabilirsiniz.";
+                if (!newEntity.getOwner().getId().equals(paymentOrder.getAssigner().getId())) {
+                    if (paymentOrder.getAssigner().getUnvan().getId().equals("Unvanlar_Gen_Mud")
+                        || paymentOrder.getAssigner().getUnvan().getId().equals("Unvanlar_Yon_Bas")
+                        || paymentOrder.getAssigner().getUnvan().getId().equals("Unvanlar_San_Bas")
+                        || paymentOrder.getAssigner().getUnvan().getId().equals("Unvanlar_Ins_Dir")
+                    ) {
+                        postaGuverciniService.SendSmsService(paymentOrder.getAssigner().getPhone(), text);
+                    }
+                    mailService.sendEmail(paymentOrder.getAssigner().getEposta(), "Meteor Panel - Ödeme Talimatı", text, false, false);
+                }
+            }
+
+            //POSTA GÜVERCİNİ - ŞİMDİLİK AÇMA
             //postaGuverciniService.SendSmsService(newEntity.getOwner().getPhone(), "Merhaba " + newEntity.getOwner().getFullName() + " , faturanız başarılı bir şekilde talimata dönüştürüldü. [METEORPANEL SMS SERVICE]");
         }
         return newEntity;

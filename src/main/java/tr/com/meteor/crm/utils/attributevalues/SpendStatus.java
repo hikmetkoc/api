@@ -7,7 +7,8 @@ public enum SpendStatus {
     ODENMEDI("Spend_Status_No"),
 
     REDDEDILDI("Spend_Status_Red"),
-    ODENDI("Spend_Status_Yes");
+    ODENDI("Spend_Status_Yes"),
+    OTO("Spend_Status_Oto");
 
     final String id;
 

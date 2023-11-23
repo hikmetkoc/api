@@ -4,6 +4,7 @@ import com.itextpdf.text.*;
 import com.itextpdf.text.Document;
 import org.apache.poi.ss.usermodel.FillPatternType;
 import org.apache.poi.xssf.usermodel.*;
+import org.checkerframework.checker.units.qual.A;
 import org.jsoup.Jsoup;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -681,7 +682,7 @@ public class UserService extends GenericIdNameAuditingEntityService<User, Long, 
         // Küçük harfe çevir ve noktaları ekleyerek login oluştur
         return removedSpecialCharacters.toLowerCase().replaceAll("\\s+", ".");
     }
-    public String newPerson(User userEmployee, String unvan, String sgkSirket, String egitim, String askerlik, String cinsiyet, String ehliyet) throws Exception {
+    public String newPerson(User userEmployee, String unvan, String sgkSirket, String egitim, String askerlik, String cinsiyet, String ehliyet, String birim) throws Exception {
         if (userEmployee.getTck().length() > 11) {
             System.out.println("Lütfen 11 haneli TC giriniz...");
         }
@@ -691,6 +692,8 @@ public class UserService extends GenericIdNameAuditingEntityService<User, Long, 
         AttributeValue attrAskerlik = new AttributeValue();
         AttributeValue attrCinsiyet = new AttributeValue();
         AttributeValue attrEhliyet = new AttributeValue();
+        AttributeValue attrBirim = new AttributeValue();
+        AttributeValue loherBirim = new AttributeValue();
         List<AttributeValue> attributeValues = attributeValueRepository.findAll();
         for (AttributeValue attributeValue : attributeValues) {
             if (attributeValue.getId().equals(unvan)) attrUnvan = attributeValue;
@@ -699,6 +702,8 @@ public class UserService extends GenericIdNameAuditingEntityService<User, Long, 
             if (attributeValue.getId().equals(askerlik)) attrAskerlik = attributeValue;
             if (attributeValue.getId().equals(cinsiyet)) attrCinsiyet = attributeValue;
             if (attributeValue.getId().equals(ehliyet)) attrEhliyet = attributeValue;
+            if (attributeValue.getId().equals(birim)) attrBirim = attributeValue;
+            if (attributeValue.getId().equals(TaskType.TaskBirim.BIRIM_Loher.getId())) loherBirim = attributeValue;
         }
         String login = turkishToEnglish(userEmployee.getFirstName()).toLowerCase() + "." + turkishToEnglish(userEmployee.getLastName()).toLowerCase();
         String password = passwordEncoder.encode("12345");
@@ -727,11 +732,18 @@ public class UserService extends GenericIdNameAuditingEntityService<User, Long, 
         user.setIzinGoruntuleme(true);
         if (getCurrentUser().getId().equals(2001L)) {
             user.setSirket(Sirketler.IZMIR.getAttributeValue());
-            user.setBirim(TaskType.TaskBirim.BIRIM_Loher.getAttributeValue());
+            user.setBirim(loherBirim);
+            user.setCreatedBy(baseUserService.getUserFullFetched(2000L).get());
+        } else if (getCurrentUser().getId().equals(2000L)) {
+            user.setSirket(attrSirket);
+            user.setBirim(attrBirim);
             user.setCreatedBy(baseUserService.getUserFullFetched(2000L).get());
         } else {
             user.setSirket(getCurrentUser().getSirket());
             user.setBirim(getCurrentUser().getBirim());
+        }
+        if (user.getBirim() == null) {
+            throw new Exception("Kullanıcıya Birim Eklenemedi!");
         }
         user.setSgkbirim(null);
         user.setUnvan(attrUnvan);
@@ -773,12 +785,28 @@ public class UserService extends GenericIdNameAuditingEntityService<User, Long, 
 
         // todo:JHI_ROLE_USER , USER_GROUP ve VARSA BUY_LIMIT oluşturma
         Set<Role> roles = new HashSet<>();
-        roleRepository.findById(RolesConstants.MAVI).ifPresent(roles::add);
+        if (user.getBirim().getId().equals(TaskType.TaskBirim.BIRIM_Muh.getId())) {
+            roleRepository.findById(RolesConstants.TAL).ifPresent(roles::add);
+        } else if (user.getBirim().getId().equals(TaskType.TaskBirim.BIRIM_Fin.getId())) {
+            roleRepository.findById(RolesConstants.TAL).ifPresent(roles::add);
+        } else if (user.getBirim().getId().equals(TaskType.TaskBirim.BIRIM_Satis.getId())) {
+            roleRepository.findById(RolesConstants.OTOBIL_SATIS).ifPresent(roles::add);
+        } else if (user.getBirim().getId().equals(TaskType.TaskBirim.BIRIM_IK.getId())) {
+            roleRepository.findById(RolesConstants.IK).ifPresent(roles::add);
+        } else {
+            roleRepository.findById(RolesConstants.MAVI).ifPresent(roles::add);
+        }
         user.setRoles(roles);
 
         Set<User> groups = new HashSet<>();
         groups.add(user);
-        groups.add(getCurrentUser());
+        if (getCurrentUserId().equals(2000L)) {
+            Long amirId = Long.valueOf(user.getBirim().getIlgilibirim());
+            User amir = baseUserService.getUserFullFetched(amirId).get();
+            groups.add(amir);
+        } else {
+            groups.add(getCurrentUser());
+        }
         // ADD = GROUP_ID , NEWENTITY = MEMBER_ID
         //groups.add(baseUserService.getUserFullFetched(2000L).get());
         user.setGroups(groups);

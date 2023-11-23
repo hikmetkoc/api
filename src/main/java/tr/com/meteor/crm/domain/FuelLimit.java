@@ -42,9 +42,13 @@ public class FuelLimit extends IdNameAuditingEntity<UUID> {
     @Column(length = 2048)
     private String description;
 
-    @FieldMetadataAnn(title = "Tutar", priority = 30, display = true, required = true)
+    @FieldMetadataAnn(title = "Tutar", active = false)
     private BigDecimal fuelTl;
 
+    @ManyToOne
+    @FieldMetadataAnn(title = "Tutar", defaultValue = "Fuel_Limit_Total_3", display = true, priority = 30, filterable = true)
+    @AttributeValueValidate(attributeId = "Fuel_Limit_Total")
+    private AttributeValue total;
     @ManyToOne
     @FieldMetadataAnn(title = "Onay Durumu", defaultValue = "Fuel_Dur_Bekle", display = true, readOnly = true, priority = 140, filterable = true)
     @AttributeValueValidate(attributeId = "Fuel_Dur")
@@ -179,5 +183,13 @@ public class FuelLimit extends IdNameAuditingEntity<UUID> {
 
     public void setTotalTl(BigDecimal totalTl) {
         this.totalTl = totalTl;
+    }
+
+    public AttributeValue getTotal() {
+        return total;
+    }
+
+    public void setTotal(AttributeValue total) {
+        this.total = total;
     }
 }

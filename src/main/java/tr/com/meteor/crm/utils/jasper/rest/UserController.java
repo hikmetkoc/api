@@ -217,10 +217,11 @@ public class UserController extends GenericIdNameAuditingEntityController<User, 
         @RequestParam String egitim,
         @RequestParam String askerlik,
         @RequestParam String cinsiyet,
-        @RequestParam String ehliyet
+        @RequestParam String ehliyet,
+        @RequestParam String birim
     ) throws Exception{
         try {
-            String response = service.newPerson(user, unvan, sgkSirket, egitim, askerlik, cinsiyet, ehliyet);
+            String response = service.newPerson(user, unvan, sgkSirket, egitim, askerlik, cinsiyet, ehliyet, birim);
             return ResponseEntity.ok(response);
         } catch (NullPointerException exception) {
             // Hata durumunda uygun bir hata yanıtı döndürün

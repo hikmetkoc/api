@@ -415,7 +415,7 @@ public class SpendService extends GenericIdNameAuditingEntityService<Spend, UUID
                 List<PaymentStatus> paymentStatuses = Arrays.asList(PaymentStatus.values());
                 for (PaymentStatus paymentStatus2: paymentStatuses) {
                     if (paymentStatus2.getId().equals("Payment_Status_Red")) {
-                        paymentOrderService.updatePaymentOrderStatus(paymentID,paymentStatus2.getAttributeValue(),"Talimat Reddedildi...");
+                        paymentOrderService.updatePaymentOrderStatus(paymentID,paymentStatus2.getAttributeValue(),"Talimat Reddedildi. " + description);
                     }
                 }
 

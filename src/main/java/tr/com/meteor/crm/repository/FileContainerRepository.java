@@ -9,4 +9,6 @@ import java.util.UUID;
 @Repository
 public interface FileContainerRepository extends GenericIdNameAuditingEntityRepository<FileContainer, UUID> {
     List <FileContainer> findByLocNameAndLocation(String locName, String location);
+
+    List <FileContainer> findByLocNameAndLocationAndSubject(String locName, String location, String subject);
 }

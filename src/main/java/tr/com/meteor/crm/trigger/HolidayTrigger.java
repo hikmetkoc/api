@@ -51,6 +51,7 @@ public class HolidayTrigger extends Trigger<Holiday, UUID, HolidayRepository> {
     @Override
     public Holiday beforeInsert(@NotNull Holiday newEntity) throws Exception {
         //newEntity.setLock(false);
+        newEntity.setPdf(false);
         if (newEntity.getOwner() == null) {
             newEntity.setOwner(baseUserService.getUserFullFetched(getCurrentUserId()).get());
         } else {
@@ -102,7 +103,7 @@ public class HolidayTrigger extends Trigger<Holiday, UUID, HolidayRepository> {
         }
 
 
-
+        // Mazeret izni değilse İzin Bitiş Saati 18 olsun.
         if (!newEntity.getType().getId().equals(HolidayStatus.MAZERET.getId())) {
             LocalDateTime localDateTime = newEntity.getEndDate().atZone(ZoneId.systemDefault()).toLocalDateTime();
             LocalDateTime newLocalDateTime = localDateTime.withHour(18);
@@ -260,13 +261,13 @@ public class HolidayTrigger extends Trigger<Holiday, UUID, HolidayRepository> {
         String ibat = izinbaslangictarihi.format(formatter);
         String ibit = izinbitistarihi.format(formatter);
 
-       /*mailService.sendEmail(newEntity.getAssigner().getEposta(),
+       mailService.sendEmail(newEntity.getAssigner().getEposta(),
             "MeteorPanel - Yeni İzin Talebi",newEntity.getOwner().getFullName() + ", " +
                 olt + " tarihinde " + ibat + " - " +
                 ibit + " tarihlerinde kullanılmak üzere " + newEntity.getType().getLabel() +
                 " talebinde bulunmuştur.\nTalep edilen iznin süresi " + newEntity.getIzingun().toString() + " gündür.\n" +
                 "İlgili talebin onaycısı sizsiniz.",
-            false,false);*/
+            false,false);
         return newEntity;
     }
 
@@ -519,7 +520,7 @@ public class HolidayTrigger extends Trigger<Holiday, UUID, HolidayRepository> {
         String ibit = izinbitistarihi.format(formatter);
 
         if (newEntity.getApprovalStatus().getId().equals(HolidayStateStatus.AKTIF.getId())) {
-            /*mailService.sendEmail(newEntity.getOwner().getEposta(),
+            mailService.sendEmail(newEntity.getOwner().getEposta(),
                 "MeteorPanel - İzin Talebi",newEntity.getOwner().getFullName() + ", " +
                     olt + " tarihinde " + ibat + " - " +
                     ibit + " tarihlerinde kullanılmak üzere " + newEntity.getType().getLabel() +
@@ -527,15 +528,15 @@ public class HolidayTrigger extends Trigger<Holiday, UUID, HolidayRepository> {
                     "Talep edilen iznin süresi " + newEntity.getIzingun().toString() + " gündür.\n" +
                     "İzni kullanabilmeniz için İZİN TALEP FORMU'nu yazdırın. Onaycınıza ve İnsan Kaynakları'na imzalattıktan sonra DOSYA YÖNETİCİSİ bölümünden taratıp yükleyin.\n" +
                     "Eğer İnsan Kaynakları personeline ulaşamazsanız Onaycınıza imzalattıktan sonra da DOSYA YÖNETİCİSİ'ne yükleme yapabilirsiniz.",
-                false,false);*/
+                false,false);
         }
         if (newEntity.getApprovalStatus().getId().equals(HolidayStateStatus.RED.getId())) {
-            /*mailService.sendEmail(newEntity.getOwner().getEposta(),
+            mailService.sendEmail(newEntity.getOwner().getEposta(),
                 "MeteorPanel - Yeni İzin Talebi",newEntity.getOwner().getFullName() + ", " +
                     olt + " tarihinde " + ibat + " - " +
                     ibit + " tarihlerinde kullanılmak üzere " + newEntity.getType().getLabel() +
                     " türünde yapmış olduğunuz talep " + newEntity.getAssigner().getFullName() + " tarafından REDDEDİLMİŞTİR.\n",
-                false,false);*/
+                false,false);
         }
 
         return newEntity;

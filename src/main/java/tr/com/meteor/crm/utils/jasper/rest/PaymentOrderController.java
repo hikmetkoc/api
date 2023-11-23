@@ -75,6 +75,15 @@ public class PaymentOrderController extends GenericIdNameAuditingEntityControlle
             .body(new ByteArrayResource(service.generateSelectedExcelReport(ids, getCurrentUser())));
     }
 
+    @PostMapping("selectedSpendExcelReport")
+    public ResponseEntity<ByteArrayResource> reportSpendExcel(@RequestBody Map<String, List<UUID>> requestMap) throws Exception {
+        List<UUID> ids = requestMap.get("ids");
+        return ResponseEntity.ok()
+            .header("Content-Disposition", "attachment; filename=" + service.getEntityMetaData().getName() + ".xlsx")
+            .contentType(MediaType.parseMediaType("application/vnd.ms-excel;charset=UTF-8"))
+            .body(new ByteArrayResource(service.generateSelectedSpendExcelReport(ids, getCurrentUser())));
+    }
+
     @PutMapping("changeStore")
     public ResponseEntity<String> changeStore(@RequestParam String id, @RequestParam String storeid) throws Exception {
         try {

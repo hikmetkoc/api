@@ -35,7 +35,7 @@ public class Behavior extends IdNameAuditingEntity<UUID> {
     @Column(length = 2048)
     private String document;
 
-    @FieldMetadataAnn(title = "Tutar", priority = 20, display = true, required = true, filterable = true)
+    @FieldMetadataAnn(title = "Tutar", priority = 5, display = true, required = true, filterable = true)
     private BigDecimal fuelTl;
 
     @FieldMetadataAnn(title = "Konu", priority = 999, active = false)

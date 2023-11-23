@@ -20,6 +20,7 @@ public abstract class FuelLimit_ extends tr.com.meteor.crm.domain.IdNameAuditing
 	public static volatile SingularAttribute<FuelLimit, String> description;
 	public static volatile SingularAttribute<FuelLimit, String> unvan;
 	public static volatile SingularAttribute<FuelLimit, BigDecimal> totalTl;
+	public static volatile SingularAttribute<FuelLimit, AttributeValue> total;
 	public static volatile SingularAttribute<FuelLimit, String> name;
 	public static volatile SingularAttribute<FuelLimit, Instant> startDate;
 	public static volatile SingularAttribute<FuelLimit, AttributeValue> status;
@@ -34,6 +35,7 @@ public abstract class FuelLimit_ extends tr.com.meteor.crm.domain.IdNameAuditing
 	public static final String DESCRIPTION = "description";
 	public static final String UNVAN = "unvan";
 	public static final String TOTAL_TL = "totalTl";
+	public static final String TOTAL = "total";
 	public static final String NAME = "name";
 	public static final String START_DATE = "startDate";
 	public static final String STATUS = "status";

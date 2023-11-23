@@ -52,10 +52,10 @@ public class InvoiceList extends IdNameAuditingEntity<UUID> {
     @JsonIgnoreProperties({"groups", "members", "createdBy", "lastModifiedBy", "roles"})
     private User secondAssigner;*/
 
-    @FieldMetadataAnn(title = "Fatura Tarihi", display = true, priority = 60)
+    @FieldMetadataAnn(title = "Fatura Tarihi", display = true, priority = 60, filterable = true)
     private Instant invoiceDate;
 
-    @FieldMetadataAnn(title = "Gönderim Tarihi", display = true, priority = 55)
+    @FieldMetadataAnn(title = "Gönderim Tarihi", display = true, priority = 55, filterable = true)
     private Instant sendDate;
 
     @FieldMetadataAnn(title = "Vade Tarihi", display = true, priority = 65)
@@ -88,13 +88,13 @@ public class InvoiceList extends IdNameAuditingEntity<UUID> {
 
     @ManyToOne
     @JoinColumn(name = "cost_id")
-    @FieldMetadataAnn(title = "Ödeme Konusu", defaultValue = "Cost_Place_MeteorMerkez", priority = 20, filterable = true)
+    @FieldMetadataAnn(title = "Ödeme Konusu", priority = 20, filterable = true)
     @AttributeValueValidate(attributeId = "Cost_Place")
     private AttributeValue cost;
 
     @ManyToOne
     @JoinColumn(name = "approval_group_id")
-    @FieldMetadataAnn(title = "Onay Grubu", defaultValue = "Approval_Group_Merkez", priority = 20, filterable = true)
+    @FieldMetadataAnn(title = "Onay Grubu", priority = 20, filterable = true)
     @AttributeValueValidate(attributeId = "Approval_Group")
     private AttributeValue approvalGroup;
     @FieldMetadataAnn(title = "Tutar", priority = 100, display = true, required = true)
@@ -160,6 +160,9 @@ public class InvoiceList extends IdNameAuditingEntity<UUID> {
 
     @FieldMetadataAnn(title = "Otomatik Ödemede", priority = 310)
     private Boolean autopay = false;
+
+    @FieldMetadataAnn(title = "Fatura Görüntüsü", priority = 310)
+    private Boolean pdf = false;
 
     @Formula("name")
     @FieldMetadataAnn(readOnly = true, title = "Başlık", active = false)
@@ -409,5 +412,13 @@ public class InvoiceList extends IdNameAuditingEntity<UUID> {
 
     public void setApprovalGroup(AttributeValue approvalGroup) {
         this.approvalGroup = approvalGroup;
+    }
+
+    public Boolean getPdf() {
+        return pdf;
+    }
+
+    public void setPdf(Boolean pdf) {
+        this.pdf = pdf;
     }
 }

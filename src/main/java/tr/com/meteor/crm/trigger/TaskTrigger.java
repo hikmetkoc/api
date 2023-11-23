@@ -100,9 +100,15 @@ public class TaskTrigger extends Trigger<Task, UUID, TaskRepository> {
         //Durum Tamamlandıya çevrilirse Tamamlanma Tarihini Şuan olarak gir.
         if(newEntity.getStatus().getId().equals(TaskStatus.TAMAMLANDI.getId())) {
             newEntity.setOktime(Instant.now());
+            if (newEntity.getComplateDate() == null) {
+                throw new Exception("Talep Tamamlanma Tarihi girilmek zorundadır!");
+            }
             mailService.sendEmail(newEntity.getAssigner().getEposta(),"MeteorPanel - Tamamlanan Talep",
                 newEntity.getAssigner().getFullName() + ", " +
                 newEntity.getTaskType().getLabel() + " konulu talebiniz TAMAMLANDI.",false,false);
+        }
+        if (!newEntity.getStatus().getId().equals(TaskStatus.TAMAMLANDI.getId()) && newEntity.getComplateDate() != null) {
+            throw new Exception("Talebin durumu Tamamlandı değilse Talep Tamamlanma Tarihi giremezsiniz!");
         }
 
         //Talep Reddedilirse Mail At.

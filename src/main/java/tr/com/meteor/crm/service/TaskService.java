@@ -218,7 +218,7 @@ public class TaskService extends GenericIdNameAuditingEntityService<Task, UUID, 
         XSSFCell headerCreatorCell = headerRow.createCell(columnIndex++);       //Oluşturan
         XSSFCell headerUpdateDateCell = headerRow.createCell(columnIndex++);       //Son Düzenleme Tarihi
         XSSFCell headerUpdaterCell = headerRow.createCell(columnIndex++);       //Son Düzenleyen
-        XSSFCell headerokDateCell = headerRow.createCell(columnIndex++);       //Tamamlanma Tarihi
+        XSSFCell headercompleteDateCell = headerRow.createCell(columnIndex++);       //Tamamlanma Tarihi
 
         headertaskIdCell.setCellStyle(headerCellStyle);
         headerAssignerCell.setCellStyle(headerCellStyle);
@@ -234,7 +234,7 @@ public class TaskService extends GenericIdNameAuditingEntityService<Task, UUID, 
         headerCreatorCell.setCellStyle(headerCellStyle);
         headerUpdateDateCell.setCellStyle(headerCellStyle);
         headerUpdaterCell.setCellStyle(headerCellStyle);
-        headerokDateCell.setCellStyle(headerCellStyle);
+        headercompleteDateCell.setCellStyle(headerCellStyle);
 
         headertaskIdCell.setCellValue("Task ID");
         headerOwnerCell.setCellValue("Talep Eden");
@@ -250,7 +250,7 @@ public class TaskService extends GenericIdNameAuditingEntityService<Task, UUID, 
         headerCreatorCell.setCellValue("Oluşturan");
         headerUpdateDateCell.setCellValue("Son Düzenleme Tarihi");
         headerUpdaterCell.setCellValue("Son Düzenleyen");
-        headerokDateCell.setCellValue("Tamamlanma Tarihi");
+        headercompleteDateCell.setCellValue("Talep Tamamlanma Tarihi");
 
         for (Task task : tasks) {
             columnIndex = 1;
@@ -271,7 +271,7 @@ public class TaskService extends GenericIdNameAuditingEntityService<Task, UUID, 
             XSSFCell creatorCell = row.createCell(columnIndex++);
             XSSFCell updateDateCell = row.createCell(columnIndex++);
             XSSFCell updaterCell = row.createCell(columnIndex++);
-            XSSFCell okDateCell = row.createCell(columnIndex++);
+            XSSFCell complateDateCell = row.createCell(columnIndex++);
 
             taskIdCell.setCellValue(task.getId().toString());
             if (task.getTaskType() != null) {
@@ -294,8 +294,8 @@ public class TaskService extends GenericIdNameAuditingEntityService<Task, UUID, 
                 dueTimeCell.setCellValue(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm").withZone(ZoneId.systemDefault()).format(task.getDueTime()));
             }
 
-            if (task.getOktime() != null) {
-                okDateCell.setCellValue(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm").withZone(ZoneId.systemDefault()).format(task.getOktime()));
+            if (task.getComplateDate() != null) {
+                complateDateCell.setCellValue(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm").withZone(ZoneId.systemDefault()).format(task.getComplateDate()));
             }
 
             if (task.getCreatedDate() != null) {

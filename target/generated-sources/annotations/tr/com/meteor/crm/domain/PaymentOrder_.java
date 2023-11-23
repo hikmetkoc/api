@@ -40,12 +40,15 @@ public abstract class PaymentOrder_ extends tr.com.meteor.crm.domain.IdNameAudit
 	public static volatile SingularAttribute<PaymentOrder, AttributeValue> odemeYapanSirket;
 	public static volatile SingularAttribute<PaymentOrder, String> kaynak;
 	public static volatile SingularAttribute<PaymentOrder, AttributeValue> paymentStyle;
+	public static volatile SingularAttribute<PaymentOrder, Boolean> pdf;
 	public static volatile SingularAttribute<PaymentOrder, Boolean> success;
 	public static volatile SingularAttribute<PaymentOrder, Iban> iban;
 	public static volatile SingularAttribute<PaymentOrder, User> cancelUser;
 	public static volatile SingularAttribute<PaymentOrder, String> name;
 	public static volatile SingularAttribute<PaymentOrder, User> secondAssigner;
+	public static volatile SingularAttribute<PaymentOrder, Boolean> closePdf;
 	public static volatile SingularAttribute<PaymentOrder, AttributeValue> exchange;
+	public static volatile SingularAttribute<PaymentOrder, User> onayMuh;
 	public static volatile SingularAttribute<PaymentOrder, Customer> customer;
 	public static volatile SingularAttribute<PaymentOrder, AttributeValue> status;
 
@@ -79,12 +82,15 @@ public abstract class PaymentOrder_ extends tr.com.meteor.crm.domain.IdNameAudit
 	public static final String ODEME_YAPAN_SIRKET = "odemeYapanSirket";
 	public static final String KAYNAK = "kaynak";
 	public static final String PAYMENT_STYLE = "paymentStyle";
+	public static final String PDF = "pdf";
 	public static final String SUCCESS = "success";
 	public static final String IBAN = "iban";
 	public static final String CANCEL_USER = "cancelUser";
 	public static final String NAME = "name";
 	public static final String SECOND_ASSIGNER = "secondAssigner";
+	public static final String CLOSE_PDF = "closePdf";
 	public static final String EXCHANGE = "exchange";
+	public static final String ONAY_MUH = "onayMuh";
 	public static final String CUSTOMER = "customer";
 	public static final String STATUS = "status";
 

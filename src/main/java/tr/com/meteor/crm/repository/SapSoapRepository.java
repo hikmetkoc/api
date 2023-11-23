@@ -12,6 +12,8 @@ import java.util.UUID;
 public interface SapSoapRepository extends GenericIdNameAuditingEntityRepository<SapSoap, UUID> {
     boolean existsByFaturano(String sapSoap);
     List<SapSoap> findByFaturanoAndVkn(String faturaNo, String vkn);
+
+    //Optional<SapSoap> findByFaturanoAndVkn(String faturaNo, String vkn);
     String findEttnByFaturanoAndCardname(String faturaNo, String cardName);
     String findFpdfByFaturanoAndCardname(String faturaNo, String cardName);
 }

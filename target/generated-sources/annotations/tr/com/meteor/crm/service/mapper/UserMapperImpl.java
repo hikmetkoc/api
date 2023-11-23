@@ -12,8 +12,8 @@ import tr.com.meteor.crm.service.dto.UserDTO;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-10-20T08:37:27+0300",
-    comments = "version: 1.3.0.Final, compiler: javac, environment: Java 1.8.0_202 (Oracle Corporation)"
+    date = "2023-11-23T13:00:28+0300",
+    comments = "version: 1.3.0.Final, compiler: javac, environment: Java 1.8.0_391 (Oracle Corporation)"
 )
 @Component
 public class UserMapperImpl implements UserMapper {

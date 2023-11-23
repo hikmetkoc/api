@@ -31,11 +31,13 @@ public class PaymentOrderTrigger extends Trigger<PaymentOrder, UUID, PaymentOrde
 
     private final ApprovalUserLimitRepository approvalUserLimitRepository;
 
+    private final PostaGuverciniService postaGuverciniService;
+
     private final MobileNotificationService mobileNotificationService;
 
     public PaymentOrderTrigger(CacheManager cacheManager, PaymentOrderRepository paymentOrderRepository, BaseUserService baseUserService,
                                BaseConfigurationService baseConfigurationService, CustomerRepository customerRepository,
-                               StoreRepository storeRepository, SpendRepository spendRepository, BuyLimitRepository limitRepository, PaymentOrderService service, MailService mailService, CorrectGroupRepository correctGroupRepository, ApprovalUserLimitRepository approvalUserLimitRepository, MobileNotificationService mobileNotificationService) {
+                               StoreRepository storeRepository, SpendRepository spendRepository, BuyLimitRepository limitRepository, PaymentOrderService service, MailService mailService, CorrectGroupRepository correctGroupRepository, ApprovalUserLimitRepository approvalUserLimitRepository, PostaGuverciniService postaGuverciniService, MobileNotificationService mobileNotificationService) {
         super(cacheManager, PaymentOrder.class, PaymentOrderTrigger.class, paymentOrderRepository, baseUserService, baseConfigurationService);
         this.customerRepository = customerRepository;
         this.storeRepository = storeRepository;
@@ -45,6 +47,7 @@ public class PaymentOrderTrigger extends Trigger<PaymentOrder, UUID, PaymentOrde
         this.mailService = mailService;
         this.correctGroupRepository = correctGroupRepository;
         this.approvalUserLimitRepository = approvalUserLimitRepository;
+        this.postaGuverciniService = postaGuverciniService;
         this.mobileNotificationService = mobileNotificationService;
     }
 
@@ -106,9 +109,15 @@ public class PaymentOrderTrigger extends Trigger<PaymentOrder, UUID, PaymentOrde
             newEntity.setPayTl(BigDecimal.ZERO);
         }
         if (newEntity.getAutopay().equals(true) && newEntity.getSuccess().equals(true)) {
-            throw new Exception("Lütfen ödendi veya otomatik ödendi seçeneklerinden sadece birini seçiniz!");
+            throw new Exception("Lütfen ödendi veya otomatik ödemede seçeneklerinden sadece birini seçiniz!");
         }
 
+        // 5'TEN FAZLA AÇIK ÖDEME KONTROLÜ
+        if (newEntity.getPaymentSubject().getId().equals(PaymentSubjectStatus.ACIK.getId())) {
+            if (repository.countByPaymentSubjectAndClosePdfAndOwner(newEntity.getPaymentSubject(), false, getCurrentUser()) > 4) {
+                throw new Exception("Açıkta 5 tane talimatın görseli eklenmediği için yeni talimat oluşturamazsınız!");
+            }
+        }
         // STATUS AYARI
         if (newEntity.getSuccess().equals(false)) {
             newEntity.setStatus(PaymentStatus.ONAY1.getAttributeValue());
@@ -254,10 +263,24 @@ public class PaymentOrderTrigger extends Trigger<PaymentOrder, UUID, PaymentOrde
             } else if (newEntity.getSuccess().equals(true) && newEntity.getAutopay().equals(false)) {
                 spendRepository.insertSpend(UUID.randomUUID(), getCurrentUserId(), SpendStatus.ODENDI.getId(), newEntity.getId(), newEntity.getAmount(), "Ödendi", false, this.baseUserService.getUserFullFetched(1L).get().getId(), Instant.now(), newEntity.getMaturityDate(), "Tek Ödeme", newEntity.getPayTl(), newEntity.getCustomer().getId(), newEntity.getOdemeYapanSirket().getLabel());
             } else if (newEntity.getSuccess().equals(false) && newEntity.getAutopay().equals(true)) {
-                spendRepository.insertSpend(UUID.randomUUID(), getCurrentUserId(), SpendStatus.ODENDI.getId(), newEntity.getId(), newEntity.getAmount(), "Otomatik Ödendi", false, this.baseUserService.getUserFullFetched(1L).get().getId(), Instant.now(), newEntity.getMaturityDate(), "Tek Ödeme", newEntity.getPayTl(), newEntity.getCustomer().getId(), newEntity.getOdemeYapanSirket().getLabel());
+                spendRepository.insertSpend(UUID.randomUUID(), getCurrentUserId(), SpendStatus.OTO.getId(), newEntity.getId(), newEntity.getAmount(), "Otomatik Ödemede", false, this.baseUserService.getUserFullFetched(1L).get().getId(), Instant.now(), newEntity.getMaturityDate(), "Otomatik Ödeme", newEntity.getPayTl(), newEntity.getCustomer().getId(), newEntity.getOdemeYapanSirket().getLabel());
             }
         }
-        //service.mailSend(newEntity.getOwner().getEposta(),newEntity.getAssigner().getEposta(), "hikmet@meteorpetrol.com", newEntity.getSecondAssigner().getEposta(), newEntity.getStatus().getId(), newEntity.getInvoiceNum(), newEntity.getAssigner().getUnvan().getId());
+        newEntity.setPdf(false);
+        if (!newEntity.getStatus().getId().equals(PaymentStatus.ODENDI.getId()) && !newEntity.getStatus().getId().equals(PaymentStatus.OTO.getId())) {
+            String text = newEntity.getInvoiceNum() + " fatura numarali odeme talimati, " +
+                "1.Onay Bekliyor durumundadir ve onayiniz beklenmektedir. meteorpanel.com/paymentorder adresinden ilgili talimata ulasabilirsiniz.";
+            if (!newEntity.getOwner().getId().equals(newEntity.getAssigner().getId())) {
+                if (newEntity.getAssigner().getUnvan().getId().equals("Unvanlar_Gen_Mud")
+                    || newEntity.getAssigner().getUnvan().getId().equals("Unvanlar_Yon_Bas")
+                    || newEntity.getAssigner().getUnvan().getId().equals("Unvanlar_San_Bas")
+                    || newEntity.getAssigner().getUnvan().getId().equals("Unvanlar_Ins_Dir")
+                ) {
+                    postaGuverciniService.SendSmsService(newEntity.getAssigner().getPhone(), text);
+                }
+                mailService.sendEmail(newEntity.getAssigner().getEposta(), "Meteor Panel - Ödeme Talimatı", text, false, false);
+            }
+        }
         return newEntity;
     }
 

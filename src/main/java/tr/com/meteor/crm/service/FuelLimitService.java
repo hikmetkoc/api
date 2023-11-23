@@ -1,11 +1,22 @@
 package tr.com.meteor.crm.service;
 
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.ss.usermodel.FillPatternType;
 import org.apache.poi.xssf.usermodel.*;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
+import springfox.documentation.spring.web.json.Json;
 import tr.com.meteor.crm.domain.AttributeValue;
 import tr.com.meteor.crm.domain.FuelLimit;
 import tr.com.meteor.crm.domain.User;
@@ -14,12 +25,15 @@ import tr.com.meteor.crm.utils.filter.Filter;
 import tr.com.meteor.crm.utils.filter.FilterItem;
 import tr.com.meteor.crm.utils.request.Request;
 
+import javax.xml.ws.Response;
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.Instant;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -27,7 +41,7 @@ import java.util.stream.Collectors;
 @Transactional(rollbackFor = Exception.class)
 public class FuelLimitService extends GenericIdNameAuditingEntityService<FuelLimit, UUID, FuelLimitRepository> {
 
-    private final String apiUrl = "https://srv.meteorpetrol.com/DisServis/limitguncelle";
+    //private final String apiUrl = "https://srv.nccpetrol.com/DisServis/riskdetayget?ServisSifre=14ADa23.&CariKodu={cariKodu}&FirmaKodu=875257";
     private final RestTemplate restTemplate;
 
     private final MailService mailService;
@@ -276,6 +290,51 @@ public class FuelLimitService extends GenericIdNameAuditingEntityService<FuelLim
 
             return true;
         } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public Boolean limitControlService(String curcode, BigDecimal total) throws IOException {
+        Double toplamDbsLimit = 0.0;
+        String apiUrl = "https://srv.nccpetrol.com/DisServis/riskdetayget?ServisSifre=14ADa23.&CariKodu=" + curcode + "&FirmaKodu=875257";
+        ResponseEntity<String> response = restTemplate.exchange(apiUrl, HttpMethod.GET, null, String.class);
+
+        if (response.getStatusCode().is2xxSuccessful()) {
+            String responseBody = response.getBody();
+            ObjectMapper objectMapper = new ObjectMapper();
+            JsonNode[] items = objectMapper.readValue(responseBody, JsonNode[].class);
+
+            /*Double toplamLimit = 0.0;
+            Double mevcutTuketim = 0.0;
+            String cariUnvan = "";*/
+
+            for (JsonNode item : items) {
+                //cariUnvan = item.get("CariUnvan").asText();
+                Double dbsLimit = item.get("DbsLimit").asDouble();
+                /*Double onayliFatura = item.get("OnayliFatura").asDouble();
+                Double limit = item.get("KullanilabilirLimit").asDouble();
+                String bankaAdi = item.get("BankaAdi").asText();
+                mevcutTuketim = item.get("MevcutTuketim").asDouble();
+                Double nakitRisk = bankaAdi.equals("GARANTİ BANKASI") || bankaAdi.equals("ING BANK") ?
+                    dbsLimit - onayliFatura - item.get("BankadanGelenKullanilabilirLimit").asDouble() :
+                    item.get("NakitRisk").asDouble();*/
+
+                toplamDbsLimit += dbsLimit;
+                //toplamLimit = limit;
+            }
+        } else {
+            throw new RuntimeException("Servis çağrısı başarısız: " + response.getStatusCode());
+        }
+        BigDecimal totalDbsLimit = new BigDecimal(toplamDbsLimit);
+        BigDecimal yuzdeOn = new BigDecimal("0.10");
+        BigDecimal yuzdeYirmiBes = new BigDecimal("0.25");
+        System.out.println(total);
+        System.out.println(totalDbsLimit.multiply(yuzdeOn));
+        if (totalDbsLimit.multiply(yuzdeOn).compareTo(total) >= 0 && !getCurrentUser().getId().equals(93L)) {
+            return true;
+        } else if (totalDbsLimit.multiply(yuzdeYirmiBes).compareTo(total) >= 0 && getCurrentUser().getId().equals(93L)) {
+            return true;
+        } else {
             return false;
         }
     }

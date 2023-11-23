@@ -17,6 +17,7 @@ public abstract class Task_ extends tr.com.meteor.crm.domain.IdNameAuditingEntit
 	public static volatile SingularAttribute<Task, String> description;
 	public static volatile SingularAttribute<Task, AttributeValue> birim;
 	public static volatile SingularAttribute<Task, Instant> dueTime;
+	public static volatile SingularAttribute<Task, Instant> complateDate;
 	public static volatile SingularAttribute<Task, Instant> oktime;
 	public static volatile SingularAttribute<Task, String> subjectdesc;
 	public static volatile SingularAttribute<Task, AttributeValue> status;
@@ -29,6 +30,7 @@ public abstract class Task_ extends tr.com.meteor.crm.domain.IdNameAuditingEntit
 	public static final String DESCRIPTION = "description";
 	public static final String BIRIM = "birim";
 	public static final String DUE_TIME = "dueTime";
+	public static final String COMPLATE_DATE = "complateDate";
 	public static final String OKTIME = "oktime";
 	public static final String SUBJECTDESC = "subjectdesc";
 	public static final String STATUS = "status";

@@ -23,19 +23,19 @@ import java.util.Locale;
 @Table(indexes = {@Index(columnList = "search")})
 public class Configuration extends IdNameAuditingEntity<String> {
 
-    @FieldMetadataAnn(readOnly = true, required = true, title = "İsim", search = true, display = true, priority = 10)
+    @FieldMetadataAnn(readOnly = true, title = "İsim", search = true, display = true, priority = 10)
     private String name;
 
-    @FieldMetadataAnn(readOnly = true, required = true, title = "Tip", display = true, priority = 20)
+    @FieldMetadataAnn(readOnly = true, title = "Tip", display = true, priority = 20)
     @AttributeValueValidate(attributeId = "Kon_Tip")
     @ManyToOne
     private AttributeValue valueType;
 
-    @FieldMetadataAnn(readOnly = true, title = "Değer", display = true, priority = 30)
+    @FieldMetadataAnn(title = "Değer", display = true, priority = 30)
     private String storedValue;
 
     @Transient
-    @FieldMetadataAnn(required = true, title = "Değer")
+    @FieldMetadataAnn(title = "Değer")
     private Object value;
 
     @Formula("name")

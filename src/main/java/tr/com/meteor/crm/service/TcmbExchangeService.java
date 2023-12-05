@@ -26,14 +26,17 @@ public class TcmbExchangeService extends GenericIdNameAuditingEntityService<BuyL
 
     private final ApprovalUserLimitRepository approvalUserLimitRepository;
 
+    private final PaymentOrderService paymentOrderService;
+
     public TcmbExchangeService(BaseUserService baseUserService, BaseRoleService baseRoleService,
                                BasePermissionService basePermissionService, BaseFileDescriptorService baseFileDescriptorService,
                                BaseConfigurationService baseConfigurationService, BuyLimitRepository repository,
-                               MailService mailService, ApprovalUserLimitRepository approvalUserLimitRepository) {
+                               MailService mailService, ApprovalUserLimitRepository approvalUserLimitRepository, PaymentOrderService paymentOrderService) {
         super(baseUserService, baseRoleService, basePermissionService, baseFileDescriptorService, baseConfigurationService,
             BuyLimit.class, repository);
         this.mailService = mailService;
         this.approvalUserLimitRepository = approvalUserLimitRepository;
+        this.paymentOrderService = paymentOrderService;
     }
 
     @Scheduled(cron = "0 0 2 * * *")

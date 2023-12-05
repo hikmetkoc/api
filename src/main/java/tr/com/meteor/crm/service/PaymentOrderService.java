@@ -989,7 +989,7 @@ public class PaymentOrderService extends GenericIdNameAuditingEntityService<Paym
         }
         return null;
     }
-    public void updateStatus(PaymentOrderDTO paymentOrderDTO) throws Exception {
+    /*public void updateStatus(PaymentOrderDTO paymentOrderDTO) throws Exception {
         //User currentUser = getCurrentUser();
         Optional<PaymentOrder> paymentOrder = repository.findById(paymentOrderDTO.getPaymentId());
 
@@ -997,16 +997,15 @@ public class PaymentOrderService extends GenericIdNameAuditingEntityService<Paym
             throw new RecordNotFoundException(entityClass.getSimpleName(), paymentOrderDTO);
         }
 
-        /*if (!((currentUser.getId()) == (activity.get().getOwner().getId()))) {
+        if (!((currentUser.getId()) == (activity.get().getOwner().getId()))) {
             throw new BadRequestAlertException("Bu aktivite sze ait değil.", null, "idexists");
-        }*/
+        }
 
         paymentOrder.get().setStatus(paymentOrderDTO.getStatus());
         paymentOrder.get().setOkeyFirst(paymentOrderDTO.getOkeyFirst());
 
         add(getCurrentUser(), paymentOrder.get());
-        System.out.println("SERVICE PUT ATTI");
-    }
+    }*/
     public List<PaymentOrder> myCorrect () {
         List<PaymentOrder> paymentOrders = repository.findAll();
         List<PaymentOrder> returnList = new ArrayList<>();
@@ -1018,4 +1017,93 @@ public class PaymentOrderService extends GenericIdNameAuditingEntityService<Paym
         }
         return returnList;
     }
+    /*public List<PaymentOrderDTO> mobileAllList () {
+        List<PaymentOrder> paymentOrders = repository.findAll();
+        List<PaymentOrderDTO> returnList = new ArrayList<>();
+        PaymentOrderDTO dto = new PaymentOrderDTO();
+
+        for (PaymentOrder paymentOrder : paymentOrders) {
+            if (paymentOrder.getSirket() != null) {
+                dto.setCompany(paymentOrder.getSirket().getLabel());
+            } else {
+                dto.setCompany("");
+            }
+            if (paymentOrder.getCustomer() != null) {
+                dto.setCustomer(paymentOrder.getCustomer().getName());
+            } else {
+                dto.setCustomer("");
+            }
+            if (paymentOrder.getAmount() != null) {
+                dto.setAmount(paymentOrder.getAmount().toString());
+            } else {
+                dto.setAmount("");
+            }
+            if (paymentOrder.getOkeyFirst() != null) {
+                dto.setOkeyFirst(paymentOrder.getOkeyFirst().toString());
+            } else {
+                dto.setOkeyFirst("");
+            }
+            if (paymentOrder.getOkeySecond() != null) {
+                dto.setOkeySecond(paymentOrder.getOkeySecond().toString());
+            } else {
+                dto.setOkeySecond("");
+            }
+            if (paymentOrder.getStatus() != null) {
+                dto.setStatus(paymentOrder.getStatus().getLabel());
+            } else {
+                dto.setStatus("");
+            }
+            returnList.add(dto);
+        }
+        return returnList;
+    }*/
+
+    /*public PaymentOrderDTO mobileAllList2 () {
+        List<PaymentOrder> paymentOrders = repository.findAll();
+        List<PaymentOrderDTO> returnList = new ArrayList<>();
+        PaymentOrderDTO dto = new PaymentOrderDTO();
+
+        for (PaymentOrder paymentOrder : paymentOrders) {
+            if (paymentOrder.getSirket() != null) {
+                dto.setCompany(paymentOrder.getSirket().getLabel());
+            } else {
+                dto.setCompany("");
+            }
+            if (paymentOrder.getCustomer() != null) {
+                dto.setCustomer(paymentOrder.getCustomer().getName());
+            } else {
+                dto.setCustomer("");
+            }
+            if (paymentOrder.getAmount() != null) {
+                dto.setAmount(paymentOrder.getAmount().toString());
+            } else {
+                dto.setAmount("");
+            }
+            if (paymentOrder.getOkeyFirst() != null) {
+                dto.setOkeyFirst(paymentOrder.getOkeyFirst().toString());
+            } else {
+                dto.setOkeyFirst("");
+            }
+            if (paymentOrder.getOkeySecond() != null) {
+                dto.setOkeySecond(paymentOrder.getOkeySecond().toString());
+            } else {
+                dto.setOkeySecond("");
+            }
+            if (paymentOrder.getStatus() != null) {
+                dto.setStatus(paymentOrder.getStatus().getLabel());
+            } else {
+                dto.setStatus("");
+            }
+            returnList.add(dto);
+            for (PaymentOrderDTO returnLi : returnList) {
+                System.out.println(returnLi.getCustomer());
+                System.out.println(returnLi.getAmount());
+                System.out.println(returnLi.getCompany());
+                System.out.println(returnLi.getOkeyFirst());
+                System.out.println(returnLi.getOkeySecond());
+                System.out.println(returnLi.getStatus());
+            }
+        }
+        return returnList;
+    }*/
 }

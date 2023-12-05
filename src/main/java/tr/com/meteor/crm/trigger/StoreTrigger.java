@@ -45,6 +45,18 @@ public class StoreTrigger extends Trigger<Store, UUID, StoreRepository> {
         if (newEntity.getAssigner() == null) {
             newEntity.setAssigner(baseUserService.getUserFullFetched(getCurrentUserId()).get());
         }
+        // IK, Muhasebe, IMIM, Kasa, İç Denetim, Risk Analiz, Pazarlama, Web Satış, Bilgi İşlem => Cemal Elitaş
+        // Mustafa Karaman => Zafer AYDIN
+        // Mustafa Öcal => Zafer AYDIN
+        // Löher, Sanayi Satış => Mustafa Karaman
+        // Avelice => Mustafa Öcal
+        // Satın Alma, Kafe => Murat Gedik
+        // İnşaat => Murat Can
+        // Finans => Funda Bugün
+        // Satış => Yılmaz Karaman
+        // Genel Müdürlük => Özgür Cem Can
+        // Geriye kalan herkes => Ümit Yaşar
+
         if (newEntity.getOwner() == null) {
             if (newEntity.getAssigner().getBirim().getId().equals(TaskType.TaskBirim.BIRIM_IK.getId()) ||
                 newEntity.getAssigner().getBirim().getId().equals(TaskType.TaskBirim.BIRIM_Muh.getId()) ||
@@ -172,6 +184,7 @@ public class StoreTrigger extends Trigger<Store, UUID, StoreRepository> {
                 }
                 if (newEntity.getOwner().getId().equals(getCurrentUserId()) && newEntity.getBuyowner() != null) {
                     if (!newEntity.getBuyowner().getId().equals(baseUserService.getUserFullFetched(80L).get().getId()) &&
+                        //!newEntity.getBuyowner().getId().equals(baseUserService.getUserFullFetched(127L).get().getId()) &&
                         !newEntity.getBuyowner().getId().equals(baseUserService.getUserFullFetched(32L).get().getId()) &&
                         !newEntity.getBuyowner().getId().equals(baseUserService.getUserFullFetched(131L).get().getId()) &&
                         !newEntity.getBuyowner().getId().equals(baseUserService.getUserFullFetched(119L).get().getId()) &&
@@ -180,6 +193,7 @@ public class StoreTrigger extends Trigger<Store, UUID, StoreRepository> {
                         !newEntity.getBuyowner().getId().equals(baseUserService.getUserFullFetched(8L).get().getId())) {
                         throw new Exception("Satın Alma Sorumlusu sadece aşağıdaki personeller olabilir : \n" +
                             "Mete ÖCAL, \n" + // Cemal Elitaş , Ümit Yaşar, Özgür Cem CAN
+                            //"Sezgin Yaşar, \n" + // Mustafa Karaman , Zafer Aydın, Özgür Cem CAN
                             "Mine HATİPOĞLU, \n" + // Cemal Elitaş , Ümit Yaşar, Özgür Cem CAN
                             "Kaan OKTAY, \n" + // Mustafa Karaman , Zafer Aydın, Özgür Cem CAN
                             "Samet DEMİRHAN, \n" + // Mustafa ÖCAL, Zafer Aydın, Özgür Cem CAN

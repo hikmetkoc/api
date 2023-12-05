@@ -31,30 +31,33 @@ public class Behavior extends IdNameAuditingEntity<UUID> {
     @JsonIgnoreProperties({"groups", "members", "createdBy", "lastModifiedBy", "roles"})
     private User owner;
 
-    @FieldMetadataAnn(title = "Belge No", priority = 40)
+    @FieldMetadataAnn(title = "Belge No")
     @Column(length = 2048)
     private String document;
 
-    @FieldMetadataAnn(title = "Tutar", priority = 5, display = true, required = true, filterable = true)
+    @FieldMetadataAnn(title = "Tutar", display = true, required = true)
     private BigDecimal fuelTl;
 
-    @FieldMetadataAnn(title = "Konu", priority = 999, active = false)
+    @FieldMetadataAnn(title = "Bakiye", display = true)
+    private BigDecimal balance;
+
+    @FieldMetadataAnn(title = "Konu", active = false)
     @Column(length = 2048)
     private String subject;
-    @FieldMetadataAnn(title = "Açıklama", priority = 30, filterable = true)
+    @FieldMetadataAnn(title = "Açıklama", filterable = true)
     @Column(length = 2048)
     private String description;
 
-    @FieldMetadataAnn(required = true, title = "Hareket Tipi", display = true, priority = 10, filterable = true)
+    @FieldMetadataAnn(required = true, title = "Hareket Tipi")
     @AttributeValueValidate(attributeId = "Har_Tip")
     @ManyToOne
     private AttributeValue type;
 
-    @FieldMetadataAnn(title = "Giriş Tarihi", display = true, priority = 60, filterable = true)
+    @FieldMetadataAnn(title = "Giriş Tarihi", display = true, filterable = true)
     private Instant inputDate;
 
     @ManyToOne
-    @FieldMetadataAnn(title = "Maliyet Yeri", priority = 0)
+    @FieldMetadataAnn(title = "Maliyet Yeri")
     private MotionSums motionsums;
 
     @Formula("subject")
@@ -149,5 +152,13 @@ public class Behavior extends IdNameAuditingEntity<UUID> {
 
     public void setDocument(String document) {
         this.document = document;
+    }
+
+    public BigDecimal getBalance() {
+        return balance;
+    }
+
+    public void setBalance(BigDecimal balance) {
+        this.balance = balance;
     }
 }

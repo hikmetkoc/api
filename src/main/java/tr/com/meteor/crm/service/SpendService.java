@@ -123,7 +123,7 @@ public class SpendService extends GenericIdNameAuditingEntityService<Spend, UUID
             codeCell.setCellValue(rowIndex-2);
             TypeCell.setCellValue(type);
             QualificationCell.setCellValue(qualification);
-            if (spend.getPaymentorder().getIban().getName() != null) {
+            if (spend.getPaymentorder() != null && spend.getPaymentorder().getIban() != null && spend.getPaymentorder().getIban().getName() != null) {
                 IbanCell.setCellValue(spend.getPaymentorder().getIban().getName());
             }
             if (spend.getPaymentorder().getCustomer() != null) {

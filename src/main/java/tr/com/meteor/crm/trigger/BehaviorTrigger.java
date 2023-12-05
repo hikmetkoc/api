@@ -65,6 +65,13 @@ public class BehaviorTrigger extends Trigger<Behavior, UUID, BehaviorRepository>
             parent.get().setLoan(parent.get().getLoan().add(newEntity.getFuelTl()));
         }
         parent.get().setBalance(parent.get().getLoan().subtract(parent.get().getReceive()));
+        motionSumsRepository.save(motionSums.get());
+        customerRepository.save(parent.get());
+        customerRepository.save(customer.get());
+        if (newEntity.getType().getId().equals("Har_Tip_Alacak")) {
+            newEntity.setFuelTl(newEntity.getFuelTl().negate());
+        }
+        newEntity.setBalance(motionSums.get().getLoan().subtract(motionSums.get().getReceive()));
         return newEntity;
     }
 

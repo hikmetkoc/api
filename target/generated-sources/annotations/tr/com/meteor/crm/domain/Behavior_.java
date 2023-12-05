@@ -12,6 +12,7 @@ public abstract class Behavior_ extends tr.com.meteor.crm.domain.IdNameAuditingE
 
 	public static volatile SingularAttribute<Behavior, User> owner;
 	public static volatile SingularAttribute<Behavior, BigDecimal> fuelTl;
+	public static volatile SingularAttribute<Behavior, BigDecimal> balance;
 	public static volatile SingularAttribute<Behavior, String> instanceName;
 	public static volatile SingularAttribute<Behavior, String> subject;
 	public static volatile SingularAttribute<Behavior, String> document;
@@ -22,6 +23,7 @@ public abstract class Behavior_ extends tr.com.meteor.crm.domain.IdNameAuditingE
 
 	public static final String OWNER = "owner";
 	public static final String FUEL_TL = "fuelTl";
+	public static final String BALANCE = "balance";
 	public static final String INSTANCE_NAME = "instanceName";
 	public static final String SUBJECT = "subject";
 	public static final String DOCUMENT = "document";

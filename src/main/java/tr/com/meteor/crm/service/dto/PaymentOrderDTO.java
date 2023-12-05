@@ -1,38 +1,63 @@
 package tr.com.meteor.crm.service.dto;
-
-import tr.com.meteor.crm.domain.AttributeValue;
-
-import java.time.Instant;
-import java.util.UUID;
-
 public class PaymentOrderDTO {
-    private UUID paymentId;
 
-    private AttributeValue status;
+    private String company;
 
-    private Instant okeyFirst;
+    private String customer;
 
-    public UUID getPaymentId() {
-        return paymentId;
+    private String amount;
+
+    private String okeyFirst;
+
+    private String okeySecond;
+
+    private String status;
+
+    public String getCompany() {
+        return company;
     }
 
-    public void setPaymentId(UUID paymentId) {
-        this.paymentId = paymentId;
+    public void setCompany(String company) {
+        this.company = company;
     }
 
-    public AttributeValue getStatus() {
-        return status;
+    public String getCustomer() {
+        return customer;
     }
 
-    public void setStatus(AttributeValue status) {
-        this.status = status;
+    public void setCustomer(String customer) {
+        this.customer = customer;
     }
 
-    public Instant getOkeyFirst() {
+    public String getAmount() {
+        return amount;
+    }
+
+    public void setAmount(String amount) {
+        this.amount = amount;
+    }
+
+    public String getOkeyFirst() {
         return okeyFirst;
     }
 
-    public void setOkeyFirst(Instant okeyFirst) {
+    public void setOkeyFirst(String okeyFirst) {
         this.okeyFirst = okeyFirst;
+    }
+
+    public String getOkeySecond() {
+        return okeySecond;
+    }
+
+    public void setOkeySecond(String okeySecond) {
+        this.okeySecond = okeySecond;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

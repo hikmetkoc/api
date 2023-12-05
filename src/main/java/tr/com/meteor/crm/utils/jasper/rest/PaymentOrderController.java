@@ -45,10 +45,10 @@ public class PaymentOrderController extends GenericIdNameAuditingEntityControlle
             .body(new ByteArrayResource(service.generateExcelOrderReport(getCurrentUser(), startDate, endDate)));
     }
 
-    @PutMapping("/updatePayment")
+    /*@PutMapping("/updatePayment")
     public void updateStatus(@RequestBody PaymentOrderDTO paymentOrderDTO) throws Exception {
         service.updateStatus(paymentOrderDTO);
-    }
+    }*/
     @PutMapping("/{id}")
     public ResponseEntity<String> updatePaymentOrderStatus(@PathVariable UUID id, @RequestParam String status, @RequestParam String description) throws Exception {
         try {
@@ -104,4 +104,13 @@ public class PaymentOrderController extends GenericIdNameAuditingEntityControlle
             return ResponseEntity.status(500).build();
         }
     }
+
+    /*@PostMapping("/mobilealllist")
+    public ResponseEntity<List<PaymentOrderDTO>> mobileAllList() throws Exception{
+        try {
+            return ResponseEntity.ok(service.mobileAllList());
+        } catch (Exception e) {
+            return ResponseEntity.status(500).build();
+        }
+    }*/
 }

@@ -78,63 +78,60 @@ public class BehaviorService extends GenericIdNameAuditingEntityService<Behavior
         headerCellStyle.setFillForegroundColor(new XSSFColor(new byte[]{(byte) 189, (byte) 215, (byte) 238}, null));
         headerCellStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
 
-        XSSFCell headerOwnerCell = headerRow.createCell(columnIndex++);
-        XSSFCell headerTypeCell = headerRow.createCell(columnIndex++);
-        XSSFCell headerSubjectCell = headerRow.createCell(columnIndex++);
-        XSSFCell headerDescriptionCell = headerRow.createCell(columnIndex++);
+        XSSFCell headerCreatedDateCell = headerRow.createCell(columnIndex++);
         XSSFCell headerDocumentCell = headerRow.createCell(columnIndex++);
         XSSFCell headerInputDateCell = headerRow.createCell(columnIndex++);
         XSSFCell headerTotalCell = headerRow.createCell(columnIndex++);
+        XSSFCell headerBalanceCell = headerRow.createCell(columnIndex++);
+        XSSFCell headerDescriptionCell = headerRow.createCell(columnIndex++);
         XSSFCell headerMotionCell = headerRow.createCell(columnIndex++);
         XSSFCell headerCustomerCell = headerRow.createCell(columnIndex++);
-        XSSFCell headerCreatedDateCell = headerRow.createCell(columnIndex++);
+        XSSFCell headerTypeCell = headerRow.createCell(columnIndex++);
+        XSSFCell headerOwnerCell = headerRow.createCell(columnIndex++);
 
-        headerOwnerCell.setCellStyle(headerCellStyle);
-        headerTypeCell.setCellStyle(headerCellStyle);
-        headerSubjectCell.setCellStyle(headerCellStyle);
-        headerDescriptionCell.setCellStyle(headerCellStyle);
+        headerCreatedDateCell.setCellStyle(headerCellStyle);
         headerDocumentCell.setCellStyle(headerCellStyle);
         headerInputDateCell.setCellStyle(headerCellStyle);
         headerTotalCell.setCellStyle(headerCellStyle);
+        headerBalanceCell.setCellStyle(headerCellStyle);
+        headerDescriptionCell.setCellStyle(headerCellStyle);
         headerMotionCell.setCellStyle(headerCellStyle);
         headerCustomerCell.setCellStyle(headerCellStyle);
-        headerCreatedDateCell.setCellStyle(headerCellStyle);
+        headerTypeCell.setCellStyle(headerCellStyle);
+        headerOwnerCell.setCellStyle(headerCellStyle);
 
-        headerOwnerCell.setCellValue("Oluşturan");
-        headerTypeCell.setCellValue("Hareket Tipi");
-        headerSubjectCell.setCellValue("Konu");
-        headerDescriptionCell.setCellValue("Açıklama");
+        headerCreatedDateCell.setCellValue("Oluşturulma Tarihi");
         headerDocumentCell.setCellValue("Belge Nu");
         headerInputDateCell.setCellValue("Giriş Tarihi");
         headerTotalCell.setCellValue("Tutar");
+        headerBalanceCell.setCellValue("Bakiye");
+        headerDescriptionCell.setCellValue("Açıklama");
         headerMotionCell.setCellValue("Maliyet Yeri");
         headerCustomerCell.setCellValue("Tedarikçi");
-        headerCreatedDateCell.setCellValue("Oluşturulma Tarihi");
+        headerTypeCell.setCellValue("Hareket Tipi");
+        headerOwnerCell.setCellValue("Oluşturan");
 
         for (Behavior behavior : behaviors) {
             columnIndex = 1;
 
             XSSFRow row = sheet.createRow(rowIndex++);
 
-            XSSFCell ownerCell = row.createCell(columnIndex++);
-            XSSFCell typeCell = row.createCell(columnIndex++);
-            XSSFCell subjectCell = row.createCell(columnIndex++);
-            XSSFCell descriptionCell = row.createCell(columnIndex++);
+            XSSFCell createdDateCell = row.createCell(columnIndex++);
             XSSFCell documentCell = row.createCell(columnIndex++);
             XSSFCell inputDateCell = row.createCell(columnIndex++);
             XSSFCell totalCell = row.createCell(columnIndex++);
+            XSSFCell balanceCell = row.createCell(columnIndex++);
+            XSSFCell descriptionCell = row.createCell(columnIndex++);
             XSSFCell motionCell = row.createCell(columnIndex++);
             XSSFCell customerCell = row.createCell(columnIndex++);
-            XSSFCell createdDateCell = row.createCell(columnIndex++);
+            XSSFCell typeCell = row.createCell(columnIndex++);
+            XSSFCell ownerCell = row.createCell(columnIndex++);
 
             if (behavior.getOwner() != null) {
                 ownerCell.setCellValue(behavior.getOwner().getFullName());
             }
             if (behavior.getType() != null) {
                 typeCell.setCellValue(behavior.getType().getLabel());
-            }
-            if (behavior.getSubject() != null) {
-                subjectCell.setCellValue(behavior.getSubject());
             }
             if (behavior.getDescription() != null) {
                 descriptionCell.setCellValue(behavior.getDescription());
@@ -149,6 +146,10 @@ public class BehaviorService extends GenericIdNameAuditingEntityService<Behavior
 
             if (behavior.getFuelTl() != null) {
                 totalCell.setCellValue(behavior.getFuelTl().floatValue());
+            }
+
+            if (behavior.getBalance() != null) {
+                balanceCell.setCellValue(behavior.getBalance().floatValue());
             }
 
             if (behavior.getMotionsums() != null) {
